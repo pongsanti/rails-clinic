@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h1>New Customer</h1>
+  <p class="lead">Fill in customer details</p>
+</div>
+
+<%= form_for :customer do |f| %>
+  <p>
+    <%= f.label :cn %><br>
+    <%= f.text_field :cn %>
+  </p>
+ 
+  <p>
+    <%= f.label :prefix %><br>
+    <%= f.text_field :prefix %>
+  </p>
+ 
+ <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :surname %><br>
+    <%= f.text_field :surname %>
+  </p>
+
+  <p>
+    <%= f.label :sex %><br>
+    <%= f.text_field :sex %>
+  </p>
+
+  <p>
+    <%= f.label :id_card_no %><br>
+    <%= f.text_field :id_card_no %>
+  </p>
+
+  <p>
+    <%= f.label :passport_no %><br>
+    <%= f.text_field :passport_no %>
+  </p>
+
+  <p>
+    <%= f.label :birthdate %><br>
+    <%= f.date_field :birthdate %>
+  </p>
+
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
