@@ -1,51 +1,118 @@
 <div class="page-header">
-  <h1>New Customer</h1>
+  <h1><%= t :new_customer %></h1>
   <p class="lead">Fill in customer details</p>
 </div>
 
 <%= form_for :customer do |f| %>
-  <p>
-    <%= f.label :cn %><br>
-    <%= f.text_field :cn %>
-  </p>
- 
-  <p>
-    <%= f.label :prefix %><br>
-    <%= f.text_field :prefix %>
-  </p>
- 
- <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
 
-  <p>
-    <%= f.label :surname %><br>
-    <%= f.text_field :surname %>
-  </p>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.label :cn, "CN" %><br>
+      <%= f.text_field :cn %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :sex %><br>
-    <%= f.text_field :sex %>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :prefix %><br>
+          <%= f.text_field :prefix %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :surname %><br>
+          <%= f.text_field :surname %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :sex %><br>
+          <%= f.text_field :sex %>
+         </div>
+      </div>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :id_card_no %><br>
-    <%= f.text_field :id_card_no %>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :id_card_no %><br>
+          <%= f.text_field :id_card_no %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :passport_no %><br>
+          <%= f.text_field :passport_no %>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :birthdate %><br>
+          <%= f.date_field :birthdate %>
+        </div>
+        <div class="col-md-6">
+          
+         </div>
+      </div>
+    </div>
 
-  <p>
-    <%= f.label :passport_no %><br>
-    <%= f.text_field :passport_no %>
-  </p>
+  </div>
 
-  <p>
-    <%= f.label :birthdate %><br>
-    <%= f.date_field :birthdate %>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :address %><br>
+      <%= f.text_field :address, size: 60 %>   
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :sub_district %><br>
+          <%= f.text_field :sub_district %>  
+        </div>
+        <div class="col-md-6">
+          <%= f.label :district %><br>
+          <%= f.text_field :district %>  
+        </div>
+      </div>
+    </div>
+  </div>
 
-  
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :province %><br>
+          <%= f.text_field :province %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :postal_code %><br>
+          <%= f.text_field :postal_code %>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :occupation %><br>
+          <%= f.text_field :occupation %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :tel_no %><br>
+          <%= f.telephone_field :tel_no %>
+         </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <%= f.submit %>
+
+
 <% end %>
