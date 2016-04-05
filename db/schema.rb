@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403093259) do
+ActiveRecord::Schema.define(version: 20160405161154) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "cn",           null: false
-    t.string   "prefix"
     t.string   "name"
     t.string   "surname"
     t.string   "sex"
     t.string   "id_card_no"
     t.string   "passport_no"
     t.date     "birthdate"
-    t.text     "address"
+    t.string   "address"
     t.string   "sub_district"
     t.string   "district"
     t.string   "province"
@@ -31,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160403093259) do
     t.string   "tel_no"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "prefix_id"
+  end
+
+  add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
+
+  create_table "prefixes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
