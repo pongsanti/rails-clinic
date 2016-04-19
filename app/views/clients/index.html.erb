@@ -1,0 +1,22 @@
+
+<% content_for :upper do %>
+	<h2> Hey this is upper!! </h2>
+<% end %>
+
+
+<h1>Clients Index Yeah!!</h1>
+
+<%
+item1 = Item.new
+item1.name = "Paul"
+
+item2 = Item.new
+item2.name = "Peter"
+
+@items = [item1, item2]
+%>
+
+<ul>
+<%= render partial: "item", collection: @items, spacer_template: "item_ruler"%>
+</ul>
+
