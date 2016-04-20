@@ -1,0 +1,48 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$card-border-radius: 2px
+$card-border-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3)
+
+$profile-img-card-width: 96px
+$profile-img-card-border-radius: 50%
+
+=border-radius($radius)
+	-webkit-border-radius: $radius
+	-moz-border-radius: $radius
+	-ms-border-radius: $radius
+	border-radius: $radius
+
+=border-shadow($options)
+	-moz-box-shadow: $options
+	-webkit-box-shadow: $options
+	box-shadow: $options
+
+.card-container.card
+	max-width: 350px
+	padding: 40px 40px
+
+.card
+	background-color: #F7F7F7
+	/* just in case there no content*/
+	padding: 20px 25px 30px
+	margin: 0 auto 25px
+	margin-top: 50px
+	/* shadows and rounded borders */
+	+border-radius($card-border-radius)
+	+border-shadow($card-border-shadow)
+
+.profile-img-card 
+	width: $profile-img-card-width
+	height: $profile-img-card-width
+	margin: 0 auto 10px
+	display: block
+	+border-radius($profile-img-card-border-radius)
+
+.profile-name-card
+	font-size: 16px
+	font-weight: bold
+	text-align: center
+	margin: 10px 0 0
+	min-height: 1em

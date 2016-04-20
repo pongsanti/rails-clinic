@@ -1,13 +1,31 @@
-<h1>Log in</h1>
+<div class="container">
+ 	<div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+	  
+			<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+      <p id="profile-name" class="profile-name-card"></p>
+	    <%= form_tag sessions_path, class: "form-signin" do %>
+	    	
+	    	<%= email_field_tag :email, params[:email], class: "form-control", placeholder: "Email address", required: true %>
 
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p class="button"><%= submit_tag "LOG IN"%></p>
-<% end %>
+	    	<!--
+	      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>-->
+
+	      <%= password_field_tag :password, nil, class: "form-control", placeholder: "Password", 
+	      	required: true %>
+
+	      <!--
+	      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+	      -->
+	      <div id="remember" class="checkbox">
+	        <label>
+	          <input type="checkbox" value="remember-me"> Remember me
+	        </label>
+	      </div>
+	      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+	   	<% end %>
+	    <a href="#" class="forgot-password">
+	        Forgot the password?
+	    </a>
+	</div><!-- /card-container -->
+</div><!-- /container -->
