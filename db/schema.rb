@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419045323) do
+ActiveRecord::Schema.define(version: 20160421160235) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "owner_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "cn",           null: false
@@ -47,6 +54,9 @@ ActiveRecord::Schema.define(version: 20160419045323) do
     t.string   "password_salt"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "client_id"
   end
+
+  add_index "users", ["client_id"], name: "index_users_on_client_id"
 
 end

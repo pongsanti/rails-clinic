@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	belongs_to :client
+
 	attr_accessor :password
 
 	validates :email, uniqueness: true
