@@ -1,120 +1,118 @@
 <div class="page-header">
-  <h1><%= t :new_customer %></h1>
-  <p class="lead">Fill in customer details</p>
+  <h1><%= t :new_customer %> <small>Fill in customer details</small></h1>
 </div>
 
-<%= form_for @customer do |f| %>
+<%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
 
-  <div class="row">
-    <div class="col-md-12">
-      <fieldset>
-        <legend>Customer number</legend>
-        <%= f.label :cn, "CN" %><br>
-        <%= f.text_field :cn %>
-      </fieldset>
-    </div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Customer Number</h3>
   </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-         
-        </div>
-        <div class="col-md-6">
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
-         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :surname %><br>
-          <%= f.text_field :surname %>
-        </div>
-        <div class="col-md-6">
-          <%= f.label :sex %><br>
-          <%= f.text_field :sex %>
-         </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :cn, "CN", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :cn, class: "form-control", placeholder: "Customer Number"%>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :id_card_no %><br>
-          <%= f.text_field :id_card_no %>
-        </div>
-        <div class="col-md-6">
-          <%= f.label :passport_no %><br>
-          <%= f.text_field :passport_no %>
-         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :birthdate %><br>
-          <%= f.date_field :birthdate %>
-        </div>
-        <div class="col-md-6">
-          
-         </div>
-      </div>
-    </div>
-
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Personal Information</h3>
   </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.label :address %><br>
-      <%= f.text_field :address, size: 60 %>   
+  <div class="panel-body">
+    <div class="form-group">
+      <%= f.label :name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control", placeholder: "Customer Name" %>
+      </div>
     </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :sub_district %><br>
-          <%= f.text_field :sub_district %>  
-        </div>
-        <div class="col-md-6">
-          <%= f.label :district %><br>
-          <%= f.text_field :district %>  
-        </div>
+    <div class="form-group">
+      <%= f.label :surname, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :surname, class: "form-control", placeholder: "Customer Surname" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :sex, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :sex, class: "form-control", placeholder: "Customer Sex" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :id_card_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :id_card_no, class: "form-control", placeholder: "Customer Id Card Number" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :passport_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :passport_no, class: "form-control", placeholder: "Customer Passport Number" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :birthdate, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.date_field :birthdate, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :occupation, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :occupation, class: "form-control", placeholder: "Customer Occupation" %>
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Address and Contact</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">  
+      <%= f.label :address, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :address, class: "form-control", placeholder: "Address", size: 60 %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :sub_district, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :sub_district, class: "form-control", placeholder: "Sub-District" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :district, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :district, class: "form-control", placeholder: "District" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :province, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :province, class: "form-control", placeholder: "Province" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :postal_code, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :postal_code, class: "form-control", placeholder: "Postal Code" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :tel_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.telephone_field :tel_no, class: "form-control", placeholder: "Telephone Number" %>
       </div>
     </div>
   </div>
+</div>  
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :province %><br>
-          <%= f.text_field :province %>
-        </div>
-        <div class="col-md-6">
-          <%= f.label :postal_code %><br>
-          <%= f.text_field :postal_code %>
-         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.label :occupation %><br>
-          <%= f.text_field :occupation %>
-        </div>
-        <div class="col-md-6">
-          <%= f.label :tel_no %><br>
-          <%= f.telephone_field :tel_no %>
-         </div>
-      </div>
-    </div>
-  </div>
-  <br>
-  <%= f.submit %>
-
+<%= f.submit "Create Customer", class: "btn btn-default" %>
+<%= f.submit "Clear", type: "reset", class: "btn btn-default" %>
 
 <% end %>
