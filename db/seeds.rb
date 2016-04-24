@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#Prefixes
+Prefix.create(name: 'นาย')
+Prefix.create(name: 'นางสาว')
+Prefix.create(name: 'นาง')
+Prefix.create(name: 'เด็กชาย')
+Prefix.create(name: 'เด็กหญิง')
