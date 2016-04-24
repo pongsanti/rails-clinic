@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   def new
   	@customer = Customer.new()
+    @prefixes = Prefix.all()
   end
 
   def create
