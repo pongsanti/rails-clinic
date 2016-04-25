@@ -20,5 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 th:
+  date:   
+    order:
+      - day
+      - month
+      - year
+    month_names: [~, มกราคม, กุมภาพันธ์, มีนาคม, เมษายน, พฤษภาคม, มิถุนายน, กรกฎาคม, สิงหาคม, กันยายน, ตุลาคม, พฤศจิกายน, ธันวาคม] 
+
   hello: "Hello world"
   new_customer : "สร้างประวัติ"
