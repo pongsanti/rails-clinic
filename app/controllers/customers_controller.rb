@@ -1,21 +1,30 @@
 class CustomersController < ApplicationController
   def new
-  	@customer = Customer.new()
-    @prefixes = Prefix.all()
+  	@customer = Customer.new
+    @prefixes = prefix_all
   end
 
   def create
+    #render plain: customer_params.inspect
   	@customer = Customer.new(customer_params)
   	
-  	@customer.save
-  	redirect_to @customer
+  	if @customer.save
+      render plain: customer_params.inspect
+    else
+      @prefixes = prefix_all
+      render 'new'
+    end
   end
 
   private
   	def customer_params
-  		params.require(:customer).permit(:prefix, :name, :surname, :sex,
+  		params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
   			:id_card, :passport_no, :birth_date,
   			:address, :sub_district, :district, :province, :postal_code,
   			:occupation, :tel_no)
   	end
+
+    def prefix_all
+      Prefix.all
+    end
 end
