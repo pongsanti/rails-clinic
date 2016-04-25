@@ -4,9 +4,20 @@
 
 $(document).ready(
 	() -> 
+)
+
+$(document).ready(
+	() -> # display local year
+		$('select#customer_birthdate_1i option').each( 
+			(index, value) ->
+				option = $(value)
+				year = parseInt(option.text())
+				option.text(year + ' (' + String(year + 543) + ')')
+		)
+
 		$('.selectpicker').selectpicker({
 			size: 'auto',
 			liveSearch: true,
-		});
-);
+		})
+)
 
