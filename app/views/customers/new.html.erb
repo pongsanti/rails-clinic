@@ -61,8 +61,13 @@
     </div>
     <div class="form-group">
       <%= f.label :sex, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :sex, class: "form-control", placeholder: "Customer Sex" %>
+      <div class="btn-group col-sm-10" data-toggle="buttons">
+        <label class="btn btn-default active">
+          <%= radio_button_tag :sex, "M" %> Male
+        </label>
+        <label class="btn btn-default">
+          <%= radio_button_tag :sex, "F" %> Female
+        </label>
       </div>
     </div>
     <div class="form-group">
