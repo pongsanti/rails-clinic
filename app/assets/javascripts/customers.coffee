@@ -3,10 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(
-	() -> 
-)
-
-$(document).ready(
 	() -> # display local year
 		$('select#customer_birthdate_1i option').each( 
 			(index, value) ->
@@ -21,3 +17,10 @@ $(document).ready(
 		})
 )
 
+$(document).ready(
+	() -> # form validation
+		$('form[id*="customer"]').each(
+			(index, value) ->
+				$(value).validate()
+		)
+)

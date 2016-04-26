@@ -24,7 +24,7 @@
   </div>
   <div class="panel-body">
     <div class="form-group">
-      <%= f.label :prefix, class: "col-sm-2 control-label" %>
+      <%= f.label :prefix, class: "col-sm-2 control-label required-label" %>
       <div class="col-sm-4">
         <%= f.select(:prefix_id, nil, {}, class: "selectpicker") do %>
           <% @prefixes.each do |prefix| %>
@@ -32,7 +32,7 @@
           <% end %>
         <% end %>
       </div>
-      <%= f.label :sex, class: "col-sm-2 control-label" %>
+      <%= f.label :sex, class: "col-sm-2 control-label required-label" %>
       <div class="btn-group col-sm-4" data-toggle="buttons">
         <label class="btn btn-default active">
           <%= radio_button_tag :sex, "M" %> Male
@@ -43,17 +43,17 @@
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :name, class: "col-sm-2 control-label" %>
+      <%= f.label :name, class: "col-sm-2 control-label required-label"%>
       <div class="col-sm-4">
-        <%= f.text_field :name, class: "form-control", placeholder: true  %>
+        <%= f.text_field :name, class: "form-control", placeholder: true, required: true %>
       </div>
-      <%= f.label :surname, class: "col-sm-2 control-label" %>
+      <%= f.label :surname, class: "col-sm-2 control-label required-label" %>
       <div class="col-sm-4">
-        <%= f.text_field :surname, class: "form-control", placeholder: true %>
+        <%= f.text_field :surname, class: "form-control", placeholder: true, required: true %>
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :birthdate, class: "col-sm-2 control-label" %>
+      <%= f.label :birthdate, class: "col-sm-2 control-label required-label" %>
       <div class="col-sm-10">
         <%= f.date_select :birthdate, {start_year: Date.today.year - 100}, class: "selectpicker" %>
       </div>
