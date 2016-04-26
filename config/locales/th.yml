@@ -30,7 +30,7 @@ th:
   hello: "Hello world"
 
   new_customer:
-    title: "สร้างประวัติ"
+    title: "ลงทะเบียน"
     sub_text: "ข้อมูลผู้เข้ารับการรักษา"
 
     personal_information: "ข้อมูลส่วนตัว"
