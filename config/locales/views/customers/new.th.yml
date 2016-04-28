@@ -1,0 +1,10 @@
+th:
+  customers:
+    new:
+      title: "ลงทะเบียน"
+      sub_text: "ข้อมูลผู้เข้ารับการรักษา"
+
+      personal_information: "ข้อมูลส่วนตัว"
+      address_contact: "ที่อยู่และการติดต่อ"
+      submit_button: "สร้างประวัติ"
+      clear_button: "เคลียร์ฟอร์ม"

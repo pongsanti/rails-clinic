@@ -1,0 +1,31 @@
+th:
+  helpers:
+    label:
+      customer:
+        prefix: "คำนำหน้าชื่อ"
+        sex: "เพศ"
+        name: "ชื่อ"
+        surname: "นามสกุล"
+        birthdate: "วันเกิด"
+        id_card_no: "เลขบัตรประชาชน"
+        passport_no: "เลขพาสปอร์ต"
+        occupation: "อาชีพ"
+        address: "ที่อยู่"
+        sub_district: "ที่อยู่2/แขวง/ตำบล"
+        district: "เขต/อำเภอ"
+        province: "จังหวัด"
+        postal_code: "รหัสไปรษณีย์"
+        tel_no: "เบอร์โทรศัพท์"
+    placeholder:
+      customer:
+        name: "ชื่อตามบัตรประชาชน"
+        surname: "นามสกุลตามบัตรประชาชน"
+        id_card_no: "หมายเลขบัตรประชาชน"
+        passport_no: "หมายเลขหนังสือเดินทาง"
+        occupation: "อาชีพ"
+        address: "บ้านเลขที่ หมู่ที่ หมู่บ้าน อาคาร ถนน ซอย ฯลฯ"
+        sub_district: "ที่อยู่(ต่อ) หรือ ตำบล"
+        district: "อำเภอ"
+        province: "จังหวัด"
+        postal_code: "รหัสไปรษณีย์"
+        tel_no: "หมายเลขโทรศัพท์บ้าน หรือ มือถือ"
