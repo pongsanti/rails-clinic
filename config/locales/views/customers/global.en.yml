@@ -1,0 +1,9 @@
+en:
+  helpers:
+    placeholder:
+      customer:
+        name: "Customer name"
+        surname: "Customer lastname"
+        id_card_no: "ID card number"
+        passport_no: "Passport number"
+        occupation: "Customer occupation"

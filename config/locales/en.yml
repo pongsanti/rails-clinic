@@ -21,20 +21,3 @@
 
 en:
   hello: "Hello world"
-  new_customer:
-    title: "New Customer"
-    sub_text: "Fill in customer detail"
-
-    personal_information: "Personal Information"
-    address_contact: "Address and Contact"
-    submit_button: "Create Customer Profile"
-    clear_button: "Clear"
-
-  helpers:
-    placeholder:
-      customer:
-        name: "Customer name"
-        surname: "Customer lastname"
-        id_card_no: "ID card number"
-        passport_no: "Passport number"
-        occupation: "Customer occupation"

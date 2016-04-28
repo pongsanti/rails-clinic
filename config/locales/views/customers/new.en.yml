@@ -1,0 +1,10 @@
+en:
+  customers:
+    new:
+      title: "New Customer"
+      sub_text: "Fill in customer detail"
+
+      personal_information: "Personal Information"
+      address_contact: "Address and Contact"
+      submit_button: "Create Customer Profile"
+      clear_button: "Clear"

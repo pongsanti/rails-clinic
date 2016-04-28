@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= t 'new_customer.title' %> <small><%= t 'new_customer.sub_text' %></small></h1>
+  <h1><%= t '.title' %> <small><%= t '.sub_text' %></small></h1>
 </div>
 
 <%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
@@ -20,7 +20,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= t 'new_customer.personal_information' %></h3>
+    <h3 class="panel-title"><%= t '.personal_information' %></h3>
   </div>
   <div class="panel-body">
     <div class="form-group">
@@ -79,7 +79,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= t 'new_customer.address_contact' %></h3>
+    <h3 class="panel-title"><%= t '.address_contact' %></h3>
   </div>
   <div class="panel-body">
     <div class="form-group">  
@@ -119,7 +119,7 @@
   </div>
 </div>  
 
-<%= f.submit (I18n.t "new_customer.submit_button"), class: "btn btn-primary" %>
-<%= f.submit (I18n.t "new_customer.clear_button"), type: "reset", class: "btn btn-default" %>
+<%= f.submit t('.submit_button'), class: "btn btn-primary" %>
+<%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
 
 <% end %>
