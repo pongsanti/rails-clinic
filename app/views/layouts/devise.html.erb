@@ -27,9 +27,12 @@
   </head>
   <body>
     <div class="container">
-      <%= render "flash" %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash#{name}", class: "alert alert-danger",
+          role: "alert" %>
+      <% end %>
       <%= yield %>
     </div>
    
   </body>
-</html> 
+</html>
