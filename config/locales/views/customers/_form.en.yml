@@ -1,0 +1,7 @@
+en:
+  customers:
+    form:
+      personal_information: "Personal Information"
+      address_contact: "Address and Contact"
+      submit_button: "Create Customer Profile"
+      clear_button: "Clear"

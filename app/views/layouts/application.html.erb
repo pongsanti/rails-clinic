@@ -64,6 +64,9 @@
     </nav>
 
     <div class="container">
+      <div>
+        <%= link_to 'List Customers', customers_path %> | <%= link_to 'New Customer', new_customer_path %> | 
+      </div>
       <%= render partial: "layouts/flash" %>
       <%= yield %>
     </div>
