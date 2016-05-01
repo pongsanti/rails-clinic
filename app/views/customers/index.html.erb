@@ -22,7 +22,7 @@
 	      <td><%= customer.name %></td>
 	      <td><%= customer.surname %></td>
 	      <td><%= customer.birthdate %></td>
-	      <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+	      <td><%= link_to 'View', customer_path(customer) %> | <%= link_to 'Edit', edit_customer_path(customer) %></td>
 	    </tr>
 	    <% end %>
 	  </tbody>
