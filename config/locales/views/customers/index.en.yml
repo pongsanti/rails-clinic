@@ -1,0 +1,5 @@
+en:
+  customers:
+    index:
+      title: "List Customers"
+      sub_text: "Browse for customers"

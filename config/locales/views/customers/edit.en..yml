@@ -1,5 +1,5 @@
 en:
   customers:
-    new:
-      title: "New Customer"
+    edit:
+      title: "Edit Customer"
       sub_text: "Fill in customer detail"
