@@ -22,19 +22,15 @@
     <div class="form-group">
       <%= f.label :prefix, class: "col-sm-2 control-label required-label" %>
       <div class="col-sm-4">
-        <%= f.select(:prefix_id, nil, {}, class: "selectpicker") do %>
-          <% @prefixes.each do |prefix| %>
-            <%= content_tag(:option, prefix.name, value: prefix.id) %>
-          <% end %>
-        <% end %>
+        <%= f.collection_select(:prefix_id, @prefixes, :id, :name, {}, class: "selectpicker") %>
       </div>
       <%= f.label :sex, class: "col-sm-2 control-label required-label" %>
       <div class="btn-group col-sm-4" data-toggle="buttons">
         <label class="btn btn-default active">
-          <%= radio_button_tag :sex, "M" %> Male
+          <%= f.radio_button :sex, "M" %> Male
         </label>
         <label class="btn btn-default">
-          <%= radio_button_tag :sex, "F" %> Female
+          <%= f.radio_button :sex, "F" %> Female
         </label>
       </div>
     </div>
