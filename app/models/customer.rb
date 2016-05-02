@@ -3,6 +3,7 @@ class Customer < ActiveRecord::Base
 	belongs_to :prefix
 
 	validates :prefix, presence: true
+  validates :sex, presence: true
 	validates :name, presence: true
   validates :surname, presence: true
   validates :birthdate, presence: true

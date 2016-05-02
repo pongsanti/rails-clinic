@@ -56,7 +56,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../navbar/">Default</a></li>
-          <li><%= link_to('Login', new_user_session_path) %></li>
+          <li><% unless user_signed_in? %> 
+              <%= link_to('Login', new_user_session_path) %>
+              <% end %>
+            </li>
           <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
         </ul>
       </div><!--/.nav-collapse -->
