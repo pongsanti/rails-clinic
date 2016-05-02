@@ -156,10 +156,9 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.1.0)
-  devise
+  devise (= 4.0.1)
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.6)
