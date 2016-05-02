@@ -1,3 +1,111 @@
 <div class="page-header">
   <h1><%= t '.title' %> <small><%= t '.sub_text' %></small></h1>
 </div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t 'customers.form.personal_information' %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :name %>:
+      </div>
+      <div class="col-sm-4">
+        <%= "#{@customer.prefix.name} #{@customer.name} #{@customer.surname}" %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :sex %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.sex %>
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :birthdate %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.birthdate %>
+      </div>
+      <div class="col-sm-6">
+        Age 30 Years 2 Months
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :id_card_no %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.id_card_no %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :passport_no %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.passport_no %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :occupation %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @customer.occupation %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t 'customers.form.address_contact' %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :address %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @customer.address %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :sub_district %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @customer.sub_district %>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :district %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.district %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :province %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.province %>
+      </div>          
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :postal_code %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.postal_code %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :tel_no %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.tel_no %>
+      </div>          
+    </div>    
+  </div>
+</div>
+
