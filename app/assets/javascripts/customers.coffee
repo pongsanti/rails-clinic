@@ -22,5 +22,8 @@ initializePage = -> # display local year
       $(value).validate()
   )
 
+  # active the radio buttons group
+  $('input[type=radio]:checked').parent().addClass('active')
+
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)

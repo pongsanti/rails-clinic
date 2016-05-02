@@ -10,6 +10,7 @@
 	      <th><%= label :customer, :prefix %></th>
 	      <th><%= label :customer, :name %></th>
 	      <th><%= label :customer, :surname %></th>
+	      <th><%= label :customer, :sex %></th>
 	      <th><%= label :customer, :birthdate %></th>
 	      <th></th>
 	    </tr>
@@ -21,6 +22,7 @@
 	      <td><%= customer.prefix.name %></td>
 	      <td><%= customer.name %></td>
 	      <td><%= customer.surname %></td>
+	      <td><%= customer.sex %></td>
 	      <td><%= customer.birthdate %></td>
 	      <td><%= link_to 'View', customer_path(customer) %> | <%= link_to 'Edit', edit_customer_path(customer) %></td>
 	    </tr>
