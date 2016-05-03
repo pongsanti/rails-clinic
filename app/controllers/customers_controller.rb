@@ -3,7 +3,8 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @customers = Customer.all
+    @q = Customer.ransack(params[:q])
+    @customers = @q.result
   end
 
   def show
