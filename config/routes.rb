@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   #resources :users
   #resources :sessions
   resources :customers
+  resources :exams
   #resources :clients
   # Example resource route with options:
   #   resources :products do
