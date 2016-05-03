@@ -1,0 +1,35 @@
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t 'customers.form.personal_information' %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :name %>:
+      </div>
+      <div class="col-sm-4">
+        <%= "#{@customer.prefix.name} #{@customer.name} #{@customer.surname}" %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :sex %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.sex %>
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :birthdate %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.birthdate %>
+      </div>
+      <div class="col-sm-6">
+        Age 30 Years 2 Months
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,17 @@
+  
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary', role: 'button' do %>
+  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= t '.prepare_exam' %>
+<% end %>
+
+<%= link_to '#', class: 'btn btn-info', role: 'button' do %>
+  <span class="glyphicon glyphicon-print" aria-hidden="true"></span> <%= t '.print_id_card' %>
+<% end %>
 <hr>
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= t 'customers.form.personal_information' %></h3>
+    <h4 class="panel-title"><%= t 'customers.form.personal_information' %></h4>
   </div>
   <div class="panel-body">
     <div class="row">

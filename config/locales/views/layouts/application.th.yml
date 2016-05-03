@@ -1,0 +1,6 @@
+th:
+  layouts:
+    application:
+      customer: "ผู้เข้ารับการรักษา"
+      customer_list: "รายชื่อ/ค้นหา"
+      customer_new: "ลงทะเบียนใหม่"

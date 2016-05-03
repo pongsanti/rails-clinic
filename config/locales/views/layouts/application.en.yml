@@ -1,0 +1,6 @@
+th:
+  layouts:
+    application:
+      customer: "Customer"
+      customer_list: "Customer List"
+      customer_new: "New Customer"

@@ -26,7 +26,7 @@ class CustomersController < ApplicationController
     @customer.cn = '001'
   	
   	if @customer.save
-      redirect_to action: 'index'
+      redirect_to customer_url(@customer)
     else
       get_all_prefixes
       render 'new'
