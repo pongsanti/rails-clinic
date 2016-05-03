@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '4.0.1'
 
+gem 'ransack', '1.7.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
