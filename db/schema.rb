@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429091817) do
+ActiveRecord::Schema.define(version: 20160503161514) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "cn",           null: false
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 20160429091817) do
   end
 
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
+
+  create_table "examinations", force: :cascade do |t|
+    t.decimal  "weight"
+    t.decimal  "height"
+    t.integer  "bp_systolic"
+    t.integer  "pulse"
+    t.text     "drug_allergy"
+    t.text     "note"
+    t.text     "exam_pi"
+    t.text     "exam_pe"
+    t.text     "exam_note"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "prefixes", force: :cascade do |t|
     t.string   "name"
