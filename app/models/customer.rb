@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
 
 	belongs_to :prefix
+  has_many :examinations
 
 	validates :prefix, presence: true
   validates :sex, presence: true

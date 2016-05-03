@@ -35,7 +35,8 @@ ActiveRecord::Schema.define(version: 20160503161514) do
 
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
 
-  create_table "examinations", force: :cascade do |t|
+  create_table "exams", force: :cascade do |t|
+    t.string   "phase"
     t.decimal  "weight"
     t.decimal  "height"
     t.integer  "bp_systolic"
@@ -47,7 +48,13 @@ ActiveRecord::Schema.define(version: 20160503161514) do
     t.text     "exam_note"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "customer_id"
+    t.integer  "examiner_id"
   end
+
+  add_index "exams", ["customer_id"], name: "index_exams_on_customer_id"
+  add_index "exams", ["examiner_id"], name: "index_exams_on_examiner_id"
+  add_index "exams", ["phase"], name: "index_exams_on_phase"
 
   create_table "prefixes", force: :cascade do |t|
     t.string   "name"
