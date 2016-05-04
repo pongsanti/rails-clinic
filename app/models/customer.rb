@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
 
+  paginates_per 20
+
 	belongs_to :prefix
   has_many :examinations
 
