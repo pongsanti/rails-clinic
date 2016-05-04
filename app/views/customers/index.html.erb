@@ -47,3 +47,7 @@
 	  </tbody>
 	</table>
 </div>
+<%= paginate @customers %>
+<div>
+<%= page_entries_info @customers, entry_name: t('layouts.application.customer') %>
+</div>

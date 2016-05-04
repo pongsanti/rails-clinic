@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
 
   def index
     @q = Customer.ransack(params[:q])
-    @customers = @q.result
+    @customers = @q.result.page(params[:page])
   end
 
   def show

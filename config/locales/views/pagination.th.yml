@@ -1,0 +1,17 @@
+th:
+  views:
+    pagination:
+      first: "&laquo; หน้าแรก"
+      last: "หน้าสุดท้าย &raquo;"
+      previous: "&lsaquo; ก่อนหน้า"
+      next: "ต่อไป &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "ไม่มี %{entry_name}"
+          one: "แสดง %{entry_name} <b>1</b> รายการ"
+          other: "ทั้งหมด <b>%{count}</b> รายการ"
+      more_pages:
+        display_entries: "แสดง %{entry_name} ลำดับ <b>%{first}&nbsp;-&nbsp;%{last}</b> จากทั้งหมด <b>%{total}</b> รายการ"
