@@ -1,10 +1,21 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t 'customers.form.personal_information' %></h3>
+<% if @exam.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2>
+      <%= pluralize(@exam.errors.count, "error") %> prohibited
+      this customer from being saved:
+    </h2>
+    <ul>
+      <% @exam.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
+
+<div class="panel panel-primary">
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-2">
@@ -33,3 +44,56 @@
     </div>
   </div>
 </div>
+
+<%= form_for @exam, html: { class: "form-horizontal" } do |f| %>
+  <div class="form-group">
+    <%= f.label :weight, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <%= f.number_field :weight, class: "form-control", placeholder: true %>
+        <div class="input-group-addon">kg</div>
+      </div>
+    </div>
+    <%= f.label :height, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <%= f.number_field :height, class: "form-control", placeholder: true %>
+        <div class="input-group-addon">cm</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label t('.blood_pressure'), class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <%= f.number_field :bp_systolic, class: "form-control", placeholder: true, maxlength: 3 %>
+        <div class="input-group-addon">mm Hg</div>
+        <div class="input-group-addon">/</div>
+        <%= f.number_field :bp_diastolic, class: "form-control", placeholder: true, maxlength: 3 %>
+        <div class="input-group-addon">mm Hg</div>
+      </div>
+    </div>
+    <%= f.label :pulse, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <div class="input-group">
+        <%= f.number_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , digits: true %>
+        <div class="input-group-addon">bpm</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :drug_allergy, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :drug_allergy, class: "form-control", placeholder: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :note, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :note, class: "form-control", placeholder: true %>
+    </div>
+  </div>
+
+  <%= f.submit t('.submit_button'), class: "btn btn-primary" %>
+  <%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
+<% end %>

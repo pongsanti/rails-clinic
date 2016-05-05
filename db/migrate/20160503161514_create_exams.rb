@@ -5,6 +5,7 @@ class CreateExams < ActiveRecord::Migration
       t.decimal :weight
       t.decimal :height
       t.integer :bp_systolic
+      t.integer :bp_diastolic
       t.integer :pulse
       t.text :drug_allergy
       t.text :note
