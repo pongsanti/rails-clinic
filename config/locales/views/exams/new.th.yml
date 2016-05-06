@@ -3,3 +3,6 @@ th:
     new:
       title: "เตรียมส่งตรวจ"
       sub_text: "ข้อมูลก่อนเตรียมส่งตรวจ"
+      blood_pressure: "ความดันโลหิต"
+      submit_button: "ส่งพบแพทย์"
+      clear_button: "เคลียร์ฟอร์ม"

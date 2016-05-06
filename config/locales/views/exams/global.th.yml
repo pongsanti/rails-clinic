@@ -1,0 +1,18 @@
+th:
+  helpers:
+    label:
+      exam:
+        weight: "น้ำหนัก"
+        height: "ส่วนสูง"
+        pulse: "ชีพจร"
+        drug_allergy: "แพ้ยา"
+        note: "ข้อมูลถึงแพทย์"
+    placeholder:
+      exam:
+        weight: "น้ำหนัก"
+        height: "ส่วนสูง"
+        bp_systolic: "ค่าบน"
+        bp_diastolic: "ค่าล่าง"
+        pulse: "ชีพจร"
+        drug_allergy: "ประวัติการแพ้ยา"
+        note: "รายละเอียดเพิ่มเติมเกี่ยวกับผู้ป่วย"

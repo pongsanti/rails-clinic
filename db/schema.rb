@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160503161514) do
     t.decimal  "weight"
     t.decimal  "height"
     t.integer  "bp_systolic"
+    t.integer  "bp_diastolic"
     t.integer  "pulse"
     t.text     "drug_allergy"
     t.text     "note"
