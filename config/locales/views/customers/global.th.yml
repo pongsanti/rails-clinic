@@ -15,7 +15,8 @@ th:
         district: "เขต/อำเภอ"
         province: "จังหวัด"
         postal_code: "รหัสไปรษณีย์"
-        tel_no: "เบอร์โทรศัพท์"
+        home_phone_no: "เบอร์โทรศัพท์บ้าน"
+        tel_no: "เบอร์โทรศัพท์มือถือ"
     placeholder:
       customer:
         name: "ชื่อตามบัตรประชาชน"
@@ -28,4 +29,5 @@ th:
         district: "อำเภอ"
         province: "จังหวัด"
         postal_code: "รหัสไปรษณีย์"
-        tel_no: "หมายเลขโทรศัพท์บ้าน หรือ มือถือ"
+        home_phone_no: "หมายเลขโทรศัพท์บ้าน"
+        tel_no: "หมายเลขโทรศัพท์มือถือ"
