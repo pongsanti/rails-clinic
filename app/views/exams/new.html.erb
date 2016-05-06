@@ -52,14 +52,14 @@
       <%= f.label :weight, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">
-          <%= f.number_field :weight, class: "form-control", placeholder: true %>
+          <%= f.text_field :weight, class: "form-control", placeholder: true, data: { mask: '9?99' }  %>
           <div class="input-group-addon">kg</div>
         </div>
       </div>
       <%= f.label :height, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">
-          <%= f.number_field :height, class: "form-control", placeholder: true %>
+          <%= f.text_field :height, class: "form-control", placeholder: true, data: { mask: '9?99' } %>
           <div class="input-group-addon">cm</div>
         </div>
       </div>
@@ -68,17 +68,17 @@
       <%= f.label t('.blood_pressure'), class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">
-          <%= f.number_field :bp_systolic, class: "form-control", placeholder: true, maxlength: 3 %>
+          <%= f.text_field :bp_systolic, class: "form-control", placeholder: true, data: { mask: '99?9' } %>
           <div class="input-group-addon">mm Hg</div>
           <div class="input-group-addon">/</div>
-          <%= f.number_field :bp_diastolic, class: "form-control", placeholder: true, maxlength: 3 %>
+          <%= f.text_field :bp_diastolic, class: "form-control", placeholder: true, data: { mask: '99?9' } %>
           <div class="input-group-addon">mm Hg</div>
         </div>
       </div>
       <%= f.label :pulse, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">
-          <%= f.number_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , digits: true %>
+          <%= f.text_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , data: { mask: '99?9' } %>
           <div class="input-group-addon">bpm</div>
         </div>
       </div>
