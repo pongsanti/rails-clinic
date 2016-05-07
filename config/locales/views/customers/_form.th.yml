@@ -1,7 +1,3 @@
 th:
   customers:
     form:
-      personal_information: "ข้อมูลส่วนตัว"
-      address_contact: "ที่อยู่และการติดต่อ"
-      submit_button: "ส่งข้อมูล"
-      clear_button: "เคลียร์ฟอร์ม"

@@ -3,3 +3,5 @@ th:
     new:
       title: "ลงทะเบียน"
       sub_text: "ข้อมูลผู้เข้ารับการรักษา"
+      submit_button: "ส่งข้อมูล"
+      clear_button: "เคลียร์ฟอร์ม"
