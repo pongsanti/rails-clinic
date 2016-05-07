@@ -32,8 +32,11 @@
       <div class="col-sm-4">
         <%= @customer.birthdate %>
       </div>
-      <div class="col-sm-6">
-        Age 30 Years 2 Months
+      <div class="col-sm-2">
+        <%= label_tag nil, t('.age') %>:
+      </div>
+      <div class="col-sm-4">
+        <%= age_text(@customer) %>
       </div>
     </div>
     <div class="row">
