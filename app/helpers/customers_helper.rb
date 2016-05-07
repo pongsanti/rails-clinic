@@ -1,5 +1,11 @@
 module CustomersHelper
 
+  def th_year(customer)
+    unless customer.birthdate.nil?
+      customer.birthdate.year + 543
+    end  
+  end
+
   def age_text(customer)
     unless customer.birthdate.nil?
       age_in_days = (Time.now.to_date - customer.birthdate).to_i

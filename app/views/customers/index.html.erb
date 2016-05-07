@@ -39,8 +39,8 @@
 	      <td><%= customer.prefix.name %></td>
 	      <td><%= customer.name %></td>
 	      <td><%= customer.surname %></td>
-	      <td><%= customer.sex %></td>
-	      <td><%= customer.birthdate %></td>
+	      <td><%= t('customers.show.' + customer.sex) %></td>
+	      <td><%= customer.birthdate %> (<%= th_year customer %>)</td>
 	      <td><%= link_to 'View', customer_path(customer) %> | <%= link_to 'Edit', edit_customer_path(customer) %></td>
 	    </tr>
 	    <% end %>

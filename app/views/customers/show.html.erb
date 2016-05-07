@@ -22,7 +22,7 @@
         <%= label :customer, :sex %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.sex %>
+        <%= t ".#{@customer.sex}" %>
       </div>    
     </div>
     <div class="row">
@@ -30,13 +30,13 @@
         <%= label :customer, :birthdate %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.birthdate %>
+        <%= @customer.birthdate %> (<%= t '.th_year' %><%= th_year @customer %>)
       </div>
       <div class="col-sm-2">
         <%= label_tag nil, t('.age') %>:
       </div>
       <div class="col-sm-4">
-        <%= age_text(@customer) %>
+        <%= age_text @customer %>
       </div>
     </div>
     <div class="row">

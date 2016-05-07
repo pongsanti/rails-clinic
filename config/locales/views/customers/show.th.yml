@@ -6,7 +6,11 @@ th:
       prepare_exam: "เตรียมส่งตรวจ"
       print_id_card: "พิมพ์บัตรผู้ป่วย"
 
+      th_year: "พ.ศ."
       age: "อายุ"
       years: "ปี"
       months: "เดือน"
-      days: "วัน"   
+      days: "วัน"
+
+      M: "ชาย"
+      F: "หญิง"
