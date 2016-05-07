@@ -1,0 +1,9 @@
+exam_one:
+  weight: 70
+  height: 180
+  customer: customer_david
+
+exam_two:
+  weight: 71
+  height: 182
+  customer: customer_david  

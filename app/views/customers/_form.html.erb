@@ -1,23 +1,18 @@
-<%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
-  
-  <% if @customer.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2>
-        <%= pluralize(@customer.errors.count, "error") %> prohibited
-        this customer from being saved:
-      </h2>
-      <ul>
-        <% @customer.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @customer.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2>
+      <%= pluralize(@customer.errors.count, "error") %> prohibited
+      this customer from being saved:
+    </h2>
+    <ul>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t '.personal_information' %></h3>
-  </div>
   <div class="panel-body">
     <div class="form-group">
       <%= f.label :prefix, class: "col-sm-2 control-label required-label" %>
@@ -27,10 +22,10 @@
       <%= f.label :sex, class: "col-sm-2 control-label required-label" %>
       <div class="btn-group col-sm-4" data-toggle="buttons">
         <label class="btn btn-default">
-          <%= f.radio_button :sex, "M" %> Male
+          <%= f.radio_button :sex, "M" %> <%= t('customers.show.M') %>
         </label>
         <label class="btn btn-default">
-          <%= f.radio_button :sex, "F" %> Female
+          <%= f.radio_button :sex, "F" %> <%= t('customers.show.F') %>
         </label>
       </div>
     </div>
@@ -69,10 +64,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t '.address_contact' %></h3>
-  </div>
+<div class="panel panel-primary">
   <div class="panel-body">
     <div class="form-group">  
       <%= f.label :address, class: "col-sm-2 control-label" %>
@@ -103,15 +95,14 @@
       </div>
     </div>
     <div class="form-group">
+      <%= f.label :home_phone_no, class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <%= f.telephone_field :home_phone_no, class: "form-control", placeholder: true, data: { mask: '9-9999-9999' } %>
+      </div>
       <%= f.label :tel_no, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.telephone_field :tel_no, class: "form-control", placeholder: true, data: { mask: '999-999-9999' } %>
+      <div class="col-sm-4">
+        <%= f.telephone_field :tel_no, class: "form-control", placeholder: true, data: { mask: '99-9999-9999' } %>
       </div>
     </div>
   </div>
-</div>  
-
-<%= f.submit t('.submit_button'), class: "btn btn-primary" %>
-<%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
-
-<% end %>
+</div>

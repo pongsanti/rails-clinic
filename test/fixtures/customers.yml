@@ -2,7 +2,8 @@
 
 customer_david:
   cn: 201600001
-  prefix: Mr
+  prefix: mr
+  sex: M
   name: David
   surname: Jiang
   birthdate: 1988-10-09

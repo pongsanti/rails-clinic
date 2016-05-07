@@ -9,10 +9,7 @@
 <% end %>
 <hr>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title"><%= t 'customers.form.personal_information' %></h4>
-  </div>
+<div class="panel panel-primary">
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-2">
@@ -25,7 +22,7 @@
         <%= label :customer, :sex %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.sex %>
+        <%= t ".#{@customer.sex}" %>
       </div>    
     </div>
     <div class="row">
@@ -33,10 +30,13 @@
         <%= label :customer, :birthdate %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.birthdate %>
+        <%= @customer.birthdate %> (<%= t '.th_year' %><%= th_year @customer %>)
       </div>
-      <div class="col-sm-6">
-        Age 30 Years 2 Months
+      <div class="col-sm-2">
+        <%= label_tag nil, t('.age') %>:
+      </div>
+      <div class="col-sm-4">
+        <%= age_text @customer %>
       </div>
     </div>
     <div class="row">
@@ -64,10 +64,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t 'customers.form.address_contact' %></h3>
-  </div>
+<div class="panel panel-primary">
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-2">
@@ -89,22 +86,28 @@
       <div class="col-sm-2">
         <%= label :customer, :district %>:
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
         <%= @customer.district %>
       </div>
       <div class="col-sm-2">
         <%= label :customer, :province %>:
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
         <%= @customer.province %>
-      </div>          
-    </div>
-    <div class="row">
+      </div>
       <div class="col-sm-2">
         <%= label :customer, :postal_code %>:
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
         <%= @customer.postal_code %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :home_phone_no %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.home_phone_no %>
       </div>
       <div class="col-sm-2">
         <%= label :customer, :tel_no %>:

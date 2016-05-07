@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-Mr:
+mr:
   name: Mr.
 
-Ms:
+ms:
   name: Ms.

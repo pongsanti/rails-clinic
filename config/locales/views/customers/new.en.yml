@@ -3,3 +3,5 @@ en:
     new:
       title: "New Customer"
       sub_text: "Fill in customer detail"
+      submit_button: "Create Customer Profile"
+      clear_button: "Clear"      

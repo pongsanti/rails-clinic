@@ -3,21 +3,12 @@ class Customer < ActiveRecord::Base
   paginates_per 20
 
 	belongs_to :prefix
-  has_many :examinations
+  has_many :exams
 
 	validates :prefix, presence: true
   validates :sex, presence: true
 	validates :name, presence: true
   validates :surname, presence: true
   validates :birthdate, presence: true
-
-  def age_in_days
-    age_in_days = nil
-
-    unless self.birthdate.nil?
-      age_in_days = (Time.now.to_date - self.birthdate).to_i
-    end 
-    age_in_days
-  end
 
 end

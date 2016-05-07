@@ -11,6 +11,11 @@ class CustomerTest < ActiveSupport::TestCase
     assert_not @customer.save, "Saved the customer without title"
   end
 
+  test "should not save without sex" do
+    @customer.sex = nil
+    assert_not @customer.save, "Saved the customer without sex"
+  end
+
   test "should not save without name" do
     @customer.name = nil
     assert_not @customer.save, "Saved the customer without name"
@@ -24,6 +29,14 @@ class CustomerTest < ActiveSupport::TestCase
   test "should not save without birthdate" do
     @customer.birthdate = nil
     assert_not @customer.save, "Saved the customer without birthdate"
+  end
+
+  test "should have prefix" do
+    assert_equal prefixes(:mr).name, @customer.prefix.name
+  end
+
+  test "should have exams" do
+    assert_equal 2, @customer.exams.count
   end
 
 end
