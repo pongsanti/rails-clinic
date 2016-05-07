@@ -22,10 +22,10 @@
       <%= f.label :sex, class: "col-sm-2 control-label required-label" %>
       <div class="btn-group col-sm-4" data-toggle="buttons">
         <label class="btn btn-default">
-          <%= f.radio_button :sex, "M" %> Male
+          <%= f.radio_button :sex, "M" %> <%= t('customers.show.M') %>
         </label>
         <label class="btn btn-default">
-          <%= f.radio_button :sex, "F" %> Female
+          <%= f.radio_button :sex, "F" %> <%= t('customers.show.F') %>
         </label>
       </div>
     </div>
