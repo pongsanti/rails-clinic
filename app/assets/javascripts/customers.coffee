@@ -10,6 +10,13 @@ initializePage = -> # display local year
       option.text(year + ' (' + String(year + 543) + ')')
   )
 
+  # display month number
+  $('select#customer_birthdate_2i option').each(
+    (index, value) ->
+      option = $(value)
+      option.text(option.text() + ' (' + String(index + 1) + ')');
+  )
+
   # initialize select picker
   $('.selectpicker').selectpicker({
     size: 'auto',

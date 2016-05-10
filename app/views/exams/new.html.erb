@@ -28,7 +28,7 @@
         <%= label :customer, :sex %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.sex %>
+        <%= t "customers.show.#{@customer.sex}" %>
       </div>    
     </div>
     <div class="row">
@@ -36,10 +36,13 @@
         <%= label :customer, :birthdate %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.birthdate %>
+        <%= @customer.birthdate %> (<%= t 'customers.show.th_year' %><%= th_year @customer %>)
       </div>
-      <div class="col-sm-6">
-        Age 30 Years 2 Months
+      <div class="col-sm-2">
+        <%= label_tag nil, t('customers.show.age') %>:
+      </div>
+      <div class="col-sm-4">
+        <%= age_text @customer %>
       </div>
     </div>
   </div>
