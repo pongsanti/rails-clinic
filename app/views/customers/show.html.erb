@@ -44,7 +44,7 @@
         <%= label :customer, :id_card_no %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.id_card_no %>
+        <%= masked_id_card_no(@customer) %>
       </div>
       <div class="col-sm-2">
         <%= label :customer, :passport_no %>:
@@ -103,17 +103,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= label :customer, :home_phone_no %>:
       </div>
-      <div class="col-sm-4">
-        <%= @customer.home_phone_no %>
+      <div class="col-sm-3">
+        <%= masked_home_phone_no @customer %>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= label :customer, :tel_no %>:
       </div>
-      <div class="col-sm-4">
-        <%= @customer.tel_no %>
+      <div class="col-sm-3">
+        <%= masked_tel_no @customer %>
       </div>          
     </div>    
   </div>
