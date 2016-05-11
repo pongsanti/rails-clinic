@@ -1,0 +1,14 @@
+th:
+  activerecord:
+    models:
+      customer: "ผู้ป่วย"
+    attributes:
+      customer:
+        sex: "เพศ"
+
+    errors:
+      models:
+        customer:
+          attributes:
+            sex:
+              blank: "ยังไม่ได้ระบุ"        
