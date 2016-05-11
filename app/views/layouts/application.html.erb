@@ -34,6 +34,8 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Clinic</a>
+        <a class="navbar-brand" href="#" data-target="#sidebar" data-toggle="offcanvas" >
+          <span class="glyphicon glyphicon-hourglass" data-toggle="tooltip" title="Display Queue" data-placement="bottom" aria-hidden="true"></span><span class="badge">4</span></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
@@ -79,30 +81,21 @@
     </div>
   </nav>
 
-  <div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-xs-12 col-sm-9">
-        <p class="pull-right visible-xs">
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-        </p>
-        <%= render partial: "layouts/flash" %>
-        <%= yield %>
-      </div>
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-        <div class="list-group">
-          <a href="#" class="list-group-item active">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-          <a href="#" class="list-group-item">Link</a>
-        </div>
+  <div class="container" id="main_content">
+    <div class="col-md-12 offcanvas" id="sidebar">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-success">
+          <h4 class="list-group-item-heading">Mr.John Doe</h4>
+          <p class="list-group-item-text">Waited about 30 minutes.</p>
+        </a>
+        <a href="#" class="list-group-item list-group-item-info">Mr.Alexis Sanchez</a>
+        <a href="#" class="list-group-item list-group-item-success">Mr.John Doe</a>
+        <a href="#" class="list-group-item list-group-item-warning">Mr.John Doe</a>
+        <a href="#" class="list-group-item">Mr.John Doe</a>
       </div>
     </div>
+    <%= render partial: "layouts/flash" %>
+    <%= yield %>
   </div>
 
   <footer class="footer">
