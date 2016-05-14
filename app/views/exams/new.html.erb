@@ -5,7 +5,7 @@
   <div id="error_explanation" class="alert alert-danger">
     <h2>
       <%= pluralize(@exam.errors.count, "error") %> prohibited
-      this customer from being saved:
+      this exam from being saved:
     </h2>
     <ul>
       <% @exam.errors.full_messages.each do |msg| %>
@@ -15,43 +15,24 @@
   </div>
 <% end %>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :customer, :name %>:
-      </div>
-      <div class="col-sm-4">
-        <%= "#{@customer.prefix.name} #{@customer.name} #{@customer.surname}" %>
-      </div>
-      <div class="col-sm-2">
-        <%= label :customer, :sex %>:
-      </div>
-      <div class="col-sm-4">
-        <%= t "customers.show.#{@customer.sex}" %>
-      </div>    
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :customer, :birthdate %>:
-      </div>
-      <div class="col-sm-4">
-        <%= @customer.birthdate %> (<%= t 'customers.show.th_year' %><%= th_year @customer %>)
-      </div>
-      <div class="col-sm-2">
-        <%= label_tag nil, t('customers.show.age') %>:
-      </div>
-      <div class="col-sm-4">
-        <%= age_text @customer %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'customer', locals: {customer: @customer} %>
 
 <div class="panel panel-primary">
   <div class="panel-body">
   <%= form_for @exam, html: { class: "form-horizontal" } do |f| %>
     <div class="form-group">
+      <%= f.label :phase, class: "col-sm-offset-6 col-sm-2 control-label required-label" %>
+      <div class="btn-group col-sm-4" data-toggle="buttons">
+        <label class="btn btn-default">
+          <%= f.radio_button :phase, "W" %> Waiting
+        </label>
+        <label class="btn btn-default">
+          <%= f.radio_button :phase, "C" %> Cashier
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= hidden_field_tag 'customer_id', @customer.id %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">
