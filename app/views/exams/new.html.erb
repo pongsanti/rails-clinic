@@ -21,8 +21,8 @@
   <div class="panel-body">
   <%= form_for @exam, html: { class: "form-horizontal" } do |f| %>
     <div class="form-group">
-      <%= f.label :phase, class: "col-sm-offset-6 col-sm-2 control-label required-label" %>
-      <div class="btn-group col-sm-4" data-toggle="buttons">
+      <%= f.label :phase, class: "col-sm-2 control-label required-label" %>
+      <div class="btn-group col-sm-10" data-toggle="buttons">
         <label class="btn btn-default">
           <%= f.radio_button :phase, "W" %> Waiting
         </label>

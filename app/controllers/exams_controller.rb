@@ -5,6 +5,11 @@ class ExamsController < ApplicationController
   def index
   end
 
+  def index_poll
+    @exams = Exam.where("created_at >= ?", Time.zone.now.beginning_of_day).order("created_at desc")
+    render json: @exams
+  end
+
   def show
     @exam = Exam.find(params[:id])
   end
