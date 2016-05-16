@@ -28,6 +28,8 @@ gem 'ransack', '~> 1.7.0'
 
 gem 'kaminari', '~> 0.16.3'
 
+gem 'active_model_serializers', '~> 0.9.5'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

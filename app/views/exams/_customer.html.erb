@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :name %>:
+      </div>
+      <div class="col-sm-4">
+        <%= "#{customer.prefix.name} #{customer.name} #{customer.surname}" %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :sex %>:
+      </div>
+      <div class="col-sm-4">
+        <%= t "customers.show.#{customer.sex}" %>
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :birthdate %>:
+      </div>
+      <div class="col-sm-4">
+        <%= customer.birthdate %> (<%= t 'customers.show.th_year' %><%= th_year customer %>)
+      </div>
+      <div class="col-sm-2">
+        <%= label_tag nil, t('customers.show.age') %>:
+      </div>
+      <div class="col-sm-4">
+        <%= age_text customer %>
+      </div>
+    </div>
+  </div>
+</div>
