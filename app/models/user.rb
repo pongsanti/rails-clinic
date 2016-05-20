@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :exams, foreign_key: 'examiner_id'
+  belongs_to :client
 end
