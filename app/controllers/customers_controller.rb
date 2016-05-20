@@ -9,6 +9,14 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = generate_pdf
+        pdf.print
+        send_data pdf.render, filename: "#{@customer.id}-#{@customer.name}.pdf", type: 'application/pdf', disposition: "inline"
+      end
+    end
   end
 
   def new
@@ -57,5 +65,15 @@ class CustomersController < ApplicationController
 
     def get_all_prefixes
       @prefixes = Prefix.all
+    end
+
+    def generate_pdf
+      Prawn::Document.new(page_size: "A7", page_layout: :landscape) do |doc|
+        doc.font("#{Prawn::DATADIR}/fonts/THSarabun.ttf") do
+          doc.text "บัตรประจำตัวคลินิค"
+          doc.text "คุณ #{@customer.name} #{@customer.surname}"
+          doc.text "#{@customer.id_card_no}"
+        end
+      end
     end
 end
