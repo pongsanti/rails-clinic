@@ -69,7 +69,7 @@ class CustomersController < ApplicationController
 
     def generate_pdf
       Prawn::Document.new(page_size: "A7", page_layout: :landscape) do |doc|
-        doc.font("#{Prawn::DATADIR}/fonts/THSarabun.ttf") do
+        doc.font("#{Rails.public_path}/fonts/THSarabun.ttf") do
           doc.text "บัตรประจำตัวคลินิค"
           doc.text "คุณ #{@customer.name} #{@customer.surname}"
           doc.text "#{@customer.id_card_no}"
