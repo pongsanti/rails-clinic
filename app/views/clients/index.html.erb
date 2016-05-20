@@ -1,22 +1,25 @@
+<p id="notice"><%= notice %></p>
 
-<% content_for :upper do %>
-	<h2> Hey this is upper!! </h2>
-<% end %>
+<h1>Listing Clients</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<h1>Clients Index Yeah!!</h1>
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= link_to 'Show', client %></td>
+        <td><%= link_to 'Edit', edit_client_path(client) %></td>
+        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%
-item1 = Item.new
-item1.name = "Paul"
+<br>
 
-item2 = Item.new
-item2.name = "Peter"
-
-@items = [item1, item2]
-%>
-
-<ul>
-<%= render partial: "item", collection: @items, spacer_template: "item_ruler"%>
-</ul>
-
+<%= link_to 'New Client', new_client_path %>
