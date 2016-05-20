@@ -6,7 +6,9 @@ class ExamsController < ApplicationController
   end
 
   def index_poll
-    @exams = Exam.where("created_at >= ?", Time.zone.now.beginning_of_day).order("created_at desc")
+    #@exams = Exam.where("created_at >= ?", Time.zone.now.beginning_of_day).order("created_at desc")
+    @exams = Exam.created_after(Time.zone.now.beginning_of_day)
+    @exams = @exams.phase_is('W').order("created_at desc")
     render json: @exams
   end
 
