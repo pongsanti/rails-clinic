@@ -31,6 +31,10 @@ gem 'kaminari', '~> 0.16.3'
 
 gem 'active_model_serializers', '~> 0.9.5'
 
+gem 'prawn', '~> 2.1.0'
+
+gem 'prawn-print', '~> 0.0.3'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
