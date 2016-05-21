@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506133931) do
+ActiveRecord::Schema.define(version: 20160521135339) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "display_name"
+    t.string   "owner_name"
+    t.string   "owner_surname"
+    t.string   "email"
+    t.string   "address"
+    t.string   "sub_district"
+    t.string   "district"
+    t.string   "province"
+    t.string   "postal_code"
+    t.string   "home_phone_no"
+    t.string   "mobile_phone_no"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "cn",            null: false
@@ -32,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160506133931) do
     t.datetime "updated_at",    null: false
     t.integer  "prefix_id"
     t.string   "home_phone_no"
+    t.string   "nationality"
+    t.string   "email"
   end
 
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
@@ -77,8 +97,10 @@ ActiveRecord::Schema.define(version: 20160506133931) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "client_id"
   end
 
+  add_index "users", ["client_id"], name: "index_users_on_client_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

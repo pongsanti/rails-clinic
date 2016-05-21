@@ -11,10 +11,11 @@ class Customer < ActiveRecord::Base
   has_many :exams
 
 	validates :prefix, presence: true
-  validates :sex, presence: true
+  validates :sex, presence: true, inclusion: { in: %w(M F) }
 	validates :name, presence: true
   validates :surname, presence: true
   validates :birthdate, presence: true
+  validates :email, format: { with: Devise::email_regexp }, if: "email.present?"
 
   before_save :delete_masked_input
 

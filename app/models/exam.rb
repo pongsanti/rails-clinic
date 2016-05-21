@@ -7,4 +7,7 @@ class Exam < ActiveRecord::Base
   validates :weight, :height, :pulse, format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
   validates :bp_systolic, :bp_diastolic, format: { with: /\A\d{1,3}\z/ }, allow_blank: true
 
+  scope :created_after, -> (time) { where("created_at > ?", time) }
+  scope :phase_is, -> (p) { where("phase = ?", p ) }
+
 end
