@@ -55,9 +55,15 @@
     </div>
     <div class="row">
       <div class="col-sm-2">
+        <%= label :customer, :nationality %>:
+      </div>
+      <div class="col-sm-4">
+        <%= @customer.nationality %>
+      </div>
+      <div class="col-sm-2">
         <%= label :customer, :occupation %>:
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-4">
         <%= @customer.occupation %>
       </div>
     </div>
@@ -78,17 +84,17 @@
       <div class="col-sm-2">
         <%= label :customer, :sub_district %>:
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-6">
         <%= @customer.sub_district %>
-      </div>      
-    </div>
-    <div class="row">
+      </div>
       <div class="col-sm-2">
         <%= label :customer, :district %>:
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-6">
         <%= @customer.district %>
       </div>
+    </div>
+    <div class="row">
       <div class="col-sm-2">
         <%= label :customer, :province %>:
       </div>
@@ -100,6 +106,12 @@
       </div>
       <div class="col-sm-2">
         <%= @customer.postal_code %>
+      </div>
+      <div class="col-sm-2">
+        <%= label :customer, :email %>:
+      </div>
+      <div class="col-sm-2">
+        <%= @customer.email %>
       </div>
     </div>
     <div class="row">
