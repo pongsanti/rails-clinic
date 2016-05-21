@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520150710) do
+ActiveRecord::Schema.define(version: 20160521135339) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20160520150710) do
     t.datetime "updated_at",    null: false
     t.integer  "prefix_id"
     t.string   "home_phone_no"
+    t.string   "nationality"
+    t.string   "email"
   end
 
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
