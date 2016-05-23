@@ -7,6 +7,9 @@ th:
         pulse: "ชีพจร"
         drug_allergy: "แพ้ยา"
         note: "ข้อมูลถึงแพทย์"
+        exam_pi: "PI"
+        exam_pe: "PE"
+        exam_note: "Note"        
     placeholder:
       exam:
         weight: "น้ำหนัก"
@@ -16,3 +19,6 @@ th:
         pulse: "ชีพจร"
         drug_allergy: "ประวัติการแพ้ยา"
         note: "รายละเอียดเพิ่มเติมเกี่ยวกับผู้ป่วย"
+        exam_pi: "PI"
+        exam_pe: "PE"
+        exam_note: "Note"               
