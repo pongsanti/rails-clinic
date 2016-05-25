@@ -9,7 +9,8 @@ th:
         note: "ข้อมูลถึงแพทย์"
         exam_pi: "PI"
         exam_pe: "PE"
-        exam_note: "Note"        
+        exam_note: "Note"    
+        created_at: "วันที่สร้าง"    
     placeholder:
       exam:
         weight: "น้ำหนัก"

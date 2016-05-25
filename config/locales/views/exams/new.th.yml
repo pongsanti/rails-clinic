@@ -1,8 +1,8 @@
 th:
   exams:
     new:
-      title: "เตรียมส่งตรวจ"
-      sub_text: "ข้อมูลก่อนเตรียมส่งตรวจ"
+      title: "ประวัติ/วินิจฉัย"
+      sub_text: "ข้อมูลประวัติและวินิจฉัย"
       blood_pressure: "ความดันโลหิต"
       submit_button: "ส่งพบแพทย์"
       clear_button: "เคลียร์ฟอร์ม"

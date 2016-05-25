@@ -1,0 +1,23 @@
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
+
+<%= render partial: 'customer', locals: {customer: @customer} %>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th><%= t 'helpers.label.exam.created_at' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @exams.each do |exam| %> 
+      <tr>
+        <th scope="row"><%= exam.id %></th>
+        <td><%= exam.created_at %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -5,7 +5,7 @@ th:
       sub_text: "ข้อมูลผู้เข้ารับการรักษา"
       prepare_exam: "เตรียมส่งตรวจ"
       edit_customer: "แก้ไขข้อมูล"
-      print_id_card: "พิมพ์บัตรผู้ป่วย"
+      print_id_card: "พิมพ์บัตรประจำตัว"
 
       th_year: "พ.ศ."
       age: "อายุ"

@@ -8,6 +8,7 @@ class Exam < ActiveRecord::Base
   validates :bp_systolic, :bp_diastolic, format: { with: /\A\d{1,3}\z/ }, allow_blank: true
 
   scope :created_after, -> (time) { where("created_at > ?", time) }
+  scope :customer_id_is, -> (cid) { where("customer_id = ?", cid)}
   scope :phase_is, -> (p) { where("phase = ?", p ) }
 
 end

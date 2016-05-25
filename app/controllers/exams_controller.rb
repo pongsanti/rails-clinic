@@ -3,6 +3,9 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    retrieve_customer
+    @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
+    #@exams = Exam.customer_id_is(@customer.id).order("created_at desc")
   end
 
   def index_poll
@@ -18,7 +21,7 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
-    retrieve_customer
+    retrieve_customer_and_assign
   end
 
   def edit
@@ -26,7 +29,7 @@ class ExamsController < ApplicationController
 
   def create
     @exam = Exam.new(exams_params)
-    retrieve_customer
+    retrieve_customer_and_assign
     
     if @exam.save
       redirect_to exam_url(@exam)
@@ -52,6 +55,10 @@ class ExamsController < ApplicationController
 
     def retrieve_customer
       @customer = Customer.find(params[:customer_id])
+    end
+
+    def retrieve_customer_and_assign
+      retrieve_customer
       @exam.customer = @customer
     end
 end
