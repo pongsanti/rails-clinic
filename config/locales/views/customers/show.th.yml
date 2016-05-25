@@ -3,7 +3,9 @@ th:
     show:
       title: "ข้อมูลทะเบียน"
       sub_text: "ข้อมูลผู้เข้ารับการรักษา"
-      prepare_exam: "เตรียมส่งตรวจ"
+      index_customer: "ย้อนกลับ"
+      show_exam: "แสดงประวัติ/วินิจฉัย" 
+      new_exam: "สร้างประวัติ/วินิจฉัย"
       edit_customer: "แก้ไขข้อมูล"
       print_id_card: "พิมพ์บัตรประจำตัว"
 
