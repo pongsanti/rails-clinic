@@ -8,6 +8,7 @@ module CustomersHelper
       masked = insert_dash_at masked, 12
       masked = insert_dash_at masked, 15
     end
+    masked
   end
 
   def masked_tel_no(customer)
@@ -16,6 +17,7 @@ module CustomersHelper
       masked = insert_dash_at masked, 2
       masked = insert_dash_at masked, 7
     end
+    masked
   end
 
   def masked_home_phone_no(customer)
@@ -24,6 +26,7 @@ module CustomersHelper
       masked = insert_dash_at masked, 1
       masked = insert_dash_at masked, 6
     end
+    masked
   end
 
   private

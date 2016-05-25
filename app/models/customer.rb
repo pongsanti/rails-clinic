@@ -5,7 +5,7 @@ class Customer < ActiveRecord::Base
   HOME_PHONE_NO_LENGTH = 9
   DASH_SEPARATOR = '-'
   
-  paginates_per 20
+  paginates_per 10
 
 	belongs_to :prefix
   has_many :exams

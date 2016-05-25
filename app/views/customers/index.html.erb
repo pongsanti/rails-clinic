@@ -28,6 +28,7 @@
 	      <th><%= sort_link(@q, :surname, (t 'helpers.label.customer.surname')) %></th>
 	      <th><%= sort_link(@q, :sex, (t 'helpers.label.customer.sex')) %></th>
 	      <th><%= sort_link(@q, :birthdate, (t 'helpers.label.customer.birthdate')) %></th>
+	      <th><%= sort_link(@q, :id_card_no, (t 'helpers.label.customer.id_card_no')) %></th>
 	      <th></th>
 	    </tr>
 	  </thead>
@@ -39,7 +40,21 @@
 	      <td><%= customer.surname %></td>
 	      <td><%= t('customers.show.' + customer.sex) %></td>
 	      <td><%= customer.birthdate %> (<%= th_year customer %>)</td>
-	      <td><%= link_to 'View', customer_path(customer) %> | <%= link_to 'Edit', edit_customer_path(customer) %></td>
+	      <td><%= masked_id_card_no(customer) %></td>
+	      <td>
+	      	<div class="btn-group">
+	      		<%= link_to t('.view'), customer_path(customer), class: "btn btn-default btn-sm" %>
+	      		<button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      			<span class="caret"></span>
+	      			<span class="sr-only">Toggle Dropdown</span>
+	      		</button>
+	      		<ul class="dropdown-menu">
+	      			<li><%= link_to t('.edit'), edit_customer_path(customer) %></li>
+	      			<li role="separator" class="divider"></li>
+	      			<li><%= link_to t('.view_exam'), exams_path %></li>
+	      			<li><%= link_to t('.create_exam'), new_exam_path(customer_id: customer.id) %></li>
+	       		</ul>
+	      	</div>
 	    </tr>
 	    <% end %>
 	  </tbody>
