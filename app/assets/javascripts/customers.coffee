@@ -32,5 +32,12 @@ initializePage = -> # display local year
   # active the radio buttons group
   $('input[type=radio]:checked').parent().addClass('active')
 
+  # on search form submit
+  $('form').submit(
+    (event) -> 
+      sel_attr = $('#q_name').val()
+      $('#cont').attr('name', "q[#{sel_attr}_cont]")
+  )
+
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)
