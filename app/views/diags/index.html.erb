@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Diags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @diags.each do |diag| %>
+      <tr>
+        <td><%= diag.name %></td>
+        <td><%= diag.description %></td>
+        <td><%= link_to 'Show', diag %></td>
+        <td><%= link_to 'Edit', edit_diag_path(diag) %></td>
+        <td><%= link_to 'Destroy', diag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Diag', new_diag_path %>

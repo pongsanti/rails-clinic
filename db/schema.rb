@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523162800) do
+ActiveRecord::Schema.define(version: 20160526135901) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20160523162800) do
   end
 
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
+
+  create_table "diags", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "exams", force: :cascade do |t|
     t.string   "phase"
