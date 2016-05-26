@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(version: 20160526135901) do
   add_index "exams", ["examiner_id"], name: "index_exams_on_examiner_id"
   add_index "exams", ["phase"], name: "index_exams_on_phase"
 
+  create_table "exams_diags", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "diag_id"
+    t.integer  "order"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "exams_diags", ["diag_id"], name: "index_exams_diags_on_diag_id"
+  add_index "exams_diags", ["exam_id"], name: "index_exams_diags_on_exam_id"
+
   create_table "prefixes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

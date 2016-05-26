@@ -6,5 +6,15 @@ class CreateDiags < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    create_table :exams_diags do |t|
+      t.belongs_to :exam, index: true, foreign_key: true
+      t.belongs_to :diag, index: true, foreign_key: true
+      t.integer :order
+      t.string :note
+
+      t.timestamps null: false
+    end
+
   end
 end
