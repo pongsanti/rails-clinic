@@ -1,6 +1,11 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
-<hr>
 
+<div class="btn-group">
+  <%= link_to customer_path(@customer), class: 'btn btn-default', role: 'button' do %>
+    <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> <%= t '.show_customer' %>
+  <% end %>
+</div>
+<hr>
 <%= render partial: 'customer', locals: {customer: @customer} %>
 
 <div class="table-responsive">
@@ -9,13 +14,19 @@
       <tr>
         <th>#</th>
         <th><%= t 'helpers.label.exam.created_at' %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @exams.each do |exam| %> 
       <tr>
         <th scope="row"><%= exam.id %></th>
-        <td><%= exam.created_at %>
+        <td><%= exam.created_at %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to t('.show_exam'), exam_path(exam), class: "btn btn-default btn-sm" %>
+          </div>
+        </td>
       </tr>
       <% end %>
     </tbody>
