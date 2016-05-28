@@ -3,6 +3,7 @@ th:
     new:
       title: "ประวัติ/วินิจฉัย"
       sub_text: "ข้อมูลประวัติและวินิจฉัย"
+      show_customer: "ย้อนกลับ"
       blood_pressure: "ความดันโลหิต"
       submit_button: "ส่งพบแพทย์"
       clear_button: "เคลียร์ฟอร์ม"
