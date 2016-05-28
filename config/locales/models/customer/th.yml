@@ -15,4 +15,5 @@ th:
         customer:
           attributes:
             sex:
-              blank: "ยังไม่ได้ระบุ"        
+              blank: "ยังไม่ได้ระบุ"
+              inclusion: "ค่าไม่ถูกต้อง"     
