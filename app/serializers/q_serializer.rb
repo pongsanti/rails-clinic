@@ -1,6 +1,6 @@
 class QSerializer < ActiveModel::Serializer
   
-  class QExamSerialzer < ActiveModel::Serializer
+  class QExamSerializer < ActiveModel::Serializer
 
     class ExamCustomerSerializer < ActiveModel::Serializer
       attributes :id, :name, :surname, :id_card_no
@@ -10,7 +10,7 @@ class QSerializer < ActiveModel::Serializer
     has_one :customer, serializer: ExamCustomerSerializer
   end
 
-  attributes :id, :type, :created_at
+  attributes :id, :category, :created_at
   has_one :exam, serializer: QExamSerializer
 
 end

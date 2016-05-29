@@ -25,6 +25,7 @@
         <td>
           <div class="btn-group">
             <%= link_to t('.show_exam'), exam_path(exam), class: "btn btn-default btn-sm" %>
+            <%= link_to t('.add_to_q'), qs_path(exam_id: exam.id), method: :post, class: "btn btn-default btn-sm" %>
           </div>
         </td>
       </tr>

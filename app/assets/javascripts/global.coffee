@@ -2,16 +2,16 @@ Turbolinks.enableProgressBar()
 
 # queue retrieval function
 examQueueTemplate = (item) -> 
-  "<a href='#' class='list-group-item list-group-item-info'>#{item.id} #{item.customer.name} #{item.customer.surname}</a>"
+  "<a href='#' class='list-group-item list-group-item-info'>#{item.exam.id} #{item.exam.customer.name} #{item.exam.customer.surname}</a>"
 
 getQueueList = ->
-  $.post('/exams_poll', (data) ->
+  $.post('/qs_poll', (data) ->
     div = $('#sidebar div[class="list-group"]')
     div.empty()
-    $.each( data.exams, (i, item) ->
+    $.each( data.qs, (i, item) ->
       div.append examQueueTemplate(item)
     )
-    $('#queue_badge').html data.exams.length
+    $('#queue_badge').html data.qs.length
   )
   setTimeout(getQueueList, 5000)
 

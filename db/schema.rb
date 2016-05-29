@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20160526135901) do
   end
 
   create_table "qs", force: :cascade do |t|
-    t.string   "type"
+    t.string   "category"
     t.integer  "exam_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

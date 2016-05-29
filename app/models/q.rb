@@ -2,6 +2,6 @@ class Q < ActiveRecord::Base
 
   belongs_to :exam
 
-  scope :type_is, -> (t) { where("type = ?", t ) }
+  scope :cat_is, -> (c) { where("category = ?", c ) }
 
 end

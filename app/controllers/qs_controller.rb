@@ -6,7 +6,7 @@ class QsController < ApplicationController
   end
 
   def index_poll
-    @qs = Q.type_is('W')
+    @qs = Q.cat_is('W')
     render json: @qs
   end
 
@@ -20,14 +20,12 @@ class QsController < ApplicationController
   end
 
   def create
-    @q = Q.new(qs_params)
+    @q = Q.new
+    @q.category = 'W'
     retrieve_exam
     
-    if @q.save
-      redirect_to exam_url(@exam)
-    else
-      render 'new'
-    end    
+    @q.save
+    redirect_to :back
   end
 
   def update
@@ -37,9 +35,9 @@ class QsController < ApplicationController
   end
 
   private
-    def qs_params
-      params.require(:q).permit(:type)
-    end
+    #def qs_params
+    #  params.require(:q).permit(:type)
+    #end
 
     def retrieve_exam
       @exam = Exam.find(params[:exam_id])
