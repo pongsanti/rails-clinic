@@ -14,4 +14,13 @@ class Exam < ActiveRecord::Base
   scope :customer_id_is, -> (cid) { where("customer_id = ?", cid)}
   scope :phase_is, -> (p) { where("phase = ?", p ) }
 
+  def bmi
+    result = "N/A"
+    if weight.present? && height.present?
+      result = weight / ((height / 100) ** 2)
+      result = result.round(2)
+    end
+    result
+  end
+
 end

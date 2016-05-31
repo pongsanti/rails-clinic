@@ -24,6 +24,12 @@
       <div class="col-sm-1">
         <%= @exam.height %>
       </div>
+      <div class="col-sm-1">
+        <%= label_tag 'bmi', 'BMI' %>:
+      </div>
+      <div class="col-sm-1">
+        <%= @exam.bmi %>
+      </div>
       <div class="col-sm-2">
         <%= label_tag 'blood_pressure', t('exams.new.blood_pressure') %>:
       </div>
