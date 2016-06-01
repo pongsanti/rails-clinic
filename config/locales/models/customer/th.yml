@@ -4,11 +4,16 @@ th:
       customer: "ผู้ป่วย"
     attributes:
       customer:
+        name: "ชื่อ"
+        surname: "นามสกุล"
         sex: "เพศ"
+        id_card_no: "เลขบัตรประชาชน"
+        birthdate: "วันเกิด"        
 
     errors:
       models:
         customer:
           attributes:
             sex:
-              blank: "ยังไม่ได้ระบุ"        
+              blank: "ยังไม่ได้ระบุ"
+              inclusion: "ค่าไม่ถูกต้อง"     

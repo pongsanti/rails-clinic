@@ -5,7 +5,7 @@ class Customer < ActiveRecord::Base
   HOME_PHONE_NO_LENGTH = 9
   DASH_SEPARATOR = '-'
   
-  paginates_per 20
+  paginates_per 10
 
 	belongs_to :prefix
   has_many :exams
@@ -19,11 +19,19 @@ class Customer < ActiveRecord::Base
 
   before_save :delete_masked_input
 
+
+  class << self
+    # searchable fields
+    def ransackable_attributes(auth_object = nil)
+    #column_names + _ransackers.keys
+      %w(name surname id_card_no birthdate) + _ransackers.keys
+    end
+  end
+
   private
     def delete_masked_input
       id_card_no.delete! DASH_SEPARATOR if id_card_no.present?
       home_phone_no.delete! DASH_SEPARATOR if home_phone_no.present?
       tel_no.delete! DASH_SEPARATOR if tel_no.present?
     end
-
 end

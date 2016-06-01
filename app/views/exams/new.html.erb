@@ -1,4 +1,12 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<div class="btn-group">
+  <%= link_to customers_path, class: 'btn btn-default btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'exams.index.list_customer' %>
+  <% end %>
+  <%= link_to customer_path(@customer), class: 'btn btn-default btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= t 'exams.index.show_customer' %>
+  <% end %>
+</div>
 <hr>
 
 <% if @exam.errors.any? %>
@@ -17,71 +25,6 @@
 
 <%= render partial: 'customer', locals: {customer: @customer} %>
 
-<div class="panel panel-primary">
-  <div class="panel-body">
-  <%= form_for @exam, html: { class: "form-horizontal" } do |f| %>
-    <div class="form-group">
-      <%= f.label :phase, class: "col-sm-2 control-label required-label" %>
-      <div class="btn-group col-sm-10" data-toggle="buttons">
-        <label class="btn btn-default">
-          <%= f.radio_button :phase, "W" %> Waiting
-        </label>
-        <label class="btn btn-default">
-          <%= f.radio_button :phase, "C" %> Cashier
-        </label>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag 'customer_id', @customer.id %>
-      <%= f.label :weight, class: "col-sm-2 control-label" %>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <%= f.text_field :weight, class: "form-control", placeholder: true, data: { mask: '9?99' }  %>
-          <div class="input-group-addon">kg</div>
-        </div>
-      </div>
-      <%= f.label :height, class: "col-sm-2 control-label" %>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <%= f.text_field :height, class: "form-control", placeholder: true, data: { mask: '9?99' } %>
-          <div class="input-group-addon">cm</div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label t('.blood_pressure'), class: "col-sm-2 control-label" %>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <%= f.text_field :bp_systolic, class: "form-control", placeholder: true, data: { mask: '99?9' } %>
-          <div class="input-group-addon">mm Hg</div>
-          <div class="input-group-addon">/</div>
-          <%= f.text_field :bp_diastolic, class: "form-control", placeholder: true, data: { mask: '99?9' } %>
-          <div class="input-group-addon">mm Hg</div>
-        </div>
-      </div>
-      <%= f.label :pulse, class: "col-sm-2 control-label" %>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <%= f.text_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , data: { mask: '99?9' } %>
-          <div class="input-group-addon">bpm</div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :drug_allergy, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_area :drug_allergy, class: "form-control", placeholder: true %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :note, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_area :note, class: "form-control", placeholder: true %>
-      </div>
-    </div>
+<%= render partial: 'weight_form', locals: {customer: @customer, exam: @exam} %>
 
-    <%= f.submit t('.submit_button'), class: "btn btn-primary" %>
-    <%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
-  <% end %>
-  </div>
-</div>
+<%= render partial: 'exam_form', locals: {exam: @exam} %>

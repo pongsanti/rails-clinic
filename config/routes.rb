@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :diags
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -11,7 +12,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  post 'exams_poll', to: 'exams#index_poll'
+  #post 'exams_poll', to: 'exams#index_poll'
+  post 'qs_poll', to: 'qs#index_poll'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :exams
   resources :clients
+  resources :qs
   # Example resource route with options:
   #   resources :products do
   #     member do

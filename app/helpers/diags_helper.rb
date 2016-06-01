@@ -1,0 +1,2 @@
+module DiagsHelper
+end

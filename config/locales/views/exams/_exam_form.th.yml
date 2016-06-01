@@ -1,0 +1,5 @@
+th:
+  exams:
+    exam_form:
+      submit_button: "บันทึกประวัติ"
+      clear_button: "เคลียร์ฟอร์ม"
