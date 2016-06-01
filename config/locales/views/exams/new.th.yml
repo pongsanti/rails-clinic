@@ -3,6 +3,3 @@ th:
     new:
       title: "สร้างประวัติ/วินิจฉัย"
       sub_text: "สร้างข้อมูลประวัติและวินิจฉัย"
-      blood_pressure: "ความดันโลหิต"
-      submit_button: "บันทึกข้อมูล"
-      clear_button: "เคลียร์ฟอร์ม"

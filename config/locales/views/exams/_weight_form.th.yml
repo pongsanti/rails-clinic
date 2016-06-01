@@ -1,0 +1,6 @@
+th:
+  exams:
+    weight_form:
+      blood_pressure: "ความดันโลหิต"
+      submit_button: "บันทึกข้อมูล"
+      clear_button: "เคลียร์ฟอร์ม"
