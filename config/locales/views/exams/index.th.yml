@@ -3,6 +3,7 @@ th:
     index:
       title: "ประวัติ/วินิจฉัย"
       sub_text: "รายการข้อมูลประวัติและวินิจฉัย"
-      show_customer: "ย้อนกลับ"
+      list_customer: "รายชื่อผู้ป่วย"
+      show_customer: "ข้อมูลทะเบียน"
       show_exam: "ดูข้อมูล"
       add_to_q: "เพิ่มคิว"
