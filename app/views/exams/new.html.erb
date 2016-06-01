@@ -26,17 +26,6 @@
   <div class="panel-body">
   <%= form_for @exam, html: { class: "form-horizontal" } do |f| %>
     <div class="form-group">
-      <%= f.label :phase, class: "col-sm-2 control-label required-label" %>
-      <div class="btn-group col-sm-10" data-toggle="buttons">
-        <label class="btn btn-default">
-          <%= f.radio_button :phase, "W" %> Waiting
-        </label>
-        <label class="btn btn-default">
-          <%= f.radio_button :phase, "C" %> Cashier
-        </label>
-      </div>
-    </div>
-    <div class="form-group">
       <%= hidden_field_tag 'customer_id', @customer.id %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">

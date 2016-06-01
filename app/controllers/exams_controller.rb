@@ -28,6 +28,7 @@ class ExamsController < ApplicationController
 
   def create
     @exam = Exam.new(exams_params)
+    @exam.phase = 'W'
     @exam.customer = @customer
     
     if @exam.save
@@ -45,7 +46,7 @@ class ExamsController < ApplicationController
 
   private
     def exams_params
-      params.require(:exam).permit(:phase, 
+      params.require(:exam).permit( 
         :weight, :height, 
         :bp_systolic, :bp_diastolic, 
         :pulse, :drug_allergy,
