@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526135901) do
+ActiveRecord::Schema.define(version: 20160601143911) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20160526135901) do
   end
 
   create_table "exams", force: :cascade do |t|
-    t.string   "phase"
     t.decimal  "weight"
     t.decimal  "height"
     t.integer  "bp_systolic"
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(version: 20160526135901) do
 
   add_index "exams", ["customer_id"], name: "index_exams_on_customer_id"
   add_index "exams", ["examiner_id"], name: "index_exams_on_examiner_id"
-  add_index "exams", ["phase"], name: "index_exams_on_phase"
 
   create_table "exams_diags", force: :cascade do |t|
     t.integer  "exam_id"

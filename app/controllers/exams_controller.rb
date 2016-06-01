@@ -7,13 +7,6 @@ class ExamsController < ApplicationController
     @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
   end
 
-  def index_poll
-    #@exams = Exam.where("created_at >= ?", Time.zone.now.beginning_of_day).order("created_at desc")
-    @exams = Exam.created_after(Time.zone.now.beginning_of_day)
-    @exams = @exams.phase_is('W').order("created_at desc")
-    render json: @exams
-  end
-
   def show
     @exam = Exam.find(params[:id])
   end
@@ -28,7 +21,6 @@ class ExamsController < ApplicationController
 
   def create
     @exam = Exam.new(exams_params)
-    @exam.phase = 'W'
     @exam.customer = @customer
     
     if @exam.save
