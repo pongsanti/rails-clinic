@@ -10,7 +10,11 @@ class QSerializer < ActiveModel::Serializer
     has_one :customer, serializer: ExamCustomerSerializer
   end
 
-  attributes :id, :category, :created_at
+  attributes :id, :category, :created
   has_one :exam, serializer: QExamSerializer
+
+  def created
+    object.created_at.to_s :time
+  end
 
 end
