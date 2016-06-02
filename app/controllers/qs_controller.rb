@@ -32,6 +32,10 @@ class QsController < ApplicationController
   end
 
   def destroy
+    @q = Q.find(params[:id])
+    @q.destroy
+
+    redirect_to :back
   end
 
   private

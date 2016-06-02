@@ -2,7 +2,10 @@ Turbolinks.enableProgressBar()
 
 # queue retrieval function
 examQueueTemplate = (item) -> 
-  "<a href='#' class='list-group-item list-group-item-info'>#{item.exam.id} | #{item.created} | #{item.exam.customer.name} #{item.exam.customer.surname}</a>"
+  "<a href='/qs/#{item.id}' data-method='delete' class='list-group-item'>" +
+  "#{item.exam.id} | #{item.created} | #{item.exam.customer.name} #{item.exam.customer.surname}" +
+  "</a>"
+
 
 getQueueList = ->
   $.post('/qs_poll', (data) ->
