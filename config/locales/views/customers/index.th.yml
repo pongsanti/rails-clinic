@@ -7,6 +7,6 @@ th:
       choose_attribute: "เลือกจากรายการ..."
       view: "เรียกดูข้อมูล"
       edit: "แก้ไขข้อมูล"
-      exam_header: ประวัติ/วินิจฉัย
+      exam_header: "ประวัติ/วินิจฉัย"
       view_exam: "เรียกดู"
       create_exam: "สร้างใหม่"
