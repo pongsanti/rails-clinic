@@ -25,5 +25,11 @@ initializePage = ->
   # enable queue polling
   getQueueList()
 
+    # initialize select picker
+  $('.selectpicker').selectpicker({
+    size: 'auto',
+    liveSearch: true,
+  })
+
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)

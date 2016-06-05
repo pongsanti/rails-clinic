@@ -27,4 +27,11 @@
 
 <%= render partial: 'weight_form', locals: {customer: @customer, exam: @exam} %>
 
-<%= render partial: 'exam_form', locals: {exam: @exam} %>
+<div class="row">
+  <div class="col-sm-6">
+  <%= render partial: 'exam_form', locals: {exam: @exam} %>
+  </div>
+  <div class="col-sm-6">
+  <%= render partial: 'diag_form', locals: {exam: @exam} %>
+  </div>
+</div>

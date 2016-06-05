@@ -2,6 +2,7 @@ class ExamsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :retrieve_customer, only: [:index, :new, :create]
+  before_action :retreive_diags, only: :new
 
   def index
     @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
@@ -47,5 +48,9 @@ class ExamsController < ApplicationController
 
     def retrieve_customer
       @customer = Customer.find(params[:customer_id])
+    end
+
+    def retreive_diags
+      @diags = Diag.all
     end
 end
