@@ -6,8 +6,11 @@
   <%= form_for exam, html: { class: "form-horizontal" } do |f| %>
     <div class="form-group">
       <%= label_tag 'diags', nil, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <div class="col-sm-6">
         <%= select_tag 'diags', options_for_select( @diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] } ), class: "selectpicker" %>
+      </div>
+      <div class="col-sm-4">
+        <%= button_tag 'Add row', type: "button",  class: "btn btn-primary" %>
       </div>
     </div>
     <div class="form-group">
@@ -15,40 +18,21 @@
       <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th>No</th>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Note</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
         <tbody>
             <tr>
-                <td>Tiger Nixon</td>
+                <td>1</td>
                 <td>System Architect</td>
                 <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
             </tr>
             <tr>
-                <td>Garrett Winters</td>
+                <td>2</td>
                 <td>Accountant</td>
                 <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
             </tr>
           </tbody>
         </table>
