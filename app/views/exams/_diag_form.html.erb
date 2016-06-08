@@ -3,7 +3,6 @@
     <h3 class="panel-title"><%= t(".heading") %></h3>
   </div>
   <div class="panel-body">
-  <%= form_for exam, html: { class: "form-horizontal" } do |f| %>
     <div class="form-group">
       <%= label_tag 'diags', nil, class: "col-sm-2 control-label" %>
       <div class="col-sm-6">
@@ -15,7 +14,8 @@
     </div>
     <div class="form-group">
       <div class="col-sm-12">
-      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%"
+        data-url="<%= exams_diags_url(:exam_id => 1) %>">
         <thead>
             <tr>
                 <th>Id</th>
@@ -26,8 +26,7 @@
         </table>
         </div>  
     </div>
-    <%= f.submit t('exams.weight_form.submit_button'), class: "btn btn-primary" %>
-    <%= f.submit t('exams.weight_form.clear_button'), type: "reset", class: "btn btn-default" %>
-  <% end %>
+    <%= button_tag t('exams.weight_form.submit_button'), type: "button", class: "btn btn-primary" %>
+    <%= button_tag t('exams.weight_form.clear_button'), type: "reset", class: "btn btn-default" %>
   </div>
 </div>

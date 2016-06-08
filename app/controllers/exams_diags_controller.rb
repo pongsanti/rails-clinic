@@ -1,5 +1,7 @@
 class ExamsDiagsController < ApplicationController
   
+  before_action :authenticate_user!
+
   def index_by_exam
     @exam = Exam.find params[:exam_id]
 
