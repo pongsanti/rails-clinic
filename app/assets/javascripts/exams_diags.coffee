@@ -3,19 +3,25 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 initializePage = ->
   # table initialization
-  $('#example').DataTable
-    "ajax":
-      "url": $("#example").data('url'),
-      "dataSrc": "exams_diags",
-    "columns": [
-      { "data": "id" },
-      { "data": "diag.name" },
-      { "data": "diag.description" }
-    ],
-    "bFilter": false,
-    "paging": false,
-    "ordering": false,
-    "info": false
+  options = 
+      "bFilter": false,
+      "paging": false,
+      "ordering": false,
+      "info": false
+
+  url = $("#example").data('url')
+  # if existing data, render it
+  if url?
+    options.ajax =
+        "url": url
+        "dataSrc": "exams_diags"
+    options.columns = [
+        { "data": "id" },
+        { "data": "diag.name" },
+        { "data": "diag.description" }
+      ]
+
+  $('#example').DataTable options
 
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)
