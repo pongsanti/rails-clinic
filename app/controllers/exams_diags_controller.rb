@@ -14,4 +14,8 @@ class ExamsDiagsController < ApplicationController
   
     render json: { "exams_diag": [] }
   end
+
+  def create
+    render plain: params[:exams_diags].inspect
+  end
 end

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   #post 'exams_poll', to: 'exams#index_poll'
   post 'qs_poll', to: 'qs#index_poll'
   get 'exams_diags', to: 'exams_diags#index_by_exam'
+  post 'exams_diags', to: 'exams_diags#create'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
