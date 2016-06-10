@@ -3,7 +3,7 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :retrieve_exam, only: [:show, :edit, :update]
   before_action :retrieve_customer, only: [:index, :new, :create]
-  before_action :retreive_diags, only: :new
+  before_action :retreive_diags, only: [:new, :edit]
 
   def index
     @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
