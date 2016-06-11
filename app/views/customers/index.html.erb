@@ -46,7 +46,7 @@
       <% @customers.each do |customer| %> 
       <tr>
         <th scope="row"><%= customer.id %></th>
-        <td><%= customer.prefix.name %> <%= customer.name %></td>
+        <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>
         <td><%= customer.birthdate %> (<%= th_year customer %>)</td>

@@ -25,7 +25,11 @@ class ExamsController < ApplicationController
     @exam.customer = @customer
     
     if @exam.save
-      redirect_to exam_url(@exam)
+      if params[:submit].present?
+        redirect_to exam_url(@exam)
+      else
+        redirect_to edit_exam_url(@exam)
+      end
     else
       render 'new'
     end    

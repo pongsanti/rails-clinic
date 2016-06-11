@@ -1,8 +1,8 @@
 th:
   customers:
     index:
-      title: "รายการผู้เข้ารับการรักษา"
-      sub_text: "ค้นหาผู้เข้ารับการรักษา"
+      title: "รายการผู้ป่วย"
+      sub_text: "ค้นหาผู้ป่วย"
       search: "ค้นหา"
       choose_attribute: "เลือกจากรายการ..."
       view: "เรียกดูข้อมูล"
