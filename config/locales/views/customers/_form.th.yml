@@ -1,0 +1,5 @@
+th:
+  customers:
+    form:
+      general_info: "ข้อมูลทั่วไป"
+      contact_info: "ข้อมูลติดต่อ"
