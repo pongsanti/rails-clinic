@@ -2,20 +2,25 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 tExample = null
-iRowcnt = 0
+sExamId = null
+sUrl = null
+
+rowCount = (table) ->
+  table.data().count()
 
 postData = (table)->
-  postingData = {}
+  postingData =
+    exam_id: sExamId
+    exams_diags: []
 
   counter = 0
   for row in table.data()
-    postingData[counter++] =
+    postingData.exams_diags.push
       "order": row.order,
-      "diag_id": row.id,
+      "diag_id": row.diag.id,
       "note": row.note
 
-  console.log "exams_diags": postingData
-  $.post('/exams_diags', "exams_diags": postingData,
+  $.post(sUrl, postingData,
     (data)-> console.log data,
     "json"
   )
@@ -26,19 +31,25 @@ addRow = (table)->
   title = $('button[data-id="diags_select"]').attr 'title'
   note = $("#exams_diags_note_text").val()
   row_to_add =
-    id: id,
-    order: ++iRowcnt,
+    order: rowCount(tExample) + 1,
     diag:
+      id: id
       name: title,
     note: note
 
   table.row.add(row_to_add).draw false
 
 initializePage = ->
+  # get exam id
+  sExamId =  $("#example").data 'exam-id'
+  sUrl = $("#example").data('url')
   # table initialization
   options = 
+      ajax:
+        url: sUrl
+        dataSrc: "exams_diags"
       columns: [
-        ( data: "id", visible: false )
+        ( data: "diag.id", visible: false )
         ( data: "order", type: "num" )
         ( data: "diag.name" )
         ( data: "note" )
@@ -48,18 +59,13 @@ initializePage = ->
       ordering: false,
       info: false
 
-  url = $("#example").data('url')
-  # if existing data, render it
-  if url?
-    options.ajax =
-        "url": url
-        "dataSrc": "exams_diags"
-
   tExample = $('#example').DataTable options
 
+  # add new ros
   $("#exams_diags_add_row_btn").click ()->
     addRow(tExample)
 
+  # post data
   $("#exams_diags_submit_btn").click ()->
     postData(tExample)
 

@@ -26,10 +26,7 @@
     <div class="form-group">
       <div class="col-sm-12">
         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%"
-          <% if exam.id.present? %>
-            data-url="<%= exams_diags_url(:exam_id => exam.id) %>"
-          <% end %>
-          >
+            data-url="<%= exams_diags_url(:exam_id => exam.id) %>" data-exam-id="<%= exam.id %>">
           <thead>
               <tr>
                   <th>Id</th>

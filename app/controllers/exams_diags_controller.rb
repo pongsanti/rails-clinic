@@ -16,6 +16,24 @@ class ExamsDiagsController < ApplicationController
   end
 
   def create
-    render plain: params[:exams_diags].inspect
+    @exam = Exam.find params[:exam_id]
+    Exam.transaction do
+      # remove all associations
+      @exam.exams_diags.each do |ed|
+        ed.destroy!
+      end
+
+      # create new associations
+      params[:exams_diags].each do |k, v|
+        ed = ExamsDiag.new
+        ed.exam = @exam
+        ed.diag = Diag.find(v["diag_id"])
+        ed.order = v["order"]
+        ed.note = v["note"]
+        ed.save!
+      end
+    end
+    #render plain: params[:exams_diags].inspect
+    render plain: params.inspect
   end
 end
