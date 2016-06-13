@@ -1,5 +1,12 @@
 Turbolinks.enableProgressBar()
 
+@bstrapSelect = ->
+  # initialize select picker
+  $('.selectpicker').selectpicker({
+    size: 'auto',
+    liveSearch: true,
+  })
+
 # queue retrieval function
 getQueueList = ->
   $.post('/qs_poll', (data) ->
@@ -18,11 +25,7 @@ initializePage = ->
   # enable queue polling
   getQueueList()
 
-    # initialize select picker
-  $('.selectpicker').selectpicker({
-    size: 'auto',
-    liveSearch: true,
-  })
+  bstrapSelect()
 
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)
