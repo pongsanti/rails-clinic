@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t("exams.diag_form.heading") %></h3>
+  </div>
+  <div class="panel-body">
+<%= form_for exam, html: { class: "form-horizontal" }  do |exam_form| %>
+  <%= exam_form.fields_for :exams_diags do |exams_diags_form| %>
+    <p>
+      <%= exams_diags_form.label :order %>
+      <%= exams_diags_form.text_field :order %>
+    </p>
+    <p>
+      <%= exams_diags_form.label :diag_id %>
+      <%= exams_diags_form.select :diag_id, 
+        options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, exams_diags_form.object.diag_id), {},
+        class: "selectpicker" %>
+    </p>
+    <p>
+      <%= exams_diags_form.label :note %>
+      <%= exams_diags_form.text_field :note %>
+    </p>
+  <% end %>
+  <p>
+    <%= exam_form.submit 'Update' %>
+  </p>
+<% end %>
+
+  </div>
+</div>

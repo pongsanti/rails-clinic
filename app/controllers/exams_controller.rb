@@ -14,7 +14,9 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
+    @exam.note = "note"
     @exam.customer = @customer
+    @exam.exams_diags.build
   end
 
   def edit
@@ -52,7 +54,8 @@ class ExamsController < ApplicationController
         :weight, :height, 
         :bp_systolic, :bp_diastolic, 
         :pulse, :drug_allergy,
-        :note)
+        :note,
+        exams_diags_attributes: [:id, :order, :diag_id, :note])
     end
 
     def retrieve_exam
