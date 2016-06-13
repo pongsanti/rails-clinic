@@ -1,0 +1,1 @@
+$('#new_exam_diag_div').append('<%= escape_javascript(render :partial => "new_exam_diag", locals: {exam: @exam}) %>')

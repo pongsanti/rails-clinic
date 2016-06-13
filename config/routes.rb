@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-
-  resources :diags
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -26,8 +23,11 @@ Rails.application.routes.draw do
   #resources :sessions
   resources :customers
   resources :exams
+  post 'new_exam_diag/:id', to: 'exams#new_exam_diag', as: 'new_exam_diag'
+
   resources :clients
   resources :qs
+  resources :diags  
   # Example resource route with options:
   #   resources :products do
   #     member do
