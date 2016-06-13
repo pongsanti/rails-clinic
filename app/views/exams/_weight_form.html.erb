@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-body">
-  <%= form_for exam, html: { class: "form-horizontal" } do |f| %>
+  <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" } do |f| %>
     <div class="form-group">
       <%= hidden_field_tag 'customer_id', customer.id %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>

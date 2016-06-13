@@ -49,6 +49,7 @@ class ExamsController < ApplicationController
   end
 
   def new_exam_diag
+    @exams_diag = @exam.exams_diags.build
   end
 
   private
