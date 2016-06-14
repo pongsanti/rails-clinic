@@ -4,6 +4,7 @@
       <th>id</th>
       <th>diag name</th>
       <th>note</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
       <th scope="row"><%= ed.id %></th>
       <td><%= ed.diag.name %></td>
       <td><%= ed.note %></td>
+      <td><a href="<%= edit_exam_diag_path(ed) %>" data-remote="true" data-disable-with='<span class="glyphicon glyphicon-time"></span>'><span class="glyphicon glyphicon-edit"></span></a></td>
     </tr>
     <% end %>
   </tbody>

@@ -4,7 +4,7 @@ class ExamsController < ApplicationController
   before_action :retrieve_exam, only: [:show, :edit, :update,
     :new_exam_diag, :create_exam_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
-  before_action :retreive_diags, only: [:new, :edit, :new_exam_diag]
+  before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
   def index
     @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
@@ -54,8 +54,11 @@ class ExamsController < ApplicationController
   end
 
   def create_exam_diag
-    logger.info @exam.inspect
     @exam.update exam_params
+  end
+
+  def edit_exam_diag
+    @exams_diag = ExamsDiag.find(params[:id])
   end
 
   private
@@ -65,7 +68,7 @@ class ExamsController < ApplicationController
         :bp_systolic, :bp_diastolic, 
         :pulse, :drug_allergy,
         :note,
-        exams_diags_attributes: [:id, :order, :diag_id, :note])
+        exams_diags_attributes: [:id, :order, :diag_id, :note, :_destroy])
     end
 
     def retrieve_exam
