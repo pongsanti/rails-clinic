@@ -1,4 +1,11 @@
 <div class="panel panel-info">
+  <div class="panel-heading">
+    <div class="panel-title pull-left">New Diag</div>
+    <div class="panel-title pull-right">
+      <a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
   <div class="panel-body">
 <%= form_for exam, url: create_exam_diag_path(exam), method: :post, remote: true,
   html: { class: "form-horizontal", id: "new_exam_diag_form" }  do |exam_form| %>
