@@ -1,3 +1,8 @@
+<div class="btn-group">
+  <%= link_to new_customer_path, class: 'btn btn-default btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'customers.new.title' %>
+  <% end %>
+</div>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
@@ -41,7 +46,7 @@
       <% @customers.each do |customer| %> 
       <tr>
         <th scope="row"><%= customer.id %></th>
-        <td><%= customer.prefix.name %> <%= customer.name %></td>
+        <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>
         <td><%= customer.birthdate %> (<%= th_year customer %>)</td>

@@ -3,4 +3,5 @@ th:
     weight_form:
       blood_pressure: "ความดันโลหิต"
       submit_button: "บันทึกข้อมูล"
+      submit_and_edit_button: "บันทึกและแก้ไขข้อมูลทันที"
       clear_button: "เคลียร์ฟอร์ม"

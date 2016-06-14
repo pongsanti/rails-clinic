@@ -17,12 +17,6 @@ initializePage = -> # display local year
       option.text(option.text() + ' (' + String(index + 1) + ')');
   )
 
-  # initialize select picker
-  $('.selectpicker').selectpicker({
-    size: 'auto',
-    liveSearch: true,
-  })
-
   # form validation
   $('form[id*="customer"]').each(
     (index, value) ->

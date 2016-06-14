@@ -3,5 +3,6 @@ th:
     show:
       title: "ข้อมูลการตรวจ"
       sub_text: "ข้อมูลผู้ป่วยจากการพบแพทย์"
+      edit_exam: "แก้ไขข้อมูล"
       submit_button: "ตกลง"
       clear_button: "เคลียร์ฟอร์ม"

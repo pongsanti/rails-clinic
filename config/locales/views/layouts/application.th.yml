@@ -1,6 +1,6 @@
 th:
   layouts:
     application:
-      customer: "ผู้เข้ารับการรักษา"
-      customer_list: "รายชื่อ/ค้นหา"
-      customer_new: "ลงทะเบียนใหม่"
+      customer: "ผู้ป่วย"
+      customer_list: "รายชื่อผู้ป่วย/ค้นหาผู้ป่วย"
+      customer_new: "ลงทะเบียนผู้ป่วย"

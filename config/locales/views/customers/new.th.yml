@@ -1,7 +1,7 @@
 th:
   customers:
     new:
-      title: "ลงทะเบียน"
-      sub_text: "ข้อมูลผู้เข้ารับการรักษา"
-      submit_button: "ส่งข้อมูล"
+      title: "ลงทะเบียนผู้ป่วย"
+      sub_text: "ข้อมูลผู้ป่วย"
+      submit_button: "ตกลง"
       clear_button: "เคลียร์ฟอร์ม"
