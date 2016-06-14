@@ -1,21 +1,30 @@
-<%= form_for exam, html: { class: "form-horizontal", id: "new_exam_diag_form" }  do |exam_form| %>
+<div class="panel panel-info">
+  <div class="panel-body">
+<%= form_for exam, url: create_exam_diag_path(exam), method: :post, remote: true,
+  html: { class: "form-horizontal", id: "new_exam_diag_form" }  do |exam_form| %>
   <%= exam_form.fields_for :exams_diags, exams_diag do |exams_diags_form| %>
-    <p>
-      <%= exams_diags_form.label :order %>
-      <%= exams_diags_form.text_field :order %>
-    </p>
-    <p>
-      <%= exams_diags_form.label :diag_id %>
-      <%= exams_diags_form.select :diag_id, 
-        options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, exams_diags_form.object.diag_id), {},
-        class: "selectpicker" %>
-    </p>
-    <p>
-      <%= exams_diags_form.label :note %>
-      <%= exams_diags_form.text_field :note %>
-    </p>
+    <div class="form-group">
+      <%= exams_diags_form.label :diag_id, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= exams_diags_form.select :diag_id, 
+          options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, exams_diags_form.object.diag_id), {},
+          class: "selectpicker form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= exams_diags_form.label :note, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= exams_diags_form.text_field :note, class: "form-control" %>
+      </div>
+    </div>
   <% end %>
-  <p>
-    <%= exam_form.submit 'Update' %>
-  </p>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= exam_form.submit 'Create', class: "btn btn-primary",
+        data: { "disable-with" => "Saving..."} %>
+    </div>
+  </div>
 <% end %>
+
+  </div>
+</div>
