@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :exams
   post 'new_exam_diag/:id', to: 'exams#new_exam_diag', as: 'new_exam_diag'
+  post 'create_exam_diag/:id', to: 'exams#create_exam_diag', as: 'create_exam_diag'
+  get 'edit_exam_diag/:id', to: 'exams#edit_exam_diag', as: 'edit_exam_diag'
 
   resources :clients
   resources :qs

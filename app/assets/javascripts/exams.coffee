@@ -8,14 +8,16 @@ initializePage = ->
       $(value).validate()
   )
 
+###
   $('form[action*="exam_diag"]').on('ajax:error', (event, xhr, status, error)->
     $(this).append(error)
   )
 
-  $('form[action*="exam_diag"]').on('ajax:success', (event, xhr, status)->
+  $('form[action*="exam_diag"], a[href*="exam_diag"]').on('ajax:success', (event, xhr, status)->
     bstrapSelect()
     $(this).validate()
   )
+###
 
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)  
