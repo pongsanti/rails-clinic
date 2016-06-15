@@ -8,11 +8,12 @@ initializePage = ->
       $(value).validate()
   )
 
-###
-  $('form[action*="exam_diag"]').on('ajax:error', (event, xhr, status, error)->
-    $(this).append(error)
+  $('form[action*="new_exam_diag"]').on('ajax:error', (event, xhr, status, error)->
+    modal = $('#modal_div')
+    modal.find('div.modal-body').html error
+    modal.modal('toggle')
   )
-
+###
   $('form[action*="exam_diag"], a[href*="exam_diag"]').on('ajax:success', (event, xhr, status)->
     bstrapSelect()
     $(this).validate()
