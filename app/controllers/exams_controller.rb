@@ -15,9 +15,6 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
-    @exam.note = "note"
-    @exam.customer = @customer
-    @exam.exams_diags.build
   end
 
   def edit
