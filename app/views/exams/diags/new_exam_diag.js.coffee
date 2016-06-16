@@ -1,7 +1,7 @@
 parent_div = $('#new_exam_diag_div')
 new_exam_diag_submit_btn = $('#new_exam_diag_submit')
 
-parent_div.html('<%= escape_javascript(render :partial => "new_exam_diag", locals: {exam: @exam, exams_diag: @exams_diag}) %>')
+parent_div.html('<%= escape_javascript(render :partial => "exams/diags/new_exam_diag", locals: {exam: @exam, exams_diag: @exams_diag}) %>')
 
 # initialize select and validate
 parent_div.find('select.selectpicker').selectpicker('refresh')

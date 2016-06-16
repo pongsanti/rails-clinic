@@ -3,7 +3,7 @@
     <h3 class="panel-title"><%= t("exams.diag_form.heading") %></h3>
   </div>
   <div class="panel-body">
-    <%= form_for @exam, url: new_exam_diag_path(@exam), method: :post, remote: :true, 
+    <%= form_for @exam, url: new_exam_diag_path(@exam), method: :get, remote: :true, 
       html: { class: "form-horizontal", id: "new_exam_diag_entry_form" } do |f| %>
       <div class="text-right">
       <%= f.submit 'New Diag', id: "new_exam_diag_submit", class: "btn btn-primary", 
@@ -12,7 +12,7 @@
     <% end %>
     <div id="new_exam_diag_div" style="display:none;"></div>
     <div id="exam_diags_list_div" class="table-responsive">
-      <%= render partial: 'diags_list', locals: { exam: @exam } %>
+      <%= render partial: 'exams/diags/diags_list', locals: { exam: @exam } %>
     </div>
     <div id="edit_exam_diag_div" style="display:none;"></div>
   </div>

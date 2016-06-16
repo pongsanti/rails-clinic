@@ -1,1 +1,0 @@
-$('#exam_diags_list_div').html '<%= j(render partial: "diags_list", locals: {exam: @exam}) %>'
