@@ -3,13 +3,12 @@
     <h3 class="panel-title"><%= t("exams.diag_form.heading") %></h3>
   </div>
   <div class="panel-body">
-    <%= form_for @exam, url: new_exam_diag_path(@exam), method: :get, remote: :true, 
-      html: { class: "form-horizontal", id: "new_exam_diag_entry_form" } do |f| %>
-      <div class="text-right">
-      <%= f.submit 'New Diag', id: "new_exam_diag_submit", class: "btn btn-primary", 
-        data: { "disable-with" => "Loding..."} %>
-      </div>
-    <% end %>
+    <div class="text-right">
+      <a href="<%= new_exam_diag_path(@exam) %>" id="new_exam_diag_submit"
+        class="btn btn-primary btn-sm" data-remote="true" data-disable-with='Loding...'>
+        <span class="glyphicon glyphicon-file"></span> New Diag
+      </a>
+    </div>
     <div id="new_exam_diag_div" style="display:none;"></div>
     <div id="exam_diags_list_div" class="table-responsive">
       <%= render partial: 'exams/diags/diags_list', locals: { exam: @exam } %>

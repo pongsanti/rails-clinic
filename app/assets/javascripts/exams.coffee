@@ -8,7 +8,7 @@ initializePage = ->
       $(value).validate()
   )
 
-  $('form[action*="new_exam_diag"]').on('ajax:error', (event, xhr, status, error)->
+  $('a[href*="new_exam_diag"]').on('ajax:error', (event, xhr, status, error)->
     modal = $('#modal_div')
     modal.find('div.modal-body').html error
     modal.modal('toggle')
