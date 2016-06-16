@@ -13,12 +13,6 @@ initializePage = ->
     modal.find('div.modal-body').html error
     modal.modal('toggle')
   )
-###
-  $('form[action*="exam_diag"], a[href*="exam_diag"]').on('ajax:success', (event, xhr, status)->
-    bstrapSelect()
-    $(this).validate()
-  )
-###
 
 $(document).ready(initializePage)
 $(document).on('page:load', initializePage)  

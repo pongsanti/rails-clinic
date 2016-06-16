@@ -1,6 +1,6 @@
 Turbolinks.enableProgressBar()
 
-@bstrapSelect = ->
+bstrapSelect = ->
   # initialize select picker
   $('.selectpicker').selectpicker({
     size: 'auto',
