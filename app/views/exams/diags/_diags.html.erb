@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <div class="panel-title pull-left"><%= t("exams.diag_form.heading") %></div>
+      <div class="panel-title pull-right">
+        <a href="<%= new_exam_diag_path(@exam) %>" id="new_exam_diag_submit"
+          class="btn btn-info btn-sm" data-remote="true" data-disable-with='Loding...'>
+          <span class="glyphicon glyphicon-file"></span> New Diag
+        </a>
+      </div>
+      <div class="clearfix"></div>
+  </div>
+  <div class="panel-body">
+    <div id="new_exam_diag_div" style="display:none;"></div>
+    <div id="exam_diags_list_div" class="table-responsive">
+      <%= render partial: 'exams/diags/diags_list', locals: { exam: @exam } %>
+    </div>
+    <div id="edit_exam_diag_div" style="display:none;"></div>
+  </div>
+</div>

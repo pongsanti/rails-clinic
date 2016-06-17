@@ -1,14 +1,14 @@
-<div class="panel panel-info">
+<div class="panel panel-warning">
   <div class="panel-heading">
-    <div class="panel-title pull-left">New Diag</div>
+    <div class="panel-title pull-left">Update Diag Id: <%= exams_diag.id %></div>
     <div class="panel-title pull-right">
-      <a href="#"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+      <a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
     </div>
     <div class="clearfix"></div>
   </div>
   <div class="panel-body">
-<%= form_for exam, url: create_exam_diag_path(exam), method: :post, remote: true,
-  html: { class: "form-horizontal", id: "new_exam_diag_form" }  do |exam_form| %>
+<%= form_for exam, url: update_exam_diag_path(exam), method: :post, remote: true,
+  html: { class: "form-horizontal", id: "edit_exam_diag_form" }  do |exam_form| %>
   <%= exam_form.fields_for :exams_diags, exams_diag do |exams_diags_form| %>
     <div class="form-group">
       <%= exams_diags_form.label :diag_id, class: "col-sm-2 control-label" %>
@@ -24,10 +24,15 @@
         <%= exams_diags_form.text_field :note, class: "form-control" %>
       </div>
     </div>
+    <div class="form-group">
+      <div class="checkbox col-sm-10 col-sm-offset-2">
+        <label><%= exams_diags_form.check_box :_destroy %> <strong>Delete?</strong></label>
+      </div>
+    </div>
   <% end %>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= exam_form.submit 'Create', class: "btn btn-info",
+      <%= exam_form.submit 'Update', class: "btn btn-warning",
         data: { "disable-with" => "Saving..."} %>
     </div>
   </div>

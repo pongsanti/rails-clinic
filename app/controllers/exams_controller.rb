@@ -2,7 +2,7 @@ class ExamsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :retrieve_exam, only: [:show, :edit, :update,
-    :new_exam_diag, :create_exam_diag]
+    :new_exam_diag, :update_exam_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
@@ -15,9 +15,6 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
-    @exam.note = "note"
-    @exam.customer = @customer
-    @exam.exams_diags.build
   end
 
   def edit
@@ -51,14 +48,17 @@ class ExamsController < ApplicationController
 
   def new_exam_diag
     @exams_diag = @exam.exams_diags.build
+    render "exams/diags/new_exam_diag"
   end
 
-  def create_exam_diag
+  def update_exam_diag
     @exam.update exam_params
+    render "exams/diags/update_exam_diag"
   end
 
   def edit_exam_diag
     @exams_diag = ExamsDiag.find(params[:id])
+    render "exams/diags/edit_exam_diag"
   end
 
   private
