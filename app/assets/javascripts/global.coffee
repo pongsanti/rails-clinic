@@ -1,5 +1,3 @@
-Turbolinks.enableProgressBar()
-
 bstrapSelect = ->
   # initialize select picker
   $('.selectpicker').selectpicker({
@@ -28,4 +26,4 @@ initializePage = ->
   bstrapSelect()
 
 $(document).ready(initializePage)
-$(document).on('page:load', initializePage)
+$(document).on('turbolinks:load', initializePage)
