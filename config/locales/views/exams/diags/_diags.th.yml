@@ -1,0 +1,6 @@
+th:
+  exams:
+    diags:
+      diags:
+        new_diag: "สร้างวินิจฉัย"
+        edit_diag: "แก้ไขข้อมูลวินิจฉัย"
