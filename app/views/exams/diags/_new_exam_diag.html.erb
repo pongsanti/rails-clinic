@@ -7,7 +7,19 @@
     <div class="clearfix"></div>
   </div>
   <div class="panel-body">
-<%= form_for exam, url: update_exam_diag_path(exam), method: :post, remote: true,
+
+<% if exams_diag.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <strong><%= t("error.cannot_save") %></strong>
+    <ul>
+      <% exams_diag.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for exam, url: create_exam_diag_path(exam), method: :post, remote: true,
   html: { class: "form-horizontal" }  do |exam_form| %>
   <%= exam_form.fields_for :exams_diags, exams_diag do |exams_diags_form| %>
     <div class="form-group">
@@ -21,7 +33,7 @@
     <div class="form-group">
       <%= exams_diags_form.label :note, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= exams_diags_form.text_field :note, class: "form-control" %>
+        <%= exams_diags_form.text_field :note, class: "form-control", placeholder: true %>
       </div>
     </div>
   <% end %>
