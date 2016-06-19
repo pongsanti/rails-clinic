@@ -53,7 +53,7 @@ class ExamsController < ApplicationController
 
   def create_exam_diag
     if @exam.update exam_params
-      render "exams/diags/update_exam_diag"
+      render "exams/diags/diags_list"
     else
       handle_error_and_render "exams/diags/new_exam_diag"
     end
@@ -66,7 +66,7 @@ class ExamsController < ApplicationController
 
   def update_exam_diag
     if @exam.update exam_params
-      render "exams/diags/update_exam_diag"
+      render "exams/diags/diags_list"
     else
       handle_error_and_render "exams/diags/edit_exam_diag"
     end
