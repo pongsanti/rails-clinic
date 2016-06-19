@@ -1,0 +1,8 @@
+th:
+  helpers:
+    label:
+      diag:
+        note: "ข้อมูลเพิ่มเติม" 
+    placeholder:
+      diag:
+        note: "ข้อมูลเพิ่มเติม" 
