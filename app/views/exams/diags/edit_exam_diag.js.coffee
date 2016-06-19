@@ -2,8 +2,13 @@ parent_div = $("#edit_exam_diag_div")
 
 parent_div.html '<%= escape_javascript(render :partial => "exams/diags/edit_exam_diag", locals: {exam: @exams_diag.exam, exams_diag: @exams_diag}) %>'
 
-# initialize select and validate
-parent_div.find('select.selectpicker').selectpicker('refresh')
+form = parent_div.find 'form'
+
+# initialize select tag
+gInitSelectPicker(form)
+
+# init form validation
+gInitFormValidation form
 
 # confirm if destroy is checked
 parent_div.find('input[type="checkbox"]').click ()->

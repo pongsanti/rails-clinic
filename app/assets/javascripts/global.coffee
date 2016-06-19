@@ -1,3 +1,17 @@
+
+# Global Functions
+@gShowErrorModal = (text) ->
+  modal = $('#modal_div')
+  modal.find('div.modal-body').html text
+  modal.modal('toggle')
+
+@gInitSelectPicker = (parent) ->
+  parent.find('select.selectpicker').selectpicker('refresh')
+
+@gInitFormValidation = (form) ->
+  form.each (index, value) ->
+    $(value).validate()
+
 bstrapSelect = ->
   # initialize select picker
   $('.selectpicker').selectpicker({
