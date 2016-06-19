@@ -1,4 +1,16 @@
-Turbolinks.enableProgressBar()
+
+# Global Functions
+@gShowErrorModal = (text) ->
+  modal = $('#modal_div')
+  modal.find('div.modal-body').html text
+  modal.modal('toggle')
+
+@gInitSelectPicker = (parent) ->
+  parent.find('select.selectpicker').selectpicker('refresh')
+
+@gInitFormValidation = (form) ->
+  form.each (index, value) ->
+    $(value).validate()
 
 bstrapSelect = ->
   # initialize select picker
@@ -28,4 +40,4 @@ initializePage = ->
   bstrapSelect()
 
 $(document).ready(initializePage)
-$(document).on('page:load', initializePage)
+$(document).on('turbolinks:load', initializePage)

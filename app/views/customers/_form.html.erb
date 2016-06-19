@@ -1,9 +1,6 @@
 <% if @customer.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
-    <h2>
-      <%= pluralize(@customer.errors.count, "error") %> prohibited
-      this customer from being saved:
-    </h2>
+    <strong><%= t("error.cannot_save") %></strong>
     <ul>
       <% @customer.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
