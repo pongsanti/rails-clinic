@@ -8,7 +8,7 @@
   </div>
   <div class="panel-body">
 <%= form_for exam, url: update_exam_diag_path(exam), method: :post, remote: true,
-  html: { class: "form-horizontal", id: "new_exam_diag_form" }  do |exam_form| %>
+  html: { class: "form-horizontal" }  do |exam_form| %>
   <%= exam_form.fields_for :exams_diags, exams_diag do |exams_diags_form| %>
     <div class="form-group">
       <%= exams_diags_form.label :diag_id, class: "col-sm-2 control-label" %>
