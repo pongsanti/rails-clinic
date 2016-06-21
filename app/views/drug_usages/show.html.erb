@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @drug_usage.code %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @drug_usage.text %>
+</p>
+
+<%= link_to 'Edit', edit_drug_usage_path(@drug_usage) %> |
+<%= link_to 'Back', drug_usages_path %>
