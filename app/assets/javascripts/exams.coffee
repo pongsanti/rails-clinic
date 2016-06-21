@@ -6,4 +6,4 @@ initializePage = ->
   $('a[href*="new_exam_diag"]').on 'ajax:error', (event, xhr, status, error)-> gShowErrorModal error
 
 $(document).ready(initializePage)
-$(document).on('page:load', initializePage)  
+$(document).on('turbolinks:load', initializePage)  
