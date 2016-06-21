@@ -12,13 +12,6 @@
   form.each (index, value) ->
     $(value).validate()
 
-bstrapSelect = ->
-  # initialize select picker
-  $('.selectpicker').selectpicker({
-    size: 'auto',
-    liveSearch: true,
-  })
-
 # queue retrieval function
 getQueueList = ->
   $.post('/qs_poll', (data) ->
@@ -37,7 +30,7 @@ initializePage = ->
   # enable queue polling
   getQueueList()
 
-  bstrapSelect()
+  # select pickers
+  gInitSelectPicker $('form')
 
-$(document).ready(initializePage)
 $(document).on('turbolinks:load', initializePage)

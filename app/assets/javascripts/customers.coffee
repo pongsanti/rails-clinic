@@ -30,5 +30,4 @@ initializePage = -> # display local year
       $('#cont').attr('name', "q[#{sel_attr}_cont]")
   )
 
-$(document).ready(initializePage)
 $(document).on('turbolinks:load', initializePage)
