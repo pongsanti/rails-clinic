@@ -31,6 +31,8 @@ initializePage = ->
   getQueueList()
 
   # select pickers
-  gInitSelectPicker $('form')
+  if $('form').find('button[data-toggle="dropdown"]').length is 0
+    console.log 'init select pickers'
+    gInitSelectPicker $('form')
 
 $(document).on('turbolinks:load', initializePage)
