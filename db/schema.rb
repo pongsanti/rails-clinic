@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621161207) do
+ActiveRecord::Schema.define(version: 20160622131533) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -74,13 +74,15 @@ ActiveRecord::Schema.define(version: 20160621161207) do
     t.text     "name"
     t.text     "trade_name"
     t.text     "effect"
-    t.decimal  "balance"
+    t.integer  "balance"
     t.integer  "drug_usage_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "store_unit_id"
   end
 
   add_index "drugs", ["drug_usage_id"], name: "index_drugs_on_drug_usage_id"
+  add_index "drugs", ["store_unit_id"], name: "index_drugs_on_store_unit_id"
 
   create_table "exams", force: :cascade do |t|
     t.decimal  "weight"
@@ -128,6 +130,12 @@ ActiveRecord::Schema.define(version: 20160621161207) do
   end
 
   add_index "qs", ["exam_id"], name: "index_qs_on_exam_id"
+
+  create_table "store_units", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

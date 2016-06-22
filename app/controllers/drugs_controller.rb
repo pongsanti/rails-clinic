@@ -1,4 +1,6 @@
 class DrugsController < ApplicationController
+  
+  before_action :authenticate_user!  
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
 
   # GET /drugs
