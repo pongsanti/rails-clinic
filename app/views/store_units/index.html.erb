@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Store Units</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @store_units.each do |store_unit| %>
+      <tr>
+        <td><%= store_unit.title %></td>
+        <td><%= link_to 'Show', store_unit %></td>
+        <td><%= link_to 'Edit', edit_store_unit_path(store_unit) %></td>
+        <td><%= link_to 'Destroy', store_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Store unit', new_store_unit_path %>

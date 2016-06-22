@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   #resources :sessions
   resources :customers
   resources :exams
+  resources :store_units
+  resources :drugs
+  resources :drug_usages
   get 'new_exam_diag/:id', to: 'exams#new_exam_diag', as: 'new_exam_diag'
   post 'create_exam_diag/:id', to: 'exams#create_exam_diag', as: 'create_exam_diag'
   patch 'update_exam_diag/:id', to: 'exams#update_exam_diag', as: 'update_exam_diag'
