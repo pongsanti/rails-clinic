@@ -1,6 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="btn-group">
+  <%= link_to new_store_unit_path, class: 'btn btn-default btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'customers.new.title' %>
+  <% end %>
+</div>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<h1>Listing Store Units</h1>
 
 <table>
   <thead>
