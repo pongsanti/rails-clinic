@@ -10,14 +10,13 @@
   <div class="form-group">
     <%= label_tag "search", t('.search'), class: 'col-sm-1 control-label'%>
     <div class="col-sm-4">
-      <%= f.attribute_select nil, class: 'form-control selectpicker', title: t('.choose_attribute') %>
+      <%= f.attribute_select nil, class: 'form-control selectpicker', data: { "live-search" => true }, title: t('.choose_attribute') %>
     </div>
     <div class="col-sm-5">
       <%= text_field_tag 'cont', nil, class: 'form-control' %>
     </div>
     <div class="col-sm-2">
       <%= f.submit t('.search'), class: 'btn btn-primary' %>
-
     </div>
   </div>
 <% end %>
@@ -42,16 +41,16 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody data-link="row" class="rowlink">
       <% @customers.each do |customer| %> 
       <tr>
-        <th scope="row"><%= customer.id %></th>
+        <td><%= customer.id %></td>
         <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>
         <td><%= customer.birthdate %> (<%= th_year customer %>)</td>
         <td><%= masked_id_card_no(customer) %></td>
-        <td>
+        <td class="rowlink-skip">
           <div class="btn-group">
             <%= link_to customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do %>
               <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"></span>

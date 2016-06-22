@@ -18,10 +18,7 @@ initializePage = -> # display local year
   )
 
   # form validation
-  $('form[id*="customer"]').each(
-    (index, value) ->
-      $(value).validate()
-  )
+  gInitFormValidation $('form[id*="customer"]')
 
   # active the radio buttons group
   $('input[type=radio]:checked').parent().addClass('active')
@@ -33,5 +30,4 @@ initializePage = -> # display local year
       $('#cont').attr('name', "q[#{sel_attr}_cont]")
   )
 
-$(document).ready(initializePage)
-$(document).on('page:load', initializePage)
+$(document).on('turbolinks:load', initializePage)

@@ -68,3 +68,40 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-6">
+
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+          <div class="panel-title"><%= t("exams.diag_form.heading") %></div>
+      </div>
+      <div class="panel-body">
+        <div id="new_exam_diag_div" style="display:none;"></div>
+        <div id="exam_diags_list_div" class="table-responsive">
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody data-link="row" class="rowlink">
+    <% @exam.exams_diags.each do |ed| %> 
+    <tr>
+      <td><%= ed.id %></td>
+      <td><%= ed.diag.name %></td>
+      <td><%= ed.note %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
