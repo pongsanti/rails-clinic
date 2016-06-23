@@ -1,32 +1,37 @@
 <div class="btn-group">
   <%= link_to new_store_unit_path, class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'customers.new.title' %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'store_units.new.title' %>
   <% end %>
 </div>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @store_units.each do |store_unit| %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
       <tr>
-        <td><%= store_unit.title %></td>
-        <td><%= link_to 'Show', store_unit %></td>
-        <td><%= link_to 'Edit', edit_store_unit_path(store_unit) %></td>
-        <td><%= link_to 'Destroy', store_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Title</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Store unit', new_store_unit_path %>
+    </thead>
+    <tbody data-link="row" class="rowlink">
+      <% @store_units.each do |store_unit| %> 
+      <tr>
+        <td><%= store_unit.id %></td>
+        <td><%= store_unit.title %></td>
+        <td class="rowlink-skip">
+          <div class="btn-group">
+            <%= link_to store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to edit_store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
