@@ -6,32 +6,39 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
-<div class="table-responsive">
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody data-link="row" class="rowlink">
-      <% @store_units.each do |store_unit| %> 
-      <tr>
-        <td><%= store_unit.id %></td>
-        <td><%= store_unit.title %></td>
-        <td class="rowlink-skip">
-          <div class="btn-group">
-            <%= link_to store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
-              <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"></span>
-            <% end %>
-            <%= link_to edit_store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
-              <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"></span>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <%= t '.sub_text' %>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody data-link="row" class="rowlink">
+          <% @store_units.each do |store_unit| %>
+          <tr>
+            <td><%= store_unit.id %></td>
+            <td><%= store_unit.title %></td>
+            <td class="rowlink-skip">
+              <div class="btn-group">
+                <%= link_to store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
+                  <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"></span>
+                <% end %>
+                <%= link_to edit_store_unit_path(store_unit), class: 'btn btn-default btn-sm', role: 'button' do %>
+                  <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"></span>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
