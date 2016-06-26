@@ -1,21 +1,32 @@
-<%= form_for(@store_unit) do |f| %>
+<%= form_for @store_unit, html: { class: "form-horizontal" } do |f| %>
   <% if @store_unit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@store_unit.errors.count, "error") %> prohibited this store_unit from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <strong><%= t("error.cannot_save") %></strong>
       <ul>
-      <% @store_unit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @store_unit.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.label :title, class: "col-sm-2 control-label required-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= f.button  class: "btn btn-success btn-labeled" do |b| %>
+        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_button')%>
+      <% end %>
+      <%= f.button type: :reset, class: "btn btn-info btn-labeled" do |b| %>
+        <span class="btn-label"><i class="glyphicon glyphicon-erase"></i></span><%=t('.clear_button')%>
+      <% end %>
+      <%= link_to :back, class: "btn btn-default btn-labeled" do %>
+        <span class="btn-label"><i class="glyphicon glyphicon-arrow-left"></i></span>Cancel
+      <% end %>
+    </div>
   </div>
 <% end %>
