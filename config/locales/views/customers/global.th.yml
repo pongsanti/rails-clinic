@@ -35,3 +35,8 @@ th:
         email: "example_email@gmail.com"
         home_phone_no: "หมายเลขโทรศัพท์บ้าน"
         tel_no: "หมายเลขโทรศัพท์มือถือ"
+
+    submit:
+      customer:
+        create: "สร้าง"
+        update: "แก้ไข"

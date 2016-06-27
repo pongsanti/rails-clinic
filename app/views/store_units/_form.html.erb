@@ -18,15 +18,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
-      <%= f.button  class: "btn btn-success btn-labeled" do |b| %>
-        <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_button')%>
-      <% end %>
-      <%= f.button type: :reset, class: "btn btn-info btn-labeled" do |b| %>
-        <span class="btn-label"><i class="glyphicon glyphicon-erase"></i></span><%=t('.clear_button')%>
-      <% end %>
-      <%= link_to :back, class: "btn btn-default btn-labeled" do %>
-        <span class="btn-label"><i class="glyphicon glyphicon-arrow-left"></i></span>Cancel
-      <% end %>
+      <%= render partial: "global/form_button", locals: {f: f} %>
     </div>
   </div>
 <% end %>
