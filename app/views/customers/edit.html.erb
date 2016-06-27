@@ -10,6 +10,5 @@
 <hr>
 <%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
-  <%= f.submit t('.submit_button'), class: "btn btn-primary" %>
-  <%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
+  <%= render partial: 'form_button', locals: {f: f} %>
 <% end %>

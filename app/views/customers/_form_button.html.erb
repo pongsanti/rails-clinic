@@ -1,0 +1,9 @@
+  <%= f.button  class: "btn btn-success btn-labeled" do |b| %>
+    <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('customers.new.submit_button')%>
+  <% end %>
+  <%= f.button type: :reset, class: "btn btn-info btn-labeled" do |b| %>
+    <span class="btn-label"><i class="glyphicon glyphicon-erase"></i></span><%=t('customers.new.clear_button')%>
+  <% end %>
+  <%= link_to :back, class: "btn btn-default btn-labeled" do %>
+    <span class="btn-label"><i class="glyphicon glyphicon-arrow-left"></i></span>Cancel
+  <% end %>
