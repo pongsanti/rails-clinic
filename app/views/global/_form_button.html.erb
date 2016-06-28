@@ -1,4 +1,4 @@
-  <%= f.button  class: "btn btn-success btn-labeled" do |b| %>
+  <%= f.button  name: "submit", class: "btn btn-success btn-labeled", value: "submit" do |b| %>
     <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('customers.new.submit_button')%>
   <% end %>
   <%= f.button type: :reset, class: "btn btn-info btn-labeled" do |b| %>
