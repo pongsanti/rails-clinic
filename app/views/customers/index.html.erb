@@ -48,7 +48,7 @@
         <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>
-        <td><%= customer.birthdate %> (<%= th_year customer %>)</td>
+        <td><%= th_date_format(customer.birthdate) %></td>
         <td><%= masked_id_card_no(customer) %></td>
         <td class="rowlink-skip">
           <div class="btn-group">
