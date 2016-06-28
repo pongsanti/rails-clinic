@@ -8,6 +8,7 @@ class ExamsController < ApplicationController
 
   def index
     @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
+    @exams = @exams.page(params[:page])
   end
 
   def show

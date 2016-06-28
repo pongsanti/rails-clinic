@@ -46,4 +46,8 @@
       <% end %>
     </tbody>
   </table>
+<%= paginate @exams %>
+</div>
+<div>
+<%= page_entries_info @exams, entry_name: t('exams.index.title') %>
 </div>

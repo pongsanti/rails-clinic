@@ -8,15 +8,6 @@
 </div>
 
 <div class="btn-group">
-  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t '.new_exam' %>
-  <% end %>
-  <%= link_to exams_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t '.show_exam' %>
-  <% end %>
-</div>
-
-<div class="btn-group">
   <%= link_to customer_path(format: :pdf), class: 'btn btn-default btn-sm', role: 'button', target: '_tab' do %>
     <span class="glyphicon glyphicon-print" aria-hidden="true"></span> <%= t '.print_id_card' %>
   <% end %>
@@ -25,6 +16,16 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 
 <hr>
+
+<div class="btn-group form-group">
+  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t '.new_exam' %>
+  <% end %>
+  <%= link_to exams_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t '.show_exam' %>
+  <% end %>
+</div>
+
 <div class="panel panel-primary">
   <div class="panel-heading"><%= t("customers.form.general_info") %></div>
   <div class="panel-body">
@@ -163,3 +164,11 @@
   </div>
 </div>
 
+<div class="btn-group">
+  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t '.new_exam' %>
+  <% end %>
+  <%= link_to exams_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t '.show_exam' %>
+  <% end %>
+</div>
