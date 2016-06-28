@@ -14,21 +14,26 @@ gQueueTimer = null
   form.each (index, value) ->
     $(value).validate()
 
-# queue retrieval function
-getQueueList = ->
-  $.post('/qs_poll', (data) ->
+requestQueueList = ->
+  $.post '/qs_poll', (data) ->
     div = $('#sidebar div[class="list-group"]')
     div.empty()
 
     div.html(HandlebarsTemplates['qs/items'](data))
     $('#queue_badge').html data.qs.length
-  )
-  gQueueTimer = setTimeout(getQueueList, 10000)
+
+# queue retrieval function
+getQueueList = ->
+  requestQueueList()
+  gQueueTimer = setTimeout getQueueList, 10000
+
 
 initializePage = ->
   # enable bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip()
 
+  # request queue list at once
+  requestQueueList()
   # enable queue polling
   if not gQueueTimer?
     getQueueList()
