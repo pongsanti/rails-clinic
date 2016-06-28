@@ -9,6 +9,12 @@
 
 <%= render partial: 'customer', locals: {customer: @customer} %>
 
+<div class="btn-group">
+  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'customers.show.new_exam' %>
+  <% end %>
+</div>
+
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
@@ -21,15 +27,19 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody data-link="row" class="rowlink">
       <% @exams.each do |exam| %> 
       <tr>
-        <th scope="row"><%= exam.id %></th>
-        <td><%= exam.created_at.to_s(:global_date) %> (<%= time_ago_in_words(exam.created_at)%>)</td>
-        <td>
+        <td><%= link_to exam.id, exam_path(exam) %></td>
+        <td><%= th_date_time_format exam.created_at %> (<%= time_ago_in_words(exam.created_at)%>)</td>
+        <td class="rowlink-skip">
           <div class="btn-group">
-            <%= link_to t('.show_exam'), exam_path(exam), class: "btn btn-default btn-sm" %>
-            <%= link_to t('.add_to_q'), qs_path(exam_id: exam.id), method: :post, class: "btn btn-default btn-sm" %>
+            <%= link_to exam_path(exam), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="<%= t '.show_exam' %>" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to qs_path(exam_id: exam.id), method: :post, class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-hourglass" data-toggle="tooltip" title="<%= t '.add_to_q' %>" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
           </div>
         </td>
       </tr>
