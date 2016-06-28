@@ -23,11 +23,6 @@
 <%#= content_tag :p, @customers.to_sql %>
 <hr>
 
-  <!--
-  <%= content_tag :p, @customers.to_sql %>
-  -->
-
-
 <div class="table-responsive">
   <table class="table table-striped table-hover">
     <thead>
@@ -38,6 +33,7 @@
         <th><%= sort_link(@q, :sex, (t 'helpers.label.customer.sex')) %></th>
         <th><%= sort_link(@q, :birthdate, (t 'helpers.label.customer.birthdate')) %></th>
         <th><%= sort_link(@q, :id_card_no, (t 'helpers.label.customer.id_card_no')) %></th>
+        <th><%= sort_link(@q, :created_at, (t 'helpers.label.customer.created_at')) %></th>
         <th></th>
       </tr>
     </thead>
@@ -48,8 +44,10 @@
         <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>
-        <td><%= th_date_format(customer.birthdate) %></td>
+        <td><%= th_date_format customer.birthdate %></td>
         <td><%= masked_id_card_no(customer) %></td>
+        <td><%= th_date_format customer.created_at %></td>
+
         <td class="rowlink-skip">
           <div class="btn-group">
             <%= link_to customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do %>

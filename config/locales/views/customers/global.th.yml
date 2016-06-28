@@ -19,6 +19,7 @@ th:
         email: "อีเมล์"
         home_phone_no: "เบอร์โทรศัพท์บ้าน"
         tel_no: "เบอร์โทรศัพท์มือถือ"
+        created_at: "วันที่สร้าง"        
     placeholder:
       customer:
         name: "ชื่อตามบัตรประชาชน"
