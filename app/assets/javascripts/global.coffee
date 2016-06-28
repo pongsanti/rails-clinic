@@ -1,3 +1,5 @@
+# Global Variables
+gQueueTimer = null
 
 # Global Functions
 @gShowErrorModal = (text) ->
@@ -21,14 +23,15 @@ getQueueList = ->
     div.html(HandlebarsTemplates['qs/items'](data))
     $('#queue_badge').html data.qs.length
   )
-  queueTimer = setTimeout(getQueueList, 10000)
+  gQueueTimer = setTimeout(getQueueList, 10000)
 
 initializePage = ->
   # enable bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip()
 
   # enable queue polling
-  getQueueList()
+  if not gQueueTimer?
+    getQueueList()
 
   # select pickers
   if $('form').find('button[data-toggle="dropdown"]').length is 0
