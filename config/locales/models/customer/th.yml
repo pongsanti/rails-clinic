@@ -8,7 +8,8 @@ th:
         surname: "นามสกุล"
         sex: "เพศ"
         id_card_no: "เลขบัตรประชาชน"
-        birthdate: "วันเกิด"        
+        birthdate: "วันเกิด"
+        created_at: "วันที่สร้าง"    
 
     errors:
       models:

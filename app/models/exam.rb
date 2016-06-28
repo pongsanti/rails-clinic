@@ -12,6 +12,9 @@ class Exam < ActiveRecord::Base
 
   scope :customer_id_is, -> (cid) { where("customer_id = ?", cid)}
 
+  #kaminari
+  paginates_per 10
+
   def bmi
     result = "N/A"
     if weight.present? && height.present?

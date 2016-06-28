@@ -1,4 +1,7 @@
 <div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-header"><%= t ".heading" %></div>
+  </div>
   <div class="panel-body">
   <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" } do |f| %>
     <div class="form-group">
@@ -49,10 +52,22 @@
         <%= f.text_area :note, class: "form-control", placeholder: true %>
       </div>
     </div>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <%= render partial: "global/form_button", locals: {f: f} %>
+      </div>
+    </div>
 
-    <%= f.submit t('.submit_button'), class: "btn btn-primary", name: "submit" %>
-    <%= f.submit t('.submit_and_edit_button'), class: "btn btn-primary", name: "submit_and_edit" %>
-    <%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
+    <% if exam.new_record? %>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <%= f.button  name: "submit_and_edit", class: "btn btn-primary btn-labeled", value: "submit_and_edit" do |b| %>
+            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_and_edit_button')%>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
   <% end %>
   </div>
 </div>

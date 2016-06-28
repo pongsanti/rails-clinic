@@ -7,13 +7,5 @@
 <hr>
 <%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
-  <%= f.button  class: "btn btn-success btn-labeled" do |b| %>
-    <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_button')%>
-  <% end %>
-  <%= f.button type: :reset, class: "btn btn-info btn-labeled" do |b| %>
-    <span class="btn-label"><i class="glyphicon glyphicon-erase"></i></span><%=t('.clear_button')%>
-  <% end %>
-  <%= link_to :back, class: "btn btn-default btn-labeled" do %>
-    <span class="btn-label"><i class="glyphicon glyphicon-arrow-left"></i></span>Cancel
-  <% end %>
+  <%= render partial: 'global/form_button', locals: {f: f} %>
 <% end %>

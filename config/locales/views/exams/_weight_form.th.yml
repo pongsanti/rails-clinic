@@ -2,6 +2,5 @@ th:
   exams:
     weight_form:
       blood_pressure: "ความดันโลหิต"
-      submit_button: "บันทึกข้อมูล"
-      submit_and_edit_button: "บันทึกและแก้ไขข้อมูลทันที"
-      clear_button: "เคลียร์ฟอร์ม"
+      submit_and_edit_button: "ตกลงและแก้ไขข้อมูลทันที"
+      heading: "ข้อมูลเบื้องต้น"

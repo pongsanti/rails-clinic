@@ -9,7 +9,6 @@ th:
       edit_customer: "แก้ไขข้อมูล"
       print_id_card: "พิมพ์บัตรประจำตัว"
 
-      th_year: "พ.ศ."
       age: "อายุ"
       years: "ปี"
       months: "เดือน"
