@@ -25,9 +25,23 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 
 <hr>
-
 <div class="panel panel-primary">
+  <div class="panel-heading"><%= t("customers.form.general_info") %></div>
   <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :customer, :created_at %>:
+      </div>
+      <div class="col-sm-4">
+        <%= th_date_time_format @customer.created_at %> (<%= time_ago_in_words @customer.created_at %>)
+      </div>
+      <div class="col-sm-2">
+      
+      </div>
+      <div class="col-sm-4">
+        
+      </div>  
+    </div>
     <div class="row">
       <div class="col-sm-2">
         <%= label :customer, :name %>:
@@ -88,6 +102,7 @@
 </div>
 
 <div class="panel panel-primary">
+  <div class="panel-heading"><%= t("customers.form.contact_info") %></div>
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-2">
