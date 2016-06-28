@@ -47,7 +47,7 @@
         <%= label :customer, :birthdate %>:
       </div>
       <div class="col-sm-4">
-        <%= @customer.birthdate %> (<%= t '.th_year' %><%= th_year @customer %>)
+        <%= th_date_format @customer.birthdate %>
       </div>
       <div class="col-sm-2">
         <%= label_tag nil, t('.age') %>:
