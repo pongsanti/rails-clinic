@@ -3,6 +3,7 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :retrieve_exam, only: [:show, :edit, :update, :new_exam_diag, :create_exam_diag, :update_exam_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
+  before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
   def index
@@ -14,7 +15,6 @@ class ExamsController < ApplicationController
   end
 
   def show
-    @customer = @exam.customer
   end
 
   def new
@@ -22,7 +22,6 @@ class ExamsController < ApplicationController
   end
 
   def edit
-    @customer = @exam.customer
   end
 
   def create
@@ -42,7 +41,12 @@ class ExamsController < ApplicationController
 
   def update
     if @exam.update(exam_params)
-      redirect_to @exam
+      if params[:submit_and_stay]
+        flash.now[:update_success] = "success" 
+        render 'edit'
+      else
+        redirect_to @exam
+      end
     else
       render 'edit'
     end
@@ -84,11 +88,18 @@ class ExamsController < ApplicationController
         :bp_systolic, :bp_diastolic, 
         :pulse, :drug_allergy,
         :note,
+        # weight_form
+        :exam_pi, :exam_pe, :exam_note,
+        # exams_diags
         exams_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
 
     def retrieve_exam
       @exam = Exam.find(params[:id])
+    end
+
+    def assign_customer_from_exam
+      @customer = @exam.customer
     end
 
     def retrieve_customer

@@ -3,6 +3,7 @@
     <div class="panel-header"><%= t ".heading" %></div>
   </div>
   <div class="panel-body">
+  <%= render partial: "flash" %>
   <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" } do |f| %>
     <div class="form-group">
       <%= hidden_field_tag 'customer_id', customer.id %>
@@ -57,16 +58,19 @@
         <%= render partial: "global/form_button", locals: {f: f} %>
       </div>
     </div>
-
-    <% if exam.new_record? %>
-      <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <% if exam.new_record? %>
           <%= f.button  name: "submit_and_edit", class: "btn btn-primary btn-labeled", value: "submit_and_edit" do |b| %>
             <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_and_edit_button')%>
           <% end %>
-        </div>
+        <% else %>
+          <%= f.button  name: "submit_and_stay", class: "btn btn-primary btn-labeled", value: "submit_and_stay" do |b| %>
+            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span><%=t('.submit_and_stay_button')%>
+          <% end %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
 
   <% end %>
   </div>
