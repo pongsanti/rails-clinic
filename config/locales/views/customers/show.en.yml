@@ -3,5 +3,4 @@ en:
     show:
       title: "Customer information"
       sub_text: "Customer information"
-      prepare_exam: "Prepare examination"
       print_id_card: "Print ID"

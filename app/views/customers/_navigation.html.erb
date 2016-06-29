@@ -1,0 +1,23 @@
+<div class="btn-group">
+
+  <% 
+    @default_class = "btn btn-default btn-sm" 
+    @active_class = @default_class + " active"
+  %>
+
+  <%= link_to customers_path, class: (active == 'index' ? @active_class : @default_class ), role: 'button' do %>
+    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'customers.index.title' %>
+  <% end %>
+  <%= link_to new_customer_path, class: (active == 'new' ? @active_class : @default_class ), role: 'button' do %>
+    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'customers.new.title' %>
+  <% end %>
+
+  <% if defined?(@customer) && !@customer.new_record? %>
+    <%= link_to edit_customer_path(@customer), class: (active == 'edit' ? @active_class : @default_class ), role: 'button' do %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t 'customers.edit.title' %>
+    <% end %>
+    <%= link_to customer_path(format: :pdf), class: @default_class, role: 'button', target: '_blank' do %>
+      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> <%= t 'customers.show.print_id_card' %>
+    <% end %>
+  <% end %>
+</div>
