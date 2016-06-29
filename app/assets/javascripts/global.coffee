@@ -1,5 +1,7 @@
 # Global Variables
-gQueueTimer = null
+@gVar = 
+  # It is always false, true means page has been loaded by turbolinks
+  bLoadedWithTurbolinks : false
 
 # Global Functions
 @gShowErrorModal = (text) ->
@@ -25,8 +27,7 @@ requestQueueList = ->
 # queue retrieval function
 getQueueList = ->
   requestQueueList()
-  gQueueTimer = setTimeout getQueueList, 10000
-
+  setTimeout getQueueList, 10000
 
 initializePage = ->
   # enable bootstrap tooltip
@@ -34,12 +35,15 @@ initializePage = ->
 
   # request queue list at once
   requestQueueList()
+
   # enable queue polling
-  if not gQueueTimer?
+  if not gVar.bLoadedWithTurbolinks
     getQueueList()
 
   # select pickers
   if $('form').find('button[data-toggle="dropdown"]').length is 0
     gInitSelectPicker $('form')
+
+  gVar.bLoadedWithTurbolinks = true
 
 $(document).on('turbolinks:load', initializePage)
