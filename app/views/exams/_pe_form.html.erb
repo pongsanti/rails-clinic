@@ -1,4 +1,7 @@
 <div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-title"><%= t ".header" %></div>
+  </div>
   <div class="panel-body">
   <%= form_for exam, html: { class: "form-horizontal", id: "exam_pi_form" } do |f| %>
     <div class="form-group">
@@ -19,8 +22,11 @@
         <%= f.text_area :exam_note, class: "form-control", placeholder: true %>
       </div>
     </div>
-    <%= f.submit t('.submit_button'), class: "btn btn-primary" %>
-    <%= f.submit t('.clear_button'), type: "reset", class: "btn btn-default" %>
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <%= render partial: "global/form_button", locals: {f: f} %>
+      </div>
+    </div>
   <% end %>
   </div>
 </div>

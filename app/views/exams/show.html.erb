@@ -9,65 +9,13 @@
   <%= render partial: "navigation", locals: {active: "show"} %>
 </div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <div class="panel-title"><%=t("exams.weight_form.heading")%></div>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-1">
-        <%= label :exam, :weight %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.weight%>
-      </div>
-      <div class="col-sm-1">
-        <%= label :exam, :height %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.height %>
-      </div>
-      <div class="col-sm-1">
-        <%= label_tag 'bmi', 'BMI' %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.bmi %>
-      </div>
-      <div class="col-sm-2">
-        <%= label_tag 'blood_pressure', t('exams.new.blood_pressure') %>:
-      </div>
-      <div class="col-sm-2">
-        <%= @exam.bp_systolic %> / <%= @exam.bp_diastolic %>
-      </div>
-      <div class="col-sm-1">      
-        <%= label :exam, :pulse %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.pulse %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :exam, :drug_allergy %>:
-      </div>
-      <div class="col-sm-10">
-        <%= @exam.drug_allergy %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :exam, :note %>:
-      </div>
-      <div class="col-sm-10">
-        <%= @exam.note %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: "weight_info", locals: {exam: @exam} %>
+
 <div class="row">
   <div class="col-sm-6">
-
+    <%= render partial: "pe_info", locals: {exam: @exam} %>
   </div>
+
   <div class="col-sm-6">
     <div class="panel panel-primary">
       <div class="panel-heading">
