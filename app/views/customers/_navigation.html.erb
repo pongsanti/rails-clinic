@@ -13,6 +13,9 @@
   <% end %>
 
   <% if defined?(@customer) && !@customer.new_record? %>
+    <%= link_to customer_path(@customer), class: (active == 'show' ? @active_class : @default_class ), role: 'button' do %>
+      <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= t 'customers.show.title' %>
+    <% end %>
     <%= link_to edit_customer_path(@customer), class: (active == 'edit' ? @active_class : @default_class ), role: 'button' do %>
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t 'customers.edit.title' %>
     <% end %>
