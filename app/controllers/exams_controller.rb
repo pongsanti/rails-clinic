@@ -12,6 +12,7 @@ class ExamsController < ApplicationController
   end
 
   def show
+    @customer = @exam.customer
   end
 
   def new

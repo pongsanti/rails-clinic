@@ -16,7 +16,7 @@
     <%= link_to edit_customer_path(@customer), class: (active == 'edit' ? @active_class : @default_class ), role: 'button' do %>
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t 'customers.edit.title' %>
     <% end %>
-    <%= link_to customer_path(format: :pdf), class: @default_class, role: 'button', target: '_blank' do %>
+    <%= link_to customer_path(@customer, format: :pdf), class: @default_class, role: 'button', target: '_blank' do %>
       <span class="glyphicon glyphicon-print" aria-hidden="true"></span> <%= t 'customers.show.print_id_card' %>
     <% end %>
   <% end %>

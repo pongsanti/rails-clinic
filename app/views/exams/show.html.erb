@@ -1,21 +1,14 @@
-<div class="btn-group form-group">
-  <%= link_to customers_path, class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'exams.index.list_customer' %>
-  <% end %>
-  <%= link_to customer_path(@exam.customer), class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= t 'exams.index.show_customer' %>
-  <% end %>
+<div class="form-group">
+<%= render partial: "customers/navigation", locals: {active: "show" } %>
 </div>
-
-<%= render partial: 'customer', locals: {customer: @exam.customer} %>
-
-<div class="btn-group">
-  <%= link_to edit_exam_path(@exam), class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t '.edit_exam' %>
-  <% end %>
-</div>
+<%= render partial: 'customer', locals: {customer: @customer} %>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
+
+<div class="form-group">
+  <%= render partial: "navigation", locals: {active: "show"} %>
+</div>
+
 <div class="panel panel-primary">
   <div class="panel-body">
     <div class="row">
