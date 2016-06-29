@@ -1,8 +1,7 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :retrieve_exam, only: [:show, :edit, :update,
-    :new_exam_diag, :create_exam_diag, :update_exam_diag]
+  before_action :retrieve_exam, only: [:show, :edit, :update, :new_exam_diag, :create_exam_diag, :update_exam_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
@@ -20,6 +19,7 @@ class ExamsController < ApplicationController
   end
 
   def edit
+    @customer = @exam.customer
   end
 
   def create
