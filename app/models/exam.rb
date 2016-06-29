@@ -14,6 +14,13 @@ class Exam < ActiveRecord::Base
 
   #kaminari
   paginates_per 10
+  
+  class << self
+    def ransackable_scopes(auth_object = nil)
+      %i(customer_id_is)
+    end
+  end
+
 
   def bmi
     result = "N/A"

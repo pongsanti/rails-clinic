@@ -14,8 +14,8 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th>#</th>
-        <th><%= t 'helpers.label.exam.created_at' %></th>
+        <th><%= sort_link(@q, :id, "#") %></th>
+        <th><%= sort_link(@q, :created_at, t('helpers.label.exam.created_at') )%></th>
         <th></th>
       </tr>
     </thead>

@@ -6,8 +6,11 @@ class ExamsController < ApplicationController
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
   def index
-    @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
-    @exams = @exams.page(params[:page])
+    ransack_params = {customer_id_is: @customer.id}
+    ransack_params = ransack_params.merge(params[:q]) if params[:q]
+
+    @q = Exam.ransack(ransack_params)
+    @exams = @q.result.page(params[:page])
   end
 
   def show

@@ -19,7 +19,6 @@ class Customer < ActiveRecord::Base
 
   before_save :delete_masked_input
 
-
   class << self
     # searchable fields
     def ransackable_attributes(auth_object = nil)
