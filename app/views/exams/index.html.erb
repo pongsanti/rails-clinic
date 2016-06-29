@@ -29,6 +29,9 @@
             <%= link_to exam_path(exam), class: 'btn btn-default btn-sm', role: 'button' do %>
               <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="<%= t '.show_exam' %>" data-placement="right" aria-hidden="true"></span>
             <% end %>
+            <%= link_to edit_exam_path(exam), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="<%= t '.edit_exam' %>" data-placement="right" aria-hidden="true"></span>
+            <% end %>
             <%= link_to qs_path(exam_id: exam.id), method: :post, class: 'btn btn-default btn-sm', role: 'button' do %>
               <span class="glyphicon glyphicon-hourglass" data-toggle="tooltip" title="<%= t '.add_to_q' %>" data-placement="right" aria-hidden="true"></span>
             <% end %>

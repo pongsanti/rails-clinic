@@ -1,10 +1,11 @@
+<%= content_tag :span, '', id: :weight_form, class: 'bookmark' %>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <div class="panel-header"><%= t ".heading" %></div>
   </div>
   <div class="panel-body">
   <%= render partial: "flash" %>
-  <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" } do |f| %>
+  <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" }, data: { anchor: :weight_form } do |f| %>
     <div class="form-group">
       <%= hidden_field_tag 'customer_id', customer.id %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>
@@ -56,6 +57,9 @@
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
         <%= render partial: "global/form_button", locals: {f: f} %>
+        <% if exam.new_record? %>
+          <%= render partial: "global/form_button_back", locals: {f: f} %>
+        <% end %>
       </div>
     </div>
     <div class="form-group">

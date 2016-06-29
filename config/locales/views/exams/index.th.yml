@@ -6,4 +6,5 @@ th:
       list_customer: "รายชื่อผู้ป่วย"
       show_customer: "ข้อมูลทะเบียน"
       show_exam: "ดูข้อมูล"
+      edit_exam: "แก้ไขข้อมูล"
       add_to_q: "เพิ่มคิว"
