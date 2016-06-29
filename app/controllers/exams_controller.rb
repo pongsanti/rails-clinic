@@ -7,7 +7,7 @@ class ExamsController < ApplicationController
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
   def index
-    ransack_params = {customer_id_is: @customer.id}
+    ransack_params = {for_customer: @customer.id}
     ransack_params = ransack_params.merge(params[:q]) if params[:q]
 
     @q = Exam.ransack(ransack_params)
