@@ -1,8 +1,4 @@
-<div class="btn-group">
-  <%= link_to new_store_unit_path, class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'store_units.new.title' %>
-  <% end %>
-</div>
+<%= render partial: "navigation", locals: {active: :index} %>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
@@ -16,7 +12,7 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Title</th>
+            <th><%= label :store_unit, :title %></th>
             <th></th>
           </tr>
         </thead>

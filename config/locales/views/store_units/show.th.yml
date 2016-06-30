@@ -1,0 +1,5 @@
+th:
+  store_units:
+    show:
+      title: "หน่วยสินค้า"
+      sub_text: "ดูหน่วยสินค้า"
