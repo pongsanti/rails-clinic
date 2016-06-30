@@ -4,10 +4,10 @@
     <div class="panel-header"><%= t ".heading" %></div>
   </div>
   <div class="panel-body">
-  <%= render partial: "flash" %>
+  <%= render partial: "flash", locals: {section: :weight_form} %>
   <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" }, data: { anchor: :weight_form } do |f| %>
     <div class="form-group">
-      <%= hidden_field_tag 'customer_id', customer.id %>
+      <%= hidden_field_tag 'section', :weight_form %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <div class="input-group">

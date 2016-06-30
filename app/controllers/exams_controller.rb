@@ -42,7 +42,7 @@ class ExamsController < ApplicationController
   def update
     if @exam.update(exam_params)
       if params[:submit_and_stay]
-        flash.now[:update_success] = "success" 
+        flash.now[params[:section]] = "update_success" 
         render 'edit'
       else
         redirect_to @exam
