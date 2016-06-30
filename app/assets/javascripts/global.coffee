@@ -12,9 +12,9 @@
 @gInitSelectPicker = (parent) ->
   parent.find('select.selectpicker').selectpicker('refresh')
 
-@gInitFormValidation = (form) ->
-  form.each (index, value) ->
-    $(value).validate()
+@gInitFormValidation = (forms) ->
+  forms.each (index, form) ->
+    $(form).validate()
 
 requestQueueList = ->
   $.post '/qs_poll', (data) ->
@@ -30,6 +30,9 @@ getQueueList = ->
   setTimeout getQueueList, 10000
 
 initializePage = ->
+  # init form validation
+  gInitFormValidation($('form'))
+
   # enable bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip()
 
