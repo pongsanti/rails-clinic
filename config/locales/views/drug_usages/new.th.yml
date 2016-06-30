@@ -1,0 +1,5 @@
+th:
+  drug_usages:
+    new:
+      title: "สร้างข้อบ่งใช้ยา"
+      sub_text: "สร้างข้อบ่งใช้ยา"

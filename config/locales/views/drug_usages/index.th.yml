@@ -1,0 +1,11 @@
+th:
+  drug_usages:
+    index:
+      title: "รายการข้อบ่งใช้ยา"
+      sub_text: "รายการข้อมูลข้อบ่งใช้ยา"
+
+  helpers:
+    label:
+      drug_usage:
+        code: "รหัส"
+        text: "ข้อบ่งใช้"

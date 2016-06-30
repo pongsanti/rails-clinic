@@ -7,4 +7,5 @@ th:
       store: "คลังยา"
       
       master_data: "ข้อมูลหลัก"
+      drug_usage: "ข้อบ่งใช้ยา"
       store_unit: "หน่วยสินค้า"
