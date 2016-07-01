@@ -61,9 +61,21 @@
               <li><a href="#"><%= t('.drug_transaction') %></a></li>
               <li role="separator" class="divider"></li>
               <li class="dropdown-header"><%= t('.master_data') %></li>
-              <li><a href="<%= drug_usages_path %>"><%= t('.drug_usage') %></a></li>
-              <li><a href="<%= store_units_path %>"><%= t('.store_unit') %></a></li>
-              <li><a href="#">One more separated link</a></li>
+              <li>
+                <%= link_to drugs_path do %>
+                  <span class="glyphicon glyphicon-list"></span> <%= t('.drug') %></a>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to drug_usages_path do %>
+                  <span class="glyphicon glyphicon-list"></span> <%= t('.drug_usage') %></a>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to store_units_path do %>
+                  <span class="glyphicon glyphicon-list"></span> <%= t('.store_unit') %></a>
+                <% end %>
+              </li>
             </ul>
           </li>
         </ul>

@@ -4,8 +4,9 @@ th:
       customer: "ผู้ป่วย"
       customer_list: "รายชื่อผู้ป่วย/ค้นหาผู้ป่วย"
       customer_new: "ลงทะเบียนผู้ป่วย"
-      store: "คลังยา"
+      store: "ยาและเวชภัณฑ์"
       
       master_data: "ข้อมูลหลัก"
+      drug: "ยาและเวชภัณฑ์"
       drug_usage: "ข้อบ่งใช้ยา"
       store_unit: "หน่วยสินค้า"
