@@ -1,19 +1,5 @@
 th:
   helpers:
-    label:
-      exam:
-        weight: "น้ำหนัก"
-        height: "ส่วนสูง"
-        pulse: "ชีพจร"
-        drug_allergy: "แพ้ยา"
-        note: "ข้อมูลถึงแพทย์"
-        exam_pi: "PI"
-        exam_pe: "PE"
-        exam_note: "Note"    
-        created_at: "วันที่สร้าง"
-        exams_diags:
-            diag_id: "วินิจฉัย"
-            note: "ข้อมูลเพิ่มเติม"
     placeholder:
       exam:
         weight: "น้ำหนัก"

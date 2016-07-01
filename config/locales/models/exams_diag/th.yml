@@ -1,0 +1,8 @@
+th:
+  activerecord:
+    models:
+      exams_diag: ""
+    attributes:
+      exams_diag:
+        diag_id: "วินิจฉัย"
+        note: "ข้อมูลเพิ่มเติม"
