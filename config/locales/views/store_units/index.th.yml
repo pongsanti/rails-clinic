@@ -8,3 +8,5 @@ th:
     label:
       store_unit:
         title: "ชื่อหน่วย"
+
+        created_at: "วันที่สร้าง"

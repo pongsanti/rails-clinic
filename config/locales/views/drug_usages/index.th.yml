@@ -9,3 +9,5 @@ th:
       drug_usage:
         code: "รหัส"
         text: "ข้อบ่งใช้"
+
+        created_at: "วันที่สร้าง"

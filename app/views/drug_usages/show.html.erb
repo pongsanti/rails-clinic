@@ -7,6 +7,14 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-2">
+        <%= label :drug_usage, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format @drug_usage.created_at %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
         <%= label :drug_usage, :code %>:
       </div>
       <div class="col-sm-10">

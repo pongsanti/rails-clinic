@@ -4,6 +4,14 @@
   </div>
   <div class="panel-body">
     <div class="row">
+      <div class="col-sm-2">
+        <%= label :exam, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format exam.created_at %>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-sm-1">
         <%= label :exam, :weight %>:
       </div>
