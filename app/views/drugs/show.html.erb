@@ -10,7 +10,7 @@
         <%= label :drug, :created_at %>:
       </div>
       <div class="col-sm-10">
-        <%= th_date_time_format @drug.created_at %>
+        <%= th_date_time_format @drug.created_at %> (<%= time_ago_in_words(@drug.created_at)%>)
       </div>
     </div>  
     <div class="row">
