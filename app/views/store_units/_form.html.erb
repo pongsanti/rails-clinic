@@ -13,12 +13,13 @@
   <div class="form-group">
     <%= f.label :title, class: "col-sm-2 control-label required-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.text_field :title, class: "form-control", required: true %>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
       <%= render partial: "global/form_button", locals: {f: f} %>
+      <%= render partial: "global/form_button_back" %>
     </div>
   </div>
 <% end %>

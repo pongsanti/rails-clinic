@@ -1,14 +1,17 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :retrieve_exam, only: [:show, :edit, :update,
-    :new_exam_diag, :create_exam_diag, :update_exam_diag]
+  before_action :retrieve_exam, only: [:show, :edit, :update, :new_exam_diag, :create_exam_diag, :update_exam_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
+  before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
 
   def index
-    @exams = Exam.customer_id_is(@customer.id).order("created_at desc")
-    @exams = @exams.page(params[:page])
+    ransack_params = {for_customer: @customer.id}
+    ransack_params = ransack_params.merge(params[:q]) if params[:q]
+
+    @q = Exam.ransack(ransack_params)
+    @exams = @q.result.page(params[:page])
   end
 
   def show
@@ -38,7 +41,12 @@ class ExamsController < ApplicationController
 
   def update
     if @exam.update(exam_params)
-      redirect_to @exam
+      if params[:submit_and_stay]
+        flash.now[params[:section]] = "update_success" 
+        render 'edit'
+      else
+        redirect_to @exam
+      end
     else
       render 'edit'
     end
@@ -80,11 +88,18 @@ class ExamsController < ApplicationController
         :bp_systolic, :bp_diastolic, 
         :pulse, :drug_allergy,
         :note,
+        # weight_form
+        :exam_pi, :exam_pe, :exam_note,
+        # exams_diags
         exams_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
 
     def retrieve_exam
       @exam = Exam.find(params[:id])
+    end
+
+    def assign_customer_from_exam
+      @customer = @exam.customer
     end
 
     def retrieve_customer

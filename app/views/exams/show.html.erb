@@ -1,77 +1,21 @@
-<div class="btn-group form-group">
-  <%= link_to customers_path, class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'exams.index.list_customer' %>
-  <% end %>
-  <%= link_to customer_path(@exam.customer), class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= t 'exams.index.show_customer' %>
-  <% end %>
+<div class="form-group">
+<%= render partial: "customers/navigation", locals: {active: "show" } %>
 </div>
-
-<%= render partial: 'customer', locals: {customer: @exam.customer} %>
-
-<div class="btn-group">
-  <%= link_to edit_exam_path(@exam), class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t '.edit_exam' %>
-  <% end %>
-</div>
+<%= render partial: 'customer', locals: {customer: @customer} %>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
-<div class="panel panel-primary">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-1">
-        <%= label :exam, :weight %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.weight%>
-      </div>
-      <div class="col-sm-1">
-        <%= label :exam, :height %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.height %>
-      </div>
-      <div class="col-sm-1">
-        <%= label_tag 'bmi', 'BMI' %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.bmi %>
-      </div>
-      <div class="col-sm-2">
-        <%= label_tag 'blood_pressure', t('exams.new.blood_pressure') %>:
-      </div>
-      <div class="col-sm-2">
-        <%= @exam.bp_systolic %> / <%= @exam.bp_diastolic %>
-      </div>
-      <div class="col-sm-1">      
-        <%= label :exam, :pulse %>:
-      </div>
-      <div class="col-sm-1">
-        <%= @exam.pulse %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :exam, :drug_allergy %>:
-      </div>
-      <div class="col-sm-10">
-        <%= @exam.drug_allergy %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= label :exam, :note %>:
-      </div>
-      <div class="col-sm-10">
-        <%= @exam.note %>
-      </div>
-    </div>
-  </div>
+
+<div class="form-group">
+  <%= render partial: "navigation", locals: {active: "show"} %>
 </div>
+
+<%= render partial: "weight_info", locals: {exam: @exam} %>
+
 <div class="row">
   <div class="col-sm-6">
-
+    <%= render partial: "pe_info", locals: {exam: @exam} %>
   </div>
+
   <div class="col-sm-6">
     <div class="panel panel-primary">
       <div class="panel-heading">

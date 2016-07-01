@@ -1,7 +1,9 @@
-<h1>New Store Unit</h1>
+<%= render partial: "navigation", locals: {active: :new} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
 <div class="panel panel-primary">
-  <div class="panel-heading">New Store Unit</div>
+  <div class="panel-heading"><%= t ".title" %></div>
   <div class="panel-body">
 
     <%= render 'form' %>

@@ -2,11 +2,9 @@ th:
   customers:
     show:
       title: "ข้อมูลทะเบียน"
-      sub_text: "ข้อมูลผู้เข้ารับการรักษา"
-      index_customer: "รายชื่อผู้ป่วย"
+      sub_text: "ข้อมูลผู้ป่วย"
       show_exam: "รายการประวัติ/วินิจฉัย" 
       new_exam: "สร้างประวัติ/วินิจฉัย"
-      edit_customer: "แก้ไขข้อมูล"
       print_id_card: "พิมพ์บัตรประจำตัว"
 
       age: "อายุ"

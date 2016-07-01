@@ -1,29 +1,67 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "navigation", locals: {active: :show} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @drug.name %>
-</p>
-
-<p>
-  <strong>Trade name:</strong>
-  <%= @drug.trade_name %>
-</p>
-
-<p>
-  <strong>Effect:</strong>
-  <%= @drug.effect %>
-</p>
-
-<p>
-  <strong>Balance:</strong>
-  <%= @drug.balance %>
-</p>
-
-<p>
-  <strong>Drug usage:</strong>
-  <%= @drug.drug_usage %>
-</p>
-
-<%= link_to 'Edit', edit_drug_path(@drug) %> |
-<%= link_to 'Back', drugs_path %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t(".sub_text") %></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format @drug.created_at %>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :name %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :trade_name %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.trade_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :effect %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.effect %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :concern %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.concern %>
+      </div>
+    </div>    
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :drug_usage %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.drug_usage.code_text if @drug.drug_usage %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug, :store_unit %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug.store_unit.title if @drug.store_unit %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<%= render partial: "global/form_button_back" %>

@@ -1,29 +1,10 @@
-<div class="btn-group">
-  <%= link_to customers_path, class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'customers.index.title' %>
-  <% end %>
-  <%= link_to edit_customer_path(@customer), class: 'btn btn-default btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <%= t 'customers.edit.title' %>
-  <% end %>
-</div>
-
-<div class="btn-group">
-  <%= link_to customer_path(format: :pdf), class: 'btn btn-default btn-sm', role: 'button', target: '_tab' do %>
-    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> <%= t '.print_id_card' %>
-  <% end %>
-</div>
+<%= render partial: "navigation", locals: {active: "show"} %>
 
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
-
 <hr>
 
-<div class="btn-group form-group">
-  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t '.new_exam' %>
-  <% end %>
-  <%= link_to exams_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t '.show_exam' %>
-  <% end %>
+<div class="form-group">
+  <%= render partial: "exams/navigation", locals: {active: "none"} %>
 </div>
 
 <div class="panel panel-primary">
@@ -164,11 +145,6 @@
   </div>
 </div>
 
-<div class="btn-group">
-  <%= link_to new_exam_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t '.new_exam' %>
-  <% end %>
-  <%= link_to exams_path(customer_id: @customer.id), class: 'btn btn-primary btn-sm', role: 'button' do %>
-    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t '.show_exam' %>
-  <% end %>
-</div>
+<%= render partial: "exams/navigation", locals: {active: "show"} %>
+<hr>
+<%= render partial: "global/form_button_back" %>

@@ -1,9 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "navigation", locals: {active: :show} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<p>
-  <strong>Title:</strong>
-  <%= @store_unit.title %>
-</p>
-
-<%= link_to 'Edit', edit_store_unit_path(@store_unit) %> |
-<%= link_to 'Back', store_units_path %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t(".sub_text") %></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :store_unit, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format @store_unit.created_at %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :store_unit, :title %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @store_unit.title %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<%= render partial: "global/form_button_back" %>

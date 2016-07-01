@@ -9,11 +9,24 @@ class Exam < ActiveRecord::Base
 
   validates :weight, :height, :pulse, format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
   validates :bp_systolic, :bp_diastolic, format: { with: /\A\d{1,3}\z/ }, allow_blank: true
-
-  scope :customer_id_is, -> (cid) { where("customer_id = ?", cid)}
-
+  
   #kaminari
   paginates_per 10
+  
+  class << self
+    #scope
+    def for_customer(cid)
+      # workaround for ransack bug
+      # https://github.com/activerecord-hackery/ransack/issues/593
+      cid = 1 if cid == true
+
+      where("customer_id = ?", cid)
+    end
+
+    def ransackable_scopes(auth_object = nil)
+      %i(for_customer)
+    end
+  end
 
   def bmi
     result = "N/A"

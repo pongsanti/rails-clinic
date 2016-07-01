@@ -1,0 +1,5 @@
+th:
+  drug_usages:
+    show:
+      title: "ข้อบ่งใช้ยา"
+      sub_text: "ดูข้อบ่งใช้ยา"

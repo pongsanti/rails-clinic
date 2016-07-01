@@ -6,7 +6,8 @@ class StoreUnitsController < ApplicationController
   # GET /store_units
   # GET /store_units.json
   def index
-    @store_units = StoreUnit.all
+    @q = StoreUnit.ransack params[:q]
+    @store_units = @q.result.page params[:page]
   end
 
   # GET /store_units/1

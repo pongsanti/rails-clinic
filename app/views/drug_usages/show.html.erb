@@ -1,14 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "navigation", locals: {active: :show} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<p>
-  <strong>Code:</strong>
-  <%= @drug_usage.code %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @drug_usage.text %>
-</p>
-
-<%= link_to 'Edit', edit_drug_usage_path(@drug_usage) %> |
-<%= link_to 'Back', drug_usages_path %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t(".sub_text") %></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug_usage, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format @drug_usage.created_at %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug_usage, :code %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug_usage.code %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :drug_usage, :text %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @drug_usage.text %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<%= render partial: "global/form_button_back" %>

@@ -1,0 +1,5 @@
+th:
+  store_units:
+    edit:
+      title: "แก้ไขหน่วยสินค้า"
+      sub_text: "แก้ไขหน่วยสินค้า"

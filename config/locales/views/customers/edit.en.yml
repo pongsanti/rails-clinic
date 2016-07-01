@@ -2,6 +2,4 @@ en:
   customers:
     edit:
       title: "Edit Customer"
-      sub_text: "Fill in customer detail"
-      submit_button: "Edit Customer Profile"
-      clear_button: "Clear"         
+      sub_text: "Fill in customer detail"       

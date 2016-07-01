@@ -17,9 +17,6 @@ initializePage = -> # display local year
       option.text(option.text() + ' (' + String(index + 1) + ')');
   )
 
-  # form validation
-  gInitFormValidation $('form[id*="customer"]')
-
   # active the radio buttons group
   $('input[type=radio]:checked').parent().addClass('active')
 
