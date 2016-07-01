@@ -6,7 +6,8 @@ class DrugUsagesController < ApplicationController
   # GET /drug_usages
   # GET /drug_usages.json
   def index
-    @drug_usages = DrugUsage.all
+    @q = DrugUsage.ransack params[:q]
+    @drug_usages = @q.result.page params[:page]
   end
 
   # GET /drug_usages/1
