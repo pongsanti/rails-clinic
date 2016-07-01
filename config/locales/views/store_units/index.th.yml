@@ -3,10 +3,3 @@ th:
     index:
       title: "หน่วยสินค้า"
       sub_text: "รายการหน่วยสินค้า"
-
-  helpers:
-    label:
-      store_unit:
-        title: "ชื่อหน่วย"
-
-        created_at: "วันที่สร้าง"
