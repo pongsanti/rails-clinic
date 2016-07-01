@@ -10,6 +10,7 @@
         <th><%= sort_link(@q, :name, t('helpers.label.drug.name')) %></th>
         <th><%= sort_link(@q, :trade_name, t('helpers.label.drug.trade_name')) %></th>
         <th><%= sort_link(@q, :effect, t('helpers.label.drug.effect')) %></th>
+        <th><%= sort_link(@q, :concern, t('helpers.label.drug.concern')) %></th>
         <th></th>
       </tr>
     </thead>
@@ -20,6 +21,7 @@
         <td><%= drug.name %></td>
         <td><%= drug.trade_name %></td>
         <td><%= drug.effect %></td>
+        <td><%= drug.concern %></td>
         <td class="rowlink-skip">
           <div class="btn-group">
             <%= link_to drug_path(drug), class: 'btn btn-default btn-sm', role: 'button' do %>
