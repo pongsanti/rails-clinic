@@ -1,0 +1,10 @@
+th:
+  diags:
+    index:
+      title: "วินิจฉัย"
+      sub_text: "รายการวินิจฉัย"
+
+  helpers:
+    placeholder:
+      diag:
+        note: "ข้อมูลเพิ่มเติม" 

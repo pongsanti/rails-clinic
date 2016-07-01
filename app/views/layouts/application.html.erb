@@ -62,6 +62,11 @@
               <li role="separator" class="divider"></li>
               <li class="dropdown-header"><%= t('.master_data') %></li>
               <li>
+                <%= link_to diags_path do %>
+                  <span class="glyphicon glyphicon-list"></span> <%= t('.diag') %></a>
+                <% end %>
+              </li>
+              <li>
                 <%= link_to drugs_path do %>
                   <span class="glyphicon glyphicon-list"></span> <%= t('.drug') %></a>
                 <% end %>

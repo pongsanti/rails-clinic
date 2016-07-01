@@ -1,0 +1,9 @@
+th:
+  activerecord:
+    models:
+      diag: "วินิจฉัย"
+    attributes:
+      diag:
+        name: "ชื่อ"
+        description: "รายละเอียดเพิ่มเติม"
+        created_at: "วันที่สร้าง"    

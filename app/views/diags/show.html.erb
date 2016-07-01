@@ -1,14 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "navigation", locals: {active: :show} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @diag.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @diag.description %>
-</p>
-
-<%= link_to 'Edit', edit_diag_path(@diag) %> |
-<%= link_to 'Back', diags_path %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t(".sub_text") %></div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :diag, :created_at %>:
+      </div>
+      <div class="col-sm-10">
+        <%= th_date_time_format @diag.created_at %>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :diag, :name %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @diag.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= label :diag, :description %>:
+      </div>
+      <div class="col-sm-10">
+        <%= @diag.description %>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<%= render partial: "global/form_button_back" %>

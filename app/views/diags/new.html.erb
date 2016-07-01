@@ -1,5 +1,12 @@
-<h1>New Diag</h1>
+<%= render partial: "navigation", locals: {active: :new} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<%= render 'form' %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t ".title" %></div>
+  <div class="panel-body">
 
-<%= link_to 'Back', diags_path %>
+    <%= render 'form' %>
+
+  </div>
+</div>

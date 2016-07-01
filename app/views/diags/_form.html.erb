@@ -1,25 +1,31 @@
-<%= form_for(@diag) do |f| %>
+<%= form_for @diag, html: { class: "form-horizontal" } do |f| %>
   <% if @diag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@diag.errors.count, "error") %> prohibited this diag from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <strong><%= t("error.cannot_save") %></strong>
       <ul>
-      <% @diag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @diag.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label required-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= render partial: "global/form_button", locals: {f: f} %>
+      <%= render partial: "global/form_button_back" %>
+    </div>
   </div>
 <% end %>
