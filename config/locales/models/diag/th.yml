@@ -5,5 +5,4 @@ th:
     attributes:
       diag:
         name: "ชื่อ"
-        description: "รายละเอียดเพิ่มเติม"
-        created_at: "วันที่สร้าง"    
+        description: "รายละเอียดเพิ่มเติม" 

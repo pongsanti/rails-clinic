@@ -1,0 +1,4 @@
+# global attributes
+th:
+  attributes:
+    created_at: "วันที่สร้าง"
