@@ -9,11 +9,16 @@
     <div class="col-sm-4">
       <%= f.attribute_select nil, class: 'form-control selectpicker', data: { "live-search" => true }, title: t('.choose_attribute') %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-4">
       <%= text_field_tag 'cont', nil, class: 'form-control' %>
     </div>
-    <div class="col-sm-2">
-      <%= f.submit t('.search'), class: 'btn btn-primary' %>
+    <div class="col-sm-3">
+      <%= f.button  name: "submit", class: "btn btn-success btn-labeled", value: "submit" do %>
+        <span class="btn-label"><i class="glyphicon glyphicon-search"></i></span><%=t '.search' %>
+      <% end %>
+      <%= link_to customers_path, class: 'btn btn-danger', role: 'button' do %>
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+      <% end %>
     </div>
   </div>
 <% end %>
