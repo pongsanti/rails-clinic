@@ -195,3 +195,5 @@ th:
     cannot_save: พบปัญหาในการบันทึกข้อมูล
 
   phutthasakkarat: "พ.ศ."
+
+  nothing_select: "ไม่ได้เลือก"

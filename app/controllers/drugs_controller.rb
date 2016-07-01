@@ -2,11 +2,14 @@ class DrugsController < ApplicationController
   
   before_action :authenticate_user!  
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
+  before_action :get_all_drug_usages, only: [:new, :edit]
+  before_action :get_all_store_units, only: [:new, :edit]
 
   # GET /drugs
   # GET /drugs.json
   def index
-    @drugs = Drug.all
+    @q = Drug.ransack params[:q]
+    @drugs = @q.result.page params[:page]
   end
 
   # GET /drugs/1
@@ -71,6 +74,14 @@ class DrugsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_params
-      params.require(:drug).permit(:name, :trade_name, :effect, :balance, :drug_usage_id)
+      params.require(:drug).permit(:name, :trade_name, :effect, :drug_usage_id, :store_unit_id)
+    end
+
+    def get_all_drug_usages
+      @drug_usages = DrugUsage.all
+    end
+
+    def get_all_store_units
+      @store_units = StoreUnit.all
     end
 end

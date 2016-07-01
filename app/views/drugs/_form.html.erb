@@ -1,37 +1,51 @@
-<%= form_for(@drug) do |f| %>
+<%= form_for @drug, html: { class: "form-horizontal" } do |f| %>
   <% if @drug.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@drug.errors.count, "error") %> prohibited this drug from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <strong><%= t("error.cannot_save") %></strong>
       <ul>
-      <% @drug.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @drug.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_area :name %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label required-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :trade_name %><br>
-    <%= f.text_area :trade_name %>
+  <div class="form-group">
+    <%= f.label :trade_name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :trade_name, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :effect %><br>
-    <%= f.text_area :effect %>
+  <div class="form-group">
+    <%= f.label :effect, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :effect, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :balance %><br>
-    <%= f.text_field :balance %>
+  <div class="form-group">
+    <%= f.label :drug_usage, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:drug_usage_id, @drug_usages, :id, :code_text, {include_blank: t('nothing_select')}, class: "selectpicker", 
+        data: { "live-search" => true, "width" => "auto" } ) %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :drug_usage_id %><br>
-    <%= f.text_field :drug_usage_id %>
+  <div class="form-group">
+    <%= f.label :store_unit, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select(:store_unit_id, @store_units, :id, :title, {include_blank: t('nothing_select')}, class: "selectpicker", 
+        data: { "live-search" => true, "width" => "auto" } ) %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= render partial: "global/form_button", locals: {f: f} %>
+      <%= render partial: "global/form_button_back" %>
+    </div>
   </div>
 <% end %>

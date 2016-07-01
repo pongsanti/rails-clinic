@@ -1,35 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: "navigation", locals: {active: :index} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<h1>Listing Drugs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Trade name</th>
-      <th>Effect</th>
-      <th>Balance</th>
-      <th>Drug usage</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @drugs.each do |drug| %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
       <tr>
+        <th><%= sort_link(@q, :id, "#") %></th>
+        <th><%= sort_link(@q, :name, t('helpers.label.drug.name')) %></th>
+        <th><%= sort_link(@q, :trade_name, t('helpers.label.drug.trade_name')) %></th>
+        <th><%= sort_link(@q, :effect, t('helpers.label.drug.effect')) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody data-link="row" class="rowlink">
+      <% @drugs.each do |drug| %>
+      <tr>
+        <td><%= drug.id %></td>
         <td><%= drug.name %></td>
         <td><%= drug.trade_name %></td>
         <td><%= drug.effect %></td>
-        <td><%= drug.balance %></td>
-        <td><%= drug.drug_usage %></td>
-        <td><%= link_to 'Show', drug %></td>
-        <td><%= link_to 'Edit', edit_drug_path(drug) %></td>
-        <td><%= link_to 'Destroy', drug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="rowlink-skip">
+          <div class="btn-group">
+            <%= link_to drug_path(drug), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to edit_drug_path(drug), class: 'btn btn-default btn-sm', role: 'button' do %>
+              <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Drug', new_drug_path %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @drugs %>
+</div>
+<hr>
+<div>
+<%= page_entries_info @drugs, entry_name: t('.title') %>
+</div>

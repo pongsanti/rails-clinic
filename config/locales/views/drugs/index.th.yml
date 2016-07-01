@@ -1,0 +1,16 @@
+th:
+  drugs:
+    index:
+      title: "ยาและเวชภัณฑ์"
+      sub_text: "รายการยาและเวชภัณฑ์"
+
+  helpers:
+    label:
+      drug:
+        name: "ชื่อ"
+        trade_name: "ชื่อการค้า"
+        effect: "สรรพคุณ"
+        drug_usage: "ข้อบ่งใช้เบื้องต้น"
+        store_unit: "หน่วยสินค้าเบื้องต้น"
+        
+        created_at: "วันที่สร้าง"
