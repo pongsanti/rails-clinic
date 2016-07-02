@@ -1,0 +1,7 @@
+th:
+  activerecord:
+    models:
+      store_unit: "หน่วยสินค้า"
+    attributes:
+      store_unit:
+        title: "ชื่อหน่วย"   

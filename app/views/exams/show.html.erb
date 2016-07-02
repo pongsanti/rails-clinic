@@ -1,6 +1,3 @@
-<div class="form-group">
-<%= render partial: "customers/navigation", locals: {active: "show" } %>
-</div>
 <%= render partial: 'customer', locals: {customer: @customer} %>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
@@ -22,8 +19,7 @@
           <div class="panel-title"><%= t("exams.diag_form.heading") %></div>
       </div>
       <div class="panel-body">
-        <div id="new_exam_diag_div" style="display:none;"></div>
-        <div id="exam_diags_list_div" class="table-responsive">
+        <div id="patient_diags_list_div" class="table-responsive">
 
 <table class="table table-striped table-hover">
   <thead>
@@ -34,7 +30,7 @@
     </tr>
   </thead>
   <tbody data-link="row" class="rowlink">
-    <% @exam.exams_diags.each do |ed| %> 
+    <% @exam.patient_diags.each do |ed| %> 
     <tr>
       <td><%= ed.id %></td>
       <td><%= ed.diag.name %></td>
@@ -49,3 +45,5 @@
     </div>
   </div>
 </div>
+<hr>
+<%= render partial: "global/form_button_back" %>

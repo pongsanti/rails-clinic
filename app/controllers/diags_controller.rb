@@ -6,7 +6,8 @@ class DiagsController < ApplicationController
   # GET /diags
   # GET /diags.json
   def index
-    @diags = Diag.all
+    @q = Diag.ransack params[:q]
+    @diags = @q.result.page params[:page]
   end
 
   # GET /diags/1

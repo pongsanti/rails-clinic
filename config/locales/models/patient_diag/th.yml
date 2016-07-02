@@ -1,0 +1,8 @@
+th:
+  activerecord:
+    models:
+      patient_diag: ""
+    attributes:
+      patient_diag:
+        diag_id: "วินิจฉัย"
+        note: "ข้อมูลเพิ่มเติม"

@@ -1,4 +1,4 @@
-<%= render partial: "navigation", locals: {active: "index"} %>
+<%= render partial: "navigation", locals: {active: :index} %>
 
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
@@ -9,11 +9,16 @@
     <div class="col-sm-4">
       <%= f.attribute_select nil, class: 'form-control selectpicker', data: { "live-search" => true }, title: t('.choose_attribute') %>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-4">
       <%= text_field_tag 'cont', nil, class: 'form-control' %>
     </div>
-    <div class="col-sm-2">
-      <%= f.submit t('.search'), class: 'btn btn-primary' %>
+    <div class="col-sm-3">
+      <%= f.button  name: "submit", class: "btn btn-success btn-labeled", value: "submit" do %>
+        <span class="btn-label"><i class="glyphicon glyphicon-search"></i></span><%=t '.search' %>
+      <% end %>
+      <%= link_to customers_path, class: 'btn btn-danger', role: 'button' do %>
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+      <% end %>
     </div>
   </div>
 <% end %>
@@ -24,13 +29,13 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th><%= sort_link(@q, :id, "#") %></th>
-        <th><%= sort_link(@q, :name, (t 'helpers.label.customer.name')) %></th>
-        <th><%= sort_link(@q, :surname, (t 'helpers.label.customer.surname')) %></th>
-        <th><%= sort_link(@q, :sex, (t 'helpers.label.customer.sex')) %></th>
-        <th><%= sort_link(@q, :birthdate, (t 'helpers.label.customer.birthdate')) %></th>
-        <th><%= sort_link(@q, :id_card_no, (t 'helpers.label.customer.id_card_no')) %></th>
-        <th><%= sort_link(@q, :created_at, (t 'helpers.label.customer.created_at')) %></th>
+        <th><%= sort_link @q, :id, "#" %></th>
+        <th><%= sort_link @q, :name %></th>
+        <th><%= sort_link @q, :surname %></th>
+        <th><%= sort_link @q, :sex %></th>
+        <th><%= sort_link @q, :birthdate %></th>
+        <th><%= sort_link @q, :id_card_no %></th>
+        <th><%= sort_link @q, :created_at %></th>
         <th></th>
       </tr>
     </thead>
@@ -43,7 +48,9 @@
         <td><%= t('customers.show.' + customer.sex) %></td>
         <td><%= th_date_format customer.birthdate %></td>
         <td><%= masked_id_card_no(customer) %></td>
-        <td><%= th_date_format customer.created_at %></td>
+        <td>
+          <span data-toggle="tooltip" title="<%= th_date_time_format customer.created_at %>"><%= time_ago_in_words(customer.created_at) %></span>
+        </td>
 
         <td class="rowlink-skip">
           <div class="btn-group">
@@ -54,22 +61,6 @@
               <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"></span>
             <% end %>
           </div>
-        <!--
-          <div class="btn-group">
-            <%= link_to t('.view'), customer_path(customer), class: "btn btn-default btn-sm" %>
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to t('.edit'), edit_customer_path(customer) %></li>
-              <li role="separator" class="divider"></li>
-              <li class="dropdown-header"><%= t('.exam_header') %></li>
-              <li><%= link_to t('.view_exam'), exams_path(customer_id: customer.id) %></li>
-              <li><%= link_to t('.create_exam'), new_exam_path(customer_id: customer.id) %></li>
-            </ul>
-          </div>
-          -->
         </td>
       </tr>
       <% end %>

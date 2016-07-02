@@ -1,10 +1,10 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :retrieve_exam, only: [:show, :edit, :update, :new_exam_diag, :create_exam_diag, :update_exam_diag]
+  before_action :retrieve_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :retrieve_customer, only: [:index, :new, :create]
   before_action :assign_customer_from_exam, only: [:show, :edit, :update]
-  before_action :retreive_diags, only: [:new, :edit, :new_exam_diag, :edit_exam_diag]
+  before_action :retreive_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -55,29 +55,29 @@ class ExamsController < ApplicationController
   def destroy
   end
 
-  def new_exam_diag
-    @exams_diag = @exam.exams_diags.build
-    render "exams/diags/new_exam_diag"
+  def new_patient_diag
+    @patient_diag = @exam.patient_diags.build
+    render "exams/diags/new_patient_diag"
   end
 
-  def create_exam_diag
+  def create_patient_diag
     if @exam.update exam_params
       render "exams/diags/diags_list"
     else
-      handle_error_and_render "exams/diags/new_exam_diag"
+      handle_error_and_render "exams/diags/new_patient_diag"
     end
   end
 
-  def edit_exam_diag
-    @exams_diag = ExamsDiag.find(params[:id])
-    render "exams/diags/edit_exam_diag"
+  def edit_patient_diag
+    @patient_diag = PatientDiag.find(params[:id])
+    render "exams/diags/edit_patient_diag"
   end
 
-  def update_exam_diag
+  def update_patient_diag
     if @exam.update exam_params
       render "exams/diags/diags_list"
     else
-      handle_error_and_render "exams/diags/edit_exam_diag"
+      handle_error_and_render "exams/diags/edit_patient_diag"
     end
   end
 
@@ -90,8 +90,8 @@ class ExamsController < ApplicationController
         :note,
         # weight_form
         :exam_pi, :exam_pe, :exam_note,
-        # exams_diags
-        exams_diags_attributes: [:id, :diag_id, :note, :_destroy])
+        # patient_diags
+        patient_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
 
     def retrieve_exam
@@ -110,15 +110,15 @@ class ExamsController < ApplicationController
       @diags = Diag.all
     end
 
-    def retreive_exams_diags_when_error
-      for ed in @exam.exams_diags
-        @exams_diag = ed if not ed.valid?
+    def retreive_patient_diags_when_error
+      for pd in @exam.patient_diags
+        @patient_diag = pd if not pd.valid?
       end
     end
 
     def handle_error_and_render template
       retreive_diags
-      retreive_exams_diags_when_error
+      retreive_patient_diags_when_error
       render template
     end
 end

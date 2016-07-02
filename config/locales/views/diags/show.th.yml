@@ -1,0 +1,5 @@
+th:
+  diags:
+    show:
+      title: "วินิจฉัย"
+      sub_text: "ดูวินิจฉัย"

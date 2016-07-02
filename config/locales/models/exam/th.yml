@@ -1,0 +1,14 @@
+th:
+  activerecord:
+    models:
+      exam: "ยาและเวชภัณฑ์"
+    attributes:
+      exam:
+        weight: "น้ำหนัก"
+        height: "ส่วนสูง"
+        pulse: "ชีพจร"
+        drug_allergy: "แพ้ยา"
+        note: "ข้อมูลถึงแพทย์"
+        exam_pi: "PI"
+        exam_pe: "PE"
+        exam_note: "Note"

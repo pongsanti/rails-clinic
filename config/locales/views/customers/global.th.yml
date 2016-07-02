@@ -1,25 +1,5 @@
 th:
   helpers:
-    label:
-      customer:
-        prefix: "คำนำหน้าชื่อ"
-        sex: "เพศ"
-        name: "ชื่อ"
-        surname: "นามสกุล"
-        birthdate: "วันเกิด"
-        id_card_no: "เลขบัตรประชาชน"
-        passport_no: "เลขพาสปอร์ต"
-        nationality: "สัญชาติ"
-        occupation: "อาชีพ"
-        address: "ที่อยู่"
-        sub_district: "ที่อยู่2/แขวง/ตำบล"
-        district: "เขต/อำเภอ"
-        province: "จังหวัด"
-        postal_code: "รหัสไปรษณีย์"
-        email: "อีเมล์"
-        home_phone_no: "เบอร์โทรศัพท์บ้าน"
-        tel_no: "เบอร์โทรศัพท์มือถือ"
-        created_at: "วันที่สร้าง"        
     placeholder:
       customer:
         name: "ชื่อตามบัตรประชาชน"
@@ -36,8 +16,3 @@ th:
         email: "example_email@gmail.com"
         home_phone_no: "หมายเลขโทรศัพท์บ้าน"
         tel_no: "หมายเลขโทรศัพท์มือถือ"
-
-    submit:
-      customer:
-        create: "สร้าง"
-        update: "แก้ไข"

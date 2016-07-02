@@ -1,0 +1,8 @@
+th:
+  activerecord:
+    models:
+      drug_usage: "ข้อบ่งใช้"
+    attributes:
+      drug_usage:
+        code: "รหัส"
+        text: "ข้อบ่งใช้"

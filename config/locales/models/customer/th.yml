@@ -4,12 +4,23 @@ th:
       customer: "ผู้ป่วย"
     attributes:
       customer:
+        prefix: "คำนำหน้าชื่อ"
         name: "ชื่อ"
         surname: "นามสกุล"
         sex: "เพศ"
-        id_card_no: "เลขบัตรประชาชน"
         birthdate: "วันเกิด"
-        created_at: "วันที่สร้าง"    
+        id_card_no: "เลขบัตรประชาชน"
+        passport_no: "เลขพาสปอร์ต"
+        nationality: "สัญชาติ"
+        occupation: "อาชีพ"
+        address: "ที่อยู่"
+        sub_district: "ที่อยู่2/แขวง/ตำบล"
+        district: "เขต/อำเภอ"
+        province: "จังหวัด"
+        postal_code: "รหัสไปรษณีย์"
+        email: "อีเมล์"
+        home_phone_no: "เบอร์โทรศัพท์บ้าน"
+        tel_no: "เบอร์โทรศัพท์มือถือ"   
 
     errors:
       models:

@@ -8,12 +8,12 @@
     </tr>
   </thead>
   <tbody data-link="row" class="rowlink">
-    <% exam.exams_diags.each do |ed| %> 
+    <% exam.patient_diags.each do |pd| %> 
     <tr>
-      <td><%= ed.id %></td>
-      <td><%= ed.diag.name %></td>
-      <td><%= ed.note %></td>
-      <td class="rowlink-skip"><a href="<%= edit_exam_diag_path(ed) %>" data-remote="true" data-disable-with='<span class="glyphicon glyphicon-time"></span>'><span class="glyphicon glyphicon-edit"></span></a></td>
+      <td><%= pd.id %></td>
+      <td><%= pd.diag.name %></td>
+      <td><%= pd.note %></td>
+      <td class="rowlink-skip"><a href="<%= edit_patient_diag_path(pd) %>" data-remote="true" data-disable-with='<span class="glyphicon glyphicon-time"></span>'><span class="glyphicon glyphicon-edit"></span></a></td>
     </tr>
     <% end %>
   </tbody>

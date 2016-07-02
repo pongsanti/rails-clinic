@@ -1,6 +1,10 @@
-<h1>Editing Diag</h1>
+<%= render partial: "navigation", locals: {active: :edit} %>
+<h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
+<hr>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @diag %> |
-<%= link_to 'Back', diags_path %>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= t '.sub_text' %></div>
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>
