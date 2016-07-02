@@ -19,31 +19,7 @@
   </div>
 <% end %>
 
-<%= form_for exam, url: create_patient_diag_path(exam), method: :post, remote: true,
-  html: { class: "form-horizontal" }  do |exam_form| %>
-  <%= exam_form.fields_for :patient_diags, patient_diag do |pd_form| %>
-    <div class="form-group">
-      <%= pd_form.label :diag_id, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= pd_form.select :diag_id, 
-          options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, pd_form.object.diag_id), {},
-          class: "selectpicker form-control", data: { 'live-search' => true } %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= pd_form.label :note, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= pd_form.text_field :note, class: "form-control", placeholder: true %>
-      </div>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= exam_form.submit 'Create', class: "btn btn-info",
-        data: { "disable-with" => "Saving..."} %>
-    </div>
-  </div>
-<% end %>
+<%= render partial: "exams/diags/patient_diag_form", locals: {operation: :new, exam: exam, patient_diag: patient_diag} %>
 
   </div>
 </div>

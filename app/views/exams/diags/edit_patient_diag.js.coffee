@@ -21,6 +21,10 @@ parent_div.find('input[type="checkbox"]').click ()->
 # clear div after update success
 parent_div.find('form').on 'ajax:success', (event, xhr, status)->
   parent_div.empty()
+
+# form submit error event
+form.on 'ajax:error', (event, xhr, status, error)->
+  gShowErrorModal error
     
 # close button
 parent_div.find('span[class*="remove"]').parent('a').click (event)->
