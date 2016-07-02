@@ -1,6 +1,6 @@
-parent_div = $("#edit_exam_diag_div")
+parent_div = $("#edit_patient_diag_div")
 
-parent_div.html '<%= escape_javascript(render :partial => "exams/diags/edit_exam_diag", locals: {exam: @exams_diag.exam, exams_diag: @exams_diag}) %>'
+parent_div.html '<%= escape_javascript(render :partial => "exams/diags/edit_patient_diag", locals: {exam: @patient_diag.exam, patient_diag: @patient_diag}) %>'
 
 form = parent_div.find 'form'
 

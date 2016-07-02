@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   #post 'exams_poll', to: 'exams#index_poll'
   post 'qs_poll', to: 'qs#index_poll'
-  get 'exams_diags', to: 'exams_diags#index_by_exam'
-  post 'exams_diags', to: 'exams_diags#create'
+  #get 'patient_diags', to: 'patient_diags#index_by_exam'
+  #post 'patient_diags', to: 'patient_diags#create'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   resources :store_units
   resources :drugs
   resources :drug_usages
-  get 'new_exam_diag/:id', to: 'exams#new_exam_diag', as: 'new_exam_diag'
-  post 'create_exam_diag/:id', to: 'exams#create_exam_diag', as: 'create_exam_diag'
-  patch 'update_exam_diag/:id', to: 'exams#update_exam_diag', as: 'update_exam_diag'
-  get 'edit_exam_diag/:id', to: 'exams#edit_exam_diag', as: 'edit_exam_diag'
+  get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
+  post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
+  patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'
+  get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
 
   resources :clients
   resources :qs
