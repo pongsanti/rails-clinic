@@ -197,3 +197,7 @@ th:
   phutthasakkarat: "พ.ศ."
 
   nothing_select: "ไม่ได้เลือก"
+
+  successfully_created: "สร้างสำเร็จแล้ว"
+  successfully_updated: "แก้ไขข้อมูลเรียบร้อยแล้ว"
+  successfully_destroyed: "ลบออกแล้ว"
