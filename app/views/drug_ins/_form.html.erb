@@ -1,0 +1,41 @@
+<%= form_for(@drug_in) do |f| %>
+  <% if @drug_in.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@drug_in.errors.count, "error") %> prohibited this drug_in from being saved:</h2>
+
+      <ul>
+      <% @drug_in.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.number_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :expired_date %><br>
+    <%= f.date_select :expired_date %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br>
+    <%= f.text_field :cost %>
+  </div>
+  <div class="field">
+    <%= f.label :sale_price_per_unit %><br>
+    <%= f.text_field :sale_price_per_unit %>
+  </div>
+  <div class="field">
+    <%= f.label :balance %><br>
+    <%= f.number_field :balance %>
+  </div>
+  <div class="field">
+    <%= f.label :drug_id %><br>
+    <%= f.text_field :drug_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
