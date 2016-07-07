@@ -37,6 +37,8 @@ gem 'prawn-print', '~> 0.0.3'
 
 gem 'handlebars_assets', '~> 0.23.0'
 
+gem 'slim', '~> 3.0.7'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
