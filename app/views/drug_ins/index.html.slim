@@ -1,4 +1,4 @@
-h1 Listing Drug Ins
+=render partial: "navigation", locals: {active: :index}
 h3
   = t '.title'
   small =< t '.sub_text'
@@ -8,23 +8,28 @@ hr
   table.table.table-striped.table-hover
     thead
       tr
-        th Amount
-        th Expired date
-        th Cost
-        th Sale price per unit
-        th Balance
-        th Drug
+        th =sort_link @q, :id, "#"
+        th =sort_link @q, :drug
+        th =sort_link @q, :amount
+        th =sort_link @q, :expired_date
+        th =sort_link @q, :cost
+        th =sort_link @q, :sale_price_per_unit
+        th =sort_link @q, :balance
         th
     tbody.rowlink data-link="row"
       - @drug_ins.each do |drug_in|
         tr
+          td =drug_in.id
+          td =drug_in.drug.name
           td =drug_in.amount
           td =drug_in.expired_date
           td =drug_in.cost
           td =drug_in.sale_price_per_unit
           td =drug_in.balance
-          td =drug_in.drug_id
           td.rowlink-skip
             .btn-group
               = link_to drug_in_path(drug_in), class: 'btn btn-default btn-sm', role: 'button' do
                 span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"
+  = paginate @drug_ins
+hr
+# =page_entries_info @drug_ins, entry_name: t('.title')

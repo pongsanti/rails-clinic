@@ -1,10 +1,13 @@
 class DrugInsController < ApplicationController
+  
+  before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
 
   # GET /drug_ins
   # GET /drug_ins.json
   def index
-    @drug_ins = DrugIn.all
+    @q = DrugIn.ransack params[:q]
+    @drug_ins = @q.result.page params[:page]
   end
 
   # GET /drug_ins/1
