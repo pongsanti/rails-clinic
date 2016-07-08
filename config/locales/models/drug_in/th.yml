@@ -9,3 +9,4 @@ th:
         cost: "ราคาซื้อ"
         sale_price_per_unit: "ราคาขายต่อหน่วย"
         balance: "คงเหลือ"
+        drug: "ยา/เวชภัณฑ์"

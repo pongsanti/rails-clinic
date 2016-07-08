@@ -1,0 +1,10 @@
+= render partial: "navigation", locals: {active: :new} 
+h3 
+  = t '.title' 
+  small =< t '.sub_text'
+hr
+
+.panel.panel-primary
+  .panel-heading = t ".title"
+  .panel-body
+    == render 'form'

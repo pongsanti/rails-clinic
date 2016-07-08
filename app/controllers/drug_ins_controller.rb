@@ -2,6 +2,7 @@ class DrugInsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
+  before_action :set_drugs, only: [:new]
 
   # GET /drug_ins
   # GET /drug_ins.json
@@ -68,6 +69,10 @@ class DrugInsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_drug_in
       @drug_in = DrugIn.find(params[:id])
+    end
+
+    def set_drugs
+      @drugs = Drug.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
