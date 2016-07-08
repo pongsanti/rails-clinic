@@ -1,14 +1,6 @@
 <%= form_for @diag, html: { class: "form-horizontal" } do |f| %>
-  <% if @diag.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <strong><%= t("error.cannot_save") %></strong>
-      <ul>
-        <% @diag.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render "global/alert", obj: @diag %>
 
   <div class="form-group">
     <%= f.label :name, class: "col-sm-2 control-label required-label" %>
