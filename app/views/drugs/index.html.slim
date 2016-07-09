@@ -1,0 +1,48 @@
+= render partial: "navigation", locals: {active: :index}
+h3
+  = t '.title'
+  small = t '.sub_text'
+hr
+
+= search_form_for @q, html: { class: "form-horizontal" } do |f|
+  .form-group
+    = f.label :name_or_trade_name_cont, t("search"), class: 'col-sm-1 control-label'
+    .col-sm-8
+      = f.search_field :name_or_trade_name_cont, class: 'form-control', placeholder: true
+    .col-sm-3
+      = f.button  name: "submit", class: "btn btn-success btn-labeled", value: "submit" do
+        span class="btn-label"
+          i class="glyphicon glyphicon-search"
+          = t 'search'
+      = link_to drugs_path, class: 'btn btn-danger', role: 'button' do
+        span class="glyphicon glyphicon-refresh"
+          "Reset"
+hr
+.table-responsive
+  .table.table-striped.table-hover
+    thead
+      tr
+        th = sort_link @q, :id, "#"
+        th = sort_link @q, :name
+        th = sort_link @q, :trade_name
+        th = sort_link @q, :effect
+        th = sort_link @q, :concern
+        th
+    tbody data-link="row" class="rowlink"
+      - @drugs.each do |drug|
+        tr
+          td = drug.id
+          td = drug.name
+          td = drug.trade_name
+          td = drug.effect
+          td = drug.concern
+          td class="rowlink-skip"
+            .btn-group
+              = link_to drug_path(drug), class: 'btn btn-default btn-sm', role: 'button' do
+                span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"
+              = link_to edit_drug_path(drug), class: 'btn btn-default btn-sm', role: 'button' do
+                span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"
+  = paginate @drugs
+hr
+div
+  = page_entries_info @drugs, entry_name: t('.title')
