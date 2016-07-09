@@ -3,3 +3,8 @@ th:
     index:
       title: "ยาและเวชภัณฑ์"
       sub_text: "รายการยาและเวชภัณฑ์"
+
+  helpers:
+    placeholder:
+      q:
+        name_or_trade_name_cont: "ชื่อยา หรือ ชื่อการค้า"

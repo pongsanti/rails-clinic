@@ -21,7 +21,7 @@ initializePage = -> # display local year
   $('input[type=radio]:checked').parent().addClass('active')
 
   # on search form submit
-  $('form').submit(
+  $('form[id*="customer_search"]').submit(
     (event) -> 
       sel_attr = $('#q_name').val()
       $('#cont').attr('name', "q[#{sel_attr}_cont]")
