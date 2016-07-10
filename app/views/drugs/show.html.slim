@@ -14,10 +14,7 @@ hr
     .row
       .col-sm-2.text-right = label :drug, :created_at, class: "colon-trail"
       .col-sm-10 
-        => th_date_time_format @drug.created_at
-        | (
-        = time_ago_in_words(@drug.created_at)
-        | )
+        = "#{th_date_time_format @drug.created_at} (#{time_ago_in_words(@drug.created_at)})"
     
     .row
       .col-sm-2.text-right = label :drug, :name, class: "colon-trail"
