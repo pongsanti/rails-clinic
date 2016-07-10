@@ -1,0 +1,29 @@
+.form-group
+  = render partial: "drugs/navigation", locals: {active: :show}
+= render "drugs/info", drug: @drug
+h3
+  = t '.title'
+  small =< t '.sub_text'
+hr
+.form-group
+  = render partial: "navigation", locals: {active: :show, drug: @drug}
+
+p
+  strong Amount:
+  = @drug_in.amount
+
+p
+  strong Expired date:
+  = @drug_in.expired_date
+
+p
+  strong Cost:
+  = @drug_in.cost
+
+p
+  strong Sale price per unit:
+  = @drug_in.sale_price_per_unit
+
+p
+  strong Balance:
+  = @drug_in.balance

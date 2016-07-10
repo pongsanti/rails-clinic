@@ -1,11 +1,6 @@
-= form_for @drug_in, html: { class: "form-horizontal" } do |f|
+= form_for [@drug, @drug_in], html: { class: "form-horizontal" } do |f|
   
   = render "global/alert", obj: @drug_in
-
-  .form-group
-    = f.label :drug, class: "col-sm-2 control-label required-label"
-    .col-sm-10
-      = f.collection_select(:drug_id, @drugs, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true } )
 
   .form-group
     = f.label :amount, class: "col-sm-2 control-label required-label"

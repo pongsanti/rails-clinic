@@ -2,8 +2,8 @@ class DrugInsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_drugs, only: [:new]
-  before_action :set_drug, only: [:index]
+  before_action :set_drug_from_drug_in, only: [:show]
+  before_action :set_drug, only: [:index, :new]
 
   # GET /drug_ins
   # GET /drug_ins.json
@@ -32,10 +32,12 @@ class DrugInsController < ApplicationController
   # POST /drug_ins
   # POST /drug_ins.json
   def create
-    @drug_in = DrugIn.new(drug_in_params)
+    @drug = Drug.find params[:drug_id]
+    @drug_in = @drug.drug_ins.build(drug_in_params)
 
     respond_to do |format|
       if @drug_in.save
+        
         format.html { redirect_to @drug_in, notice: 'Drug in was successfully created.' }
         format.json { render :show, status: :created, location: @drug_in }
       else
@@ -75,12 +77,12 @@ class DrugInsController < ApplicationController
       @drug_in = DrugIn.find(params[:id])
     end
 
-    def set_drugs
-      @drugs = Drug.all
-    end
-
     def set_drug
       @drug = Drug.find params[:drug_id]
+    end
+
+    def set_drug_from_drug_in
+      @drug = @drug_in.drug
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
