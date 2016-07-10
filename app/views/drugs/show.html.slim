@@ -3,6 +3,9 @@ h3 = t '.title'
   small = t '.sub_text'
 hr
 
+.form-group
+  = render "drug_ins/navigation", active: :none
+
 .panel.panel-primary
   .panel-heading 
     span class="glyphicon glyphicon-info-sign"
@@ -37,5 +40,6 @@ hr
     .row
       .col-sm-2.text-right = label :drug, :store_unit, class: "colon-trail"
       .col-sm-10 = @drug.store_unit.title if @drug.store_unit
+= render "drug_ins/navigation", active: :none
 hr
 = render partial: "global/form_button_back"
