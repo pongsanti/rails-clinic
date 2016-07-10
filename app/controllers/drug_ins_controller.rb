@@ -3,11 +3,15 @@ class DrugInsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
   before_action :set_drugs, only: [:new]
+  before_action :set_drug, only: [:index]
 
   # GET /drug_ins
   # GET /drug_ins.json
   def index
-    @q = DrugIn.ransack params[:q]
+    ransack_params = {for_drug: @drug}
+    ransack_params = ransack_params.merge(params[:q]) if params[:q]
+
+    @q = DrugIn.ransack ransack_params
     @drug_ins = @q.result.page params[:page]
   end
 
@@ -73,6 +77,10 @@ class DrugInsController < ApplicationController
 
     def set_drugs
       @drugs = Drug.all
+    end
+
+    def set_drug
+      @drug = Drug.find params[:drug_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

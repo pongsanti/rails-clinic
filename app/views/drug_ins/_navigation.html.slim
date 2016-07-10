@@ -7,11 +7,11 @@
   - @default_class = "btn btn-sm" 
   - @active_class = @default_class + " active"
 
-  = link_to({controller: name, action: :index}, {class: (active == :index ? @active_class : @default_class ), role: 'button'}) do
+  = link_to(drug_drug_ins_path(drug), {class: (active == :index ? @active_class : @default_class ), role: 'button'}) do
     span class="glyphicon glyphicon-list" aria-hidden="true" 
     =< t "#{name}.index.title"
   
-  = link_to({controller: name, action: :new}, {class: (active == :new ? @active_class : @default_class ), role: 'button'}) do
+  = link_to(new_drug_drug_in_path(drug), {class: (active == :new ? @active_class : @default_class ), role: 'button'}) do
     span class="glyphicon glyphicon-file" aria-hidden="true"
     =< t "#{name}.new.title"
   

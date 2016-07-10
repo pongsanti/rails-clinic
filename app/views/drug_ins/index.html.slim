@@ -1,8 +1,12 @@
-=render partial: "navigation", locals: {active: :index}
+.form-group
+  = render partial: "drugs/navigation", locals: {active: :show}
+= render "drugs/info", drug: @drug
 h3
   = t '.title'
   small =< t '.sub_text'
 hr
+.form-group
+  = render partial: "navigation", locals: {active: :index, drug: @drug}
 
 .table-responsive
   table.table.table-striped.table-hover
