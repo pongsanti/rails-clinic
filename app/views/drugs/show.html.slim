@@ -4,7 +4,9 @@ h3 = t '.title'
 hr
 
 .panel.panel-primary
-  .panel-heading = t(".sub_text")
+  .panel-heading 
+    span class="glyphicon glyphicon-info-sign"
+    =< t(".sub_text")
   .panel-body
     .row
       .col-sm-2.text-right = label :drug, :created_at, class: "colon-trail"
