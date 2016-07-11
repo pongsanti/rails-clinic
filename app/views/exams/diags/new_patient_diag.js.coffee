@@ -16,9 +16,10 @@ form.on 'ajax:error', (event, xhr, status, error)->
 
 # close button event
 parent_div.find('span[class*="remove"]').parent('a').click (event)->
-  parent_div.empty()
-  new_patient_diag_submit_btn.show()
+  parent_div.fadeOut "fast", ()->
+    parent_div.empty()
+  new_patient_diag_submit_btn.fadeIn()
   event.preventDefault()
 
-parent_div.show()
+parent_div.fadeIn()
 new_patient_diag_submit_btn.hide()

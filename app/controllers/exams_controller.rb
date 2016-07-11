@@ -62,6 +62,7 @@ class ExamsController < ApplicationController
 
   def create_patient_diag
     if @exam.update exam_params
+      @patient_diags_id = PatientDiag.latest(@exam.id).id
       render "exams/diags/diags_list"
     else
       handle_error_and_render "exams/diags/new_patient_diag"
@@ -75,6 +76,7 @@ class ExamsController < ApplicationController
 
   def update_patient_diag
     if @exam.update exam_params
+      @patient_diags_id = exam_params[:patient_diags_attributes]["0"][:id].to_i
       render "exams/diags/diags_list"
     else
       handle_error_and_render "exams/diags/edit_patient_diag"
