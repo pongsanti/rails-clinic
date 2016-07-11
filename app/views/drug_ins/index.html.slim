@@ -34,6 +34,8 @@ hr
             .btn-group
               = link_to drug_in_path(drug_in), class: 'btn btn-default btn-sm', role: 'button' do
                 span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"
+              = link_to edit_drug_in_path(drug_in), class: 'btn btn-default btn-sm', role: 'button' do
+                span.glyphicon.glyphicon-edit data-toggle="tooltip" title="Edit" data-placement="bottom" aria-hidden="true"
   = paginate @drug_ins
 hr
 # =page_entries_info @drug_ins, entry_name: t('.title')

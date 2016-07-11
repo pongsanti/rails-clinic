@@ -2,7 +2,7 @@ class DrugInsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_drug_from_drug_in, only: [:show]
+  before_action :set_drug_from_drug_in, only: [:show, :edit]
   before_action :set_drug, only: [:index, :new]
 
   # GET /drug_ins

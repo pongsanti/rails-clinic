@@ -7,9 +7,9 @@ h3
 hr
 
 .form-group
-  = render partial: "navigation", locals: {active: :new, drug: @drug} 
+  = render partial: "navigation", locals: {active: :edit, drug: @drug} 
 
 .panel.panel-primary
   .panel-heading = t ".title"
   .panel-body
-    == render partial: 'form', locals: {form_url: drug_drug_ins_path(@drug) }
+    == render partial: 'form', locals: {form_url: drug_in_path(@drug_in) }

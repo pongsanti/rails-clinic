@@ -1,4 +1,4 @@
-= form_for [@drug, @drug_in], html: { class: "form-horizontal" } do |f|
+= form_for @drug_in, url: form_url , html: { class: "form-horizontal" } do |f|
   
   = render "global/alert", obj: @drug_in
 
