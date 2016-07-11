@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 customer_david:
-  cn: 201600001
+  cn: "201600001"
   prefix: mr
-  sex: M
-  name: David
-  surname: Jiang
+  sex: "M"
+  name: "David"
+  surname: "Jiang"
   birthdate: 1988-10-09
