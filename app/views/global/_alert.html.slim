@@ -1,0 +1,6 @@
+- if obj.errors.any?
+  div id="error_explanation" class="alert alert-danger"
+    strong = t "error.cannot_save"
+    ul
+      - obj.errors.full_messages.each do |msg|
+        li = msg

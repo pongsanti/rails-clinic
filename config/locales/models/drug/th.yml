@@ -4,7 +4,7 @@ th:
       drug: "ยาและเวชภัณฑ์"
     attributes:
       drug:
-        name: "ชื่อ"
+        name: "ชื่อยา"
         trade_name: "ชื่อการค้า"
         effect: "สรรพคุณ"
         concern: "ข้อควรระวัง"

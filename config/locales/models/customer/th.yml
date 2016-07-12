@@ -20,12 +20,4 @@ th:
         postal_code: "รหัสไปรษณีย์"
         email: "อีเมล์"
         home_phone_no: "เบอร์โทรศัพท์บ้าน"
-        tel_no: "เบอร์โทรศัพท์มือถือ"   
-
-    errors:
-      models:
-        customer:
-          attributes:
-            sex:
-              blank: "ยังไม่ได้ระบุ"
-              inclusion: "ค่าไม่ถูกต้อง"     
+        tel_no: "เบอร์โทรศัพท์มือถือ"  

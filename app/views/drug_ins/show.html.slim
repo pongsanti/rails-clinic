@@ -1,0 +1,40 @@
+.form-group
+  = render partial: "drugs/navigation", locals: {active: :show}
+= render "drugs/info", drug: @drug
+h3
+  = t '.title'
+  small =< t '.sub_text'
+hr
+.form-group
+  = render partial: "navigation", locals: {active: :show, drug: @drug}
+
+
+.panel.panel-primary
+  .panel-heading 
+    span class="glyphicon glyphicon-info-sign"
+    =< t(".sub_text")
+  .panel-body
+    .row
+      .col-sm-2.text-right = label :drug_in, :created_at, class: "colon-trail"
+      .col-sm-10 
+        = "#{th_date_time_format @drug_in.created_at} (#{time_ago_in_words(@drug_in.created_at)})"
+    
+    .row
+      .col-sm-2.text-right = label :drug_in, :amount, class: "colon-trail"
+      .col-sm-4 = @drug_in.amount
+    
+      .col-sm-2.text-right = label :drug_in, :expired_date, class: "colon-trail"
+      .col-sm-4 = th_date_format(@drug_in.expired_date)
+
+    .row
+      .col-sm-2.text-right = label :drug_in, :cost, class: "colon-trail"
+      .col-sm-4 = @drug_in.cost
+
+      .col-sm-2.text-right = label :drug_in, :sale_price_per_unit, class: "colon-trail"
+      .col-sm-4 = @drug_in.sale_price_per_unit
+
+    .row
+      .col-sm-2.text-right = label :drug_in, :balance, class: "colon-trail"
+      .col-sm-10 
+        = @drug_in.balance
+        =< @drug.store_unit.title if @drug.store_unit

@@ -31,7 +31,7 @@ class DiagsController < ApplicationController
 
     respond_to do |format|
       if @diag.save
-        format.html { redirect_to @diag, notice: 'Diag was successfully created.' }
+        format.html { redirect_to @diag, notice: t('successfully_created') }
         format.json { render :show, status: :created, location: @diag }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class DiagsController < ApplicationController
   def update
     respond_to do |format|
       if @diag.update(diag_params)
-        format.html { redirect_to @diag, notice: 'Diag was successfully updated.' }
+        format.html { redirect_to @diag, notice: t('successfully_updated') }
         format.json { render :show, status: :ok, location: @diag }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class DiagsController < ApplicationController
   def destroy
     @diag.destroy
     respond_to do |format|
-      format.html { redirect_to diags_url, notice: 'Diag was successfully destroyed.' }
+      format.html { redirect_to diags_url, notice: t('successfully_destroyed') }
       format.json { head :no_content }
     end
   end

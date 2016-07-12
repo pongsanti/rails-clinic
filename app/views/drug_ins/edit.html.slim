@@ -1,0 +1,15 @@
+.form-group
+  = render partial: "drugs/navigation", locals: {active: :show}
+= render "drugs/info", drug: @drug
+h3 
+  = t '.title' 
+  small =< t '.sub_text'
+hr
+
+.form-group
+  = render partial: "navigation", locals: {active: :edit, drug: @drug} 
+
+.panel.panel-primary
+  .panel-heading = t ".title"
+  .panel-body
+    == render partial: 'form', locals: {form_url: drug_in_path(@drug_in) }

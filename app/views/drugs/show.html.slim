@@ -1,0 +1,12 @@
+= render partial: "navigation", locals: {active: :show}
+h3 = t '.title'
+  small = t '.sub_text'
+hr
+
+.form-group
+  = render partial: "drug_ins/navigation", locals: {active: :none, drug: @drug}
+
+= render "info", drug: @drug
+= render partial: "drug_ins/navigation", locals: {active: :none, drug: @drug}
+hr
+= render "global/form_button_back"

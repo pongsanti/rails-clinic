@@ -1,0 +1,31 @@
+.panel.panel-primary
+  .panel-heading 
+    span class="glyphicon glyphicon-info-sign"
+    =< t("drugs.show.sub_text")
+  .panel-body
+    .row
+      .col-sm-2.text-right = label :drug, :created_at, class: "colon-trail"
+      .col-sm-10 
+        = "#{th_date_time_format drug.created_at} (#{time_ago_in_words(drug.created_at)})"
+    
+    .row
+      .col-sm-2.text-right = label :drug, :name, class: "colon-trail"
+      .col-sm-4 = drug.name
+    
+      .col-sm-2.text-right = label :drug, :trade_name, class: "colon-trail"
+      .col-sm-4 = drug.trade_name
+
+    .row
+      .col-sm-2.text-right = label :drug, :effect, class: "colon-trail"
+      .col-sm-4 = drug.effect
+
+      .col-sm-2.text-right = label :drug, :concern, class: "colon-trail"
+      .col-sm-4 = drug.concern
+
+    .row
+      .col-sm-2.text-right = label :drug, :drug_usage, class: "colon-trail"
+      .col-sm-10 = drug.drug_usage.code_text if drug.drug_usage
+
+    .row
+      .col-sm-2.text-right = label :drug, :store_unit, class: "colon-trail"
+      .col-sm-10 = drug.store_unit.title if drug.store_unit

@@ -1,0 +1,26 @@
+= form_for @drug_in, url: form_url , html: { class: "form-horizontal" } do |f|
+  
+  = render "global/alert", obj: @drug_in
+
+  .form-group
+    = f.label :amount, class: "col-sm-2 control-label required-label"
+    .col-sm-10
+      = f.text_field :amount, class: "form-control", required: true, digits: true
+  
+  .form-group
+    = f.label :expired_date, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true }
+  
+  .form-group
+    = f.label :cost, class: "col-sm-2 control-label required-label"
+    .col-sm-4
+      = f.text_field :cost, class: "form-control", required: true, number: true
+    = f.label :sale_price_per_unit, class: "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :sale_price_per_unit, class: "form-control", number: true
+  
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      = render partial: "global/form_button", locals: {f: f}
+      =< render partial: "global/form_button_back"

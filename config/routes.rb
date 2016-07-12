@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :customers
   resources :exams
   resources :store_units
-  resources :drugs
+  resources :drugs do
+    resources :drug_ins, shallow: true
+  end
   resources :drug_usages
   get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
   post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
