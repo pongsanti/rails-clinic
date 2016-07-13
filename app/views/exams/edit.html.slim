@@ -1,0 +1,18 @@
+= render partial: "customer", locals: {customer: @customer}
+h3
+  = t ".title"
+  small = t ".sub_text"
+
+hr
+
+.form-group = render partial: "navigation", locals: { active: "edit" }
+
+= render "global/alert", obj: @exam 
+
+= render partial: 'weight_form', locals: {customer: @customer, exam: @exam}
+
+.row
+  .col-sm-6
+    = render partial: 'pe_form', locals: {exam: @exam}
+  .col-sm-6
+    = render partial: 'exams/diags/diags', locals: {exam: @exam}
