@@ -10,7 +10,7 @@
   .form-group
     = f.label :expired_date, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true }
+      = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true, 'size' => 10 }
   
   .form-group
     = f.label :cost, class: "col-sm-2 control-label required-label"
