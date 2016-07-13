@@ -1,10 +1,10 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :retrieve_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
-  before_action :retrieve_customer, only: [:index, :new, :create]
+  before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
+  before_action :set_customer, only: [:index, :new, :create]
   before_action :assign_customer_from_exam, only: [:show, :edit, :update]
-  before_action :retreive_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
+  before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -96,7 +96,7 @@ class ExamsController < ApplicationController
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
 
-    def retrieve_exam
+    def set_exam
       @exam = Exam.find(params[:id])
     end
 
@@ -104,23 +104,23 @@ class ExamsController < ApplicationController
       @customer = @exam.customer
     end
 
-    def retrieve_customer
+    def set_customer
       @customer = Customer.find(params[:customer_id])
     end
 
-    def retreive_diags
+    def set_diags
       @diags = Diag.all
     end
 
-    def retreive_patient_diags_when_error
+    def set_patient_diags_when_error
       for pd in @exam.patient_diags
         @patient_diag = pd if not pd.valid?
       end
     end
 
     def handle_error_and_render template
-      retreive_diags
-      retreive_patient_diags_when_error
+      set_diags
+      set_patient_diags_when_error
       render template
     end
 end
