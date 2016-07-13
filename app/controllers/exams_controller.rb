@@ -5,6 +5,7 @@ class ExamsController < ApplicationController
   before_action :set_customer, only: [:index, :new, :create]
   before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
+  before_action :set_drugs, only: [:edit]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -110,6 +111,10 @@ class ExamsController < ApplicationController
 
     def set_diags
       @diags = Diag.all
+    end
+
+    def set_drugs
+      @drugs = Drug.drug_ins_exist
     end
 
     def set_patient_diags_when_error

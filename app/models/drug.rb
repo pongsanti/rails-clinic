@@ -13,6 +13,10 @@ class Drug < ActiveRecord::Base
       %w(name trade_name)
     end
 
+    def drug_ins_exist()
+      joins(:drug_ins).where("drug_ins.drug_id is not null").distinct.order("name")
+    end
+
   end
 
 end
