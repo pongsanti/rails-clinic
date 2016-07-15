@@ -1,0 +1,4 @@
+  john:
+    email: "john@gmail.com"
+    encrypted_password: ""
+    role: ""
