@@ -3,3 +3,11 @@ th:
     index:
       title: "รายการข้อบ่งใช้ยา"
       sub_text: "รายการข้อมูลข้อบ่งใช้ยา"
+
+  helpers:
+    placeholder:
+      drug_usage:
+        code: "1/2x1 AC เช้า"
+        text: "กิน ครึ่ง เม็ด วันละ 1 ครั้ง@ก่อนอาหาร เช้า"
+        use_amount: "1 (กินครั้งละ 1 เม็ด)"
+        times_per_day: "3 (วันละ 3 ครั้ง)"
