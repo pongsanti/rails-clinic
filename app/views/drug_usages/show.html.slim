@@ -1,0 +1,34 @@
+= render partial: "navigation", locals: {active: :show}
+h3
+  = t '.title'
+  small = t '.sub_text'
+hr
+
+.panel.panel-primary
+  .panel-heading
+    = t(".sub_text")
+  .panel-body
+    .row
+      .col-sm-2.text-right = label :drug_usage, :created_at, class: "colon-trail"
+      .col-sm-10
+        = "#{th_date_time_format @drug_usage.created_at} (#{time_ago_in_words(@drug_usage.created_at)})"
+
+    .row
+      .col-sm-2.text-right = label :drug_usage, :code, class: "colon-trail"
+      .col-sm-10
+        = @drug_usage.code
+
+    .row
+      .col-sm-2.text-right = label :drug_usage, :text, class: "colon-trail"
+      .col-sm-10
+        = @drug_usage.text
+
+    .row
+      .col-sm-2.text-right = label :drug_usage, :use_amount, class: "colon-trail"
+      .col-sm-4
+        = @drug_usage.use_amount
+      .col-sm-2.text-right = label :drug_usage, :times_per_day, class: "colon-trail"
+      .col-sm-4
+        = @drug_usage.times_per_day      
+hr
+= render partial: "global/form_button_back"

@@ -6,3 +6,5 @@ th:
       drug_usage:
         code: "รหัส"
         text: "ข้อบ่งใช้"
+        times_per_day: "จำนวนครั้งต่อวัน"
+        use_amount: "ใช้ครั้งละ (หน่วย)"
