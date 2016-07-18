@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706023525) do
+ActiveRecord::Schema.define(version: 20160718160911) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20160706023525) do
   end
 
   create_table "drug_ins", force: :cascade do |t|
-    t.integer  "amount"
     t.date     "expired_date"
     t.decimal  "cost",                precision: 8, scale: 2
     t.decimal  "sale_price_per_unit", precision: 8, scale: 2
@@ -76,11 +75,24 @@ ActiveRecord::Schema.define(version: 20160706023525) do
 
   add_index "drug_ins", ["drug_id"], name: "index_drug_ins_on_drug_id"
 
+  create_table "drug_movements", force: :cascade do |t|
+    t.integer  "movable_id"
+    t.string   "movable_type"
+    t.decimal  "balance",      precision: 8, scale: 2
+    t.decimal  "previous",     precision: 8, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "drug_movements", ["movable_type", "movable_id"], name: "index_drug_movements_on_movable_type_and_movable_id"
+
   create_table "drug_usages", force: :cascade do |t|
     t.string   "code"
     t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "times_per_day"
+    t.decimal  "use_amount",    precision: 4, scale: 1
   end
 
   create_table "drugs", force: :cascade do |t|

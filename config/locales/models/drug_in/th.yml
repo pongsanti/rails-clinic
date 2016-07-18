@@ -4,7 +4,6 @@ th:
       drug_in: "เวชภัณฑ์เข้า"
     attributes:
       drug_in:
-        amount: "จำนวน"
         expired_date: "วันหมดอายุ"
         cost: "ราคาซื้อ"
         sale_price_per_unit: "ราคาขายต่อหน่วย"

@@ -27,7 +27,7 @@ requestQueueList = ->
 # queue retrieval function
 getQueueList = ->
   requestQueueList()
-  setTimeout getQueueList, 10000
+  setTimeout getQueueList, 20000
 
 initializePage = ->
   # init form validation

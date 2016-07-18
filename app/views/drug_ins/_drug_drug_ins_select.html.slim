@@ -1,0 +1,6 @@
+- if drug_ins
+  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto"
+    - drug_ins.each do |d|
+      option value=d.id data-content="<span>#{d.drug.name} #{d.id} #{d.expired_date} #{d.balance}</span>"
+- else
+  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto" title="Please select drug..."
