@@ -1,6 +1,5 @@
 class DrugIn < ActiveRecord::Base
   belongs_to :drug
-  has_many :drug_movements, as: :movable
 
   class << self
     #scope

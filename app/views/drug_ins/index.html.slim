@@ -14,7 +14,6 @@ hr
       tr
         th =sort_link @q, :id, "#"
         th =sort_link @q, :drug_name
-        th =sort_link @q, :amount
         th =sort_link @q, :expired_date
         th =sort_link @q, :cost
         th =sort_link @q, :sale_price_per_unit
@@ -25,7 +24,6 @@ hr
         tr
           td =drug_in.id
           td =drug_in.drug.name
-          td =drug_in.amount
           td =drug_in.expired_date
           td =drug_in.cost
           td =drug_in.sale_price_per_unit
