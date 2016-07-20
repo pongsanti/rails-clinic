@@ -4,8 +4,14 @@
   
   .form-group
     = f.label :amount, class: "col-sm-2 control-label required-label"
-    .col-sm-8
-      = text_field_tag "amount", nil, class: "form-control", required: true, number: true
+    .col-sm-4
+      - if @drug_in.new_record?
+        = text_field_tag "amount", nil, class: "form-control", required: true, number: true
+      - elsif @drug_in.drug_movements.first
+        = text_field_tag "amount", @drug_in.drug_movements.first.balance, class: "form-control", readonly: true
+      - else
+        = text_field_tag "amount", nil, class: "form-control", readonly: true
+    .col-sm-6
   
   .form-group
     = f.label :expired_date, class: "col-sm-2 control-label"

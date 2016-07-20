@@ -2,6 +2,8 @@ class DrugIn < ActiveRecord::Base
   belongs_to :drug
   has_many :drug_movements
 
+  paginates_per 10
+
   class << self
     #scope
     def for_drug(drug_id)
