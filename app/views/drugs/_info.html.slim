@@ -1,12 +1,14 @@
 .panel.panel-primary
   .panel-heading 
-    span class="glyphicon glyphicon-info-sign"
+    span.glyphicon.glyphicon-info-sign
     =< t("drugs.show.sub_text")
   .panel-body
     .row
       .col-sm-2.text-right = label :drug, :created_at, class: "colon-trail"
-      .col-sm-10 
+      .col-sm-4 
         = "#{th_date_time_format drug.created_at} (#{time_ago_in_words(drug.created_at)})"
+      .col-sm-2.text-right = label :drug, :balance, class: "colon-trail"  
+      .col-sm-4 = drug.balance
     
     .row
       .col-sm-2.text-right = label :drug, :name, class: "colon-trail"

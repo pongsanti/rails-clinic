@@ -34,10 +34,20 @@ class DrugInsController < ApplicationController
   def create
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params)
+    
+    if params[:amount].blank?
+      flash.now[:alert] = "Amount is required."
+      render :new
+      return
+    end
+
+    create_drug_movement
+    set_drug_in_balance
 
     respond_to do |format|
       if @drug_in.save
-        
+
+        @drug.recal_balance
         format.html { redirect_to @drug_in, notice: 'Drug in was successfully created.' }
         format.json { render :show, status: :created, location: @drug_in }
       else
@@ -87,6 +97,14 @@ class DrugInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_in_params
-      params.require(:drug_in).permit(:amount, :expired_date, :cost, :sale_price_per_unit, :balance, :drug_id)
+      params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit, :drug_id)
+    end
+
+    def create_drug_movement
+      @drug_in.drug_movements.build({balance: params[:amount], prev_bal: 0})
+    end
+
+    def set_drug_in_balance
+      @drug_in.balance = params[:amount]
     end
 end

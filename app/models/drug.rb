@@ -5,7 +5,6 @@ class Drug < ActiveRecord::Base
 
   has_many :drug_ins
 
-
   class << self
     # searchable fields
     def ransackable_attributes(auth_object = nil)
@@ -19,4 +18,8 @@ class Drug < ActiveRecord::Base
 
   end
 
+  def recal_balance
+    self.balance = self.drug_ins.sum(:balance)
+    save
+  end
 end
