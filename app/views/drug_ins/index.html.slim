@@ -8,6 +8,8 @@ hr
 .form-group
   = render partial: "navigation", locals: {active: :index, drug: @drug}
 
+= paginate @drug_ins
+
 .table-responsive
   table.table.table-striped.table-hover
     thead

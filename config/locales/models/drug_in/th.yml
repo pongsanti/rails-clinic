@@ -8,5 +8,5 @@ th:
         expired_date: "วันหมดอายุ"
         cost: "ราคาซื้อ (บาท)"
         sale_price_per_unit: "ราคาขาย (บาท/หน่วย)"
-        balance: "คงเหลือ"
+        balance: "คงเหลือ (หน่วย)"
         drug: "ยา/เวชภัณฑ์"
