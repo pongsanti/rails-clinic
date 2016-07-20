@@ -19,7 +19,6 @@ class Drug < ActiveRecord::Base
   end
 
   def recal_balance
-    self.balance = self.drug_ins.sum(:balance)
-    save
+    self.update( {balance: self.drug_ins.sum(:balance)} )
   end
 end
