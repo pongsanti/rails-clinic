@@ -1,0 +1,5 @@
+th:
+  exams:
+    drugs:
+      drug_form:
+        title: "จ่ายยา"
