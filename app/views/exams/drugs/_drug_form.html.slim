@@ -2,8 +2,8 @@
   .panel-heading
     .panel-title.pull-left = t(".title")
     .panel-title.pull-right
-      a.btn.btn-info.btn-sm href=new_exam_path data-remote="true" data-disable-with="Loading..."
-        span.glyphicon.glyphicon-file = t(".new_drug")
+      a.btn.btn-info.btn-sm href=new_exam_drug_path(@exam) data-remote="true" data-disable-with="Loading..."
+        span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
     form.form-horizontal

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'
   get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
 
+  get 'exams/:id/drug', to: 'exams#new_exam_drug', as: 'new_exam_drug'
+  post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
+
   resources :clients
   resources :qs
   resources :diags  
