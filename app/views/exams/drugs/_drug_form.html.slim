@@ -6,6 +6,7 @@
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
+    = render partial: "exams/drugs/drugs", locals: {exam: @exam}
     form.form-horizontal
       .form-group
         .col-sm-6 = collection_select(:drug_in, :drug_id, drugs, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "size" => 10 } )
