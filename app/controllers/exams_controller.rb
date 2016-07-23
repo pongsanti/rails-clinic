@@ -1,7 +1,8 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
+  before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag,
+    :new_exam_drug]
   before_action :set_customer, only: [:index, :new, :create]
   before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
@@ -82,6 +83,15 @@ class ExamsController < ApplicationController
     else
       handle_error_and_render "exams/diags/edit_patient_diag"
     end
+  end
+
+  #drug
+  def new_exam_drug
+    render plain: params.inspect
+  end
+
+  def create_exam_drug
+    render plain: params.inspect
   end
 
   private

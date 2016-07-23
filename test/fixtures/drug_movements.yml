@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  balance: 9.99
+  prev_bal: 9.99
+  note: MyString
+  drug_in_id: 
+  exam_id: 
+
+two:
+  balance: 9.99
+  prev_bal: 9.99
+  note: MyString
+  drug_in_id: 
+  exam_id: 

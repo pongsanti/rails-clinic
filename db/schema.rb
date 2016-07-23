@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718160911) do
+ActiveRecord::Schema.define(version: 20160720024927) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -76,15 +76,17 @@ ActiveRecord::Schema.define(version: 20160718160911) do
   add_index "drug_ins", ["drug_id"], name: "index_drug_ins_on_drug_id"
 
   create_table "drug_movements", force: :cascade do |t|
-    t.integer  "movable_id"
-    t.string   "movable_type"
-    t.decimal  "balance",      precision: 8, scale: 2
-    t.decimal  "previous",     precision: 8, scale: 2
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.decimal  "balance"
+    t.decimal  "prev_bal"
+    t.string   "note"
+    t.integer  "drug_in_id"
+    t.integer  "exam_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "drug_movements", ["movable_type", "movable_id"], name: "index_drug_movements_on_movable_type_and_movable_id"
+  add_index "drug_movements", ["drug_in_id"], name: "index_drug_movements_on_drug_in_id"
+  add_index "drug_movements", ["exam_id"], name: "index_drug_movements_on_exam_id"
 
   create_table "drug_usages", force: :cascade do |t|
     t.string   "code"
