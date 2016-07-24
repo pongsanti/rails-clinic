@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
   before_action :set_customer, only: [:index, :new, :create]
   before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
-  before_action :set_drugs, only: [:edit]
+  before_action :set_drugs, only: [:new_exam_drug]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -87,7 +87,7 @@ class ExamsController < ApplicationController
 
   #drug
   def new_exam_drug
-    render plain: params.inspect
+    render "exams/drugs/new_exam_drug"
   end
 
   def create_exam_drug
