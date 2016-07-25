@@ -6,5 +6,5 @@
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
-    #new_exam_drug
-    = render partial: "exams/drugs/drugs", locals: {exam: @exam}
+    div data-placefor="new_exam_drug"
+    = render partial: "exams/drugs/drugs", locals: {exam: @exam }
