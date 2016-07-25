@@ -6,11 +6,5 @@
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
-    = render partial: "exams/drugs/drugs", locals: {exam: @exam}
-    form.form-horizontal
-      .form-group
-        .col-sm-6 = collection_select(:drug_in, :drug_id, drugs, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "size" => 10 } )
-        .col-sm-6 = link_to "See Drug In", drug_drug_ins_path(drugs[0]), {id: "link_drug_drug_ins_path", class: "btn, btn-sm, btn-default", role: "button", remote: true, "data-disable-with" => "Loading..." }
-      .form-group
-        .col-sm-12#drug_drug_ins_select_div
-          = render "drug_ins/drug_drug_ins_select", drug_ins: nil
+    div data-placefor="new_exam_drug"
+    = render partial: "exams/drugs/drugs", locals: {exam: @exam }

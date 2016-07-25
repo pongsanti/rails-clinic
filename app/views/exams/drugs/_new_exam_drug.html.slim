@@ -1,0 +1,18 @@
+- select_id = "exam_drug_select"
+
+form.form-horizontal
+  .form-group
+    .col-sm-4 = collection_select(:drug_in, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
+      title: "Please select drug...",
+      data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
+      id: select_id )
+    .col-sm-8 data-placefor="index_select"
+      = render "drug_ins/index_select", drug_ins: nil
+
+coffee:
+  select = $ "#exam_drug_select"
+
+  select.change ()-> 
+    selected_val = select.val()
+    select.data("url", "/drugs/#{selected_val}/drug_ins")
+    true

@@ -2,6 +2,12 @@
   
   = render "global/alert", obj: @drug_in
   
+  - unless @drug_in.new_record?
+    .form-group
+      .col-sm-2.text-right = label :drug_in, :id, class: "colon-trail"
+      .col-sm-4
+        = format_id @drug_in.id
+
   .form-group
     = f.label :amount, class: "col-sm-2 control-label required-label"
     .col-sm-4
