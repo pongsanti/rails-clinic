@@ -8,7 +8,8 @@
         span.glyphicon.glyphicon-remove
     .clearfix
   .panel-body
-    form.form-horizontal
+    form.form-horizontal action=new_drug_movement_path method="post"
+      input name="authenticity_token" value=form_authenticity_token type="hidden"
       .form-group
         .col-sm-2 = label_tag 'drug', 'drug', class: "required-label"
         .col-sm-10 

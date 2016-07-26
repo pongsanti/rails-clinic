@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get 'exams/:id/drug', to: 'exams#new_exam_drug', as: 'new_exam_drug'
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
 
+  post 'drug_movements', to: 'drug_movements#create', as: 'new_drug_movement'
+
   resources :clients
   resources :qs
   resources :diags  
