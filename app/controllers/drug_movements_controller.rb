@@ -25,7 +25,6 @@ class DrugMovementsController < ApplicationController
     #@drug_movement.exam = Exam.find params[:drug_movement][:exam_id]
     #@drug_movement.drug_in = DrugIn.find params[:drug_movement][:drug_in_id]
     #@drug_movement.note = params[:drug_movement][:note]
-    byebug
     prev_bal = @drug_movement.drug_in.drug_movements.last.balance
     balance = prev_bal - BigDecimal.new(params[:amount])
 
