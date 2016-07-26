@@ -1,13 +1,33 @@
 - select_id = "exam_drug_select"
 
-form.form-horizontal
-  .form-group
-    .col-sm-4 = collection_select(:drug_in, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
-      title: "Please select drug...",
-      data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
-      id: select_id )
-    .col-sm-8 data-placefor="index_select"
-      = render "drug_ins/index_select", drug_ins: nil
+.panel.panel-info
+  .panel-heading
+    .panel-title.pull-left = t(".title")
+    .panel-title.pull-right
+      a href="#" data-remote="true" data-disable-with="Loading..."
+        span.glyphicon.glyphicon-remove
+    .clearfix
+  .panel-body
+    form.form-horizontal
+      .form-group
+        .col-sm-2 = label_tag 'drug', 'drug', class: "required-label"
+        .col-sm-10 
+          => collection_select(:drug_in, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
+          title: "Please select drug...",
+          data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
+          id: select_id )
+          span data-placefor="index_select"
+            = render "drug_ins/index_select", drug_ins: nil
+
+      .form-group
+        .col-sm-2 = label_tag 'amount', 'amount', class: "required-label"
+        .col-sm-8 = text_field_tag "amount", nil, class: "form-control", required: true, number: true
+        .col-sm-2 
+          = button_tag "submit", class: "btn btn-primary btn-labeled" do
+            span.btn-label
+              i.glyphicon.glyphicon-ok
+            = t 'Submit'
+
 
 coffee:
   select = $ "#exam_drug_select"
