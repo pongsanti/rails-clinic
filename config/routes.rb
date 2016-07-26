@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :drug_ins, shallow: true
   end
   resources :drug_usages
+  resources :drug_movements
   get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
   post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
   patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'

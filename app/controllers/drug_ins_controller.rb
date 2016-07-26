@@ -4,6 +4,7 @@ class DrugInsController < ApplicationController
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
   before_action :set_drug_from_drug_in, only: [:show, :edit]
   before_action :set_drug, only: [:index, :new]
+  before_action :set_placefor, only: [:index]
 
   # GET /drug_ins
   # GET /drug_ins.json
@@ -106,5 +107,9 @@ class DrugInsController < ApplicationController
 
     def set_drug_in_balance
       @drug_in.balance = params[:amount]
+    end
+
+    def set_placefor
+      @placefor = params[:placefor]
     end
 end

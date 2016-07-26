@@ -1,6 +1,6 @@
 - if drug_ins
-  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto"
+  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto" name="drug_movement[drug_in_id]"
     - drug_ins.each do |d|
       option value=d.id data-content=(render partial: "index_option", locals: {drug_in: d})
 - else
-  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto" title="Please select drug..."
+  select class="selectpicker" data-live-search="true" data-style="btn-primary" data-width="auto" title="Please select drug lot..."
