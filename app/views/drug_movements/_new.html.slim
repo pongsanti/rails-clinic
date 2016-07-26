@@ -1,0 +1,42 @@
+- select_id = "exam_drug_select"
+- placefor = "index_select"
+
+.panel.panel-info
+  .panel-heading
+    .panel-title.pull-left = t("exams.drugs.drug_form.new_exam_drug")
+    .panel-title.pull-right
+      a href="#" data-remote="true" data-disable-with="Loading..."
+        span.glyphicon.glyphicon-remove
+    .clearfix
+  .panel-body
+    = form_for @drug_movement, html: {class: "form-horizontal"}, remote: true do |f|
+      .form-group
+        = f.hidden_field :exam_id, value: @exam_id
+        .col-sm-1.text-right = f.label :drug_in_id, class: "control-label required-label"
+        .col-sm-11 
+          => collection_select(:drug, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
+          title: "Please select drug...",
+          data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
+          id: select_id )
+          span data-placefor=placefor
+            = render "drug_ins/index_select", drug_ins: nil
+
+      .form-group
+        .col-sm-1.text-right = label_tag 'amount', 'amount', class: "control-label required-label"
+        .col-sm-4 = text_field_tag "amount", nil, class: "form-control", required: true, number: true
+        .col-sm-1.text-right = f.label 'note', class: "control-label"
+        .col-sm-4 = f.text_field :note, class: "form-control"
+        .col-sm-2
+          = f.button  name: "submit", class: "btn btn-primary btn-labeled", value: "submit" do
+            span.btn-label
+              i.glyphicon.glyphicon-ok
+            | Done
+
+coffee:
+  select = $ "#exam_drug_select"
+
+  select.change ()->
+    placefor = 'index_select'
+    selected_val = select.val()
+    select.data("url", "/drugs/#{selected_val}/drug_ins?placefor=#{placefor}")
+    true
