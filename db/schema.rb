@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160720024927) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.string   "email"
   end
 
-  add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id"
+  add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id", using: :btree
 
   create_table "diags", force: :cascade do |t|
     t.string   "name"
@@ -73,7 +76,7 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.datetime "updated_at",                                  null: false
   end
 
-  add_index "drug_ins", ["drug_id"], name: "index_drug_ins_on_drug_id"
+  add_index "drug_ins", ["drug_id"], name: "index_drug_ins_on_drug_id", using: :btree
 
   create_table "drug_movements", force: :cascade do |t|
     t.decimal  "balance"
@@ -85,8 +88,8 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "drug_movements", ["drug_in_id"], name: "index_drug_movements_on_drug_in_id"
-  add_index "drug_movements", ["exam_id"], name: "index_drug_movements_on_exam_id"
+  add_index "drug_movements", ["drug_in_id"], name: "index_drug_movements_on_drug_in_id", using: :btree
+  add_index "drug_movements", ["exam_id"], name: "index_drug_movements_on_exam_id", using: :btree
 
   create_table "drug_usages", force: :cascade do |t|
     t.string   "code"
@@ -109,8 +112,8 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.string   "concern"
   end
 
-  add_index "drugs", ["drug_usage_id"], name: "index_drugs_on_drug_usage_id"
-  add_index "drugs", ["store_unit_id"], name: "index_drugs_on_store_unit_id"
+  add_index "drugs", ["drug_usage_id"], name: "index_drugs_on_drug_usage_id", using: :btree
+  add_index "drugs", ["store_unit_id"], name: "index_drugs_on_store_unit_id", using: :btree
 
   create_table "exams", force: :cascade do |t|
     t.decimal  "weight"
@@ -129,8 +132,8 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.integer  "examiner_id"
   end
 
-  add_index "exams", ["customer_id"], name: "index_exams_on_customer_id"
-  add_index "exams", ["examiner_id"], name: "index_exams_on_examiner_id"
+  add_index "exams", ["customer_id"], name: "index_exams_on_customer_id", using: :btree
+  add_index "exams", ["examiner_id"], name: "index_exams_on_examiner_id", using: :btree
 
   create_table "patient_diags", force: :cascade do |t|
     t.integer  "exam_id"
@@ -141,8 +144,8 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "patient_diags", ["diag_id"], name: "index_patient_diags_on_diag_id"
-  add_index "patient_diags", ["exam_id"], name: "index_patient_diags_on_exam_id"
+  add_index "patient_diags", ["diag_id"], name: "index_patient_diags_on_diag_id", using: :btree
+  add_index "patient_diags", ["exam_id"], name: "index_patient_diags_on_exam_id", using: :btree
 
   create_table "prefixes", force: :cascade do |t|
     t.string   "name"
@@ -157,7 +160,7 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "qs", ["exam_id"], name: "index_qs_on_exam_id"
+  add_index "qs", ["exam_id"], name: "index_qs_on_exam_id", using: :btree
 
   create_table "store_units", force: :cascade do |t|
     t.string   "title"
@@ -182,8 +185,20 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.string   "role"
   end
 
-  add_index "users", ["client_id"], name: "index_users_on_client_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["client_id"], name: "index_users_on_client_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "customers", "prefixes"
+  add_foreign_key "drug_ins", "drugs"
+  add_foreign_key "drug_movements", "drug_ins"
+  add_foreign_key "drug_movements", "exams"
+  add_foreign_key "drugs", "drug_usages"
+  add_foreign_key "drugs", "store_units"
+  add_foreign_key "exams", "customers"
+  add_foreign_key "exams", "users", column: "examiner_id"
+  add_foreign_key "patient_diags", "diags"
+  add_foreign_key "patient_diags", "exams"
+  add_foreign_key "qs", "exams"
+  add_foreign_key "users", "clients"
 end
