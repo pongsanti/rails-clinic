@@ -40,10 +40,10 @@ class DrugMovementsControllerTest < ActionController::TestCase
     xhr :get, :new, format: :js, exam_id: exam.id
     assert_response :success
 
-    assert_not_nil assigns :drug_movement
-    assert_not_nil assigns :exam_id
+    assert_not_nil a :drug_movement
+    assert_not_nil a :exam_id
 
-    assert assigns(:drug_movement).new_record?
-    assert_equal exam.id, assigns(:exam_id)
+    assert a(:drug_movement).new_record?
+    assert_equal exam.id, a(:exam_id)
   end  
 end
