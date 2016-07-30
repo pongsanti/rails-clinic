@@ -1,9 +1,9 @@
-<%= render partial: 'customer', locals: {customer: @customer} %>
+<%= render partial: 'customer', locals: {customer: @exam.customer} %>
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
 <div class="form-group">
-  <%= render partial: "navigation", locals: {active: "show"} %>
+  <%= render partial: "navigation", locals: {active: "show", customer: @exam.customer} %>
 </div>
 
 <%= render partial: "weight_info", locals: {exam: @exam} %>

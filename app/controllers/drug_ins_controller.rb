@@ -6,8 +6,6 @@ class DrugInsController < ApplicationController
   before_action :set_drug, only: [:index, :new]
   before_action :set_placefor, only: [:index]
 
-  # GET /drug_ins
-  # GET /drug_ins.json
   def index
     ransack_params = {for_drug: @drug}
     ransack_params = ransack_params.merge(params[:q]) if params[:q]
@@ -21,7 +19,6 @@ class DrugInsController < ApplicationController
   def show
   end
 
-  # GET /drug_ins/new
   def new
     @drug_in = DrugIn.new
   end
@@ -30,8 +27,6 @@ class DrugInsController < ApplicationController
   def edit
   end
 
-  # POST /drug_ins
-  # POST /drug_ins.json
   def create
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params)

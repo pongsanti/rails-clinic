@@ -5,10 +5,10 @@
     @active_class = @default_class + " active"
   %>
 
-  <%= link_to exams_path(customer_id: @customer.id), class: (active == 'index' ? @active_class : @default_class ), role: 'button' do %>
+  <%= link_to customer_exams_path(customer), class: (active == 'index' ? @active_class : @default_class ), role: 'button' do %>
     <span class="glyphicon glyphicon-list" aria-hidden="true"></span> <%= t 'exams.index.title' %>
   <% end %>
-  <%= link_to new_exam_path(customer_id: @customer.id), class: (active == 'new' ? @active_class : @default_class ), role: 'button' do %>
+  <%= link_to new_customer_exam_path(customer), class: (active == 'new' ? @active_class : @default_class ), role: 'button' do %>
     <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <%= t 'exams.new.title' %>
   <% end %>
 

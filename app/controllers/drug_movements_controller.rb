@@ -2,7 +2,7 @@ class DrugMovementsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_drugs, only: [:new]
-  before_action :set_placefor, only: [:new]
+  before_action :set_placefor, only: [:new, :create]
 
   def index
   end
@@ -19,9 +19,16 @@ class DrugMovementsController < ApplicationController
   end
 
   def create
-
-    #render plain: params.inspect
     @drug_movement = DrugMovement.new(drug_movement_params)
+
+    if params[:amount].blank?
+      flash.now[:alert] = "Amount is required."
+      set_drugs
+      @exam_id = params[:exam_id]
+      render :new
+      return
+    end
+
     #@drug_movement.exam = Exam.find params[:drug_movement][:exam_id]
     #@drug_movement.drug_in = DrugIn.find params[:drug_movement][:drug_in_id]
     #@drug_movement.note = params[:drug_movement][:note]

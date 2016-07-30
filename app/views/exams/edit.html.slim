@@ -1,15 +1,15 @@
-= render partial: "customer", locals: {customer: @customer}
+= render partial: "customer", locals: {customer: @exam.customer}
 h3
   = t ".title"
   small = t ".sub_text"
 
 hr
 
-.form-group = render partial: "navigation", locals: { active: "edit" }
+.form-group = render partial: "navigation", locals: { active: "edit", customer: @exam.customer }
 
 = render "global/alert", obj: @exam 
 
-= render partial: 'weight_form', locals: {customer: @customer, exam: @exam}
+= render partial: 'weight_form', locals: {customer: @exam.customer, exam: @exam, form_url: exam_path(@exam)}
 
 .row
   .col-sm-6

@@ -9,9 +9,11 @@
         span.glyphicon.glyphicon-remove
     .clearfix
   .panel-body
+    = render "layouts/flash"
     = form_for @drug_movement, html: {class: "form-horizontal"}, remote: true do |f|
       .form-group
         = f.hidden_field :exam_id, value: @exam_id
+        = hidden_field_tag "placefor", @holder
         .col-sm-1.text-right = f.label :drug_in_id, class: "control-label required-label"
         .col-sm-11 
           => collection_select(:drug, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
@@ -23,7 +25,7 @@
 
       .form-group
         .col-sm-1.text-right = label_tag 'amount', 'amount', class: "control-label required-label"
-        .col-sm-4 = text_field_tag "amount", nil, class: "form-control", required: true, number: true
+        .col-sm-4 = text_field_tag "amount", nil, class: "form-control", number: true
         .col-sm-1.text-right = f.label 'note', class: "control-label"
         .col-sm-4 = f.text_field :note, class: "form-control"
         .col-sm-2
