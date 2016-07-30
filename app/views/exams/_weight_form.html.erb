@@ -5,7 +5,7 @@
   </div>
   <div class="panel-body">
   <%= render partial: "flash", locals: {section: :weight_form} %>
-  <%= form_for exam, html: { class: "form-horizontal", id: "exam_weight_form" }, data: { anchor: :weight_form } do |f| %>
+  <%= form_for exam, url: form_url, html: { class: "form-horizontal", id: "exam_weight_form" }, data: { anchor: :weight_form } do |f| %>
     <div class="form-group">
       <%= hidden_field_tag 'section', :weight_form %>
       <%= f.label :weight, class: "col-sm-2 control-label" %>

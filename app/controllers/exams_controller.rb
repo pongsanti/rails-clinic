@@ -3,7 +3,6 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new, :create]
-  before_action :assign_customer_from_exam, only: [:show, :edit, :update]
   before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -98,10 +97,6 @@ class ExamsController < ApplicationController
 
     def set_exam
       @exam = Exam.find(params[:id])
-    end
-
-    def assign_customer_from_exam
-      @customer = @exam.customer
     end
 
     def set_customer

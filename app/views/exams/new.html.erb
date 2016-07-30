@@ -3,7 +3,7 @@
 <hr>
 
 <div class="form-group">
-  <%= render partial: "navigation", locals: {active: "new"} %>
+  <%= render partial: "navigation", locals: {active: "new", customer: @customer} %>
 </div>
 
 <% if @exam.errors.any? %>
@@ -20,4 +20,4 @@
   </div>
 <% end %>
 
-<%= render partial: 'weight_form', locals: {customer: @customer, exam: @exam} %>
+<%= render partial: 'weight_form', locals: {customer: @customer, exam: @exam, form_url: customer_exams_path(@customer) } %>

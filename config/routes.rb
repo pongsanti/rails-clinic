@@ -21,8 +21,9 @@ Rails.application.routes.draw do
 
   #resources :users
   #resources :sessions
-  resources :customers
-  resources :exams
+  resources :customers do
+    resources :exams, shallow: true
+  end
   resources :store_units
   resources :drugs do
     resources :drug_ins, shallow: true
