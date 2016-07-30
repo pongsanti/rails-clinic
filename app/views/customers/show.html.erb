@@ -4,7 +4,7 @@
 <hr>
 
 <div class="form-group">
-  <%= render partial: "exams/navigation", locals: {active: "none"} %>
+  <%= render partial: "exams/navigation", locals: {active: "none", customer: @customer} %>
 </div>
 
 <div class="panel panel-primary">
@@ -145,6 +145,6 @@
   </div>
 </div>
 
-<%= render partial: "exams/navigation", locals: {active: "show"} %>
+<%= render partial: "exams/navigation", locals: {active: "show", customer: @customer} %>
 <hr>
 <%= render partial: "global/form_button_back" %>
