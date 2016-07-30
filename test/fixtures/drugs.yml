@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyText
-  trade_name: MyText
+  name: AirX
+  trade_name: AirX
   effect: MyText
-  balance: 9.99
+  balance: 100
   drug_usage_id: 
 
 two:
-  name: MyText
-  trade_name: MyText
+  name: Paracet
+  trade_name: Paracet
   effect: MyText
-  balance: 9.99
+  balance: 0
   drug_usage_id: 

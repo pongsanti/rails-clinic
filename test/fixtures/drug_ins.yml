@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  amount: 1
-  expired_date: 2016-07-06
+  expired_date: 2017-07-06
   cost: 9.99
   sale_price_per_unit: 9.99
-  balance: 1
-  drug_id: 
+  balance: 50
+  drug_id: one
 
 two:
-  amount: 1
-  expired_date: 2016-07-06
+  expired_date: 2018-07-06
   cost: 9.99
   sale_price_per_unit: 9.99
-  balance: 1
-  drug_id: 
+  balance: 50
+  drug_id: one
