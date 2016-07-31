@@ -74,6 +74,22 @@ class CustomersControllerTest < ActionController::TestCase
 
     assert_equal @prefix, customer.prefix
     assert_equal "John", customer.name
+
+    assert_error_div false
+  end
+
+  test "should post create error" do
+    assert_no_difference "Customer.count" do
+      # prefix is missing
+      post "create", customer: {name: "John", surname: "Doe",
+        sex: "M", birthdate: "1988-05-05" }
+    end
+
+    assert_assigns :customer, :prefixes
+    assert_response :success
+    assert_template :new
+
+    assert_error_div true
   end
 
   test "should patch update" do
@@ -83,5 +99,24 @@ class CustomersControllerTest < ActionController::TestCase
     @customer.reload
     assert_redirected_to customer_path(@customer)
     assert_equal "Derek", @customer.name
+
+    assert_error_div false
   end
+
+  test "should patch update error" do
+    #name is empty
+    patch "update", id: @customer.id,
+      customer: {name: ""}
+
+    assert_assigns :customer, :prefixes
+    assert_response :success
+    assert_template :edit
+
+    assert_error_div true
+  end
+
+  private
+    def assert_error_div(display)
+      assert_select "div#error_explanation", display
+    end
 end
