@@ -24,7 +24,7 @@ hr
     tbody.rowlink data-link="row"
       - @drug_ins.each do |drug_in|
         tr
-          td =format_id drug_in.id
+          td =drugin_id drug_in.id
           td =drug_in.drug.name
           td =th_date_format drug_in.expired_date
           td =drug_in.cost

@@ -12,7 +12,7 @@ table.table.table-striped.table-hover
       tr
         td = dmm.id 
         td = dmm.drug_in.drug.name
-        td = format_id dmm.drug_in.id
+        td = drugin_id dmm.drug_in.id
         td = th_date_format dmm.drug_in.expired_date
         td = dmm.amount
         td.rowlink-skip

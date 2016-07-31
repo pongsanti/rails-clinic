@@ -29,6 +29,10 @@ module CustomersHelper
     masked
   end
 
+  def customer_id id
+    "CS" + ("%05d" % id)
+  end
+
   private
     def insert_dash_at(str, pos)
       str.insert pos, Customer::DASH_SEPARATOR
