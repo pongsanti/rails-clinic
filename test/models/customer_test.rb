@@ -2,55 +2,59 @@ require 'test_helper'
 
 class CustomerTest < ActiveSupport::TestCase
 
+  ERR_PREFIX = "errors.messages."
+  ERR_BLANK_KEY = ERR_PREFIX + "blank"
+  ERR_INCLUSION = ERR_PREFIX + "inclusion"
+
   def setup
     @customer = customers(:customer_david)
   end
 
   test "should not save without prefix" do
-    prefix_locale = I18n.t "activerecord.attributes.customer.prefix"
+    prefix = "activerecord.attributes.customer.prefix"
 
     @customer.prefix = nil
     assert_not @customer.save, "Saved the customer without prefix"
-    assert_equal 1, @customer.errors.count
-    assert @customer.errors.full_messages[0].include? prefix_locale
+    error_count 1
+    error_contains error_msg(prefix, ERR_BLANK_KEY)
   end
 
   test "should not save without sex" do
-    sex_locale = I18n.t "activerecord.attributes.customer.sex"
+    sex = "activerecord.attributes.customer.sex"
+    msg_blank = error_msg sex, ERR_BLANK_KEY
+    msg_inclusion = error_msg sex, ERR_INCLUSION
     
     @customer.sex = nil
     assert_not @customer.save, "Saved the customer without sex"
-    assert_equal 2, @customer.errors.count
-    @customer.errors.full_messages.each do |msg|
-      assert msg.include? sex_locale
-    end
+    error_count 2
+    error_contains(msg_blank, msg_inclusion)
   end
 
   test "should not save without name" do
-    name_locale = I18n.t "activerecord.attributes.customer.name"
+    name = "activerecord.attributes.customer.name"
 
     @customer.name = nil
     assert_not @customer.save, "Saved the customer without name"
-    assert_equal 1, @customer.errors.count
-    assert @customer.errors.full_messages[0].include? name_locale
+    error_count 1
+    error_contains error_msg(name, ERR_BLANK_KEY)
   end
 
   test "should not save without surname" do
-    surname_locale = I18n.t "activerecord.attributes.customer.surname"
+    surname = "activerecord.attributes.customer.surname"
 
     @customer.surname = nil
     assert_not @customer.save, "Saved the customer without surname"
-    assert 1 == @customer.errors.count
-    assert @customer.errors.full_messages[0].include? surname_locale
+    error_count 1
+    error_contains error_msg(surname, ERR_BLANK_KEY)
   end
 
   test "should not save without birthdate" do
-    birthdate_locale = I18n.t "activerecord.attributes.customer.birthdate"
+    birthdate = "activerecord.attributes.customer.birthdate"
 
     @customer.birthdate = nil
     assert_not @customer.save, "Saved the customer without birthdate"
-    assert 1 == @customer.errors.count
-    assert @customer.errors.full_messages[0].include? birthdate_locale
+    error_count 1
+    error_contains error_msg(birthdate, ERR_BLANK_KEY)
   end
 
   test "should have prefix" do
@@ -60,5 +64,26 @@ class CustomerTest < ActiveSupport::TestCase
   test "should have exams" do
     assert_equal 2, @customer.exams.count
   end
+
+  private
+    def error_count(count)
+      assert_equal count, @customer.errors.count
+    end
+
+    def error_contains(*msgs)
+      found = 0
+      msgs.each do |msg|
+        found = found + 1 if @customer.errors.full_messages.include? msg
+      end
+      assert_equal msgs.count, found
+    end
+
+    def t(key)
+      I18n.t key
+    end
+
+    def error_msg(attr_key, error_key)
+      "#{t(attr_key)} #{t(error_key)}"
+    end
 
 end
