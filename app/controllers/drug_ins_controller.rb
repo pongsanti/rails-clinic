@@ -31,11 +31,8 @@ class DrugInsController < ApplicationController
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params)
     
-    if params[:amount].blank?
-      flash.now[:alert] = "Amount is required."
-      render :new
-      return
-    end
+    @amount = Amount.new(amount: params[:amount])
+    render :new and return unless @amount.valid?
 
     create_drug_movement
     set_drug_in_balance
