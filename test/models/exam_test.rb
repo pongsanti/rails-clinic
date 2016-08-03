@@ -1,6 +1,8 @@
 require 'test_helper'
+require 'models/common'
 
 class ExamTest < ActiveSupport::TestCase
+  include Common
 
   def setup
     @exam = exams(:exam_one)
@@ -18,7 +20,7 @@ class ExamTest < ActiveSupport::TestCase
     @exam.weight = 1000
     assert_not @exam.save
     error_count 1
-    error_contains error_msg(weight, ERR_INVALID_KEY)
+    error_contains error_msg(weight, ERR_INVALID)
   end
 
   private

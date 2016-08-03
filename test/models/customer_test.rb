@@ -1,11 +1,8 @@
 require 'test_helper'
+require 'models/common'
 
 class CustomerTest < ActiveSupport::TestCase
-
-  ERR_PREFIX = "errors.messages."
-  ERR_BLANK_KEY = ERR_PREFIX + "blank"
-  ERR_INCLUSION = ERR_PREFIX + "inclusion"
-  ERR_INVALID = ERR_PREFIX + "invalid"
+  include Common
 
   def setup
     @customer = customers(:customer_david)
@@ -17,12 +14,12 @@ class CustomerTest < ActiveSupport::TestCase
     @customer.prefix = nil
     assert_not @customer.save, "Saved the customer without prefix"
     error_count 1
-    error_contains error_msg(prefix, ERR_BLANK_KEY)
+    error_contains error_msg(prefix, ERR_BLANK)
   end
 
   test "should not save without sex" do
     sex = "activerecord.attributes.customer.sex"
-    msg_blank = error_msg sex, ERR_BLANK_KEY
+    msg_blank = error_msg sex, ERR_BLANK
     msg_inclusion = error_msg sex, ERR_INCLUSION
     
     @customer.sex = nil
@@ -37,7 +34,7 @@ class CustomerTest < ActiveSupport::TestCase
     @customer.name = nil
     assert_not @customer.save, "Saved the customer without name"
     error_count 1
-    error_contains error_msg(name, ERR_BLANK_KEY)
+    error_contains error_msg(name, ERR_BLANK)
   end
 
   test "should not save without surname" do
@@ -46,7 +43,7 @@ class CustomerTest < ActiveSupport::TestCase
     @customer.surname = nil
     assert_not @customer.save, "Saved the customer without surname"
     error_count 1
-    error_contains error_msg(surname, ERR_BLANK_KEY)
+    error_contains error_msg(surname, ERR_BLANK)
   end
 
   test "should not save without birthdate" do
@@ -55,7 +52,7 @@ class CustomerTest < ActiveSupport::TestCase
     @customer.birthdate = nil
     assert_not @customer.save, "Saved the customer without birthdate"
     error_count 1
-    error_contains error_msg(birthdate, ERR_BLANK_KEY)
+    error_contains error_msg(birthdate, ERR_BLANK)
   end
 
   test "should not validate email if empty" do
