@@ -1,6 +1,6 @@
 class Exam < ActiveRecord::Base
 
-  belongs_to :customer
+  belongs_to :customer, inverse_of: :exams
   belongs_to :examiner, class_name: 'User'
 
   has_many :patient_diags

@@ -1,7 +1,12 @@
 require 'test_helper'
 
 class PrefixTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  setup do
+    @prefix = prefixes(:mr)
+  end
+
+  test "should have customers" do
+    assert @prefix.customers
+  end
 end
