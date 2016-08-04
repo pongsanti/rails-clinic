@@ -5,8 +5,8 @@
   .panel-heading
     .panel-title.pull-left = t("exams.drugs.drug_form.new_exam_drug")
     .panel-title.pull-right
-      a href="#" data-remote="true" data-disable-with="Loading..."
-        span.glyphicon.glyphicon-remove
+      a href="#" data-remote="true" data-disable-with="Loading..." data-remove=@holder
+        span.glyphicon.glyphicon-remove 
     .clearfix
   .panel-body
     = render "layouts/flash"
