@@ -1,0 +1,8 @@
+th:
+  activerecord:
+    models:
+      drug_movement: "เคลื่อนไหวยา"
+    attributes:
+      drug_movement:
+        id: "รหัสล็อต"
+        drug_in: "ล็อตยา"

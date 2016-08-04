@@ -23,15 +23,13 @@ class DrugMovementsController < ApplicationController
     @drug_movement_amount = DrugMovementAmount.new(amount: params[:amount])
     @drug_movement = DrugMovement.new(drug_movement_params)
 
-    unless @drug_movement_amount.valid?
+    unless @drug_movement.valid? and @drug_movement_amount.valid?
       set_drugs
+      @drug_movement.build_drug_in
       @exam_id = params[:exam_id]
       render :new and return
     end
 
-    @drug_movement.exam = Exam.find params[:drug_movement][:exam_id]
-    @drug_movement.drug_in = DrugIn.find params[:drug_movement][:drug_in_id]
-    @drug_movement.note = params[:drug_movement][:note]
     prev_bal = @drug_movement.drug_in.drug_movements.last.balance
     balance = prev_bal - BigDecimal.new(params[:amount])
 
