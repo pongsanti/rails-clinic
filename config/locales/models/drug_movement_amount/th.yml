@@ -5,3 +5,4 @@ th:
     attributes:
       drug_movement_amount:
         amount: "จำนวน (หน่วย)"
+        exam_id: "หลายเลขวินิจฉัย"

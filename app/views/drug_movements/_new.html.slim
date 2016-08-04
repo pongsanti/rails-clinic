@@ -14,7 +14,7 @@
     = render "global/alert", obj: @drug_movement_amount if @drug_movement_amount
     = form_for @drug_movement, html: {class: "form-horizontal"}, remote: true do |f|
       .form-group
-        = f.hidden_field :exam_id, value: @exam_id
+        = hidden_field :drug_movement_amount, :exam_id
         = hidden_field_tag :holder, @holder
         .col-sm-1.text-right = f.label :drug_in_id, class: "control-label required-label"
         .col-sm-11 
@@ -27,7 +27,7 @@
 
       .form-group
         .col-sm-1.text-right = label :drug_movement_amount, :amount, class: "control-label required-label"
-        .col-sm-4 = text_field_tag "amount", nil, class: "form-control", number: true
+        .col-sm-4 = text_field :drug_movement_amount, :amount, class: "form-control", number: true
         .col-sm-1.text-right = f.label 'note', class: "control-label"
         .col-sm-4 = f.text_field :note, class: "form-control"
         .col-sm-2

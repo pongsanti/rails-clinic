@@ -11,22 +11,19 @@ class DrugMovementsController < ApplicationController
   end
 
   def new
-    @drug_movement_amount = DrugMovementAmount.new
+    @drug_movement_amount = DrugMovementAmount.new(exam_id: params[:exam_id])
     @drug_movement = DrugMovement.new
-    @exam_id = params[:exam_id]
   end
 
   def edit
   end
 
   def create
-    @drug_movement_amount = DrugMovementAmount.new(amount: params[:amount])
+    @drug_movement_amount = DrugMovementAmount.new(drug_movement_amount_params)
     @drug_movement = DrugMovement.new(drug_movement_params)
 
-    unless @drug_movement.valid? and @drug_movement_amount.valid?
+    unless @drug_movement_amount.valid? and @drug_movement.valid?
       set_drugs
-      @drug_movement.build_drug_in
-      @exam_id = params[:exam_id]
       render :new and return
     end
 
@@ -53,6 +50,10 @@ class DrugMovementsController < ApplicationController
   end
 
   private
+    def drug_movement_amount_params
+      params.require(:drug_movement_amount).permit(:amount, :exam_id)
+    end
+
     def drug_movement_params
       params.require(:drug_movement).permit(:note, :exam_id, :drug_in_id)
     end
