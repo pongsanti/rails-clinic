@@ -2,7 +2,7 @@ class DrugMovementsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_drugs, only: [:new]
-  before_action :set_placefor, only: [:new, :create]
+  before_action :set_holder, only: [:new, :create]
 
   def index
   end
@@ -63,8 +63,8 @@ class DrugMovementsController < ApplicationController
       @drugs = Drug.drug_ins_exist
     end
 
-    def set_placefor
-      @holder = params[:placefor]
+    def set_holder
+      @holder = params[:holder]
     end
 
 end

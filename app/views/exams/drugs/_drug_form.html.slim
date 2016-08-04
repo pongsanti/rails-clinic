@@ -2,9 +2,9 @@
   .panel-heading
     .panel-title.pull-left = t(".title")
     .panel-title.pull-right
-      = link_to new_drug_movement_path(placefor: "new_exam_drug", exam_id: @exam.id), remote: true, data: {"remote" => true, "disable-with" => "Loading..."}, class: "btn btn-info btn-sm"  do
+      = link_to new_drug_movement_path(holder: "new_exam_drug", exam_id: @exam.id), remote: true, data: {"remote" => true, "disable-with" => "Loading..."}, class: "btn btn-info btn-sm"  do
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
-    div data-placefor="new_exam_drug"
+    div data-holder="new_exam_drug"
     = render partial: "exams/drugs/drugs", locals: {exam: @exam }

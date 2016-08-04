@@ -1,4 +1,4 @@
-parent_div = $("*[data-placefor='<%= @holder%>']")
+parent_div = $("*[data-holder='<%= @holder%>']")
 html_form = '<%= j(render :partial => "new", locals: {drugs: @drugs, exam_id: @exam_id}) %>'
 parent_div.html html_form
 

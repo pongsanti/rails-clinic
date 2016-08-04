@@ -15,14 +15,14 @@
     = form_for @drug_movement, html: {class: "form-horizontal"}, remote: true do |f|
       .form-group
         = f.hidden_field :exam_id, value: @exam_id
-        = hidden_field_tag "placefor", @holder
+        = hidden_field_tag :holder, @holder
         .col-sm-1.text-right = f.label :drug_in_id, class: "control-label required-label"
         .col-sm-11 
           => collection_select(:drug, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
           title: "Please select drug...",
           data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
           id: select_id )
-          span data-placefor=placefor
+          span data-holder=placefor
             = render "drug_ins/index_select", drug_ins: nil
 
       .form-group
@@ -40,7 +40,7 @@ coffee:
   select = $ "#exam_drug_select"
 
   select.change ()->
-    placefor = 'index_select'
+    holder = 'index_select'
     selected_val = select.val()
-    select.data("url", "/drugs/#{selected_val}/drug_ins?placefor=#{placefor}")
+    select.data("url", "/drugs/#{selected_val}/drug_ins?holder=#{holder}")
     true
