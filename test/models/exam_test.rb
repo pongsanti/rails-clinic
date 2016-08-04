@@ -10,9 +10,7 @@ class ExamTest < ActiveSupport::TestCase
   end
 
   test "should not validate weight if empty" do
-    @exam.weight = nil
-    assert @exam.save
-    error_count 0
+    should_not_validate_if_empty :weight
   end
 
   test "should validate weight if present" do
@@ -25,9 +23,7 @@ class ExamTest < ActiveSupport::TestCase
   end
 
   test "should not validate height if empty" do
-    @exam.height = nil
-    assert @exam.save
-    error_count 0
+    should_not_validate_if_empty :height
   end
 
   test "should validate height if present" do
@@ -40,9 +36,7 @@ class ExamTest < ActiveSupport::TestCase
   end
 
   test "should not validate pulse if empty" do
-    @exam.pulse = nil
-    assert @exam.save
-    error_count 0
+    should_not_validate_if_empty :pulse
   end
 
   test "should validate pulse if present" do
@@ -55,9 +49,7 @@ class ExamTest < ActiveSupport::TestCase
   end
 
   test "should not validate bp_systolic if empty" do
-    @exam.bp_systolic = nil
-    assert @exam.save
-    error_count 0
+    should_not_validate_if_empty :bp_systolic
   end
 
   test "should validate bp_systolic if present" do
@@ -70,9 +62,7 @@ class ExamTest < ActiveSupport::TestCase
   end
 
   test "should not validate bp_diastolic if empty" do
-    @exam.bp_diastolic = nil
-    assert @exam.save
-    error_count 0
+    should_not_validate_if_empty :bp_diastolic
   end
 
   test "should validate bp_diastolic if present" do

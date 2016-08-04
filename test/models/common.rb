@@ -24,5 +24,11 @@ module Common
   def error_msg(attr_key, error_key)
     "#{t(attr_key)} #{t(error_key)}"
   end
+
+  def should_not_validate_if_empty(attr)
+    @test_target[attr] = nil
+    assert @test_target.save
+    error_count 0
+  end
   
 end

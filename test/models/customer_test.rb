@@ -57,9 +57,7 @@ class CustomerTest < ActiveSupport::TestCase
   end
 
   test "should not validate email if empty" do
-    @customer.email = nil
-    assert @customer.save, "Saved the customer without birthdate"
-    error_count 0
+    should_not_validate_if_empty :email
   end
 
   test "should validate email if present" do
