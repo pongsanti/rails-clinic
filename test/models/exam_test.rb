@@ -83,6 +83,28 @@ class ExamTest < ActiveSupport::TestCase
     error_contains error_msg(bp_diastolic, ERR_INVALID)
   end
 
+  test "should belong to a customer" do
+    assert @exam.customer
+  end
+
+  test "should belong to an examiner" do
+    assert @exam.examiner
+  end
+
+  test "should not belong to a drug" do
+    assert_raise NoMethodError do
+      @exam.drug
+    end
+  end
+
+  test "should have patient_diags" do
+    assert @exam.patient_diags
+  end
+
+  test "should have diags" do
+    assert @exam.diags
+  end
+
   private
     def error_count(count)
       assert_equal count, @exam.errors.count

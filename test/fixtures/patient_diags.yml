@@ -1,0 +1,11 @@
+one:
+  order: 1
+  note:
+  exam: exam_one
+  diag: one
+
+two:
+  order: 2
+  note:
+  exam: exam_one
+  diag: two
