@@ -106,4 +106,15 @@ class ExamTest < ActiveSupport::TestCase
     assert @exam.diags
   end
 
+  test "should not calculate bmi" do
+    @exam.weight = nil
+    assert_equal "N/A", @exam.bmi
+  end
+
+  test "should calculate bmi" do
+    @exam.weight = 75
+    @exam.height = 175
+    assert_in_delta 24.5, @exam.bmi, 0
+  end
+
 end

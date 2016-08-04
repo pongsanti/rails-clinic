@@ -34,7 +34,7 @@ class Exam < ActiveRecord::Base
     result = "N/A"
     if weight.present? && height.present?
       result = weight / ((height / 100) ** 2)
-      result = result.round(2)
+      result = result.round(1)
     end
     result
   end
