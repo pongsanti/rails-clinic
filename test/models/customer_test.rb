@@ -6,6 +6,7 @@ class CustomerTest < ActiveSupport::TestCase
 
   def setup
     @customer = customers(:customer_david)
+    @test_target = @customer
   end
 
   test "should not save without prefix" do
@@ -98,26 +99,5 @@ class CustomerTest < ActiveSupport::TestCase
   test "should have exams" do
     assert_equal 2, @customer.exams.count
   end
-
-  private
-    def error_count(count)
-      assert_equal count, @customer.errors.count
-    end
-
-    def error_contains(*msgs)
-      found = 0
-      msgs.each do |msg|
-        found = found + 1 if @customer.errors.full_messages.include? msg
-      end
-      assert_equal msgs.count, found
-    end
-
-    def t(key)
-      I18n.t key
-    end
-
-    def error_msg(attr_key, error_key)
-      "#{t(attr_key)} #{t(error_key)}"
-    end
 
 end

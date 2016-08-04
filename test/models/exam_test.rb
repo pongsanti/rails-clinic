@@ -6,6 +6,7 @@ class ExamTest < ActiveSupport::TestCase
 
   def setup
     @exam = exams(:exam_one)
+    @test_target = @exam
   end
 
   test "should not validate weight if empty" do
@@ -104,26 +105,5 @@ class ExamTest < ActiveSupport::TestCase
   test "should have diags" do
     assert @exam.diags
   end
-
-  private
-    def error_count(count)
-      assert_equal count, @exam.errors.count
-    end
-
-    def error_contains(*msgs)
-      found = 0
-      msgs.each do |msg|
-        found = found + 1 if @exam.errors.full_messages.include? msg
-      end
-      assert_equal msgs.count, found
-    end
-
-    def t(key)
-      I18n.t key
-    end
-
-    def error_msg(attr_key, error_key)
-      "#{t(attr_key)} #{t(error_key)}"
-    end
 
 end
