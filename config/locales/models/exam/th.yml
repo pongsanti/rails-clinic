@@ -7,6 +7,8 @@ th:
         weight: "น้ำหนัก"
         height: "ส่วนสูง"
         pulse: "ชีพจร"
+        bp_systolic: "ความดันโลหิต systolic"
+        bp_diastolic: "ความดันโลหิต diastolic"
         drug_allergy: "แพ้ยา"
         note: "ข้อมูลถึงแพทย์"
         exam_pi: "PI"
