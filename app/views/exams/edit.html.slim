@@ -1,4 +1,5 @@
-= render partial: "customer", locals: {customer: @exam.customer}
+- @customer = @exam.customer
+= render partial: "customer", locals: {customer: @customer}
 h3
   = t ".title"
   small = t ".sub_text"
