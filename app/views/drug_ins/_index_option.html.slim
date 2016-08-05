@@ -4,4 +4,4 @@ span
   strong => th_date_format drug_in.expired_date
   | Balance: 
   strong => drug_in.balance
-  = drug_in.drug.store_unit.title
+  = drug_in.drug.store_unit.title if drug_in.drug.store_unit
