@@ -7,7 +7,7 @@ class Exam < ActiveRecord::Base
   has_many :diags, through: :patient_diags
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :all_blank
 
-  has_many :drug_movements
+  has_many :drug_movements, inverse_of: :exam
 
   validates :weight, :height, :pulse, format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
   validates :bp_systolic, :bp_diastolic, format: { with: /\A\d{1,3}\z/ }, allow_blank: true

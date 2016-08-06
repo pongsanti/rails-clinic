@@ -15,6 +15,7 @@
       .form-group
         = hidden_field :drug_movement_amount, :exam_id
         = hidden_field_tag :holder, @holder
+        = hidden_field_tag :list_holder, @list_holder
         .col-sm-1.text-right = f.label :drug_in_id, class: "control-label required-label"
         .col-sm-11 
           => collection_select(:drug, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",

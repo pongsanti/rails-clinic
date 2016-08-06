@@ -3,6 +3,7 @@ class DrugMovementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_drugs, only: [:new]
   before_action :set_holder, only: [:new, :create]
+  before_action :set_list_holder, only: [:new, :create]
 
   def index
   end
@@ -43,7 +44,8 @@ class DrugMovementsController < ApplicationController
       @drug_movement.drug_in.save
       @drug_movement.drug_in.drug.recal_balance
     end
-    
+
+    set_exam
   end
 
   def update
@@ -67,6 +69,14 @@ class DrugMovementsController < ApplicationController
 
     def set_holder
       @holder = params[:holder]
+    end
+
+    def set_list_holder
+      @list_holder = params[:list_holder]
+    end
+
+    def set_exam
+      @exam = @drug_movement.exam
     end
 
 end
