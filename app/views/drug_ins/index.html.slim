@@ -17,9 +17,9 @@ hr
         th =sort_link @q, :id, "#"
         th =sort_link @q, :drug_name
         th =sort_link @q, :expired_date
-        th =sort_link @q, :cost
-        th =sort_link @q, :sale_price_per_unit
-        th =sort_link @q, :balance
+        th.text-righth =sort_link @q, :cost
+        th.text-right =sort_link @q, :sale_price_per_unit
+        th.text-right =sort_link @q, :balance
         th
     tbody.rowlink data-link="row"
       - @drug_ins.each do |drug_in|
@@ -27,10 +27,10 @@ hr
           td =drugin_id drug_in.id
           td =drug_in.drug.name
           td =th_date_format drug_in.expired_date
-          td =drug_in.cost
-          td =drug_in.sale_price_per_unit
-          td =drug_in.balance
-          td.rowlink-skip
+          td.text-right =drug_in.cost
+          td.text-right =drug_in.sale_price_per_unit
+          td.text-right =drug_in.balance
+          td.text-right.rowlink-skip
             .btn-group
               = link_to drug_in_path(drug_in), class: 'btn btn-default btn-sm', role: 'button' do
                 span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom" aria-hidden="true"
