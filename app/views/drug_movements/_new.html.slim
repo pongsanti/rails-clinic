@@ -1,5 +1,4 @@
 - select_id = "exam_drug_select"
-- placefor = "index_select"
 
 .panel.panel-info
   .panel-heading
@@ -21,8 +20,8 @@
           => collection_select(:drug, :drug_id, drugs, :id, :name, {}, class: "form-control selectpicker",
           title: "Please select drug...",
           data: { 'live-search' => true, "size" => 10, "width" => "auto", "remote" => true },
-          id: select_id )
-          span data-holder=placefor
+          id: select_id)
+          span data-holder="index_select"
             = render "drug_ins/index_select", drug_ins: nil
 
       .form-group
@@ -40,7 +39,7 @@ coffee:
   select = $ "#exam_drug_select"
 
   select.change ()->
-    holder = 'index_select'
+    holder = "index_select"
     selected_val = select.val()
     select.data("url", "/drugs/#{selected_val}/drug_ins?holder=#{holder}")
     true
