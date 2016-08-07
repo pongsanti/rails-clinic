@@ -60,7 +60,7 @@ class DrugMovementsController < ApplicationController
     end
 
     def drug_movement_params
-      params.require(:drug_movement).permit(:note, :exam_id, :drug_in_id)
+      params.require(:drug_movement).permit(:note, :drug_in_id)
     end
 
     def set_drugs
