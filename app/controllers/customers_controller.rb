@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    authorize @customer
     respond_to do |format|
       format.html
       format.pdf do
