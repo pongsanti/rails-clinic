@@ -18,5 +18,5 @@ table.table.table-striped.table-hover
         td.text-right.rowlink-skip
           a href="#" data-remote="true" data-disable-with='<span class="glyphicon glyphicon-time"></span>'
             span.glyphicon.glyphicon-edit
-          =link_to drug_movement_path(dmm), remote: true, method: :delete, data: {"disable-with" => '<span class="glyphicon glyphicon-time"></span>', "params" => "list_holder=list_new_exam_drug", "confirm" => "Are you sure you want to destroy drug #{dmm.id}?"} do
+          =link_to drug_movement_path(dmm), remote: true, method: :delete, data: {"disable-with" => '<span class="glyphicon glyphicon-time"></span>', "params" => "holder=new_exam_drug&list_holder=list_new_exam_drug", "confirm" => "Are you sure you want to destroy drug #{dmm.id}?"} do
             span.glyphicon.glyphicon-trash

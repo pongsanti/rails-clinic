@@ -2,7 +2,7 @@ class DrugMovementsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_drugs, only: [:new]
-  before_action :set_holder, only: [:new, :create]
+  before_action :set_holder, only: [:new, :create, :destroy]
   before_action :set_list_holder, only: [:new, :create, :destroy]
   before_action :set_drug_movement, only: [:destroy]
 
