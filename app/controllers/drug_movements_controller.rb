@@ -3,7 +3,8 @@ class DrugMovementsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_drugs, only: [:new]
   before_action :set_holder, only: [:new, :create]
-  before_action :set_list_holder, only: [:new, :create]
+  before_action :set_list_holder, only: [:new, :create, :destroy]
+  before_action :set_drug_movement, only: [:destroy]
 
   def index
   end
@@ -52,6 +53,18 @@ class DrugMovementsController < ApplicationController
   end
 
   def destroy
+    drug_in = @drug_movement.drug_in
+    @drug_movement.transaction do
+      # drug_in balance
+      drug_in.balance = @drug_movement.prev_bal  
+      drug_in.save
+      # drug balance
+      drug = Drug.find(drug_in.drug.id)
+      drug.recal_balance
+      # destroy movement
+      @drug_movement.destroy
+    end
+    set_exam
   end
 
   private
@@ -61,6 +74,10 @@ class DrugMovementsController < ApplicationController
 
     def drug_movement_params
       params.require(:drug_movement).permit(:note, :drug_in_id)
+    end
+
+    def set_drug_movement
+      @drug_movement = DrugMovement.find(params[:id])
     end
 
     def set_drugs
