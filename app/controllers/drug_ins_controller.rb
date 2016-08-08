@@ -4,7 +4,7 @@ class DrugInsController < ApplicationController
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
   before_action :set_drug_from_drug_in, only: [:show, :edit]
   before_action :set_drug, only: [:index, :new]
-  before_action :set_placefor, only: [:index]
+  before_action :set_holder, only: [:index]
 
   def index
     ransack_params = {for_drug: @drug}
@@ -31,11 +31,8 @@ class DrugInsController < ApplicationController
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params)
     
-    if params[:amount].blank?
-      flash.now[:alert] = "Amount is required."
-      render :new
-      return
-    end
+    @amount = Amount.new(amount: params[:amount])
+    render :new and return unless @amount.valid?
 
     create_drug_movement
     set_drug_in_balance
@@ -104,7 +101,7 @@ class DrugInsController < ApplicationController
       @drug_in.balance = params[:amount]
     end
 
-    def set_placefor
-      @placefor = params[:placefor]
+    def set_holder
+      @holder = params[:holder]
     end
 end

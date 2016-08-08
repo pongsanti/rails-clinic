@@ -38,6 +38,8 @@ gem 'handlebars_assets', '~> 0.23.0'
 
 gem 'slim', '~> 3.0.7'
 
+gem 'pundit', '~> 1.1.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

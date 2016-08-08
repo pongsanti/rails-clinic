@@ -4,12 +4,12 @@ one:
   name: AirX
   trade_name: AirX
   effect: MyText
-  balance: 100
-  drug_usage_id: 
+  balance: 150
+  drug_usage: 
 
 two:
   name: Paracet
   trade_name: Paracet
   effect: MyText
   balance: 0
-  drug_usage_id: 
+  drug_usage: 

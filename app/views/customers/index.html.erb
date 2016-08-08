@@ -42,7 +42,7 @@
     <tbody data-link="row" class="rowlink">
       <% @customers.each do |customer| %> 
       <tr>
-        <td><%= customer.id %></td>
+        <td><%= customer_id customer.id %></td>
         <td><%= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer) %></td>
         <td><%= customer.surname %></td>
         <td><%= t('customers.show.' + customer.sex) %></td>

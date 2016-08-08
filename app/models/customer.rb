@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
   paginates_per 10
 
 	belongs_to :prefix
-  has_many :exams
+  has_many :exams, inverse_of: :customer
 
 	validates :prefix, presence: true
   validates :sex, presence: true, inclusion: { in: %w(M F) }

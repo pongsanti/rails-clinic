@@ -5,11 +5,11 @@ one:
   cost: 9.99
   sale_price_per_unit: 9.99
   balance: 50
-  drug_id: one
+  drug: one
 
 two:
   expired_date: 2018-07-06
   cost: 9.99
   sale_price_per_unit: 9.99
-  balance: 50
-  drug_id: one
+  balance: 100
+  drug: one

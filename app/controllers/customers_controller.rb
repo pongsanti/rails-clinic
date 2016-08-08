@@ -1,6 +1,8 @@
 class CustomersController < ApplicationController
   
   before_action :authenticate_user!
+  before_action :set_customer, only: [:show, :edit, :update]
+  before_action :set_prefixes, only: [:new, :edit]
 
   def index
     @q = Customer.ransack(params[:q])
@@ -8,7 +10,6 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -21,12 +22,9 @@ class CustomersController < ApplicationController
 
   def new
   	@customer = Customer.new
-    get_all_prefixes
   end
 
   def edit
-    @customer = Customer.find(params[:id])
-    get_all_prefixes
   end
 
   def create
@@ -36,18 +34,16 @@ class CustomersController < ApplicationController
   	if @customer.save
       redirect_to customer_url(@customer)
     else
-      get_all_prefixes
+      set_prefixes
       render 'new'
     end
   end
 
   def update
-    @customer = Customer.find(params[:id])
- 
     if @customer.update(customer_params)
       redirect_to @customer
     else
-      get_all_prefixes
+      set_prefixes
       render 'edit'
     end    
   end
@@ -65,7 +61,11 @@ class CustomersController < ApplicationController
   			:home_phone_no, :tel_no)
   	end
 
-    def get_all_prefixes
+    def set_customer
+      @customer = Customer.find(params[:id])
+    end
+
+    def set_prefixes
       @prefixes = Prefix.all
     end
 

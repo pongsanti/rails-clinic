@@ -10,4 +10,10 @@ class ActiveSupport::TestCase
   def a(key)
     assigns(key)
   end
+
+  def assert_assigns(*symbols)
+    symbols.each do |obj|
+      assert_not_nil a(obj)
+    end
+  end
 end

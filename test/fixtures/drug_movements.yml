@@ -4,12 +4,12 @@ one:
   balance: 50.0
   prev_bal: 0
   note: MyString
-  drug_in_id: one
-  exam_id: 
+  drug_in: one
+  exam: 
 
 two:
-  balance: 50.0
+  balance: 100.0
   prev_bal: 0
   note: MyString
-  drug_in_id: one
-  exam_id:
+  drug_in: two
+  exam:

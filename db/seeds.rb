@@ -12,3 +12,8 @@ Prefix.create(name: 'นางสาว')
 Prefix.create(name: 'นาง')
 Prefix.create(name: 'เด็กชาย')
 Prefix.create(name: 'เด็กหญิง')
+
+Diag.create([
+  {name: "Enteric  Fever", description: "Enteric  Fever"},
+  {name: "Shigellosis", description: "Shigellosis"},
+  {name: "Bacterial enteritis", description: "Bacterial enteritis"}])
