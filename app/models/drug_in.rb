@@ -1,4 +1,7 @@
 class DrugIn < ActiveRecord::Base
+
+  ID_PREFIX = "LT"
+
   belongs_to :drug
   has_many :drug_movements
 

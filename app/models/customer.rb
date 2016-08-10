@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
   
+  ID_PREFIX = "CS"
+
   ID_CARD_NO_LENGTH = 13
   TEL_NO_LENGTH = 10
   HOME_PHONE_NO_LENGTH = 9

@@ -17,7 +17,7 @@ hr
     tbody.rowlink data-link="row"
       - @exams.each do |exam|
         tr
-          td = link_to exam.id, exam_path(exam)
+          td = link_to format_id(exam.id, exam), exam_path(exam)
           td = "#{th_date_time_format exam.created_at} (#{time_ago_in_words exam.created_at })"
           td.rowlink-skip
             .btn-group
