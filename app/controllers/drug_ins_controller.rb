@@ -34,8 +34,7 @@ class DrugInsController < ApplicationController
     @amount = Amount.new(amount: params[:amount])
     render :new and return unless @amount.valid?
 
-    create_drug_movement
-    set_drug_in_balance
+    @drug_in.create_movement_for_new_drug_in @amount.amount
 
     respond_to do |format|
       if @drug_in.save
@@ -91,14 +90,6 @@ class DrugInsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_in_params
       params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit, :drug_id)
-    end
-
-    def create_drug_movement
-      @drug_in.drug_movements.build({balance: params[:amount], prev_bal: 0})
-    end
-
-    def set_drug_in_balance
-      @drug_in.balance = params[:amount]
     end
 
     def set_holder

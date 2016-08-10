@@ -19,4 +19,15 @@ class DrugIn < ActiveRecord::Base
     end
   end
 
+  def create_movement_for_new_drug_in(amount)
+    self.drug_movements.build({balance: amount, prev_bal: 0})
+    self.balance = amount
+  end
+
+  def create_movement_for_drug_out(amount, exam_id = nil)
+    latest_bal = self.drug_movements.last.balance
+    balance = latest_bal - BigDecimal.new(amount)
+    self.drug_movements.build({balance: balance, prev_bal: latest_bal, exam_id: exam_id})
+    self.balance = balance
+  end
 end
