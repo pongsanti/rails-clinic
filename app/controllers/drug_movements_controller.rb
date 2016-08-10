@@ -27,18 +27,12 @@ class DrugMovementsController < ApplicationController
       render :new and return
     end
 
-    prev_bal = @drug_movement.drug_in.drug_movements.last.balance
-    balance = prev_bal - BigDecimal.new(@drug_movement.amount)
+    drug_in = @drug_movement.drug_in
+    drug_in.create_movement_for_drug_out(@drug_movement)
 
-    @drug_movement.prev_bal = prev_bal
-    @drug_movement.balance = balance
-
-    @drug_movement.drug_in.balance = balance
-
-    @drug_movement.transaction do 
-      @drug_movement.save
-      @drug_movement.drug_in.save
-      @drug_movement.drug_in.drug.recal_balance
+    drug_in.transaction do
+      drug_in.save
+      drug_in.drug.recal_balance
     end
 
     set_exam

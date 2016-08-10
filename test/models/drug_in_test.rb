@@ -31,7 +31,9 @@ class DrugInTest < ActiveSupport::TestCase
     amount = 5
     dmm_count = @drug_in.drug_movements.count
 
-    @drug_in.create_movement_for_drug_out(amount, @exam.id)
+    drug_movement = DrugMovement.new({amount: amount, drug_in_id: @drug_in.id, exam_id: @exam.id})
+    @drug_in.create_movement_for_drug_out(drug_movement)
+    #drug_movement.save
     @drug_in.save
 
     assert_equal dmm_count + 1, @drug_in.drug_movements.count
@@ -42,4 +44,5 @@ class DrugInTest < ActiveSupport::TestCase
     assert_equal latest_bal - amount, created.balance
     assert_equal @exam, created.exam
   end
+
 end
