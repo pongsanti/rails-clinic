@@ -2,7 +2,7 @@
   .panel-heading
     .panel-title.pull-left = t(".title")
     .panel-title.pull-right
-      = link_to new_drug_movement_path(holder: "new_exam_drug", list_holder: "list_new_exam_drug", exam_id: @exam.id), remote: true, data: {"remote" => true, "disable-with" => "Loading..."}, class: "btn btn-info btn-sm"  do
+      = link_to new_drug_movement_path(holder: "new_exam_drug", list_holder: "list_new_exam_drug", "drug_movement[exam_id]" => @exam.id), remote: true, data: {"disable-with" => "Loading..."}, class: "btn btn-info btn-sm"  do
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
