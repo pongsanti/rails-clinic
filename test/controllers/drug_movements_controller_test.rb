@@ -29,22 +29,22 @@ class DrugMovementsControllerTest < ActionController::TestCase
 
   test "should get new" do
     assert_raises ActionView::MissingTemplate do
-      get :new
+      get :new, drug_movement: { note: "" }
     end
   end
 
   test "should xhr get new" do
 
-    xhr :get, :new, format: :js, exam_id: @exam.id, holder: @holder, list_holder: @list_holder
+    xhr :get, :new, format: :js, holder: @holder, list_holder: @list_holder,
+      drug_movement: {exam_id: @exam.id}
     assert_response :success
 
-    assert_not_nil a :drug_movement_amount
     assert_not_nil a :drug_movement
     assert_not_nil a :holder
     assert_not_nil a :list_holder
 
     assert a(:drug_movement).new_record?
-    assert_equal @exam.id, a(:drug_movement_amount).exam_id
+    assert_equal @exam.id, a(:drug_movement).exam_id
     assert_equal @holder, a(:holder)
     assert_equal @list_holder, a(:list_holder)
   end
@@ -56,8 +56,7 @@ class DrugMovementsControllerTest < ActionController::TestCase
     amount = 5
 
     xhr :post, :create, format: :js, holder: @holder, list_holder: @list_holder,
-      drug_movement_amount: {exam_id: @exam.id, amount: amount},
-      drug_movement: {drug_in_id: @drug_in.id , note: "note"}
+      drug_movement: {exam_id: @exam.id, amount: amount, drug_in_id: @drug_in.id , note: "note"}
     assert_response :success
 
     @drug_in.reload

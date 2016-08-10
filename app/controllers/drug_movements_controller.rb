@@ -13,37 +13,26 @@ class DrugMovementsController < ApplicationController
   end
 
   def new
-    @drug_movement_amount = DrugMovementAmount.new(exam_id: params[:exam_id])
-    @drug_movement = DrugMovement.new
+    @drug_movement = DrugMovement.new(drug_movement_params)
   end
 
   def edit
   end
 
   def create
-    @drug_movement_amount = DrugMovementAmount.new(drug_movement_amount_params)
     @drug_movement = DrugMovement.new(drug_movement_params)
 
-    unless @drug_movement_amount.valid? and @drug_movement.valid?
+    unless @drug_movement.valid?
       set_drugs
       render :new and return
     end
 
-    @drug_movement.exam_id = @drug_movement_amount.exam_id
+    drug_in = @drug_movement.drug_in
+    drug_in.create_movement_for_drug_out(@drug_movement)
 
-    prev_bal = @drug_movement.drug_in.drug_movements.last.balance
-    balance = prev_bal - BigDecimal.new(@drug_movement_amount.amount)
-
-    @drug_movement.prev_bal = prev_bal
-    @drug_movement.balance = balance
-
-    @drug_movement.drug_in.balance = balance
-
-
-    @drug_movement.transaction do 
-      @drug_movement.save
-      @drug_movement.drug_in.save
-      @drug_movement.drug_in.drug.recal_balance
+    drug_in.transaction do
+      drug_in.save
+      drug_in.drug.recal_balance
     end
 
     set_exam
@@ -68,12 +57,8 @@ class DrugMovementsController < ApplicationController
   end
 
   private
-    def drug_movement_amount_params
-      params.require(:drug_movement_amount).permit(:amount, :exam_id)
-    end
-
     def drug_movement_params
-      params.require(:drug_movement).permit(:note, :drug_in_id)
+      params.require(:drug_movement).permit(:note, :drug_in_id, :exam_id, :amount)
     end
 
     def set_drug_movement

@@ -1,5 +1,7 @@
 class Exam < ActiveRecord::Base
 
+  ID_PREFIX = "EX"
+
   belongs_to :customer, inverse_of: :exams
   belongs_to :examiner, class_name: 'User'
 

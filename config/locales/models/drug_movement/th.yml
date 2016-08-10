@@ -6,3 +6,4 @@ th:
       drug_movement:
         id: "รหัสล็อต"
         drug_in: "ล็อตยา"
+        amount: "จำนวน"

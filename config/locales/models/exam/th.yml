@@ -4,6 +4,7 @@ th:
       exam: "ยาและเวชภัณฑ์"
     attributes:
       exam:
+        id: "รหัสวินิจฉัย"
         weight: "น้ำหนัก"
         height: "ส่วนสูง"
         pulse: "ชีพจร"

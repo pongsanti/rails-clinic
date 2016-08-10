@@ -1,8 +1,0 @@
-th:
-  activemodel:
-    models:
-      drug_movement_amount: "จำนวน (หน่วย)"
-    attributes:
-      drug_movement_amount:
-        amount: "จำนวน (หน่วย)"
-        exam_id: "หลายเลขวินิจฉัย"

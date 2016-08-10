@@ -35,7 +35,15 @@ DOC
     end
   end
 
+  def format_id id, obj
+    id_prefix(obj.class) + ("%05d" % id)
+  end
+
   private
+    def id_prefix claz
+      claz.const_get(:ID_PREFIX) || ""
+    end
+
     def year(age_in_days)
       age_in_days / 365
     end

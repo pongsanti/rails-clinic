@@ -14,16 +14,16 @@ class DrugInsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    @placefor = "pf"
+    @holder = "holder"
 
-    get :index, drug_id: @drug.id, placefor: @placefor
+    get :index, drug_id: @drug.id, holder: @holder
     assert_index
   end
 
   test "should get xhr index" do
-    @placefor = "pf"
+    @holder = "holder"
 
-    xhr :get, :index, drug_id: @drug.id, placefor: @placefor
+    xhr :get, :index, drug_id: @drug.id, holder: @holder
     assert_index
   end
 
@@ -63,12 +63,12 @@ class DrugInsControllerTest < ActionController::TestCase
     def assert_index
       assert_response :success
       assert_not_nil a(:drug)
-      assert_not_nil a(:placefor)
+      assert_not_nil a(:holder)
       assert_not_nil a(:q)
       assert_not_nil a(:drug_ins)
 
 
-      assert_equal @placefor, a(:placefor)
+      assert_equal @holder, a(:holder)
       assert_equal @drug, a(:drug)
     end 
 

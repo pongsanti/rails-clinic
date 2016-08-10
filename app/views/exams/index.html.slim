@@ -1,0 +1,33 @@
+= render partial: 'customer', locals: {customer: @customer}
+
+h3= t '.title'
+  small= t '.sub_text'
+hr
+
+.form-group
+  = render partial: "navigation", locals: {active: "index", customer: @customer}
+
+.table-responsive
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th = sort_link @q, :id
+        th = sort_link @q, :created_at
+        th
+    tbody.rowlink data-link="row"
+      - @exams.each do |exam|
+        tr
+          td = link_to format_id(exam.id, exam), exam_path(exam)
+          td = "#{th_date_time_format exam.created_at} (#{time_ago_in_words exam.created_at })"
+          td.rowlink-skip
+            .btn-group
+              = link_to exam_path(exam), class: 'btn btn-default btn-sm', role: 'button' do
+                span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title=t(".show_exam") data-placement="right" aria-hidden="true"
+              = link_to edit_exam_path(exam), class: 'btn btn-default btn-sm', role: 'button' do
+                span class="glyphicon glyphicon-edit" data-toggle="tooltip" title=t(".edit_exam") data-placement="right" aria-hidden="true"
+              = link_to qs_path(exam_id: exam.id), method: :post, class: 'btn btn-default btn-sm', role: 'button' do
+                span class="glyphicon glyphicon-hourglass" data-toggle="tooltip" title=t(".add_to_q") data-placement="right" aria-hidden="true"
+
+= paginate @exams
+div
+  = page_entries_info @exams, entry_name: t('exams.index.title')
