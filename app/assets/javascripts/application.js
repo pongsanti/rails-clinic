@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require handlebars.runtime
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree ./templates
 //= require_directory .
