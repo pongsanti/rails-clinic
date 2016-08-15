@@ -11,6 +11,12 @@ class DrugsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:drugs)
   end
 
+  test "should get index json" do
+    get :index, format: :json
+    assert_response :success
+    assert_not_nil assigns(:drugs)
+  end
+
   test "should get new" do
     get :new
     assert_response :success

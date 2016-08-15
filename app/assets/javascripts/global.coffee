@@ -49,4 +49,9 @@ initializePage = ->
 
   gVar.bLoadedWithTurbolinks = true
 
+  react_div_id = "react_div"
+  react_div = $("#{react_div_id}")
+  if react_div
+    window.render_drug_select(react_div_id);
+
 $(document).on('turbolinks:load', initializePage)
