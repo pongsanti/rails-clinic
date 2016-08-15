@@ -41,8 +41,6 @@ gem 'slim', '~> 3.0.7'
 
 gem 'pundit', '~> 1.1.0'
 
-gem 'react-rails', '~> 1.8.2'
-
 # Use Unicorn as the app server
 # gem 'unicorn'
 
