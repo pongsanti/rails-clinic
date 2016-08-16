@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :drugs do
     resources :drug_ins, shallow: true
   end
+  get 'drug_has_drug_ins', to: 'drugs#index_has_drug_ins'
+
   resources :drug_usages
   resources :drug_movements
   get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'

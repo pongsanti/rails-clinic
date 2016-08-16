@@ -12,6 +12,11 @@ class DrugsController < ApplicationController
     @drugs = @q.result.page params[:page]
   end
 
+  def index_has_drug_ins
+    @drugs = Drug.drug_ins_exist
+    render json: @drugs
+  end
+
   # GET /drugs/1
   # GET /drugs/1.json
   def show

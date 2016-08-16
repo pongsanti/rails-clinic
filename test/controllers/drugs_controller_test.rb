@@ -1,22 +1,38 @@
 require 'test_helper'
 
 class DrugsControllerTest < ActionController::TestCase
+  # Including devise test helper
+  include Devise::TestHelpers
+
   setup do
+    sign_in users(:john)
     @drug = drugs(:one)
   end
 
   test "should get index" do
     get :index
+
     assert_response :success
-    assert_not_nil assigns(:drugs)
+    assert_not_nil a(:drugs)
   end
 
-  test "should get index json" do
-    get :index, format: :json
+  test "should get index has drug ins" do
+    get :index_has_drug_ins, format: :json
+
     assert_response :success
-    assert_not_nil assigns(:drugs)
+    assert_not_nil a(:drugs)
+
+    js_res = json_response['drugs'][0]
+    assert_not_nil js_res
+    assert_not_nil js_res['id']
+    assert_not_nil js_res['name']
   end
 
+  private
+    def json_response
+      ActiveSupport::JSON.decode @response.body
+    end
+=begin
   test "should get new" do
     get :new
     assert_response :success
@@ -52,4 +68,5 @@ class DrugsControllerTest < ActionController::TestCase
 
     assert_redirected_to drugs_path
   end
+=end  
 end
