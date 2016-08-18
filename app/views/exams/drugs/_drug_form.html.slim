@@ -6,6 +6,7 @@
         span.glyphicon.glyphicon-file = t(".new_exam_drug")
     .clearfix
   .panel-body
-    div data-holder="new_exam_drug"
-    div data-list-holder="list_new_exam_drug"
-      = render partial: "exams/drugs/drugs", locals: {exam: @exam }
+    = content_tag :div, nil, data: { "react-class": "DrugSelection", "react-props": {url: "/drug_has_drug_ins"}}
+    //div data-holder="new_exam_drug"
+    //div data-list-holder="list_new_exam_drug"
+    //= render partial: "exams/drugs/drugs", locals: {exam: @exam }
