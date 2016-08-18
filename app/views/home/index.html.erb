@@ -1,3 +1,3 @@
 <h1>Clinic First Page!</h1>
-<div id="react_div"></div>
+<%= content_tag :div, nil, data: { "react-class": "DrugSelection", "react-props": {url: "/drug_has_drug_ins"}} %>
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
