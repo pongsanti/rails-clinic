@@ -1,0 +1,14 @@
+= render partial: "navigation", locals: {active: :index}
+
+h3= t '.title' 
+  small= t '.sub_text'
+hr
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "search"
+      = render partial: "list"
+
+    .col-sm-4
+      .div="Queueing"
