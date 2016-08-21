@@ -17,5 +17,5 @@
 //= require react_ujs
 //= require handlebars.runtime
 //= require bootstrap-sprockets
-//= require_directory ./templates/qs
+//= require_tree ./templates
 //= require_directory .
