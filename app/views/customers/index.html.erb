@@ -3,6 +3,8 @@
 <h3><%= t '.title' %> <small><%= t '.sub_text' %></small></h3>
 <hr>
 
+<%= render partial: "search" %>
+
 <%= search_form_for @q, html: { class: "form-horizontal" } do |f| %>
   <div class="form-group">
     <%= label_tag "search", t('.search'), class: 'col-sm-1 control-label'%>
