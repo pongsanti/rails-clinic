@@ -41,6 +41,7 @@ gem 'slim', '~> 3.0.7'
 
 gem 'pundit', '~> 1.1.0'
 
+gem 'bootstrap-sass', '~> 3.3.7'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

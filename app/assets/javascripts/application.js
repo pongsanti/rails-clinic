@@ -16,5 +16,6 @@
 //= require components
 //= require react_ujs
 //= require handlebars.runtime
+//= require bootstrap-sprockets
 //= require_tree ./templates
 //= require_directory .
