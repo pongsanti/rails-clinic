@@ -1,0 +1,76 @@
+= render partial: "navigation", locals: {active: :index}
+
+h3= t '.title' 
+  small= t '.sub_text'
+hr
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "search"
+      .table-responsive
+        table.table.table-striped.table-hover.table-condensed
+          thead
+            tr
+              th= sort_link @q, :id, "#"
+              th= sort_link @q, :name
+              th= sort_link @q, :surname
+              th= sort_link @q, :sex
+              th= sort_link @q, :birthdate
+              th= sort_link @q, :id_card_no
+              th= sort_link @q, :created_at
+              th
+          tbody.rowlink data-link="row"
+            - @customers.each do |customer|
+              tr
+                td= format_id customer.id, customer
+                td= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer)
+                td= customer.surname
+                td= t('customers.show.' + customer.sex)
+                td= th_date_format customer.birthdate
+                td= masked_id_card_no(customer)
+                td
+                  span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
+                    =time_ago_in_words(customer.created_at)
+
+                td.rowlink-skip
+                  .btn-group
+                    = link_to customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do
+                      span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom"
+                    = link_to edit_customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do
+                      span.glyphicon.glyphicon-edit data-toggle="tooltip" title="Edit" data-placement="bottom"
+
+    .col-sm-4
+      .div="Queueing"
+
+/<%= search_form_for @q, html: { class: "form-horizontal" } do |f| %>
+  <div class="form-group">
+    <%= label_tag "search", t('.search'), class: 'col-sm-1 control-label'%>
+    <div class="col-sm-4">
+      <%= f.attribute_select nil, class: 'form-control selectpicker', data: { "live-search" => true }, title: t('.choose_attribute') %>
+    </div>
+    <div class="col-sm-4">
+      <%= text_field_tag 'cont', nil, class: 'form-control' %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.button  name: "submit", class: "btn btn-success btn-labeled", value: "submit" do %>
+        <span class="btn-label"><i class="glyphicon glyphicon-search"></i></span><%=t '.search' %>
+      <% end %>
+      <%= link_to customers_path, class: 'btn btn-danger', role: 'button' do %>
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Reset
+      <% end %>
+    </div>
+  </div>
+/<% end %>
+/<%#= content_tag :p, @customers.to_sql %>
+/<hr>
+
+/      </tr>
+      <% end %>
+    </tbody>
+  </table>
+/</div>
+=paginate @customers
+/<div>
+=page_entries_info @customers, entry_name: t('layouts.application.customer')
+/</div>
