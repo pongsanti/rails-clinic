@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require components
-//= require react_ujs
 //= require handlebars.runtime
 //= require bootstrap-sprockets
+//= require_directory ./third-party
 //= require_tree ./templates
 //= require_directory .
