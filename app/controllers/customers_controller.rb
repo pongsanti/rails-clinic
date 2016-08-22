@@ -3,9 +3,9 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_customer, only: [:show, :edit, :update]
   before_action :set_prefixes, only: [:new, :edit]
+  before_action :set_ransack_search_param, only: [:index, :show, :new, :create]
 
   def index
-    @q = Customer.ransack(params[:q])
     @customers = @q.result.page(params[:page])
   end
 
@@ -60,6 +60,10 @@ class CustomersController < ApplicationController
         :email,
   			:home_phone_no, :tel_no)
   	end
+
+    def set_ransack_search_param
+      @q = Customer.ransack(params[:q])
+    end
 
     def set_customer
       @customer = Customer.find(params[:id])

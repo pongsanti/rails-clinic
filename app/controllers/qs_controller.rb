@@ -3,11 +3,7 @@ class QsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  end
-
-  def index_poll
-    @qs = Q.cat_is('W')
-    render json: @qs
+    @qs = Q.all
   end
 
   def show

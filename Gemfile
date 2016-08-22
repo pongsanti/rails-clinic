@@ -34,8 +34,6 @@ gem 'prawn', '~> 2.1.0'
 
 gem 'prawn-print', '~> 0.0.3'
 
-gem 'handlebars_assets', '~> 0.23.0'
-
 gem 'slim', '~> 3.0.7'
 
 gem 'pundit', '~> 1.1.0'
