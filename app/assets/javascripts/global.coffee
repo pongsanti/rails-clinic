@@ -17,6 +17,9 @@ class util
   isUrlOf: (url, controller) ->
     url.indexOf(view.const.CUSTOMER) != -1
 
+  fadeIn: (parent, content) ->
+    parent.html(content).hide().fadeIn()    
+
 window.view.const = new constant
 window.view.util = new util
 
