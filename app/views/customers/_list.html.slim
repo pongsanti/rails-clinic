@@ -1,4 +1,13 @@
+
 .panel.panel-primary
+  .panel-heading
+    .panel-header 
+      ="รายการ"
+      .pull-right
+        =>link_to new_customer_path, class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-file
+          =<"New"
+      .clearfix
   .table-responsive
     table.table.table-striped.table-hover.table-condensed
       thead
