@@ -1,0 +1,98 @@
+div.panel.panel-primary
+  div.panel-heading=t(".general_info")
+  div.panel-body
+
+    =form_for @customer, html: { class: "form-horizontal" } do |f|
+      div.form-group
+        = f.label :id, class: "col-sm-2 control-label"
+        div.col-sm-4
+          p.form-control-static =format_id(@customer.id, @customer)
+        = f.label :created_at, class: "col-sm-2 control-label"
+        div.col-sm-4
+          p.form-control-static ="#{th_date_time_format(@customer.created_at)} (#{time_ago_in_words(@customer.created_at)})"
+
+      div.form-group
+        = f.label :prefix, class: "col-sm-2 control-label required-label"
+        div.col-sm-4
+          p.form-control-static =@customer.prefix.name
+        = f.label :sex, class: "col-sm-2 control-label required-label"
+        div.col-sm-4
+          p.form-control-static =t("customers.show.#{@customer.sex}")
+
+      div.form-group
+        = f.label :name, class: "col-sm-2 control-label required-label"
+        div.col-sm-4
+          p.form-control-static =@customer.name
+        
+        = f.label :surname, class: "col-sm-2 control-label required-label"
+        div.col-sm-4
+          p.form-control-static =@customer.surname
+
+      div.form-group
+        = f.label :birthdate, class: "col-sm-2 control-label required-label"
+        div.col-sm-4
+          p.form-control-static =th_date_format(@customer.birthdate)
+        = label_tag nil, t(".age"), class: "col-sm-2 control-label"
+        div.col-sm-4
+          p.form-control-static =age_text(@customer)
+
+      div.form-group
+        = f.label :id_card_no, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =masked_id_card_no(@customer)
+        = f.label :passport_no, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.passport_no
+        
+      div.form-group
+        = f.label :nationality, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.nationality
+            
+        = f.label :occupation, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.occupation 
+      
+      hr
+
+      div.form-group  
+        = f.label :address, class: "col-sm-2 control-label" 
+        div.col-sm-10
+          p.form-control-static =@customer.address
+        
+      
+      div.form-group
+        = f.label :sub_district, class: "col-sm-2 control-label"
+        div.col-sm-10
+          p.form-control-static =@customer.sub_district 
+      
+      div.form-group
+        = f.label :district, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.district
+
+        = f.label :province, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.province
+        
+      div.form-group
+        = f.label :postal_code, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.postal_code 
+        
+        = f.label :email, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =@customer.email
+        
+      div.form-group
+        = f.label :home_phone_no, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =masked_home_phone_no(@customer)
+        
+        = f.label :tel_no, class: "col-sm-2 control-label" 
+        div.col-sm-4
+          p.form-control-static =masked_tel_no @customer 
+
+      div.form-group
+        div.col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button_back', locals: {f: f}

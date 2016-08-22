@@ -43,7 +43,7 @@ class CustomersControllerTest < ActionController::TestCase
     get "show", id: @customer.id
 
     assert_response :success
-    assert_assigns :customer
+    assert_assigns :q, :customer
     assert_equal @customer, a(:customer)
   end
 
@@ -51,7 +51,7 @@ class CustomersControllerTest < ActionController::TestCase
     get "new"
 
     assert_response :success
-    assert_assigns :prefixes, :customer
+    assert_assigns :prefixes, :customer, :q
     assert a(:customer).new_record?
   end
 
@@ -85,7 +85,7 @@ class CustomersControllerTest < ActionController::TestCase
         sex: "M", birthdate: "1988-05-05" }
     end
 
-    assert_assigns :customer, :prefixes
+    assert_assigns :q, :customer, :prefixes
     assert_response :success
     assert_template :new
 

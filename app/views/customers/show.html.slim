@@ -2,107 +2,13 @@
 
 h3= t(".title")
   small= t(".sub_text")
-
 hr
 
-div.form-group
-  = render partial: "exams/navigation", locals: {active: "none", customer: @customer}
+.container
+  .row
+    .col-sm-8
+      = render partial: "search"
+      = render partial: "show"
 
-div.panel.panel-primary
-  div.panel-heading=t("customers.form.general_info")
-  div.panel-body
-
-    div.row
-      div.col-sm-2
-        =label :customer, :created_at
-      div.col-sm-4
-        = th_date_time_format(@customer.created_at) + time_ago_in_words(@customer.created_at)
-      div.col-sm-2
-      
-      div.col-sm-4
-        
-    div.row
-      div.col-sm-2
-        = label :customer, :name
-      div.col-sm-4
-        = "#{@customer.prefix.name} #{@customer.name} #{@customer.surname}" 
-      div.col-sm-2
-        = label :customer, :sex
-      div.col-sm-4
-        = t ".#{@customer.sex}"
-    div.row
-      div.col-sm-2
-        = label :customer, :birthdate
-      div.col-sm-4
-        = th_date_format @customer.birthdate
-      div.col-sm-2
-        = label_tag nil, t('.age')
-      div.col-sm-4
-        = age_text @customer
-
-    div.row
-      div.col-sm-2
-        = label :customer, :id_card_no
-      div.col-sm-4
-        = masked_id_card_no(@customer) 
-      div.col-sm-2
-        = label :customer, :passport_no
-      div.col-sm-4
-        = @customer.passport_no 
-
-    div.row
-      div.col-sm-2
-        = label :customer, :nationality
-      div.col-sm-4
-        = @customer.nationality 
-      div.col-sm-2
-        = label :customer, :occupation
-      div.col-sm-4
-        = @customer.occupation 
-
-div.panel.panel-primary
-  div.panel-heading= t("customers.form.contact_info")
-  div.panel-body
-    div.row
-      div.col-sm-2
-        = label :customer, :address
-      div.col-sm-10
-        = @customer.address 
-
-    div.row
-      div.col-sm-2
-        = label :customer, :sub_district
-      div.col-sm-6
-        = @customer.sub_district 
-      div.col-sm-2
-        = label :customer, :district
-      div.col-sm-6
-        = @customer.district 
-
-    div.row
-      div.col-sm-2
-        = label :customer, :province
-      div.col-sm-2
-        = @customer.province 
-      div.col-sm-2
-        = label :customer, :postal_code
-      div.col-sm-2
-        = @customer.postal_code 
-      div.col-sm-2
-        = label :customer, :email
-      div.col-sm-2
-        = @customer.email 
-
-    div.row
-      div.col-sm-3
-        = label :customer, :home_phone_no
-      div.col-sm-3
-        = masked_home_phone_no @customer 
-      div.col-sm-3
-        = label :customer, :tel_no
-      div.col-sm-3
-        = masked_tel_no @customer 
-
-= render partial: "exams/navigation", locals: {active: "show", customer: @customer} 
-hr
-= render partial: "global/form_button_back" 
+    .col-sm-4
+      div data-controller="qs" data-action="index"

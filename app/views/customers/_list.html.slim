@@ -10,7 +10,6 @@
           th= sort_link @q, :birthdate
           th= sort_link @q, :id_card_no
           th= sort_link @q, :created_at
-          th
       tbody.rowlink data-link="row"
         - @customers.each do |customer|
           tr
@@ -24,7 +23,7 @@
               span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
                 =time_ago_in_words(customer.created_at)
 
-            td.rowlink-skip
+/            td.rowlink-skip
               .btn-group
                 = link_to customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do
                   span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom"
