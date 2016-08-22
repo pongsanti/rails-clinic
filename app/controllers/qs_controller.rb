@@ -3,6 +3,7 @@ class QsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @qs = Q.all
   end
 
   def index_poll

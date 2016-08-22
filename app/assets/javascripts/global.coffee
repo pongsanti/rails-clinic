@@ -1,7 +1,13 @@
-# Global Variables
-@gVar = 
-  # It is always false, true means page has been loaded by turbolinks
-  bLoadedWithTurbolinks : false
+window.view = {}
+
+class util
+  findDataDiv: (controller, action) ->
+    select_controller = "[data-controller=\"#{controller}\"]"
+    select_action = "[data-action=\"#{action}\"]"
+    $("div#{select_controller}#{select_action}")
+
+window.view.util = new util
+
 
 # Global Functions
 @gShowErrorModal = (text) ->
@@ -16,19 +22,6 @@
   forms.each (index, form) ->
     $(form).validate()
 
-requestQueueList = ->
-  $.post '/qs_poll', (data) ->
-    div = $('#sidebar div[class="list-group"]')
-    div.empty()
-
-    div.html(HandlebarsTemplates['qs/items'](data))
-    $('#queue_badge').html data.qs.length
-
-# queue retrieval function
-getQueueList = ->
-  requestQueueList()
-  setTimeout getQueueList, 20000
-
 initializePage = ->
   # init form validation
   gInitFormValidation($('form'))
@@ -36,17 +29,11 @@ initializePage = ->
   # enable bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip()
 
-  # request queue list at once
-  requestQueueList()
-
-  # enable queue polling
-  if not gVar.bLoadedWithTurbolinks
-    getQueueList()
-
   # select pickers
   if $('form').find('button[data-toggle="dropdown"]').length is 0
     gInitSelectPicker $('form')
 
-  gVar.bLoadedWithTurbolinks = true
+  # load customer queue
+  view.qs.loadIndex()
 
 $(document).on('turbolinks:load', initializePage)

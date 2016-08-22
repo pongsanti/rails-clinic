@@ -1,0 +1,24 @@
+.panel.panel-info
+  .panel-heading
+    .panel-header
+      span=t("qs.index.title")
+      .pull-right
+        =<button_tag class: "btn btn-primary btn-xs" do
+          i.glyphicon.glyphicon-refresh
+          =< "Refresh"
+      .clearfix
+  .table-responsive
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th=label :exam, :id
+          th=label :customer, :name
+          th=label :q, :created_at
+      tbody.rowlink data-link="row"
+        - @qs.each do |q|
+          tr
+            td= q.exam.id
+            td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", q_path(q)
+            td 
+              span data-toggle="tooltip" title=th_date_time_format(q.created_at)
+                =time_ago_in_words(q.created_at)
