@@ -6,11 +6,6 @@ class QsController < ApplicationController
     @qs = Q.all
   end
 
-  def index_poll
-    @qs = Q.cat_is('W')
-    render json: @qs
-  end
-
   def show
   end
 
