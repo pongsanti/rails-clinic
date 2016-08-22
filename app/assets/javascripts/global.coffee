@@ -1,11 +1,23 @@
 window.view = {}
 
+class constant
+  CUSTOMER: 'customers'
+
 class util
+
   findDataDiv: (controller, action) ->
     select_controller = "[data-controller=\"#{controller}\"]"
     select_action = "[data-action=\"#{action}\"]"
     $("div#{select_controller}#{select_action}")
 
+  clientSideValidation: () ->
+    $('form').each (index, form) ->
+      $(form).validate()
+
+  isUrlOf: (url, controller) ->
+    url.indexOf(view.const.CUSTOMER) != -1
+
+window.view.const = new constant
 window.view.util = new util
 
 
@@ -18,13 +30,9 @@ window.view.util = new util
 @gInitSelectPicker = (parent) ->
   parent.find('select.selectpicker').selectpicker('refresh')
 
-@gInitFormValidation = (forms) ->
-  forms.each (index, form) ->
-    $(form).validate()
-
 initializePage = ->
   # init form validation
-  gInitFormValidation($('form'))
+  view.util.clientSideValidation()
 
   # enable bootstrap tooltip
   $('[data-toggle="tooltip"]').tooltip()
@@ -36,4 +44,9 @@ initializePage = ->
   # load customer queue
   view.qs.loadIndex()
 
+  url = event.data.url
+  # customer
+  if view.util.isUrlOf(url, view.const.CUSTOMER)
+    view.customer.initializePage()
+    
 $(document).on('turbolinks:load', initializePage)

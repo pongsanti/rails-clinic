@@ -21,6 +21,7 @@ class CustomersController < ApplicationController
   end
 
   def new
+    @q = Customer.ransack(params[:q])
   	@customer = Customer.new
   end
 
