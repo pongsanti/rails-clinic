@@ -23,8 +23,8 @@ class Customer
     $('input[type=radio]:checked').parent().addClass('active')
 
   initializePage: () ->
-    @displayThaiYear
-    @displayMonthNumber
-    @preSelectSex
+    @displayThaiYear()
+    @displayMonthNumber()
+    @preSelectSex()
 
 view.customer = new Customer
