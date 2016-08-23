@@ -3,7 +3,7 @@
     .panel-header
       span=t("qs.index.title")
       .pull-right
-        =<button_tag class: "btn btn-primary btn-xs" do
+        =<button_tag class: "btn btn-primary btn-xs", data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
       .clearfix

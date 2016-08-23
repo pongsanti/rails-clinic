@@ -5,10 +5,14 @@ class constant
 
 class util
 
-  findDataDiv: (controller, action) ->
+  findElemPlaceholder: (controller, action) ->
     select_controller = "[data-controller=\"#{controller}\"]"
     select_action = "[data-action=\"#{action}\"]"
     $("div#{select_controller}#{select_action}")
+
+  findElementWithDataValue: (dataAttrName, value) ->
+    select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
+    return $(select_stmt)
 
   clientSideValidation: () ->
     $('form').each (index, form) ->

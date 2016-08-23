@@ -1,3 +1,5 @@
-placeholder = window.view.util.findDataDiv("qs", "index")
+placeholder = view.util.findElemPlaceholder("qs", "index")
 if placeholder
-  view.util.fadeIn(placeholder, '<%= j(render partial: "index", locals: {qs: @qs}) %>');
+  view.util.fadeIn(placeholder, '<%= j(render partial: "index", locals: {qs: @qs}) %>')
+
+view.qs.initRefreshBtn()
