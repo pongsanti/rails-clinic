@@ -1,6 +1,7 @@
 = render partial: "navigation", locals: {active: :index}
 
-h3= t '.title' 
+h3
+  => t '.title' 
   small= t '.sub_text'
 hr
 
@@ -12,4 +13,3 @@ hr
 
     .col-sm-4
       div data-controller="qs" data-action="index"
-        i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big=>
