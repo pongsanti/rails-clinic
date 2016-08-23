@@ -15,6 +15,6 @@ class Qs
   initRefreshBtn: () ->
     elem = view.util.findElementWithDataValue("refresh", "true")
     if elem
-      elem.click(view.qs.loadIndex);
+      elem.click(@loadIndex);
 
 view.qs = new Qs
