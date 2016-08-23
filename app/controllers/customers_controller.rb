@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_customer, only: [:show, :edit, :update]
   before_action :set_prefixes, only: [:new, :edit]
-  before_action :set_ransack_search_param, only: [:index, :show, :new, :create]
+  before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :update, :create]
 
   def index
     @customers = @q.result.page(params[:page])
