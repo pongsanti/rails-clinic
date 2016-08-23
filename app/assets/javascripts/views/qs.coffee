@@ -5,8 +5,7 @@ class Qs
   timeoutLoop: null
 
   loadIndex: () ->
-    placeholder = view.util.findElemPlaceholder(view.qs.controller, "index")
-    view.util.showLoadingIcon(placeholder)
+    view.qs.showLoadingIcon(true);
 
     clearTimeout(view.qs.timeoutLoop);
     $.get("/qs")
@@ -16,5 +15,13 @@ class Qs
     elem = view.util.findElementWithDataValue("refresh", "true")
     if elem
       elem.click(@loadIndex);
+
+  showLoadingIcon: (show) ->
+    elem = view.util.findElementWithDataValue("loading-icon", "true")
+    if elem
+      if show
+        elem.show();
+      else
+        elem.hide();
 
 view.qs = new Qs

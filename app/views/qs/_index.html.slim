@@ -1,7 +1,8 @@
 .panel.panel-info
   .panel-heading
     .panel-header
-      span=t("qs.index.title")
+      span=>t("qs.index.title")
+      i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate data-loading-icon="true" style="display:none"
       .pull-right
         =<button_tag class: "btn btn-primary btn-xs", data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh

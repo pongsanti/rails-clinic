@@ -21,11 +21,8 @@ class util
   isUrlOf: (url, controller) ->
     url.indexOf(view.const.CUSTOMER) != -1
 
-  fadeIn: (parent, content) ->
-    parent.html(content).hide().fadeIn()
-
-  showLoadingIcon: (placeholder) ->
-    placeholder.html("<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate glyphicon-big'></i>")
+#  fadeIn: (parent, content) ->
+#    parent.html(content).hide().fadeIn()
 
 window.view.const = new constant
 window.view.util = new util
