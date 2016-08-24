@@ -5,6 +5,9 @@ class constant
 
 class util
 
+  initTooltips: () ->
+    $('[data-toggle="tooltip"]').tooltip()
+
   initializeSelectPicker: () ->
     $('select.selectpicker').selectpicker('refresh')
 
@@ -17,18 +20,23 @@ class util
     select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
     return $(select_stmt)
 
+  isUrlOf: (url, controller) ->
+    url.indexOf(view.const.CUSTOMER) != -1
+
+class formUtil
   clientSideValidation: () ->
     $('form').each (index, form) ->
       $(form).validate()
 
-  isUrlOf: (url, controller) ->
-    url.indexOf(view.const.CUSTOMER) != -1
+  initFieldsWithErrors: () ->
+    $("div.field_with_errors").addClass("has-error")
 
 #  fadeIn: (parent, content) ->
 #    parent.html(content).hide().fadeIn()
 
 window.view.const = new constant
 window.view.util = new util
+window.view.formUtil = new formUtil
 
 
 # Global Functions
@@ -37,19 +45,19 @@ window.view.util = new util
   modal.find('div.modal-body').html text
   modal.modal('toggle')
 
-@gInitSelectPicker = (parent) ->
-  parent.find('select.selectpicker').selectpicker('refresh')
+#@gInitSelectPicker = (parent) ->
+#  parent.find('select.selectpicker').selectpicker('refresh')
 
 initializePage = ->
   # init form validation
-  view.util.clientSideValidation()
+  view.formUtil.clientSideValidation()
 
   # enable bootstrap tooltip
-  $('[data-toggle="tooltip"]').tooltip()
+  view.util.initTooltips()
 
   # select pickers
-  if $('form').find('button[data-toggle="dropdown"]').length is 0
-    gInitSelectPicker $('form')
+ # if $('form').find('button[data-toggle="dropdown"]').length is 0
+ #   gInitSelectPicker $('form')
 
   # load customer queue
   view.qs.loadIndex()
@@ -62,5 +70,7 @@ initializePage = ->
     
   # refresh select picker
   view.util.initializeSelectPicker()
+
+  view.formUtil.initFieldsWithErrors()
   
 $(document).on('turbolinks:load', initializePage)
