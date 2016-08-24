@@ -1,7 +1,7 @@
-.panel.panel-primary
+div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
-      =t(".general_info")
+      =t(action == :new ? "customers.new.title": "customers.edit.title")
       .pull-right
         =render "panel_back_button"
       .clearfix
@@ -98,4 +98,3 @@
       .form-group
         .col-sm-offset-2.col-sm-10
           = render partial: 'global/form_button', locals: {f: f}
-          = render partial: 'global/form_button_back', locals: {f: f}

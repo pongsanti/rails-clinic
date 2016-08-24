@@ -1,10 +1,9 @@
-
-.panel.panel-primary
+.panel.panel-default
   .panel-heading
     .panel-header 
-      ="รายการ"
+      =t("customers.index.title")
       .pull-right
-        =>link_to new_customer_path, class: "btn btn-default btn-xs" do
+        =>link_to new_customer_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
       .clearfix
@@ -12,7 +11,7 @@
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
-          th= sort_link @q, :id, "#"
+          th= sort_link @q, :id
           th= sort_link @q, :name
           th= sort_link @q, :surname
           th= sort_link @q, :sex
@@ -31,13 +30,3 @@
             td
               span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
                 =time_ago_in_words(customer.created_at)
-
-/            td.rowlink-skip
-              .btn-group
-                = link_to customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do
-                  span.glyphicon.glyphicon-eye-open data-toggle="tooltip" title="View" data-placement="bottom"
-                = link_to edit_customer_path(customer), class: 'btn btn-default btn-sm', role: 'button' do
-                  span.glyphicon.glyphicon-edit data-toggle="tooltip" title="Edit" data-placement="bottom"                 
-  .panel-body
-    =paginate @customers
-    =page_entries_info @customers, entry_name: t('layouts.application.customer')
