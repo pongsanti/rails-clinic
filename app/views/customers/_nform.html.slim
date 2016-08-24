@@ -12,7 +12,7 @@ div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
     =form_for @customer, html: { class: "form-horizontal" } do |f|
       .form-group
         = f.label :prefix, class: "col-sm-2 control-label required-label"
-        .col-sm-4= f.collection_select(:prefix_id, @prefixes, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit" } )
+        .col-sm-4= f.collection_select(:prefix_id, @prefixes, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "selectOnTab" => "true" } )
 
         = f.label :sex, class: "col-sm-2 control-label required-label"
         .btn-group.col-sm-4 data-toggle="buttons"
@@ -30,7 +30,7 @@ div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
       .form-group
         = f.label :birthdate, class: "col-sm-2 control-label required-label"
         .col-sm-10
-          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10 }
+          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10, "selectOnTab" => true }
 
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :id_card_no, data: { mask: '9-9999-99999-99-9' }}
@@ -42,10 +42,7 @@ div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
       hr
 
       .form-group
-        = f.label :address, class: "col-sm-2 control-label" 
-        .col-sm-10
-          = f.text_field :address, class: "form-control", placeholder: true, size: 60 
-        
+        =render partial: "global/txt_field", locals: {f: f, method: :address, tf_width: 10, size: 60}       
       
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :sub_district, tf_width: 10}
