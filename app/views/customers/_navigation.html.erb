@@ -1,9 +1,0 @@
-<div class="btn-group">
-  <%= render partial: "global/navigation", locals: {name: "customers", active: active, obj: @customer} %>
- 
-  <% if defined?(@customer) && @customer && !@customer.new_record? %>
-    <%= link_to customer_path(@customer, format: :pdf), class: @default_class, role: 'button', target: '_blank' do %>
-      <span class="glyphicon glyphicon-print"></span> <%= t 'customers.show.print_id_card' %>
-    <% end %>
-  <% end %>
-</div>

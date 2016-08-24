@@ -3,5 +3,3 @@ th:
     new:
       title: "ลงทะเบียนผู้ป่วย"
       sub_text: "ข้อมูลผู้ป่วย"
-      submit_button: "ตกลง"
-      clear_button: "เคลียร์ฟอร์ม"

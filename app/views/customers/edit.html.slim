@@ -1,13 +1,13 @@
 .page-header
   h3
-    => t(".title")
-    small= t(".sub_text")
+    => t '.title'
+    small= t '.sub_text'
 
 .container
   .row
     .col-sm-8
       = render partial: "search"
-      = render partial: "show"
+      = render partial: "nform", locals: {action: :edit}
 
     .col-sm-4
       div data-controller="qs" data-action="index"

@@ -1,0 +1,36 @@
+/ Input
+  Require
+  - f
+  - method
+  Optional
+  - col_width
+  - tf_width
+  - require_label
+  - require_attr
+  - data
+  - size
+
+/ Default variables
+- default_label_col_width = 2
+- default_text_field_col_width = 4
+- default_rq_text = "required-label"
+
+- label_class = "control-label"
+- div_text_field_class = "form-control"
+
+// Assign variables
+- col_width = default_label_col_width if local_assigns[:col_width].nil?
+- tf_width = default_text_field_col_width if local_assigns[:tf_width].nil?
+- require_label = false if local_assigns[:require_label].nil?
+- require_attr = false if local_assigns[:require_attr].nil?
+- data = {} if local_assigns[:data].nil?
+- size = nil if local_assigns[:size].nil?
+
+// Define css classes
+- label_class = "col-sm-#{col_width} control-label"
+- label_class = "#{label_class} #{default_rq_text}" if require_label
+- div_text_field_class = "col-sm-#{tf_width}"
+
+= f.label method, class: label_class
+div class=div_text_field_class
+  = f.text_field method, class: "form-control", placeholder: true, required: require_attr, data: data, size: size

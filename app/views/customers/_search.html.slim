@@ -1,16 +1,16 @@
-.panel.panel-primary
+.panel.panel-default
   .panel-heading
-    .panel-header 
-      ="ค้นหา"
+    .panel-header
+      =t("customers.index.search")
   .panel-body
     = search_form_for @q, class: "form-inline" do |f|
       .form-group
         =>f.label :name_or_surname_cont, class: "control-label"
         =f.search_field :name_or_surname_cont, class: "form-control", size: 40
-        =<button_tag class: "btn btn-success" do
+        =<button_tag class: "btn btn-primary btn-sm" do
           i.glyphicon.glyphicon-search
           =<t "customers.index.search"
-        =<link_to customers_path, class: "btn btn-default" do
+        =<link_to customers_path, class: "btn btn-default btn-sm" do
           i.glyphicon.glyphicon-refresh
           =<"Reset"
     - if @q.conditions[0]

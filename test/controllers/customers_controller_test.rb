@@ -108,7 +108,7 @@ class CustomersControllerTest < ActionController::TestCase
     patch "update", id: @customer.id,
       customer: {name: ""}
 
-    assert_assigns :customer, :prefixes
+    assert_assigns :customer, :prefixes, :q
     assert_response :success
     assert_template :edit
 

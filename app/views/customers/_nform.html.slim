@@ -1,7 +1,7 @@
-.panel.panel-primary
+div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
-      =t(".general_info")
+      =t(action == :new ? "customers.new.title": "customers.edit.title")
       .pull-right
         =render "panel_back_button"
       .clearfix
@@ -12,76 +12,47 @@
     =form_for @customer, html: { class: "form-horizontal" } do |f|
       .form-group
         = f.label :prefix, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          = f.collection_select(:prefix_id, @prefixes, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit" } )
+        .col-sm-4= f.collection_select(:prefix_id, @prefixes, :id, :name, {}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "selectOnTab" => "true" } )
+
         = f.label :sex, class: "col-sm-2 control-label required-label"
         .btn-group.col-sm-4 data-toggle="buttons"
           label.btn.btn-default
-            = f.radio_button :sex, "M"
+            = f.radio_button :sex, "M", class: "form-control"
             = t('customers.show.M')
           label.btn.btn-default
-            = f.radio_button :sex, "F"
+            = f.radio_button :sex, "F", class: "form-control"
             = t('customers.show.F') 
 
       .form-group
-        = f.label :name, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          = f.text_field :name, class: "form-control", placeholder: true, required: true
-        
-        = f.label :surname, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          = f.text_field :surname, class: "form-control", placeholder: true, required: true
+        =render partial: "global/txt_field", locals: {f: f, method: :name, require_label: true, require_attr: true }
+        =render partial: "global/txt_field", locals: {f: f, method: :surname, require_label: true, require_attr: true }
 
       .form-group
         = f.label :birthdate, class: "col-sm-2 control-label required-label"
         .col-sm-10
-          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10 }
+          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10, "selectOnTab" => true }
 
       .form-group
-        = f.label :id_card_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :id_card_no, class: "form-control", placeholder: true, data: { mask: '9-9999-99999-99-9' } 
-        
-        = f.label :passport_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :passport_no, class: "form-control", placeholder: true, data: {mask: 'aw99999?99' } 
-        
+        =render partial: "global/txt_field", locals: {f: f, method: :id_card_no, data: { mask: '9-9999-99999-99-9' }}
+        =render partial: "global/txt_field", locals: {f: f, method: :passport_no, data: { mask: 'aw99999?99' }}
+
       .form-group
-        = f.label :nationality, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :nationality, class: "form-control", placeholder: true 
-            
-        = f.label :occupation, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :occupation, class: "form-control", placeholder: true 
-      
+        =render partial: "global/txt_field", locals: {f: f, method: :nationality}
+        =render partial: "global/txt_field", locals: {f: f, method: :occupation}
       hr
 
-      .form-group  
-        = f.label :address, class: "col-sm-2 control-label" 
-        .col-sm-10
-          = f.text_field :address, class: "form-control", placeholder: true, size: 60 
-        
+      .form-group
+        =render partial: "global/txt_field", locals: {f: f, method: :address, tf_width: 10, size: 60}       
       
       .form-group
-        = f.label :sub_district, class: "col-sm-2 control-label"
-        .col-sm-10
-          = f.text_field :sub_district, class: "form-control", placeholder: true 
+        =render partial: "global/txt_field", locals: {f: f, method: :sub_district, tf_width: 10}
       
       .form-group
-        = f.label :district, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :district, class: "form-control", placeholder: true 
-
-        = f.label :province, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :province, class: "form-control", placeholder: true 
+        =render partial: "global/txt_field", locals: {f: f, method: :district}
+        =render partial: "global/txt_field", locals: {f: f, method: :province}
         
       .form-group
-        = f.label :postal_code, class: "col-sm-2 control-label" 
-        .col-sm-4
-          = f.text_field :postal_code, class: "form-control", placeholder: true, data: { mask: '99999' } 
-        
+        =render partial: "global/txt_field", locals: {f: f, method: :postal_code, data: {mask: '99999'} }       
         = f.label :email, class: "col-sm-2 control-label" 
         .col-sm-4
           = f.email_field :email, class: "form-control", placeholder: true 
@@ -98,4 +69,3 @@
       .form-group
         .col-sm-offset-2.col-sm-10
           = render partial: 'global/form_button', locals: {f: f}
-          = render partial: 'global/form_button_back', locals: {f: f}

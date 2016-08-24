@@ -4,6 +4,7 @@ th:
       customer: "ผู้ป่วย"
     attributes:
       customer:
+        id: "รหัสผู้ป่วย"
         prefix: "คำนำหน้าชื่อ"
         name: "ชื่อ"
         surname: "นามสกุล"
