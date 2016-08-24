@@ -5,6 +5,9 @@ class constant
 
 class util
 
+  initializeSelectPicker: () ->
+    $('select.selectpicker').selectpicker('refresh')
+
   findElemPlaceholder: (controller, action) ->
     select_controller = "[data-controller=\"#{controller}\"]"
     select_action = "[data-action=\"#{action}\"]"
@@ -51,9 +54,13 @@ initializePage = ->
   # load customer queue
   view.qs.loadIndex()
 
+
   url = event.data.url
   # customer
   if view.util.isUrlOf(url, view.const.CUSTOMER)
     view.customer.initializePage()
     
+  # refresh select picker
+  view.util.initializeSelectPicker()
+  
 $(document).on('turbolinks:load', initializePage)
