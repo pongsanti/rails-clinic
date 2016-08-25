@@ -115,6 +115,16 @@ class CustomersControllerTest < ActionController::TestCase
     assert_error_div true
   end
 
+  test "should delete" do
+    delete "destroy", id: @customer.id
+
+    assert_redirected_to customers_path
+
+    @customer.reload
+    assert @customer.deleted?
+    assert_not_nil @customer.deleted_at
+  end
+
   private
     def assert_error_div(display)
       assert_select "div#error_explanation", display
