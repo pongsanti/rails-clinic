@@ -1,10 +1,10 @@
-= render partial: "page_header", locals: {title: t(".title"), subtext: t(".sub_text")}
+= render partial: "global/page_header", locals: { icon_name: "stethoscope", title: t(".title"), subtext: t(".sub_text") }
 
 .container
   .row
-    .col-sm-8
-      = render partial: "customers/show"
+    .col-sm-7
       = render partial: "list"
 
-    .col-sm-4
+    .col-sm-5
+      = render partial: "customer", locals: {customer: @customer}
       = render partial: "customers/q_placeholder"
