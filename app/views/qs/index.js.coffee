@@ -3,4 +3,5 @@ if placeholder
   placeholder.html('<%= j(render partial: "index", locals: {qs: @qs}) %>')
 
 view.qs.initRefreshBtn()
-view.qs.showLoadingIcon(false);
+view.qs.showLoadingIcon(false)
+view.panelUtil.initToggleCollapseSwapIcon(placeholder)

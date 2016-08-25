@@ -3,7 +3,8 @@ th:
     models:
       q: "คิวผู้ป่วย"
     attributes:
-      q: 
+      q:
+        id: "ลำดับคิว"
         created_at: "เวลา"
       q/exam:
         id: "รหัสวินิจฉัย"

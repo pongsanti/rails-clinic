@@ -4,21 +4,23 @@
       span=>t("qs.index.title")
       i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate data-loading-icon="true" style="display:none"
       .pull-right
-        =<button_tag class: "btn btn-default btn-xs", data: { "refresh" => true } do
+        =>button_tag class: "btn btn-default btn-xs", data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#queueIndex" } do
+          i.fa.fa-toggle-up
       .clearfix
-  .table-responsive
+  .table-responsive.collapse.in id="queueIndex"
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
-          th=Q.human_attribute_name("exam.id")
+          th=Q.human_attribute_name(:id)
           th=Q.human_attribute_name("customer.name")
           th=Q.human_attribute_name(:created_at)
       tbody.rowlink data-link="row"
         - @qs.each do |q|
           tr
-            td= q.exam.id
+            td= q.id
             td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", q_path(q)
             td 
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)
