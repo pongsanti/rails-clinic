@@ -4,4 +4,5 @@ if placeholder
 
 view.qs.initRefreshBtn()
 view.qs.showLoadingIcon(false)
+view.util.initTooltips()
 view.panelUtil.initToggleCollapseSwapIcon(placeholder)
