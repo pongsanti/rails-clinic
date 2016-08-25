@@ -3,10 +3,13 @@
     .panel-header 
       =t("customers.show.title")
       .pull-right
+        =>link_to customer_exams_path(@customer), class: "btn btn-primary btn-xs" do
+          =icon("stethoscope")
+          =<"View Examinations"
         =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "customers/panel_back_button"
+        =render "global/panel_back_button"
         =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerShowBody" } do
           i.fa.fa-toggle-up
       .clearfix

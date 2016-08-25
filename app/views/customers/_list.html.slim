@@ -6,8 +6,7 @@
         =>link_to new_customer_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerIndexBody" } do
-          i.fa.fa-toggle-up
+        =>render partial: "global/panel_toggle_button", locals: { target: "#customerIndexBody" }
       .clearfix
   .table-responsive.collapse.in#customerIndexBody
     table.table.table-striped.table-hover.table-condensed

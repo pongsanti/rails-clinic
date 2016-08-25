@@ -7,8 +7,7 @@
         =>button_tag class: "btn btn-default btn-xs", data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#queueIndex" } do
-          i.fa.fa-toggle-up
+        =>render partial: "global/panel_toggle_button", locals: { target: "#queueIndex" }          
       .clearfix
   .table-responsive.collapse.in#queueIndex
     table.table.table-striped.table-hover.table-condensed

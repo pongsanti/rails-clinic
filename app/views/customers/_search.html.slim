@@ -3,8 +3,7 @@
     .panel-header
       =t("customers.index.search")
       .pull-right
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#searchPanelBody" } do
-          i.fa.fa-toggle-up
+        =>render partial: "global/panel_toggle_button", locals: { target: "#searchPanelBody" }
       .clearfix
   .panel-body.collapse.in#searchPanelBody
     = search_form_for @q, class: "form-inline" do |f|

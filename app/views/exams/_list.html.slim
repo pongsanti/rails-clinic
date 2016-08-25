@@ -6,8 +6,8 @@
         =>link_to customer_exams_path(@customer), class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examIndexBody" } do
-          i.fa.fa-toggle-up
+        =>render "global/panel_back_button"
+        =>render partial: "global/panel_toggle_button", locals: { target: "#examIndexBody" }
       .clearfix
   .table-responsive.collapse.in#examIndexBody
     table.table.table-striped.table-hover.table-condensed
