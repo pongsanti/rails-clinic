@@ -14,7 +14,7 @@ DOC
   def th_date_format(d)
     unless d.blank?
       thai_year = d.strftime("%Y").to_i + 543
-      l(d, format: "%d/%m/") + thai_year.to_s
+      l(d, format: "%d %b ") + thai_year.to_s
     end
   end
 
