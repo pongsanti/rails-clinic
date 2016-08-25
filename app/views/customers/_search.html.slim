@@ -1,8 +1,12 @@
-.panel.panel-default
+.panel.panel-default#searchPanel
   .panel-heading
     .panel-header
       =t("customers.index.search")
-  .panel-body
+      .pull-right
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#searchPanelBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+  .panel-body.collapse.in#searchPanelBody
     = search_form_for @q, class: "form-inline" do |f|
       .form-group
         =>f.label :name_or_surname_cont, class: "control-label"

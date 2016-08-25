@@ -26,5 +26,9 @@ class Customer
     @displayThaiYear()
     @displayMonthNumber()
     @preSelectSex()
+    view.panelUtil.initToggleCollapseSwapIcon($("#searchPanel"))
+    view.panelUtil.initToggleCollapseSwapIcon($("#customerIndex"))
+    view.panelUtil.initToggleCollapseSwapIcon($("#customerForm"))
+    view.panelUtil.initToggleCollapseSwapIcon($("#customerShow"))
 
 view.customer = new Customer

@@ -1,4 +1,4 @@
-.panel.panel-default
+.panel.panel-default#customerIndex
   .panel-heading
     .panel-header 
       =t("customers.index.title")
@@ -6,8 +6,10 @@
         =>link_to new_customer_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerIndexBody" } do
+          i.fa.fa-toggle-up
       .clearfix
-  .table-responsive
+  .table-responsive.collapse.in#customerIndexBody
     table.table.table-striped.table-hover.table-condensed
       thead
         tr

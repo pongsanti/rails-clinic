@@ -29,15 +29,16 @@ class util
 
 class panelUtil
   initToggleCollapseSwapIcon: (placeholder) ->
-    placeholder.find("button[data-toggle='collapse']").each (index, btn) ->
-      content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
-      content_div.on("show.bs.collapse", () -> 
-        $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
-      )
+    if placeholder
+      placeholder.find("button[data-toggle='collapse']").each (index, btn) ->
+        content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
+        content_div.on("show.bs.collapse", () -> 
+          $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
+        )
 
-      content_div.on("hide.bs.collapse", () -> 
-        $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
-      )
+        content_div.on("hide.bs.collapse", () -> 
+          $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
+        )
 
 class formUtil
   clientSideValidation: () ->

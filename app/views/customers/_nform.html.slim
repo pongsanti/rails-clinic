@@ -1,11 +1,13 @@
-div class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
       =t(action == :new ? "customers.new.title": "customers.edit.title")
       .pull-right
         =render "panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerFormBody" } do
+          i.fa.fa-toggle-up
       .clearfix
-  .panel-body
+  .panel-body.collapse.in#customerFormBody
 
     = render partial: "global/alert", locals: {obj: @customer}
 
