@@ -42,6 +42,8 @@ gem 'pundit', '~> 1.1.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 
 gem 'font-awesome-sass', '~> 4.6.2'
+
+gem "paranoia", "~> 2.0"
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_customer, only: [:show, :edit, :update]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :set_prefixes, only: [:new, :edit]
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :update, :create]
 
@@ -49,6 +49,8 @@ class CustomersController < ApplicationController
   end
 
   def destroy
+    @customer.destroy
+    redirect_to customers_url, notice: 'Customer was successfully destroyed.'
   end
 
   private
