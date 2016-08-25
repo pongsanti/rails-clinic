@@ -1,5 +1,8 @@
 - if obj.errors.any?
-  div.alert.alert-danger id="error_explanation" 
+  div.alert.alert-danger.alert-dismissible id="error_explanation" 
+    button.close type="button" class="close" data-dismiss="alert" aria-label="Close"
+      span aria-hidden="true"
+      | &times;
     strong = t "error.cannot_save"
     ul
       - obj.errors.full_messages.each do |msg|
