@@ -32,3 +32,6 @@
             td
               span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
                 =time_ago_in_words(customer.created_at)
+  .panel-footer
+    =paginate @customers
+    =page_entries_info @customers, entry_name: t('layouts.application.customer')

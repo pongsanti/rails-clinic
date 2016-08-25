@@ -6,7 +6,7 @@
         =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "panel_back_button"
+        =render "customers/panel_back_button"
         =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerShowBody" } do
           i.fa.fa-toggle-up
       .clearfix
