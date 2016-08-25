@@ -3,7 +3,7 @@
     .panel-header 
       =t("exams.index.title")
       .pull-right
-        =>link_to customer_exams_path(@customer), class: "btn btn-success btn-xs" do
+        =>link_to new_customer_exam_path(@customer), class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
         =>render "global/panel_back_button"
