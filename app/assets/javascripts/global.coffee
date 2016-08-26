@@ -31,7 +31,6 @@ class util
 class panelUtil
   initToggleCollapseSwapIcon: (placeholder) ->
     if placeholder
-      console.log placeholder
       placeholder.find("button[data-toggle='collapse']").each (index, btn) ->
         content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
         content_div.on("show.bs.collapse", () -> 
