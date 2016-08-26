@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class DiagsControllerTest < ActionController::TestCase
+  # Including devise test helper
+  include Devise::TestHelpers
+
   setup do
+    sign_in users(:john)
     @diag = diags(:one)
   end
 
