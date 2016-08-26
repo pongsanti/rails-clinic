@@ -6,6 +6,8 @@ class Customer < ActiveRecord::Base
   TEL_NO_LENGTH = 10
   HOME_PHONE_NO_LENGTH = 9
   DASH_SEPARATOR = '-'
+
+  acts_as_paranoid
   
   paginates_per 10
 

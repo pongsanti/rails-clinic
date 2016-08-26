@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720024927) do
+ActiveRecord::Schema.define(version: 20160825125104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(version: 20160720024927) do
     t.string   "home_phone_no"
     t.string   "nationality"
     t.string   "email"
+    t.datetime "deleted_at"
   end
 
+  add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at", using: :btree
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id", using: :btree
 
   create_table "diags", force: :cascade do |t|

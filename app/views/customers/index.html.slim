@@ -1,8 +1,4 @@
-.page-header
-  h3
-    =>icon("user-md", class: "fa-2x")
-    => t '.title' 
-    small= t '.sub_text'
+= render partial: "global/page_header", locals: { icon_name: "user-md", title: t(".title"), subtext: t(".sub_text") }
 
 .container
   .row
@@ -11,5 +7,4 @@
       = render partial: "list"
 
     .col-sm-4
-      div data-controller="qs" data-action="index"
-        i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
+      = render partial: "q_placeholder"

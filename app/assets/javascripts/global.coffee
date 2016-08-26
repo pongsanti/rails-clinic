@@ -20,8 +20,25 @@ class util
     select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
     return $(select_stmt)
 
+  findDivOnElementDataAttrValue: (elem, dataAttr) ->
+    value = elem.data(dataAttr)
+    return $("div#{value}")
+
   isUrlOf: (url, controller) ->
     url.indexOf(view.const.CUSTOMER) != -1
+
+class panelUtil
+  initToggleCollapseSwapIcon: (placeholder) ->
+    if placeholder
+      placeholder.find("button[data-toggle='collapse']").each (index, btn) ->
+        content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
+        content_div.on("show.bs.collapse", () -> 
+          $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
+        )
+
+        content_div.on("hide.bs.collapse", () -> 
+          $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
+        )
 
 class formUtil
   clientSideValidation: () ->
@@ -37,6 +54,7 @@ class formUtil
 window.view.const = new constant
 window.view.util = new util
 window.view.formUtil = new formUtil
+window.view.panelUtil = new panelUtil
 
 
 # Global Functions

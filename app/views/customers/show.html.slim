@@ -1,7 +1,4 @@
-.page-header
-  h3
-    => t(".title")
-    small= t(".sub_text")
+= render partial: "global/page_header", locals: { icon_name: "user-md", title: t(".title"), subtext: t(".sub_text") }
 
 .container
   .row
@@ -10,4 +7,4 @@
       = render partial: "show"
 
     .col-sm-4
-      div data-controller="qs" data-action="index"
+      = render partial: "q_placeholder"

@@ -1,15 +1,20 @@
-.panel.panel-default
+.panel.panel-default#customerShow
   .panel-heading
     .panel-header 
       =t("customers.show.title")
       .pull-right
+        =>link_to customer_exams_path(@customer), class: "btn btn-primary btn-xs" do
+          =icon("stethoscope")
+          =<"View Examinations"
         =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "panel_back_button"
+        =render "global/panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerShowBody" } do
+          i.fa.fa-toggle-up
       .clearfix
 
-  .panel-body
+  .panel-body.collapse.in#customerShowBody
     =form_for @customer, html: { class: "form-horizontal" } do |f|
       .form-group
         = f.label :id, class: "col-sm-2 control-label"

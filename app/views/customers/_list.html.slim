@@ -1,4 +1,4 @@
-.panel.panel-default
+.panel.panel-default#customerIndex
   .panel-heading
     .panel-header 
       =t("customers.index.title")
@@ -6,8 +6,9 @@
         =>link_to new_customer_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
+        =>render partial: "global/panel_toggle_button", locals: { target: "#customerIndexBody" }
       .clearfix
-  .table-responsive
+  .table-responsive.collapse.in#customerIndexBody
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
@@ -30,3 +31,6 @@
             td
               span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
                 =time_ago_in_words(customer.created_at)
+  .panel-footer
+    =paginate @customers
+    =page_entries_info @customers, entry_name: t('layouts.application.customer')
