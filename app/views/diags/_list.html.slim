@@ -12,7 +12,7 @@
     table.table.table-striped.table-hover.table-condensed
       thead
        tr
-        th= sort_link @q, :id, "#"
+        th= sort_link @q, :id
         th= sort_link @q, :name
         th= sort_link @q, :description
 
@@ -20,7 +20,7 @@
         - @diags.each do |diag|
           tr
             td= format_id diag.id, diag
-            td= diag.name
+            td= link_to diag.name, diag_path(diag)
             td= diag.description
   .panel-footer
     = paginate @diags

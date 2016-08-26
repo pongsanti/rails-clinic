@@ -1,0 +1,23 @@
+div#diagForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  .panel-heading
+    .panel-header
+      =t(action == :new ? "diags.new.title": "diags.edit.title")
+      .pull-right
+        -if action == :edit
+          =>link_to diag_path(@diag), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+            i.glyphicon.glyphicon-trash
+            =<"Delete"
+        =render "global/panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#diagFormBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+  .panel-body.collapse.in#diagFormBody
+    = render partial: "global/alert", locals: {obj: @diag}
+    = form_for @diag, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :name, tf_width: 10, require_label: true, require_attr: true }
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :description, tf_width: 10 }
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button', locals: {f: f}
