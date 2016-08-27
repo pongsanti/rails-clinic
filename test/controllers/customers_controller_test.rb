@@ -124,9 +124,4 @@ class CustomersControllerTest < ActionController::TestCase
     assert @customer.deleted?
     assert_not_nil @customer.deleted_at
   end
-
-  private
-    def assert_error_div(display)
-      assert_select "div#error_explanation", display
-    end
 end
