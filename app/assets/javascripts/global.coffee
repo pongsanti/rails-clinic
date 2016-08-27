@@ -35,6 +35,9 @@ class panelUtil
         $(placeholder).find("button[data-toggle='collapse']").each (index, btn) ->
           if btn
             content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
+            #Remove all event handlers
+            content_div.off();
+
             content_div.on("show.bs.collapse", () -> 
               $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
             )
