@@ -4,8 +4,7 @@
 
 class Diag
   initializePage: () ->
-    view.panelUtil.initToggleCollapseSwapIcon($("#searchPanel"))
-    view.panelUtil.initToggleCollapseSwapIcon($("#diagIndex"))
-    view.panelUtil.initToggleCollapseSwapIcon($("#diagShow"))
+    view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
+    view.panelUtil.initToggleCollapseSwapIcon $("div[id*='diag']")
 
 view.diag = new Diag
