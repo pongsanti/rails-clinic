@@ -4,5 +4,6 @@ th:
       diag: "วินิจฉัย"
     attributes:
       diag:
+        id: "รหัสวินิจฉัย"
         name: "ชื่อ"
         description: "รายละเอียดเพิ่มเติม" 

@@ -1,0 +1,10 @@
+=render partial: "global/page_header", locals: {title: t(".title"), subtext: t(".sub_text"), icon_name: "stethoscope"}
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "global/search", locals: {reset_path: diags_path, search_field: :name_or_description_cont}
+      = render partial: "list"
+
+    .col-sm-4
+      = render partial: "global/q_placeholder"

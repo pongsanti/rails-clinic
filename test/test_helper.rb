@@ -16,4 +16,8 @@ class ActiveSupport::TestCase
       assert_not_nil a(obj)
     end
   end
+
+  def assert_error_div(display)
+    assert_select "div#error_explanation", display
+  end
 end

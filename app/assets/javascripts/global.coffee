@@ -2,6 +2,7 @@ window.view = {}
 
 class constant
   CUSTOMER: 'customers'
+  DIAG: 'diags'
 
 class util
 
@@ -25,7 +26,7 @@ class util
     return $("div#{value}")
 
   isUrlOf: (url, controller) ->
-    url.indexOf(view.const.CUSTOMER) != -1
+    url.indexOf(controller) != -1
 
 class panelUtil
   initToggleCollapseSwapIcon: (placeholder) ->
@@ -85,6 +86,9 @@ initializePage = ->
   # customer
   if view.util.isUrlOf(url, view.const.CUSTOMER)
     view.customer.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DIAG)
+    view.diag.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()
