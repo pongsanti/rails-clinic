@@ -3,7 +3,7 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new, :create]
-  before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
+  before_action :set_diags, only: [:edit, :new_patient_diag, :edit_patient_diag]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -14,6 +14,7 @@ class ExamsController < ApplicationController
   end
 
   def show
+    @customer = @exam.customer
   end
 
   def new
@@ -28,11 +29,7 @@ class ExamsController < ApplicationController
     @exam.customer = @customer
     
     if @exam.save
-      if params[:submit].present?
-        redirect_to exam_url(@exam)
-      else
-        redirect_to edit_exam_url(@exam)
-      end
+      redirect_to exam_url(@exam), notice: t('successfully_created')
     else
       render 'new'
     end    

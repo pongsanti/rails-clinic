@@ -1,0 +1,9 @@
+= render partial: "global/page_header", locals: { icon_name: "stethoscope", title: t(".title"), subtext: t(".sub_text") }
+
+.container
+  .row
+    .col-sm-7
+      = render partial: "weight_info", locals: {exam: @exam}
+    .col-sm-5
+      = render partial: "customer", locals: {customer: @customer}
+      = render partial: "global/q_placeholder"

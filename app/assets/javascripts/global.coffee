@@ -3,6 +3,7 @@ window.view = {}
 class constant
   CUSTOMER: 'customers'
   DIAG: 'diags'
+  EXAM: 'exams'
 
 class util
 
@@ -94,6 +95,9 @@ initializePage = ->
 
   if view.util.isUrlOf(url, view.const.DIAG)
     view.diag.initializePage()
+
+  if view.util.isUrlOf(url, view.const.EXAM)
+    view.exam.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()
