@@ -1,0 +1,29 @@
+.panel.panel-default#examPeInfo
+  .panel-heading
+    .panel-header 
+      =t("exams.pe_form.header")
+      .pull-right
+        =>link_to edit_exam_path(exam), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        =render "global/panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examPeInfoBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+
+  .panel-body.collapse.in#examPeInfoBody
+    =form_for exam, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = f.label :exam_pi, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static =exam.exam_pi
+
+      .form-group
+        = f.label :exam_pe, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static =exam.exam_pe
+
+      .form-group
+        = f.label :exam_note, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static =exam.exam_note
