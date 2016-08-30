@@ -1,14 +1,24 @@
 class Qs
 
   controller: "qs"
+  action: "index"
+  url: "/qs"
   reloadTimeout: 10000
   timeoutLoop: null
 
-  loadIndex: () ->
-    view.qs.showLoadingIcon(true);
+  fetchAjaxContent: ()->
+    placeholder = view.util.findElemPlaceholder(@controller, @action)
+    if placeholder.length
+      @loadIndex()
+    else
+      if view.qs.timeoutLoop
+        clearTimeout(view.qs.timeoutLoop)
 
-    clearTimeout(view.qs.timeoutLoop);
-    $.get("/qs")
+  loadIndex: () ->
+    view.qs.showLoadingIcon(true)
+
+    clearTimeout(view.qs.timeoutLoop)
+    $.get(view.qs.url)
     view.qs.timeoutLoop = setTimeout(view.qs.loadIndex, view.qs.reloadTimeout)
 
   initRefreshBtn: () ->

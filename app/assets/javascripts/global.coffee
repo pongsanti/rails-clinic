@@ -31,21 +31,20 @@ class util
 
 class panelUtil
   initToggleCollapseSwapIcon: (placeholders) ->
-    if placeholders
+    if placeholders.length
       placeholders.each (i, placeholder) ->
         $(placeholder).find("button[data-toggle='collapse']").each (index, btn) ->
-          if btn
-            content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
-            #Remove all event handlers
-            content_div.off();
+          content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
+          #Remove all event handlers
+          content_div.off();
 
-            content_div.on("show.bs.collapse", () -> 
-              $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
-            )
+          content_div.on("show.bs.collapse", () -> 
+            $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
+          )
 
-            content_div.on("hide.bs.collapse", () -> 
-              $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
-            )
+          content_div.on("hide.bs.collapse", () -> 
+            $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
+          )
 
 class formUtil
   clientSideValidation: () ->
@@ -85,8 +84,7 @@ initializePage = ->
  #   gInitSelectPicker $('form')
 
   # load customer queue
-  view.qs.loadIndex()
-
+  view.qs.fetchAjaxContent()
 
   url = event.data.url
   # customer
