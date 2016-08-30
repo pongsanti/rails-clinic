@@ -20,7 +20,7 @@ class util
 
   findElementWithDataValue: (dataAttrName, value) ->
     select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
-    return $(select_stmt)
+    return $(select_stmt)    
 
   findDivOnElementDataAttrValue: (elem, dataAttr) ->
     value = elem.data(dataAttr)
@@ -85,6 +85,7 @@ initializePage = ->
 
   # load customer queue
   view.qs.fetchAjaxContent()
+  view.exam.fetchAjaxContent()
 
   url = event.data.url
   # customer

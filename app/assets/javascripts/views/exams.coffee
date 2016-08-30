@@ -4,8 +4,21 @@
 
 class Exam
 
+  controller: "exams"
+  action: "index"
+
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
+
+  fetchAjaxContent: ()->
+    placeholder = view.util.findElemPlaceholder(@controller, @action)
+    if placeholder.length
+      @loadIndex(placeholder)
+
+  loadIndex: (placeholder)->
+    anchor = placeholder.find("a")
+    if anchor.length
+      anchor.trigger("click.rails")
 
 view.exam = new Exam
 
