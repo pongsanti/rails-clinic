@@ -1,11 +1,11 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :edit_weight, 
-    :update, :update_weight, 
+  before_action :set_exam, only: [:show, :edit_weight, :edit_pe, 
+    :update_weight, :update_pe,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
-  before_action :set_customer_from_exam, only: [:show, :edit_weight]
+  before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe]
   before_action :set_diags, only: [:edit, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -26,6 +26,9 @@ class ExamsController < ApplicationController
   def edit_weight
   end
 
+  def edit_pe
+  end
+
   def create_weight
     @exam = Exam.new(exam_weight_params)
     @exam.customer = @customer
@@ -42,6 +45,14 @@ class ExamsController < ApplicationController
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
       render 'edit_weight'
+    end
+  end
+
+  def update_pe
+    if @exam.update(exam_pe_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      render 'edit_pe'
     end
   end
 
@@ -82,6 +93,11 @@ class ExamsController < ApplicationController
         :weight, :height, 
         :bp_systolic, :bp_diastolic, 
         :pulse, :note)
+    end
+
+    def exam_pe_params
+      params.require(:exam).permit( 
+        :exam_pi, :exam_pe, :exam_note)
     end
 
     def exam_params

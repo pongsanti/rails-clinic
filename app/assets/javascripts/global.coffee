@@ -3,7 +3,7 @@ window.view = {}
 class constant
   CUSTOMER: 'customers'
   DIAG: 'diags'
-  EXAM: 'exams'
+  EXAM: 'exam'
 
 class util
 

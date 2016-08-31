@@ -1,6 +1,6 @@
 - @url = (action == :new) ? customer_exam_weight_path(@customer.id) : exam_weight_path
 
-div#examWeightForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+#examWeightForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
       =t(action == :new ? "exams.new.title": "exams.edit.title")

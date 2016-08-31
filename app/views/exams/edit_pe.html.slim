@@ -1,0 +1,13 @@
+= render partial: "global/page_header", locals: { icon_name: "stethoscope", title: t("exams.edit.title"), subtext: t("exams.edit.sub_text") }
+
+.container
+  .row
+    .col-sm-7
+      = render partial: "weight_info", locals: {exam: @exam}
+      = render partial: "pe_form", locals: {exam: @exam}
+    .col-sm-5
+      = render partial: "customer", locals: {customer: @customer}
+      div data-controller="exams" data-action="index"
+        i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
+        =link_to "test", customer_exams_path(@customer), remote: true, class: "hide"
+      = render partial: "global/q_placeholder"

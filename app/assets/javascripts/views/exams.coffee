@@ -8,6 +8,7 @@ class Exam
   action: "index"
 
   initializePage: () ->
+    view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
   fetchAjaxContent: ()->
