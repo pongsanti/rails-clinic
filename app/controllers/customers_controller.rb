@@ -50,7 +50,7 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer.destroy
-    redirect_to customers_url, notice: 'Customer was successfully destroyed.'
+    redirect_to customers_url, notice: t("successfully_destroyed")
   end
 
   private

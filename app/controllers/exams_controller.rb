@@ -3,6 +3,7 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show, :edit_weight, :edit_pe, 
     :update_weight, :update_pe,
+    :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe]
@@ -57,6 +58,8 @@ class ExamsController < ApplicationController
   end
 
   def destroy
+    @exam.destroy
+    redirect_to customer_exams_url(@exam.customer), notice: t("successfully_destroyed")
   end
 
   def new_patient_diag
