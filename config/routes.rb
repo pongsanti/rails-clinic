@@ -21,8 +21,18 @@ Rails.application.routes.draw do
   #resources :users
   #resources :sessions
   resources :customers do
-    resources :exams, shallow: true
+    resources :exams, only: [:index]
   end
+  resources :exams, only: [:show]
+
+  get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
+  post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
+
+  get "edit_exam_weight/:id/edit",  to: "exams#edit_weight",    as: "edit_exam_weight"
+  patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
+  get "edit_exam_pe/:id/edit",      to: "exams#edit_pe",        as: "edit_exam_pe"
+  patch "exam_pe/:id",              to: "exams#update_pe",      as: "exam_pe"
+
   resources :store_units
   resources :drugs do
     resources :drug_ins, shallow: true

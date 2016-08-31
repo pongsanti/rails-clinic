@@ -3,7 +3,7 @@
     .panel-header 
       =t("exams.pe_form.header")
       .pull-right
-        =>link_to edit_exam_path(exam), class: "btn btn-warning btn-xs" do
+        =>link_to edit_exam_pe_path(exam), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
         =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examPeInfoBody" } do

@@ -1,8 +1,11 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
-  before_action :set_customer, only: [:index, :new, :create]
+  before_action :set_exam, only: [:show, :edit_weight, 
+    :update, :update_weight, 
+    :new_patient_diag, :create_patient_diag, :update_patient_diag]
+  before_action :set_customer, only: [:index, :new_weight, :create_weight]
+  before_action :set_customer_from_exam, only: [:show, :edit_weight]
   before_action :set_diags, only: [:edit, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -14,18 +17,17 @@ class ExamsController < ApplicationController
   end
 
   def show
-    @customer = @exam.customer
   end
 
-  def new
+  def new_weight
     @exam = Exam.new
   end
 
-  def edit
+  def edit_weight
   end
 
-  def create
-    @exam = Exam.new(exam_params)
+  def create_weight
+    @exam = Exam.new(exam_weight_params)
     @exam.customer = @customer
     
     if @exam.save
@@ -35,16 +37,11 @@ class ExamsController < ApplicationController
     end    
   end
 
-  def update
-    if @exam.update(exam_params)
-      if params[:submit_and_stay]
-        flash.now[params[:section]] = "update_success" 
-        render 'edit'
-      else
-        redirect_to @exam
-      end
+  def update_weight
+    if @exam.update(exam_weight_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
-      render 'edit'
+      render 'edit_weight'
     end
   end
 
@@ -80,6 +77,13 @@ class ExamsController < ApplicationController
   end
 
   private
+    def exam_weight_params
+      params.require(:exam).permit( 
+        :weight, :height, 
+        :bp_systolic, :bp_diastolic, 
+        :pulse, :note)
+    end
+
     def exam_params
       params.require(:exam).permit( 
         :weight, :height, 
@@ -98,6 +102,10 @@ class ExamsController < ApplicationController
 
     def set_customer
       @customer = Customer.find(params[:customer_id])
+    end
+
+    def set_customer_from_exam
+      @customer = @exam.customer
     end
 
     def set_diags

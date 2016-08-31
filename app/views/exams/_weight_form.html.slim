@@ -1,3 +1,5 @@
+- @url = (action == :new) ? customer_exam_weight_path(@customer.id) : exam_weight_path
+
 div#examWeightForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
@@ -14,7 +16,7 @@ div#examWeightForm class=("panel " + (action == :new ? "panel-success" : "panel-
   .panel-body.collapse.in#examWeightFormBody
     = render partial: "global/alert", locals: {obj: @exam}
     
-    = form_for [@customer, @exam], html: { class: "form-horizontal" } do |f|
+    = form_for @exam, url: @url, html: { class: "form-horizontal" } do |f|
       .form-group
         = f.label :weight, class: "col-sm-2 control-label"
         .col-sm-4
