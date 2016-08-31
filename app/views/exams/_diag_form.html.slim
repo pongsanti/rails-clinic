@@ -1,0 +1,24 @@
+#examDiagForm.panel.panel-warning
+  .panel-heading
+    .panel-header
+      ="Diag"
+      .pull-right
+        =render "global/panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examDiagFormBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+  .panel-body.collapse.in#examDiagFormBody
+    table id="example" class="display" cellspacing="0" width="100%"
+      thead
+        tr
+          th="Diag Name"
+          th="Note"
+      tbody
+        tr
+          <td><select size="1" id="row-1-office" name="row-1-office">
+              <option value="Edinburgh" selected="selected">Edinburgh </option>
+              <option value="London">London</option>
+              <option value="New York">New York</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="Tokyo">Tokyo</option>
+          <td><input type="text" id="row-1-position" name="row-1-position" value="System Architect"></td>

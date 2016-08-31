@@ -7,7 +7,10 @@ html lang="en"
     /! The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
     title ="Clinic"
   	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag "https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"
+
   	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"
 
     - if I18n.locale == :th
       = javascript_include_tag 'jquery.validation.messages/messages_th', 'data-turbolinks-track' => true
