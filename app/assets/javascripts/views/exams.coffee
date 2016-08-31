@@ -6,10 +6,21 @@ class Exam
 
   controller: "exams"
   action: "index"
+  diagTable: null
 
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
+
+    table = $('#example')
+    if table.length
+      @diagTable = table.DataTable
+        "paging"    :false,
+        "ordering"  :false,
+        "info"      :false,
+        "searching" :false
+    else
+      @diagTable = null
 
   fetchAjaxContent: ()->
     placeholder = view.util.findElemPlaceholder(@controller, @action)
@@ -20,6 +31,25 @@ class Exam
     anchor = placeholder.find("a")
     if anchor.length
       anchor.trigger("click.rails")
+
+  submitDiagTable: () ->
+    console.log @diagTable.$('input, select').serialize();
+
+  addRow: () ->
+    select = """
+      <select class="selectpicker" data-live-search="true" data-width="auto" id="row-1-office" name="row-1-office">
+        <option value="Edinburgh" selected="selected">Edinburgh </option>
+        <option value="London">London</option>
+        <option value="New York">New York</option>
+        <option value="San Francisco">San Francisco</option>
+        <option value="Tokyo">Tokyo</option>
+      </select>
+    """
+    @diagTable.row.add([
+            select,
+            "<input name='input-2' type='text' class='form-control' value='London'>",
+            ""            
+        ]).draw( false );
 
 view.exam = new Exam
 

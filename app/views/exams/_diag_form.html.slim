@@ -8,17 +8,19 @@
           i.fa.fa-toggle-up
       .clearfix
   .panel-body.collapse.in#examDiagFormBody
-    table id="example" class="display" cellspacing="0" width="100%"
+    table.table-striped.table-hover.table-condensed id="example" cellspacing="0" width="100%"
       thead
         tr
           th="Diag Name"
           th="Note"
+          th
       tbody
-        tr
-          <td><select size="1" id="row-1-office" name="row-1-office">
+/        tr
+          <td><select class="selectpicker" data-live-search="true" data-width="fit" size="1" id="row-1-office" name="row-1-office">
               <option value="Edinburgh" selected="selected">Edinburgh </option>
               <option value="London">London</option>
               <option value="New York">New York</option>
               <option value="San Francisco">San Francisco</option>
               <option value="Tokyo">Tokyo</option>
-          <td><input type="text" id="row-1-position" name="row-1-position" value="System Architect"></td>
+          <td><input type="text" id="row-1-position" class="form-control" name="row-1-position" value="System Architect"></td>
+          td
