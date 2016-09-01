@@ -9,25 +9,15 @@ class Exam
 
   diagTable: null
   diags_div_id: "diags_div"
+  new_diag_btn_id: "new_diag"
 
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
-    table = view.util.findElementWithDataValue("table", "true")
-    if table.length
-      @diagTable = table.DataTable
-        "paging"    :false,
-        "ordering"  :false,
-        "info"      :false,
-        "searching" :false
-
-      @diagTable.on( 'draw.dt', ()-> 
-        #console.log 'Redraw occurred at: '+new Date().getTime()
-        view.exam.diagTable.$('select.selectpicker').selectpicker("refresh")
-      )
-    else
-      @diagTable = null
+    @diagTable = new view.ExamDiagDataTable(@new_diag_btn_id)
+    @diagTable.diags_div_id = @diags_div_id
+    @diagTable.initializeTable()
 
   fetchAjaxContent: ()->
     placeholder = view.util.findElemPlaceholder(@controller, @action)
@@ -42,30 +32,11 @@ class Exam
   submitDiagTable: () ->
     console.log @diagTable.$('input, select').serialize();
 
-  addRow: () ->
-    diags_div = $("\##{@diags_div_id}").clone()
-    select = diags_div.find("select")
-    select.addClass("selectpicker")
-    rowNum = Date.now()
-    select.attr("id", "exam_patient_diags_attributes_#{rowNum}_diag_id")
-    select.attr("name", "exam[patient_diags_attributes][#{rowNum}][diag_id]")
+#  lastRow: () ->
+#    @diagTable.row(@rowCount - 1)
 
-    input_id = "exam_patient_diags_attributes_#{rowNum}_note"
-    input_name = "exam[patient_diags_attributes][#{rowNum}][note]"
-    input = "<input id='#{input_id}' name='#{input_name}' type='text' class='form-control'>"
-
-    @diagTable.row.add([
-            diags_div[0].innerHTML,
-            input,
-            ""            
-        ]).draw( false );
-
-  lastRow: () ->
-    @diagTable.row(@rowCount - 1)
-
-  rowCount: () ->
-    @diagTable.rows().count()
-
+#  rowCount: () ->
+#    @diagTable.rows().count()
 
 view.exam = new Exam
 
