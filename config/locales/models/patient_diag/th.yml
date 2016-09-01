@@ -4,5 +4,6 @@ th:
       patient_diag: ""
     attributes:
       patient_diag:
+        id: "หมายเลข"
         diag_id: "วินิจฉัย"
         note: "ข้อมูลเพิ่มเติม"

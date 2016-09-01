@@ -1,12 +1,15 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :edit_weight, :edit_pe, 
-    :update_weight, :update_pe,
+  before_action :set_exam, only: [:show,
+
+    :edit_weight, :edit_pe, :edit_diag,
+    :update_weight, :update_pe, :update_diag,
+    
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
-  before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe]
+  before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe, :edit_diag]
   before_action :set_diags, only: [:edit, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -28,6 +31,9 @@ class ExamsController < ApplicationController
   end
 
   def edit_pe
+  end
+
+  def edit_diag
   end
 
   def create_weight
@@ -55,6 +61,10 @@ class ExamsController < ApplicationController
     else
       render 'edit_pe'
     end
+  end
+
+  def update_diag
+
   end
 
   def destroy

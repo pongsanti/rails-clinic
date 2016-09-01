@@ -5,6 +5,7 @@
     .col-sm-7
       = render partial: "weight_info", locals: {exam: @exam}
       = render partial: "pe_form", locals: {exam: @exam}
+      = render partial: "diag_info", locals: {exam: @exam}      
     .col-sm-5
       = render partial: "customer", locals: {customer: @customer}
       div data-controller="exams" data-action="index"
