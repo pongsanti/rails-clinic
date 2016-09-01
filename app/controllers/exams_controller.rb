@@ -10,7 +10,7 @@ class ExamsController < ApplicationController
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe, :edit_diag]
-  before_action :set_diags, only: [:edit, :new_patient_diag, :edit_patient_diag]
+  before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
     ransack_params = {for_customer: @customer.id}

@@ -1,26 +1,19 @@
 #examDiagForm.panel.panel-warning
   .panel-heading
     .panel-header
-      ="Diag"
+      =t("exams.diag_form.heading")
       .pull-right
-        =render "global/panel_back_button"
+        =>render "global/panel_back_button"
         =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examDiagFormBody" } do
           i.fa.fa-toggle-up
       .clearfix
   .panel-body.collapse.in#examDiagFormBody
-    table.table-striped.table-hover.table-condensed id="example" cellspacing="0" width="100%"
+    .hide id="diags_div"
+      = select_tag "diags", options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }), class: "form-control", data: { 'live-search' => true }
+
+    table.table-striped.table-hover.table-condensed data-table="true" width="100%"
       thead
         tr
-          th="Diag Name"
-          th="Note"
+          th= Diag.human_attribute_name(:name)
+          th= PatientDiag.human_attribute_name(:note)
           th
-      tbody
-/        tr
-          <td><select class="selectpicker" data-live-search="true" data-width="fit" size="1" id="row-1-office" name="row-1-office">
-              <option value="Edinburgh" selected="selected">Edinburgh </option>
-              <option value="London">London</option>
-              <option value="New York">New York</option>
-              <option value="San Francisco">San Francisco</option>
-              <option value="Tokyo">Tokyo</option>
-          <td><input type="text" id="row-1-position" class="form-control" name="row-1-position" value="System Architect"></td>
-          td

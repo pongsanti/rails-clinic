@@ -6,19 +6,26 @@ class Exam
 
   controller: "exams"
   action: "index"
+
   diagTable: null
+  diags_div_id: "diags_div"
 
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
-    table = $('#example')
+    table = view.util.findElementWithDataValue("table", "true")
     if table.length
       @diagTable = table.DataTable
         "paging"    :false,
         "ordering"  :false,
         "info"      :false,
         "searching" :false
+
+      @diagTable.on( 'draw.dt', ()-> 
+        #console.log 'Redraw occurred at: '+new Date().getTime()
+        view.exam.diagTable.$('select.selectpicker').selectpicker("refresh")
+      )
     else
       @diagTable = null
 
@@ -36,20 +43,29 @@ class Exam
     console.log @diagTable.$('input, select').serialize();
 
   addRow: () ->
-    select = """
-      <select class="selectpicker" data-live-search="true" data-width="auto" id="row-1-office" name="row-1-office">
-        <option value="Edinburgh" selected="selected">Edinburgh </option>
-        <option value="London">London</option>
-        <option value="New York">New York</option>
-        <option value="San Francisco">San Francisco</option>
-        <option value="Tokyo">Tokyo</option>
-      </select>
-    """
+    diags_div = $("\##{@diags_div_id}").clone()
+    select = diags_div.find("select")
+    select.addClass("selectpicker")
+    rowNum = Date.now()
+    select.attr("id", "exam_patient_diags_attributes_#{rowNum}_diag_id")
+    select.attr("name", "exam[patient_diags_attributes][#{rowNum}][diag_id]")
+
+    input_id = "exam_patient_diags_attributes_#{rowNum}_note"
+    input_name = "exam[patient_diags_attributes][#{rowNum}][note]"
+    input = "<input id='#{input_id}' name='#{input_name}' type='text' class='form-control'>"
+
     @diagTable.row.add([
-            select,
-            "<input name='input-2' type='text' class='form-control' value='London'>",
+            diags_div[0].innerHTML,
+            input,
             ""            
         ]).draw( false );
+
+  lastRow: () ->
+    @diagTable.row(@rowCount - 1)
+
+  rowCount: () ->
+    @diagTable.rows().count()
+
 
 view.exam = new Exam
 
