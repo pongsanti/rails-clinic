@@ -11,9 +11,12 @@
     .hide id="diags_div"
       = select_tag "diags", options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }), class: "form-control", data: { 'live-search' => true }
 
-    table.table-striped.table-hover.table-condensed data-table="true" width="100%"
-      thead
-        tr
-          th= Diag.human_attribute_name(:name)
-          th= PatientDiag.human_attribute_name(:note)
-          th
+    = form_for exam, html: { class: "form-horizontal" } do |f|
+      table.table-striped.table-hover.table-condensed data-table="true" width="100%"
+        thead
+          tr
+            th= Diag.human_attribute_name(:name)
+            th= PatientDiag.human_attribute_name(:note)
+            th
+      .text-right
+        = render partial: 'global/form_button', locals: {f: f}
