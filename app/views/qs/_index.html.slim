@@ -14,12 +14,14 @@
       thead
         tr
           th=Q.human_attribute_name(:id)
+          th=Exam.human_attribute_name(:id)
           th=Q.human_attribute_name("customer.name")
           th=Q.human_attribute_name(:created_at)
       tbody.rowlink data-link="row"
         - @qs.each do |q|
           tr
-            td= q.id
+            td= format_id(q.id, q)
+            td= format_id(q.exam.id, q.exam)
             td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", q_path(q)
             td 
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)
