@@ -3,9 +3,9 @@
 .container
   .row
     .col-sm-7
+      = render partial: "diag_form", locals: {exam: @exam}
       = render partial: "weight_info", locals: {exam: @exam}
       = render partial: "pe_info", locals: {exam: @exam}
-      = render partial: "diag_form", locals: {exam: @exam}
     .col-sm-5
       = render partial: "customer", locals: {customer: @customer}
       div data-controller="exams" data-action="index"

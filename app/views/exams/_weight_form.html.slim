@@ -5,6 +5,9 @@
     .panel-header
       =t(action == :new ? "exams.new.title": "exams.edit.title")
       .pull-right
+        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
         -if action == :edit
           =>link_to exam_path(@exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
             i.glyphicon.glyphicon-trash
