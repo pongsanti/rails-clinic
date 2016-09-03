@@ -64,7 +64,12 @@ class ExamsController < ApplicationController
   end
 
   def update_diag
-
+    if @exam.update exam_diag_params
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      set_diags
+      render "edit_diag"
+    end
   end
 
   def destroy
@@ -111,6 +116,12 @@ class ExamsController < ApplicationController
     def exam_pe_params
       params.require(:exam).permit( 
         :exam_pi, :exam_pe, :exam_note)
+    end
+
+    def exam_diag_params
+      params.require(:exam).permit(
+        patient_diags_attributes: [:id, :diag_id, :note, :_destroy]
+      )
     end
 
     def exam_params

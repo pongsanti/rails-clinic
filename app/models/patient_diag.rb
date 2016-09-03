@@ -1,5 +1,7 @@
 class PatientDiag < ActiveRecord::Base
 
+  ID_PREFIX = "ED"
+  
   belongs_to :exam
   belongs_to :diag
 

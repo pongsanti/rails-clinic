@@ -24,6 +24,6 @@
         - else
           - exam.patient_diags.each do |pd|
             tr
-              td= pd.id
+              td= format_id(pd.id, pd)
               td= pd.diag.name
               td= pd.note

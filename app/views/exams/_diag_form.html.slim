@@ -14,12 +14,27 @@
     .hide id="diags_div"
       = select_tag "diags", options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }), class: "form-control", data: { 'live-search' => true }
 
-    = form_for exam, html: { class: "form-horizontal" } do |f|
+    = form_for exam, url: exam_diag_path(exam), html: { class: "form-horizontal" } do |f|
       table.table-striped.table-hover.table-condensed data-table="true" width="100%"
         thead
           tr
+            th style="width: 10%"
+              = PatientDiag.human_attribute_name(:id)
             th= Diag.human_attribute_name(:name)
             th= PatientDiag.human_attribute_name(:note)
             th
+        - unless exam.patient_diags.empty?
+          tbody
+            = f.fields_for :patient_diags, exam.patient_diags do |pd_form|
+              tr
+                td
+                  =format_id(pd_form.object.id, pd_form.object)
+                  =pd_form.hidden_field :id
+                td =pd_form.select :diag_id, options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, pd_form.object.diag_id), {}, class: "selectpicker form-control", data: {"live-search" => true}
+                td =pd_form.text_field :note, class: "form-control", placeholder: true, style: "width: 100%"
+                td
+                  label.btn.btn-danger.btn-xs
+                    =>pd_form.check_box :_destroy
+                    span.glyphicon.glyphicon-trash
       .text-right
         = render partial: 'global/form_button', locals: {f: f}

@@ -57,7 +57,7 @@ class window.view.ExamDiagDataTable extends DataTable
         <span class="glyphicon glyphicon-trash"></i>
       </button>
     """
-    return [ diags_div[0].innerHTML, input, delete_icon ]
+    return [ "", diags_div[0].innerHTML, input, delete_icon ]
 
   deleteRowBtnEvent: (elem)->
     row = $(elem).closest('tr')
