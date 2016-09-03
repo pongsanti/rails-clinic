@@ -25,7 +25,7 @@
             th
         - unless exam.patient_diags.empty?
           tbody
-            = f.fields_for :patient_diags, exam.patient_diags do |pd_form|
+            = f.fields_for :patient_diags, f.object.patient_diags do |pd_form|
               tr
                 td
                   =format_id(pd_form.object.id, pd_form.object)

@@ -16,7 +16,7 @@
           th= PatientDiag.human_attribute_name(:id)
           th= Diag.human_attribute_name(:name)
           th= PatientDiag.human_attribute_name(:note)
-      tbody.rowlink data-link="row"
+      tbody
         - if exam.patient_diags.empty?
           tr
             td.text-center colspan="3"

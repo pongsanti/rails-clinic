@@ -10,7 +10,7 @@ class Qs
     if placeholder.length
       @loadIndex(placeholder)
     else
-      if view.qs.timeoutLoop
+      if view.qs.timeoutLoop?
         clearTimeout(view.qs.timeoutLoop)
 
   loadIndex: (placeholder) ->
