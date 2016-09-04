@@ -38,11 +38,10 @@ class util
     $.each(hashObj, (key, value) =>
       phrase = phrase + @data_select(key, value)
     )
-    return $(phrase)
+    $(phrase)
 
-  findDivOnElementDataAttrValue: (elem, dataAttr) ->
-    value = elem.data(dataAttr)
-    return $("div#{value}")
+  findDivElemByDataAttrValue: (elem, dataAttr) ->
+    $("div#{@jqRify(elem).data(dataAttr)}")
 
   isUrlOf: (url, controller) ->
     url.indexOf(controller) != -1
@@ -52,7 +51,7 @@ class panelUtil
     if placeholders.length
       placeholders.each (i, placeholder) ->
         $(placeholder).find("button[data-toggle='collapse']").each (index, btn) ->
-          content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
+          content_div = view.util.findDivElemByDataAttrValue($(btn), "target")
           #Remove all event handlers
           content_div.off()
 
