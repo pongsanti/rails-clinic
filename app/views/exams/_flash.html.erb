@@ -1,9 +1,0 @@
-<% 
-flash.each do |name, msg|
-  if section.to_s == name
-%>
-  <%= content_tag :div, t(".#{msg}"), :id => "flash#{name}", class: "alert alert-success" %>
-<% 
-  end 
-end
-%>
