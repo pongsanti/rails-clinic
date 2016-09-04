@@ -28,5 +28,5 @@
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)
                 =time_ago_in_words(q.created_at)
             td.rowlink-skip
-              =>link_to q_path(q), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>" }, class: "btn btn-warning btn-xs" do
+              =>link_to q_path(q), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>" }, class: "btn btn-danger btn-xs" do
                 i.glyphicon.glyphicon-trash
