@@ -1,12 +1,14 @@
 class Qs
 
-  controller: "qs"
-  action: "index"
+  placeholder_data_attributes:
+    controller: "qs"
+    action: "index"
+
   reloadTimeout: 10000
   timeoutLoop: null
 
   fetchAjaxContent: ()->
-    placeholder = view.util.findElemPlaceholder(@controller, @action)
+    placeholder = view.util.findElemByDataAttributes(@placeholder_data_attributes)
     if placeholder.length
       @loadIndex(placeholder)
     else

@@ -4,8 +4,9 @@
 
 class Exam
 
-  controller: "exams"
-  action: "index"
+  placeholder_data_attributes:
+    controller: "exams"
+    action: "index"
 
   diagTable: null
   diags_div_id: "diags_div"
@@ -20,7 +21,7 @@ class Exam
     @diagTable.initializeTable()
 
   fetchAjaxContent: ()->
-    placeholder = view.util.findElemPlaceholder(@controller, @action)
+    placeholder = view.util.findElemByDataAttributes(@placeholder_data_attributes)
     if placeholder.length
       @triggerAnchorClick(placeholder)
 

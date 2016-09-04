@@ -1,4 +1,5 @@
-placeholder = view.util.findElemPlaceholder(view.qs.controller, view.qs.action)
+placeholder = view.util.findElemByDataAttributes(view.qs.placeholder_data_attributes)
+
 if placeholder.length
   placeholder.html('<%= j(render partial: "index", locals: {qs: @qs}) %>')
 

@@ -7,20 +7,42 @@ class constant
 
 class util
 
-  initTooltips: () ->
-    $('[data-toggle="tooltip"]').tooltip()
+  jqRify: (obj) ->
+    if obj.jquery?
+      obj
+    else
+      $(obj)
 
-  initializeSelectPicker: () ->
-    $('select.selectpicker').selectpicker('refresh')
+  select: (phrase, parent=null) ->
+    if parent?
+      @jqRify(parent).find(phrase)
+    else
+      $(phrase)
 
-  findElemPlaceholder: (controller, action) ->
-    select_controller = "[data-controller=\"#{controller}\"]"
-    select_action = "[data-action=\"#{action}\"]"
-    $("div#{select_controller}#{select_action}")
+  data_attr: (data_attr_name) ->
+    "data-#{data_attr_name}"
+
+  data_select: (data_name, value) ->
+    "[#{@data_attr(data_name)}=\"#{value}\"]"
+
+  initTooltips: (parent=null) ->
+    phrase = "[data-toggle='tooltip']"
+    @select(phrase, parent).tooltip()
+
+  initializeSelectPicker: (parent=null) ->
+    phrase = "select.selectpicker"
+    @select(phrase, parent).selectpicker("refresh")
+
+  findElemByDataAttributes: (hashObj) ->
+    phrase = ''
+    $.each(hashObj, (key, value) =>
+      phrase = phrase + @data_select(key, value)
+    )
+    return $(phrase)
 
   findElementWithDataValue: (dataAttrName, value) ->
     select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
-    return $(select_stmt)    
+    return @jqRify(select_stmt)    
 
   findDivOnElementDataAttrValue: (elem, dataAttr) ->
     value = elem.data(dataAttr)
