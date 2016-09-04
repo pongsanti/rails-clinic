@@ -28,13 +28,13 @@ Rails.application.routes.draw do
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
 
-  get "edit_exam_weight/:id/edit",  to: "exams#edit_weight",    as: "edit_exam_weight"
+  get "exam_weight/:id/edit",       to: "exams#edit_weight",    as: "edit_exam_weight"
   patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
   
-  get "edit_exam_pe/:id/edit",      to: "exams#edit_pe",        as: "edit_exam_pe"
+  get "exam_pe/:id/edit",           to: "exams#edit_pe",        as: "edit_exam_pe"
   patch "exam_pe/:id",              to: "exams#update_pe",      as: "exam_pe"
 
-  get "edit_exam_diag/:id/edit",    to: "exams#edit_diag",      as: "edit_exam_diag"
+  get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
   patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
 
   resources :store_units

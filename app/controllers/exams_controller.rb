@@ -9,7 +9,9 @@ class ExamsController < ApplicationController
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
-  before_action :set_customer_from_exam, only: [:show, :edit_weight, :edit_pe, :edit_diag]
+  before_action :set_customer_from_exam, only: [:show,
+    :edit_weight, :edit_pe, :edit_diag,
+    :update_weight, :update_pe, :update_diag]
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -43,7 +45,7 @@ class ExamsController < ApplicationController
     if @exam.save
       redirect_to exam_url(@exam), notice: t('successfully_created')
     else
-      render 'new'
+      render 'new_weight'
     end    
   end
 
@@ -64,7 +66,7 @@ class ExamsController < ApplicationController
   end
 
   def update_diag
-    if @exam.update exam_diag_params
+    if @exam.update(exam_diag_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
       set_diags
@@ -76,7 +78,7 @@ class ExamsController < ApplicationController
     @exam.destroy
     redirect_to customer_exams_url(@exam.customer), notice: t("successfully_destroyed")
   end
-
+=begin
   def new_patient_diag
     @patient_diag = @exam.patient_diags.build
     render "exams/diags/new_patient_diag"
@@ -104,7 +106,7 @@ class ExamsController < ApplicationController
       handle_error_and_render "exams/diags/edit_patient_diag"
     end
   end
-
+=end
   private
     def exam_weight_params
       params.require(:exam).permit( 
@@ -123,7 +125,7 @@ class ExamsController < ApplicationController
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy]
       )
     end
-
+=begin
     def exam_params
       params.require(:exam).permit( 
         :weight, :height, 
@@ -135,7 +137,7 @@ class ExamsController < ApplicationController
         # patient_diags
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
-
+=end
     def set_exam
       @exam = Exam.find(params[:id])
     end
