@@ -22,9 +22,9 @@ class Exam
   fetchAjaxContent: ()->
     placeholder = view.util.findElemPlaceholder(@controller, @action)
     if placeholder.length
-      @loadIndex(placeholder)
+      @triggerAnchorClick(placeholder)
 
-  loadIndex: (placeholder)->
+  triggerAnchorClick: (placeholder)->
     anchor = placeholder.find("a")
     if anchor.length
       anchor.trigger("click.rails")
