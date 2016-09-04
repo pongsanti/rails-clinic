@@ -8,7 +8,5 @@
       = render partial: "pe_info", locals: {exam: @exam}
     .col-sm-5
       = render partial: "customer", locals: {customer: @customer}
-      div data-controller="exams" data-action="index"
-        i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
-        =link_to "test", customer_exams_path(@customer), remote: true, class: "hide"
+      = render partial: "global/exam_placeholder", locals: {customer: @customer}
       = render partial: "global/q_placeholder"
