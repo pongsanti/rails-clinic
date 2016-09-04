@@ -21,8 +21,26 @@ Rails.application.routes.draw do
   #resources :users
   #resources :sessions
   resources :customers do
-    resources :exams, shallow: true
+    resources :exams, only: [:index]
   end
+  resources :exams, only: [:show, :destroy]
+
+  get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
+  post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
+
+  get "exam_weight/:id/edit",       to: "exams#edit_weight",    as: "edit_exam_weight"
+  patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
+  
+  get "exam_pe/:id/edit",           to: "exams#edit_pe",        as: "edit_exam_pe"
+  patch "exam_pe/:id",              to: "exams#update_pe",      as: "exam_pe"
+
+  get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
+  patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
+
+  resources :exams do
+    resources :qs, only: [:create]
+  end
+
   resources :store_units
   resources :drugs do
     resources :drug_ins, shallow: true
@@ -31,16 +49,17 @@ Rails.application.routes.draw do
 
   resources :drug_usages
   resources :drug_movements
-  get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
-  post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
-  patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'
-  get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
+  #get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
+  #post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
+  #get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
+  #patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'
 
   get 'exams/:id/drug', to: 'exams#new_exam_drug', as: 'new_exam_drug'
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
 
   resources :clients
-  resources :qs
+  resources :qs, only: [:index, :destroy]
+  
   resources :diags  
   # Example resource route with options:
   #   resources :products do

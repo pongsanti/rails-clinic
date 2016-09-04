@@ -1,0 +1,5 @@
+/ local
+/ - customer
+div data-controller="exams" data-action="index"
+  i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
+  =link_to ".", customer_exams_path(customer), remote: true, class: "hide", data: {"refresh" => "true"}

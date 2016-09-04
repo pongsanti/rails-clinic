@@ -1,0 +1,59 @@
+- @url = (action == :new) ? customer_exam_weight_path(@customer.id) : exam_weight_path
+
+#examWeightForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  .panel-heading
+    .panel-header
+      =t(action == :new ? "exams.new.title": "exams.edit.title")
+      .pull-right
+        -if action == :edit
+          =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
+            i.glyphicon.glyphicon-eye-open
+            =<"View"
+          =>link_to exam_path(@exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+            i.glyphicon.glyphicon-trash
+            =<"Delete"
+        =render "global/panel_back_button"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examWeightFormBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+  .panel-body.collapse.in#examWeightFormBody
+    = render partial: "global/alert", locals: {obj: @exam}
+    
+    = form_for @exam, url: @url, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = f.label :weight, class: "col-sm-2 control-label"
+        .col-sm-4
+          .input-group
+            = f.text_field :weight, class: "form-control", placeholder: true, data: { mask: '9?99' }
+            .input-group-addon="kg"
+        = f.label :height, class: "col-sm-2 control-label"
+        .col-sm-4
+          .input-group
+            = f.text_field :height, class: "form-control", placeholder: true, data: { mask: '9?99' }
+            .input-group-addon="cm"
+      
+      .form-group
+        = f.label :bp_systolic, class: "col-sm-2 control-label"
+        .col-sm-10
+          .input-group
+            = f.text_field :bp_systolic, class: "form-control", placeholder: true, data: { mask: '99?9' }
+            .input-group-addon="mm Hg"
+            .input-group-addon="/"
+            = f.text_field :bp_diastolic, class: "form-control", placeholder: true, data: { mask: '99?9' }
+            .input-group-addon="mm Hg"
+      
+      .form-group
+        = f.label :pulse, class: "col-sm-2 control-label"
+        .col-sm-10
+          .input-group
+            = f.text_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , data: { mask: '99?9' }
+            .input-group-addon="bpm"
+      
+      .form-group
+        = f.label :note, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_area :note, class: "form-control", placeholder: true
+    
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button', locals: {f: f}

@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  category: W
+  category: "B"
   exam: exam_one
  
 two:
-  category: W
+  category: "B"
   exam: exam_two
+
+three:
+  category: "A"
+  exam: exam_two  

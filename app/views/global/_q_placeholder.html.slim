@@ -1,2 +1,3 @@
 div data-controller="qs" data-action="index"
   i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
+  =link_to ".", qs_path, remote: true, data: {"refresh" => "true"}, class: "hide"

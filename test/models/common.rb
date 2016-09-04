@@ -4,6 +4,8 @@ module Common
   ERR_BLANK = ERR_PREFIX + "blank"
   ERR_INCLUSION = ERR_PREFIX + "inclusion"
   ERR_INVALID = ERR_PREFIX + "invalid"
+  ERR_NOT_A_NUMBER = ERR_PREFIX + "not_a_number"
+  ERR_LESS_THAN = ERR_PREFIX + "less_than"
    
   def error_count(count)
     assert_equal count, @test_target.errors.count
@@ -17,12 +19,12 @@ module Common
     assert_equal msgs.count, found
   end
 
-  def t(key)
-    I18n.t key
+  def t(key, t_var={})
+    I18n.t key, t_var
   end
 
-  def error_msg(attr_key, error_key)
-    "#{t(attr_key)} #{t(error_key)}"
+  def error_msg(attr_key, error_key, t_var={})
+    "#{t(attr_key)} #{t(error_key, t_var)}"
   end
 
   def should_not_validate_if_empty(attr)

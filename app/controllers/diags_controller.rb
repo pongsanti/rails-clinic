@@ -5,7 +5,7 @@ class DiagsController < ApplicationController
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :create, :update]
 
   def index
-    @diags = @q.result.page params[:page]
+    @diags = @q.result.page(params[:page])
   end
 
   def show
@@ -53,6 +53,7 @@ class DiagsController < ApplicationController
     end
 
     def set_ransack_search_param
-      @q = Diag.ransack(params[:q])
+      param_q = params[:q].blank? ? {"s"=>"id asc"} : params[:q]
+      @q = Diag.ransack(param_q)
     end
 end

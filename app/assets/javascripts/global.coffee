@@ -3,43 +3,74 @@ window.view = {}
 class constant
   CUSTOMER: 'customers'
   DIAG: 'diags'
+  EXAM: 'exam'
 
 class util
 
-  initTooltips: () ->
-    $('[data-toggle="tooltip"]').tooltip()
+  jqRify: (obj) ->
+    if obj.jquery?
+      obj
+    else
+      $(obj)
 
-  initializeSelectPicker: () ->
-    $('select.selectpicker').selectpicker('refresh')
+  select: (phrase, parent=null) ->
+    if parent?
+      @jqRify(parent).find(phrase)
+    else
+      $(phrase)
 
-  findElemPlaceholder: (controller, action) ->
-    select_controller = "[data-controller=\"#{controller}\"]"
-    select_action = "[data-action=\"#{action}\"]"
-    $("div#{select_controller}#{select_action}")
+  data_attr: (data_attr_name) ->
+    "data-#{data_attr_name}"
 
-  findElementWithDataValue: (dataAttrName, value) ->
-    select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
-    return $(select_stmt)
+  data_select: (data_name, value) ->
+    "[#{@data_attr(data_name)}=\"#{value}\"]"
 
-  findDivOnElementDataAttrValue: (elem, dataAttr) ->
-    value = elem.data(dataAttr)
-    return $("div#{value}")
+  hashObjectToJqPhrase:(hashObj) ->
+    phrase = ''
+    $.each(hashObj, (key, value) =>
+      phrase = phrase + @data_select(key, value)
+    )
+    phrase
+
+
+  initTooltips: (parent=null) ->
+    phrase = "[data-toggle='tooltip']"
+    @select(phrase, parent).tooltip()
+
+  initializeSelectPicker: (parent=null) ->
+    phrase = "select.selectpicker"
+    @select(phrase, parent).selectpicker("refresh")
+
+  findElemByDataAttributes: (hashObj) ->
+    phrase = @hashObjectToJqPhrase(hashObj)
+    $(phrase)
+
+  findDivElemByDataAttrValue: (elem, dataAttr) ->
+    $("div#{@jqRify(elem).data(dataAttr)}")
+
+  findAnchorWithDataAttribute: (hashObj, parent=null)->
+    phrase = @hashObjectToJqPhrase(hashObj)
+    @select(phrase, parent)
 
   isUrlOf: (url, controller) ->
     url.indexOf(controller) != -1
 
 class panelUtil
-  initToggleCollapseSwapIcon: (placeholder) ->
-    if placeholder
-      placeholder.find("button[data-toggle='collapse']").each (index, btn) ->
-        content_div = view.util.findDivOnElementDataAttrValue($(btn), "target")
-        content_div.on("show.bs.collapse", () -> 
-          $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
-        )
+  initToggleCollapseSwapIcon: (placeholders) ->
+    if placeholders.length
+      placeholders.each (i, placeholder) ->
+        $(placeholder).find("button[data-toggle='collapse']").each (index, btn) ->
+          content_div = view.util.findDivElemByDataAttrValue($(btn), "target")
+          #Remove all event handlers
+          content_div.off()
 
-        content_div.on("hide.bs.collapse", () -> 
-          $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
-        )
+          content_div.on("show.bs.collapse", () -> 
+            $(btn).find("i.fa").removeClass("fa-toggle-down").addClass("fa-toggle-up")
+          )
+
+          content_div.on("hide.bs.collapse", () -> 
+            $(btn).find("i.fa").removeClass("fa-toggle-up").addClass("fa-toggle-down")
+          )
 
 class formUtil
   clientSideValidation: () ->
@@ -79,8 +110,8 @@ initializePage = ->
  #   gInitSelectPicker $('form')
 
   # load customer queue
-  view.qs.loadIndex()
-
+  view.qs.fetchAjaxContent()
+  view.exam.fetchAjaxContent()
 
   url = event.data.url
   # customer
@@ -89,6 +120,9 @@ initializePage = ->
 
   if view.util.isUrlOf(url, view.const.DIAG)
     view.diag.initializePage()
+
+  if view.util.isUrlOf(url, view.const.EXAM)
+    view.exam.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()

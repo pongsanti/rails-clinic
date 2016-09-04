@@ -1,9 +1,18 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :edit, :update, :new_patient_diag, :create_patient_diag, :update_patient_diag]
-  before_action :set_customer, only: [:index, :new, :create]
-  before_action :set_diags, only: [:new, :edit, :new_patient_diag, :edit_patient_diag]
+  before_action :set_exam, only: [:show,
+
+    :edit_weight, :edit_pe, :edit_diag,
+    :update_weight, :update_pe, :update_diag,
+    
+    :destroy,
+    :new_patient_diag, :create_patient_diag, :update_patient_diag]
+  before_action :set_customer, only: [:index, :new_weight, :create_weight]
+  before_action :set_customer_from_exam, only: [:show,
+    :edit_weight, :edit_pe, :edit_diag,
+    :update_weight, :update_pe, :update_diag]
+  before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -16,44 +25,60 @@ class ExamsController < ApplicationController
   def show
   end
 
-  def new
+  def new_weight
     @exam = Exam.new
   end
 
-  def edit
+  def edit_weight
   end
 
-  def create
-    @exam = Exam.new(exam_params)
+  def edit_pe
+  end
+
+  def edit_diag
+  end
+
+  def create_weight
+    @exam = Exam.new(exam_weight_params)
     @exam.customer = @customer
     
     if @exam.save
-      if params[:submit].present?
-        redirect_to exam_url(@exam)
-      else
-        redirect_to edit_exam_url(@exam)
-      end
+      redirect_to exam_url(@exam), notice: t('successfully_created')
     else
-      render 'new'
+      render 'new_weight'
     end    
   end
 
-  def update
-    if @exam.update(exam_params)
-      if params[:submit_and_stay]
-        flash.now[params[:section]] = "update_success" 
-        render 'edit'
-      else
-        redirect_to @exam
-      end
+  def update_weight
+    if @exam.update(exam_weight_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
-      render 'edit'
+      render 'edit_weight'
+    end
+  end
+
+  def update_pe
+    if @exam.update(exam_pe_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      render 'edit_pe'
+    end
+  end
+
+  def update_diag
+    if @exam.update(exam_diag_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      set_diags
+      render "edit_diag"
     end
   end
 
   def destroy
+    @exam.destroy
+    redirect_to customer_exams_url(@exam.customer), notice: t("successfully_destroyed")
   end
-
+=begin
   def new_patient_diag
     @patient_diag = @exam.patient_diags.build
     render "exams/diags/new_patient_diag"
@@ -81,8 +106,26 @@ class ExamsController < ApplicationController
       handle_error_and_render "exams/diags/edit_patient_diag"
     end
   end
-
+=end
   private
+    def exam_weight_params
+      params.require(:exam).permit( 
+        :weight, :height, 
+        :bp_systolic, :bp_diastolic, 
+        :pulse, :note)
+    end
+
+    def exam_pe_params
+      params.require(:exam).permit( 
+        :exam_pi, :exam_pe, :exam_note)
+    end
+
+    def exam_diag_params
+      params.require(:exam).permit(
+        patient_diags_attributes: [:id, :diag_id, :note, :_destroy]
+      )
+    end
+=begin
     def exam_params
       params.require(:exam).permit( 
         :weight, :height, 
@@ -94,13 +137,17 @@ class ExamsController < ApplicationController
         # patient_diags
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy])
     end
-
+=end
     def set_exam
       @exam = Exam.find(params[:id])
     end
 
     def set_customer
       @customer = Customer.find(params[:customer_id])
+    end
+
+    def set_customer_from_exam
+      @customer = @exam.customer
     end
 
     def set_diags

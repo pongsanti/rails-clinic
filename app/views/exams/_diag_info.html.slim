@@ -1,0 +1,29 @@
+.panel.panel-default#examDiagInfo
+  .panel-heading
+    .panel-header 
+      =t("exams.diag_form.heading")
+      .pull-right
+        =>link_to edit_exam_diag_path(exam), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examDiagInfoBody" } do
+          i.fa.fa-toggle-up
+      .clearfix
+  .table-responsive.collapse.in#examDiagInfoBody
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th= PatientDiag.human_attribute_name(:id)
+          th= Diag.human_attribute_name(:name)
+          th= PatientDiag.human_attribute_name(:note)
+      tbody
+        - if exam.patient_diags.empty?
+          tr
+            td.text-center colspan="3"
+              ="No data"
+        - else
+          - exam.patient_diags.each do |pd|
+            tr
+              td= format_id(pd.id, pd)
+              td= pd.diag.name
+              td= pd.note
