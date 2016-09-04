@@ -25,7 +25,7 @@ class Qs
       view.qs.timeoutLoop = setTimeout(view.qs.loadIndex.bind(null, placeholder), view.qs.reloadTimeout)
 
   showLoadingIcon: (show) ->
-    elem = view.util.findElementWithDataValue("loading-icon", "true")
+    elem = view.util.findElemByDataAttributes {"loading-icon": "true"}
     if elem
       if show
         elem.show();

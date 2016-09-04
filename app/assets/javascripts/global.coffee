@@ -40,10 +40,6 @@ class util
     )
     return $(phrase)
 
-  findElementWithDataValue: (dataAttrName, value) ->
-    select_stmt = "[data-#{dataAttrName}=\"#{value}\"]"
-    return @jqRify(select_stmt)    
-
   findDivOnElementDataAttrValue: (elem, dataAttr) ->
     value = elem.data(dataAttr)
     return $("div#{value}")

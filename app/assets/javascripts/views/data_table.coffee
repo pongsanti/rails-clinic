@@ -5,7 +5,7 @@ class DataTable
   constructor: (@new_entry_btn_id) ->
 
   initializeTable: ()->
-    placeholder = view.util.findElementWithDataValue("table", "true")
+    placeholder = view.util.findElemByDataAttributes {"table": "true"}
     if placeholder.length
       @table = placeholder.DataTable
         "paging"    :false,
