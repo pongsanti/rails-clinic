@@ -37,6 +37,10 @@ Rails.application.routes.draw do
   get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
   patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
 
+  resources :exams do
+    resources :qs, only: [:create]
+  end
+
   resources :store_units
   resources :drugs do
     resources :drug_ins, shallow: true
@@ -54,7 +58,8 @@ Rails.application.routes.draw do
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
 
   resources :clients
-  resources :qs
+  resources :qs, only: [:index, :destroy]
+  
   resources :diags  
   # Example resource route with options:
   #   resources :products do

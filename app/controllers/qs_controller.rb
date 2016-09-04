@@ -1,37 +1,22 @@
 class QsController < ApplicationController
   
   before_action :authenticate_user!
+  before_action :set_exam, only: [:create]
+  before_action :set_q, only: [:destroy]
 
   def index
     @qs = Q.all
   end
 
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
   def create
-    @q = Q.new
-    @q.category = 'W'
-    retrieve_exam
-    
-    @q.save
-    redirect_to :back
-  end
-
-  def update
+    q = Q.new
+    q.category = "B"
+    q.exam = @exam
+    q.save
   end
 
   def destroy
-    @q = Q.find(params[:id])
     @q.destroy
-
-    redirect_to :back
   end
 
   private
@@ -39,9 +24,12 @@ class QsController < ApplicationController
     #  params.require(:q).permit(:type)
     #end
 
-    def retrieve_exam
+    def set_q
+      @q = Q.find(params[:id])
+    end
+
+    def set_exam
       @exam = Exam.find(params[:exam_id])
-      @q.exam = @exam
     end  
 
 end

@@ -10,19 +10,19 @@ class Qs
   fetchAjaxContent: ()->
     placeholder = view.util.findElemByDataAttributes(@placeholder_data_attributes)
     if placeholder.length
-      @loadIndex(placeholder)
+      @triggerAnchorClick(placeholder)
     else
       if view.qs.timeoutLoop?
         clearTimeout(view.qs.timeoutLoop)
 
-  loadIndex: (placeholder) ->
+  triggerAnchorClick: (placeholder) ->
     view.qs.showLoadingIcon(true)
 
     clearTimeout(view.qs.timeoutLoop)
-    anchor = placeholder.find("a")
+    anchor = view.util.findAnchorWithDataAttribute({"refresh": "true"}, placeholder)
     if anchor.length
       anchor.trigger("click.rails")
-      view.qs.timeoutLoop = setTimeout(view.qs.loadIndex.bind(null, placeholder), view.qs.reloadTimeout)
+      view.qs.timeoutLoop = setTimeout(view.qs.triggerAnchorClick.bind(null, placeholder), view.qs.reloadTimeout)
 
   showLoadingIcon: (show) ->
     elem = view.util.findElemByDataAttributes {"loading-icon": "true"}

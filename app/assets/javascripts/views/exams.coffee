@@ -26,7 +26,7 @@ class Exam
       @triggerAnchorClick(placeholder)
 
   triggerAnchorClick: (placeholder)->
-    anchor = placeholder.find("a")
+    anchor = view.util.findAnchorWithDataAttribute({"refresh": "true"}, placeholder)
     if anchor.length
       anchor.trigger("click.rails")
 

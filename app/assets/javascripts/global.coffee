@@ -25,6 +25,14 @@ class util
   data_select: (data_name, value) ->
     "[#{@data_attr(data_name)}=\"#{value}\"]"
 
+  hashObjectToJqPhrase:(hashObj) ->
+    phrase = ''
+    $.each(hashObj, (key, value) =>
+      phrase = phrase + @data_select(key, value)
+    )
+    phrase
+
+
   initTooltips: (parent=null) ->
     phrase = "[data-toggle='tooltip']"
     @select(phrase, parent).tooltip()
@@ -34,14 +42,15 @@ class util
     @select(phrase, parent).selectpicker("refresh")
 
   findElemByDataAttributes: (hashObj) ->
-    phrase = ''
-    $.each(hashObj, (key, value) =>
-      phrase = phrase + @data_select(key, value)
-    )
+    phrase = @hashObjectToJqPhrase(hashObj)
     $(phrase)
 
   findDivElemByDataAttrValue: (elem, dataAttr) ->
     $("div#{@jqRify(elem).data(dataAttr)}")
+
+  findAnchorWithDataAttribute: (hashObj, parent=null)->
+    phrase = @hashObjectToJqPhrase(hashObj)
+    @select(phrase, parent)
 
   isUrlOf: (url, controller) ->
     url.indexOf(controller) != -1
