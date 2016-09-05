@@ -17,7 +17,7 @@ hr
     .row
       .col-sm-2.text-right = label :drug_in, :id, class: "colon-trail"
       .col-sm-4
-        = format_id @drug_in.id, @drug_in
+        = format_id @drug_in
       .col-sm-2.text-right = label :drug_in, :created_at, class: "colon-trail"
       .col-sm-4 
         = "#{th_date_time_format @drug_in.created_at} (#{time_ago_in_words(@drug_in.created_at)})"

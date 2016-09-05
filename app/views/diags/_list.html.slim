@@ -19,7 +19,7 @@
       tbody.rowlink data-link="row"
         - @diags.each do |diag|
           tr
-            td= format_id diag.id, diag
+            td= format_id diag
             td= link_to diag.name, diag_path(diag)
             td= diag.description
   .panel-footer

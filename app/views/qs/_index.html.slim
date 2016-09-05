@@ -21,8 +21,8 @@
       tbody.rowlink data-link="row"
         - @qs.each do |q|
           tr
-            td= format_id(q.id, q)
-            td= format_id(q.exam.id, q.exam)
+            td= format_id q
+            td= format_id q.exam
             td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", exam_path(q.exam)
             td 
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)

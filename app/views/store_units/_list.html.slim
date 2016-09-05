@@ -17,7 +17,7 @@
       tbody.rowlink data-link="row"
         - @store_units.each do |store_unit|
           tr
-            td= format_id store_unit.id, store_unit
+            td= format_id store_unit
             td= link_to store_unit.title, store_unit_path(store_unit)
   .panel-footer
     = paginate @store_units

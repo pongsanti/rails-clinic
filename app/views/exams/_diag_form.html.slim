@@ -27,7 +27,7 @@
             = f.fields_for :patient_diags, f.object.patient_diags do |pd_form|
               tr
                 td
-                  =format_id(pd_form.object.id, pd_form.object)
+                  =format_id pd_form.object
                   =pd_form.hidden_field :id
                 td =pd_form.select :diag_id, options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }, pd_form.object.diag_id), {}, class: "selectpicker form-control", data: {"live-search" => true}
                 td =pd_form.text_field :note, class: "form-control", placeholder: true, style: "width: 100%"

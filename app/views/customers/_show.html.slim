@@ -18,7 +18,7 @@
       .form-group
         = f.label :id, class: "col-sm-2 control-label"
         .col-sm-4
-          p.form-control-static =format_id(@customer.id, @customer)
+          p.form-control-static =format_id @customer
         = f.label :created_at, class: "col-sm-2 control-label"
         .col-sm-4
           p.form-control-static ="#{th_date_time_format(@customer.created_at)} (#{time_ago_in_words(@customer.created_at)})"
