@@ -6,9 +6,8 @@
         =>link_to edit_diag_path(@diag), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#diagShowBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#diagShowBody" }
       .clearfix
 
   .panel-body.collapse.in#diagShowBody

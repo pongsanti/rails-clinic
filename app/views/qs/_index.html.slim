@@ -7,7 +7,7 @@
         =>link_to qs_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        =>render partial: "global/panel_toggle_button", locals: { target: "#queueIndex" }          
+        = render partial: "global/toggle_panel_button", locals: { target: "#queueIndex" }          
       .clearfix
   .table-responsive.collapse.in#queueIndex
     table.table.table-striped.table-hover.table-condensed

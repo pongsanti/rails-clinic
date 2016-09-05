@@ -7,8 +7,7 @@
         =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_diag" do
           i.glyphicon.glyphicon-file
           =<"New Entry"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examDiagFormBody" } do
-          i.fa.fa-toggle-up
+        = render partial: "global/toggle_panel_button", locals: { target: "#examDiagFormBody" }
       .clearfix
   .panel-body.collapse.in#examDiagFormBody
     .hide id="diags_div"

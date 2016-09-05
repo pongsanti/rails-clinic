@@ -12,9 +12,8 @@
         =>link_to edit_exam_weight_path(exam), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examWeightInfoBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examWeightInfoBody" }
       .clearfix
 
   .panel-body.collapse.in#examWeightInfoBody

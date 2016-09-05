@@ -3,9 +3,8 @@
     .panel-header
       =t("exams.edit.title")
       .pull-right
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examPeFormBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examPeFormBody" }
       .clearfix
   .panel-body.collapse.in#examPeFormBody
     = render partial: "global/alert", locals: {obj: @exam}
