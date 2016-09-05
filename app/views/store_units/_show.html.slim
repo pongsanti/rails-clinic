@@ -1,0 +1,26 @@
+.panel.panel-default#storeUnitShow
+  .panel-heading
+    .panel-header 
+      =t("store_units.show.title")
+      .pull-right
+        =>link_to edit_store_unit_path(@store_unit), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#storeUnitShowBody" }
+      .clearfix
+
+  .panel-body.collapse.in#storeUnitShowBody
+    =form_for @store_unit, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = f.label :id, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static =format_id(@store_unit.id, @store_unit)
+        = f.label :created_at, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static ="#{th_date_time_format(@store_unit.created_at)} (#{time_ago_in_words(@store_unit.created_at)})"
+
+      .form-group
+        = f.label :name, class: "col-sm-2 control-label required-label"
+        .col-sm-10
+          p.form-control-static = @store_unit.title

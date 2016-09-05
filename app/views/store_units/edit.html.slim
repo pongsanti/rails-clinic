@@ -1,0 +1,9 @@
+= render partial: "global/page_header", locals: { icon_name: "cubes", title: t("store_units.edit.title"), subtext: t("store_units.edit.sub_text") }
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "global/search", locals: {reset_path: store_units_path, search_field: :title_cont}
+      = render partial: "form", locals: {action: :edit}
+    .col-sm-4
+      = render partial: "global/q_placeholder"
