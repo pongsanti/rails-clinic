@@ -22,7 +22,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should get index with search" do
-    get "index", q: { name: "name", name_cont: "nobody" }
+    get "index", q: { name_cont: "nobody" }
 
     assert_response :success
     assert_assigns :q, :customers
@@ -31,7 +31,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should get index with search found" do
-    get "index", q: { name: "name", name_cont: "David" }
+    get "index", q: { name_cont: "David" }
 
     assert_response :success
     assert_assigns :q, :customers
