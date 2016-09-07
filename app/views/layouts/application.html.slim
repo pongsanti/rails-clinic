@@ -72,9 +72,10 @@ html lang="en"
                 li.divider role="separator"
                 li.dropdown-header
                   =>icon("medkit")
-                  = t('.master_data')
+                  = "Master data"
                 li
                   = link_to drugs_path do
+                    => icon("medkit")
                     => t('.drug')
                 li
                   = link_to drug_usages_path do

@@ -1,0 +1,30 @@
+.panel.panel-default#drugIndex
+  .panel-heading
+    .panel-header 
+      =t("drugs.index.title")
+      .pull-right
+        =>link_to new_drug_usage_path, class: "btn btn-success btn-xs" do
+          i.glyphicon.glyphicon-file
+          =<"New"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugIndexBody" }
+      .clearfix
+  .table-responsive.collapse.in#drugIndexBody
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th = sort_link @q, :id
+          th = sort_link @q, :name
+          th = sort_link @q, :trade_name
+          th = sort_link @q, :effect
+          th = sort_link @q, :concern
+      tbody.rowlink data-link="row"
+        - @drugs.each do |drug|
+          tr
+            td = format_id drug
+            td = drug.name
+            td = drug.trade_name
+            td = drug.effect
+            td = drug.concern
+  .panel-footer
+    =paginate @drugs
+    =page_entries_info @drugs, entry_name: t("drugs.index.title")            

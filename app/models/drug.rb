@@ -1,9 +1,13 @@
 class Drug < ActiveRecord::Base
 
+  ID_PREFIX = "D"
+
   belongs_to :drug_usage
   belongs_to :store_unit
 
   has_many :drug_ins
+
+  validates :name, presence: true
 
   class << self
     # searchable fields
