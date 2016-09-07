@@ -78,10 +78,11 @@ html lang="en"
                     => t('.drug')
                 li
                   = link_to drug_usages_path do
-                    =<> t('.drug_usage')
+                    => icon("sticky-note")
+                    => t('.drug_usage')
                 li
                   = link_to store_units_path do
-                    =>icon("cubes")
+                    => icon("cubes")
                     => t('.store_unit')
           
           ul.nav.navbar-nav.navbar-right
