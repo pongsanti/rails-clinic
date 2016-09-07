@@ -1,0 +1,30 @@
+.panel.panel-default#drugUsageShow
+  .panel-heading
+    .panel-header 
+      =t("drug_usages.show.title")
+      .pull-right
+        =>link_to edit_drug_usage_path(@drug_usage), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugUsageShowBody" }
+      .clearfix
+  .panel-body.collapse.in#drugUsageShowBody
+    =form_for @drug_usage, html: { class: "form-horizontal" } do |f|
+      = render partial: "global/show_id", locals: {obj: @drug_usage, f: f}
+
+      .form-group
+        = f.label :code, class: "col-sm-2 control-label required-label"
+        .col-sm-4
+          p.form-control-static = @drug_usage.code
+        = f.label :text, class: "col-sm-2 control-label required-label"
+        .col-sm-4
+          p.form-control-static = @drug_usage.text
+
+      .form-group
+        = f.label :use_amount, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = @drug_usage.use_amount
+        = f.label :times_per_day, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = @drug_usage.times_per_day

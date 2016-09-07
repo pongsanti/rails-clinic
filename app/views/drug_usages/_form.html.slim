@@ -1,26 +1,34 @@
-= form_for @drug_usage, html: { class: "form-horizontal" } do |f|
-  = render partial: "global/alert", locals: {obj: @drug_usage} 
+div#drugUsageForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  .panel-heading
+    .panel-header
+      =t(action == :new ? "drug_usages.new.title": "drug_usages.edit.title")
+      .pull-right
+        -if action == :edit
+          =>link_to drug_usage_path(@drug_usage), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+            i.glyphicon.glyphicon-trash
+            =<"Delete"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugUsageFormBody" }
+      .clearfix
+  .panel-body.collapse.in#drugUsageFormBody
+    = render partial: "global/alert", locals: {obj: @drug_usage}
 
-  .form-group
-    = f.label :code, class: "col-sm-2 control-label required-label"
-    .col-sm-10
-      = f.text_field :code, class: "form-control", required: true, placeholder: true
+    = form_for @drug_usage, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :code, require_label: true, require_attr: true, tf_width: 10 }
 
-  .form-group
-    = f.label :text, class: "col-sm-2 control-label required-label"
-    .col-sm-10
-      = f.text_field :text, class: "form-control", required: true, placeholder: true
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :text, require_label: true, require_attr: true, tf_width: 10 }
 
-  .form-group
-    = f.label :use_amount, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.text_field :use_amount, class: "form-control", number: true, placeholder: true
+      .form-group
+        = f.label :use_amount, class: "col-sm-2 control-label"
+        .col-sm-4
+          = f.text_field :use_amount, class: "form-control", number: true, placeholder: true
 
-    = f.label :times_per_day, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.text_field :times_per_day, class: "form-control", digits: true, minlength: 0, maxlength: 1, placeholder: true
-
-  .form-group
-    .col-sm-10.col-sm-offset-2
-      = render partial: "global/form_button", locals: {f: f}
-      =< render partial: "global/form_button_back"
+        = f.label :times_per_day, class: "col-sm-2 control-label"
+        .col-sm-4
+          = f.text_field :times_per_day, class: "form-control", digits: true, minlength: 0, maxlength: 1, placeholder: true
+          
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button', locals: {f: f}          
