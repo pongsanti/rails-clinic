@@ -15,13 +15,7 @@
 
   .panel-body.collapse.in#customerShowBody
     =form_for @customer, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = f.label :id, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =format_id @customer
-        = f.label :created_at, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static ="#{th_date_time_format(@customer.created_at)} (#{time_ago_in_words(@customer.created_at)})"
+      = render partial: "global/show_id", locals: {obj: @customer, f: f}
 
       .form-group
         = f.label :prefix, class: "col-sm-2 control-label required-label"
