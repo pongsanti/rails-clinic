@@ -21,7 +21,7 @@
         - @drugs.each do |drug|
           tr
             td = format_id drug
-            td = drug.name
+            td = link_to drug.name, drug_path(drug)
             td = drug.trade_name
             td = drug.effect
             td = drug.concern

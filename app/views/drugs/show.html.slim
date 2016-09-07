@@ -1,12 +1,10 @@
-= render partial: "navigation", locals: {active: :show}
-h3 = t '.title'
-  small = t '.sub_text'
-hr
+= render partial: "global/page_header", locals: { icon_name: "medkit", title: t("drugs.show.title"), subtext: t("drugs.show.sub_text") }
 
-.form-group
-  = render partial: "drug_ins/navigation", locals: {active: :none, drug: @drug}
+.container
+  .row
+    .col-sm-8
+      = render partial: "global/search", locals: {reset_path: drugs_path, search_field: :name_or_trade_name_cont}
+      = render partial: "show", locals: {drug: @drug}
 
-= render "info", drug: @drug
-= render partial: "drug_ins/navigation", locals: {active: :none, drug: @drug}
-hr
-= render "global/form_button_back"
+    .col-sm-4
+      = render partial: "global/q_placeholder"

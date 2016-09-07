@@ -4,11 +4,10 @@ class DrugsController < ApplicationController
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
   before_action :get_all_drug_usages, only: [:new, :edit]
   before_action :get_all_store_units, only: [:new, :edit]
+  before_action :set_ransack_search_param, only: [:index, :show]
 
   # GET /drugs
-  # GET /drugs.json
   def index
-    @q = Drug.ransack params[:q]
     @drugs = @q.result.page params[:page]
   end
 
@@ -18,7 +17,6 @@ class DrugsController < ApplicationController
   end
 
   # GET /drugs/1
-  # GET /drugs/1.json
   def show
   end
 
@@ -72,6 +70,9 @@ class DrugsController < ApplicationController
   end
 
   private
+    def set_ransack_search_param
+      @q = Drug.ransack(params[:q])
+    end  
     # Use callbacks to share common setup or constraints between actions.
     def set_drug
       @drug = Drug.find(params[:id])
