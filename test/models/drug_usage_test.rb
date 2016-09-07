@@ -27,4 +27,22 @@ class DrugUsageTest < ActiveSupport::TestCase
     error_contains error_msg(text, ERR_BLANK)
   end
 
+  test "should validate times per day if present" do
+    times_per_day = "activerecord.attributes.drug_usage.times_per_day"
+
+    @drug_usage.times_per_day = "ABC"
+    assert_not @drug_usage.save
+    error_count 1
+    error_contains error_msg(times_per_day, ERR_NOT_A_NUMBER)
+  end
+
+  test "should validate use amount if present" do
+    use_amount = "activerecord.attributes.drug_usage.use_amount"
+
+    @drug_usage.use_amount = "ABC"
+    assert_not @drug_usage.save
+    error_count 1
+    error_contains error_msg(use_amount, ERR_NOT_A_NUMBER)
+  end
+
 end
