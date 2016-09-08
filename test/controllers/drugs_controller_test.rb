@@ -28,45 +28,77 @@ class DrugsControllerTest < ActionController::TestCase
     assert_not_nil js_res['name']
   end
 
-  private
-    def json_response
-      ActiveSupport::JSON.decode @response.body
-    end
-=begin
+  test "should get show" do
+    get :show, id: @drug
+    assert_response :success
+    assert_assigns :q, :drug
+  end
+
   test "should get new" do
     get :new
     assert_response :success
-  end
-
-  test "should create drug" do
-    assert_difference('Drug.count') do
-      post :create, drug: { balance: @drug.balance, drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: @drug.name, trade_name: @drug.trade_name }
-    end
-
-    assert_redirected_to drug_path(assigns(:drug))
-  end
-
-  test "should show drug" do
-    get :show, id: @drug
-    assert_response :success
+    assert_assigns :q, :drug, :drug_usages, :store_units
+    assert a(:drug).new_record?
   end
 
   test "should get edit" do
     get :edit, id: @drug
     assert_response :success
+    assert_assigns :q, :drug, :drug_usages, :store_units
+    assert_equal @drug, a(:drug)
   end
 
-  test "should update drug" do
-    patch :update, id: @drug, drug: { balance: @drug.balance, drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: @drug.name, trade_name: @drug.trade_name }
+  test "should post create" do
+    assert_difference('Drug.count') do
+      post :create, drug: { drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: @drug.name, trade_name: @drug.trade_name }
+    end
+
     assert_redirected_to drug_path(assigns(:drug))
+    assert_error_div  false
   end
 
-  test "should destroy drug" do
-    assert_difference('Drug.count', -1) do
+  test "should post create error" do
+    assert_no_difference("Drug.count") do
+      post :create, drug: { drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: "", trade_name: @drug.trade_name }
+    end
+
+    assert_response :success
+    assert_template :new
+    assert_assigns :q, :drug, :drug_usages, :store_units
+    assert_error_div true
+  end
+
+  test "should patch update" do
+    patch :update, id: @drug, drug: { drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: @drug.name, trade_name: @drug.trade_name }
+    assert_redirected_to drug_path(assigns(:drug))
+
+    assert_assigns :q, :drug
+    assert_equal @drug, a(:drug)
+    assert_error_div false
+  end
+
+  test "should patch update error" do
+    patch :update, id: @drug, drug: { drug_usage_id: @drug.drug_usage_id, effect: @drug.effect, name: "", trade_name: @drug.trade_name }
+    
+    assert_response :success
+    assert_template :edit
+    assert_assigns :q, :drug, :drug_usages, :store_units
+    assert_error_div true
+  end  
+
+  test "should delete destroy drug" do
+    assert_no_difference('Drug.count') do
       delete :destroy, id: @drug
     end
 
     assert_redirected_to drugs_path
+    @drug.reload
+    assert @drug.deleted?
+    assert_not_nil @drug.deleted_at
   end
-=end  
+
+  private
+    def json_response
+      ActiveSupport::JSON.decode @response.body
+    end
 end

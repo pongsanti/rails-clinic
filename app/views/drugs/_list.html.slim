@@ -3,7 +3,7 @@
     .panel-header 
       =t("drugs.index.title")
       .pull-right
-        =>link_to new_drug_usage_path, class: "btn btn-success btn-xs" do
+        =>link_to new_drug_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
         = render partial: "global/toggle_panel_button", locals: { target: "#drugIndexBody" }

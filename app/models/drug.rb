@@ -2,6 +2,8 @@ class Drug < ActiveRecord::Base
 
   ID_PREFIX = "D"
 
+  acts_as_paranoid
+
   belongs_to :drug_usage
   belongs_to :store_unit
 

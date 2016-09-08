@@ -1,0 +1,40 @@
+div#drugForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  .panel-heading
+    .panel-header
+      =t(action == :new ? "drugs.new.title": "drugs.edit.title")
+      .pull-right
+        -if action == :edit
+          =>link_to drug_path(drug), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+            i.glyphicon.glyphicon-trash
+            =<"Delete"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugFormBody" }
+      .clearfix
+  .panel-body.collapse.in#drugFormBody
+    = render partial: "global/alert", locals: {obj: drug}
+
+    = form_for drug, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :name, require_label: true, require_attr: true, tf_width: 10 }
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :trade_name, tf_width: 10 }
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :effect, tf_width: 10 }
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :concern, tf_width: 10 }
+
+      .form-group
+        = f.label :drug_usage, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.collection_select :drug_usage_id, @drug_usages, :id, :code_text, {include_blank: t('nothing_select')}, class: "selectpicker", 
+        data: { "live-search" => true, "width" => "auto" }
+
+      .form-group
+        = f.label :store_unit, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.collection_select :store_unit_id, @store_units, :id, :title, {include_blank: t('nothing_select')}, class: "selectpicker", 
+        data: { "live-search" => true, "width" => "auto" }
+  
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: "global/form_button", locals: {f: f}
