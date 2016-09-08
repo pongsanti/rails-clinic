@@ -3,6 +3,9 @@
     .panel-header 
       =t("drugs.show.title")
       .pull-right
+        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+          i.fa.fa-medkit
+          =<"View Drug Lot"      
         =>link_to edit_drug_path(drug), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
@@ -16,7 +19,8 @@
       .form-group
         = f.label :balance, class: "col-sm-2 control-label"
         .col-sm-10
-          p.form-control-static = drug.balance
+          p.form-control-static 
+            mark = drug.balance
 
       .form-group
         = f.label :name, class: "col-sm-2 control-label required-label"

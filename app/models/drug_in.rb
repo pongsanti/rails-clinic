@@ -2,10 +2,12 @@ class DrugIn < ActiveRecord::Base
 
   ID_PREFIX = "LT"
 
-  belongs_to :drug
-  has_many :drug_movements
+  belongs_to :drug, inverse_of: :drug_ins
+  has_many :drug_movements, inverse_of: :drug_in
 
   paginates_per 10
+
+  validates :drug, presence: true
 
   class << self
     #scope

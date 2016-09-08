@@ -1,0 +1,33 @@
+.panel.panel-default#drugInfo
+  .panel-heading
+    .panel-header 
+      =t("drugs.show.title")
+      .pull-right
+        =>link_to drug_path(drug), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugInfoBody" }
+      .clearfix
+  .panel-body.collapse.in#drugInfoBody
+    .row
+      .col-sm-4
+        = label :drug, :id
+      .col-sm-8
+        = format_id drug
+    .row
+      .col-sm-4
+        = label :drug, :balance
+      .col-sm-8
+        = drug.balance
+
+    .row
+      .col-sm-4
+        = label :drug, :name
+      .col-sm-8
+        = drug.name
+
+    .row
+      .col-sm-4
+        = label :drug, :trade_name
+      .col-sm-8
+        = drug.trade_name

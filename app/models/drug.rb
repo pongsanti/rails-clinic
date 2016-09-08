@@ -7,7 +7,7 @@ class Drug < ActiveRecord::Base
   belongs_to :drug_usage
   belongs_to :store_unit
 
-  has_many :drug_ins
+  has_many :drug_ins, inverse_of: :drug
 
   validates :name, presence: true
 
