@@ -22,6 +22,6 @@ class DrugMovement < ActiveRecord::Base
   end
 
   def bal_diff
-    self.prev_bal - self.balance
+    self.balance - self.prev_bal
   end
 end

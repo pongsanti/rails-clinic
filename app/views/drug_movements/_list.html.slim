@@ -14,16 +14,16 @@
         tr
           th =sort_link @q, :id
           th =sort_link @q, :created_at
-          th.text-right =sort_link @q, :amount
           th.text-right =sort_link @q, :prev_bal
+          th.text-right =sort_link @q, :amount
           th.text-right =sort_link @q, :balance
       tbody.rowlink data-link="row"
         - drug_movements.each do |dmm|
           tr
             td =format_id dmm
-            td =th_date_format dmm.created_at
-            td.text-right =dmm.bal_diff
+            td =th_date_time_format dmm.created_at
             td.text-right =dmm.prev_bal
+            td.text-right =dmm.bal_diff
             td.text-right =dmm.balance
   .panel-footer
     =paginate drug_movements

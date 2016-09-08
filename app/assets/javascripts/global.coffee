@@ -8,6 +8,7 @@ class constant
   DRUG_USAGE: "drug_usage"
   DRUG: "drugs"
   DRUG_IN: "drug_in"
+  DRUG_MOVEMENT: "drug_movement"
 
 class util
 
@@ -139,6 +140,9 @@ initializePage = ->
 
   if view.util.isUrlOf(url, view.const.DRUG_IN)
     view.drug_in.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DRUG_MOVEMENT)
+    view.drug_movement.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()
