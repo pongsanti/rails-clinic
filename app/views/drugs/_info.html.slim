@@ -3,7 +3,7 @@
     .panel-header 
       =t("drugs.show.title")
       .pull-right
-        =>link_to drug_path(drug), class: "btn btn-warning btn-xs" do
+        =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
         = render partial: "global/toggle_panel_button", locals: { target: "#drugInfoBody" }
