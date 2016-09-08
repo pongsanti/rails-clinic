@@ -5,8 +5,17 @@ class DrugMovementsController < ApplicationController
   before_action :set_holder, only: [:new, :create, :destroy]
   before_action :set_list_holder, only: [:new, :create, :destroy]
   before_action :set_drug_movement, only: [:destroy]
+  #before_action :set_ransack_search_param, only: [:index]
+  before_action :set_drug_in, only: [:index]
 
   def index
+    ransack_params = {for_drug_in: @drug_in.id}
+    ransack_params = ransack_params.merge(params[:q]) if params[:q]
+
+    @q = DrugMovement.ransack(ransack_params)
+    @drug_movements = @q.result.page(params[:page])
+
+    @drug = @drug_in.drug
   end
 
   def show
@@ -57,6 +66,14 @@ class DrugMovementsController < ApplicationController
   end
 
   private
+    #def set_ransack_search_param
+    #  @q = DrugMovement.ransack(params[:q])
+    #end
+
+    def set_drug_in
+      @drug_in = DrugIn.find(params[:drug_in_id])
+    end
+
     def drug_movement_params
       params.require(:drug_movement).permit(:note, :drug_in_id, :exam_id, :amount)
     end

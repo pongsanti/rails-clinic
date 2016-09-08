@@ -11,6 +11,16 @@ class DrugMovement < ActiveRecord::Base
   validates :drug_in, presence: true
   validates :exam, presence: true, if: "self.exam_id.present?"
 
+  paginates_per 15
+
+  class << self
+
+    def for_drug_in(did)
+      where("drug_in_id = ?", did)
+    end
+    
+  end
+
   def bal_diff
     self.prev_bal - self.balance
   end
