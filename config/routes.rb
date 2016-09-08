@@ -45,10 +45,13 @@ Rails.application.routes.draw do
   resources :drugs do
     resources :drug_ins, shallow: true
   end
+  resources :drug_ins do
+    resources :drug_movements, shallow: true
+  end
+  
   get 'drug_has_drug_ins', to: 'drugs#index_has_drug_ins'
 
   resources :drug_usages
-  resources :drug_movements
   #get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
   #post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
   #get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
