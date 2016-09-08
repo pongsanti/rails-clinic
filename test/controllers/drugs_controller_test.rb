@@ -87,7 +87,7 @@ class DrugsControllerTest < ActionController::TestCase
   end  
 
   test "should delete destroy drug" do
-    assert_no_difference('Drug.count') do
+    assert_difference "Drug.count", -1 do
       delete :destroy, id: @drug
     end
 
