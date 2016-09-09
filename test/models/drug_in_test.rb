@@ -1,11 +1,23 @@
 require 'test_helper'
+require "models/common"
 
 class DrugInTest < ActiveSupport::TestCase
+    include Common
   
   setup do
     @customer = customers(:customer_david)
     @drug_in = drug_ins(:one)
     @exam = exams(:exam_one)
+    @test_target = @drug_in
+  end
+
+  test "should validate drug" do
+    drug = "activerecord.attributes.drug_in.drug"
+
+    @drug_in.drug = nil
+    assert_not @drug_in.save
+    error_count 1
+    error_contains error_msg(drug, ERR_BLANK)
   end
 
   test "should create drug movement for new drug in" do
