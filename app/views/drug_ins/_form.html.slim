@@ -14,7 +14,7 @@ div#drugInForm class=("panel " + (action == :new ? "panel-success" : "panel-warn
 
     = render partial: "global/alert", locals: {obj: drug_in}
 
-    = form_for drug_in, html: { class: "form-horizontal" } do |f|
+    = form_for [drug, drug_in], html: { class: "form-horizontal" } do |f|
       .form-group
         = render partial: "global/txt_field", locals: {f: f, method: :amount, require_label: true, require_attr: true, tf_width: 10 }
 
