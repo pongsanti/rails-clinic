@@ -39,6 +39,10 @@ DOC
     id_prefix(obj.class) + ("%05d" % obj.id)
   end
 
+  def sign_number num
+    sprintf "%+d.0", num
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""

@@ -23,7 +23,7 @@
             td =format_id dmm
             td =th_date_time_format dmm.created_at
             td.text-right =dmm.prev_bal
-            td.text-right =dmm.bal_diff
+            td.text-right =sign_number dmm.bal_diff
             td.text-right =dmm.balance
   .panel-footer
     =paginate drug_movements
