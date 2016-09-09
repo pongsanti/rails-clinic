@@ -117,6 +117,7 @@ initializePage = ->
   # load customer queue
   view.qs.fetchAjaxContent()
   view.exam.fetchAjaxContent()
+  view.drug_in.fetchAjaxContent()
 
   url = event.data.url
   # customer

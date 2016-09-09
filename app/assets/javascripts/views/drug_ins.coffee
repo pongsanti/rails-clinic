@@ -4,10 +4,24 @@
 
 class DrugIn
 
+  placeholder_data_attributes:
+    controller: "drug_ins"
+    action: "index"
+
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='drugIn']")
 
+  fetchAjaxContent: ()->
+    placeholder = view.util.findElemByDataAttributes(@placeholder_data_attributes)
+    if placeholder.length
+      @triggerAnchorClick(placeholder)
+
+  triggerAnchorClick: (placeholder)->
+    anchor = view.util.findAnchorWithDataAttribute({"refresh": "true"}, placeholder)
+    if anchor.length
+      anchor.trigger("click.rails")
+         
 view.drug_in = new DrugIn
 
 #initializePage = -> # display local year

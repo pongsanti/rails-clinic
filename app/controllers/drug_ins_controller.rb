@@ -12,11 +12,6 @@ class DrugInsController < ApplicationController
 
     @q = DrugIn.ransack ransack_params
     @drug_ins = @q.result.page params[:page]
-
-    respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @drug_ins }
-    end
   end
 
   # GET /drug_ins/1
