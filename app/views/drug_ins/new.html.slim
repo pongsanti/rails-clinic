@@ -6,4 +6,5 @@
       = render partial: "form", locals: {action: :new, drug_in: @drug_in}
 
     .col-sm-4
+      = render partial: "drugs/info", locals: {drug: @drug}
       = render partial: "global/q_placeholder"
