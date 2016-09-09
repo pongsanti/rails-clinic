@@ -17,6 +17,7 @@
           th.text-right =sort_link @q, :cost
           th.text-right =sort_link @q, :sale_price_per_unit
           th.text-right =sort_link @q, :balance
+          th =sort_link @q, :created_at
       tbody.rowlink data-link="row"
         - drug_ins.each do |drug_in|
           tr
@@ -25,6 +26,7 @@
             td.text-right =drug_in.cost
             td.text-right =drug_in.sale_price_per_unit
             td.text-right =drug_in.balance
+            td =th_date_time_format drug_in.created_at
   .panel-footer
     =paginate drug_ins
     =page_entries_info drug_ins, entry_name: t('drug_ins.index.title')
