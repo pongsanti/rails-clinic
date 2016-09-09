@@ -31,10 +31,10 @@ class DrugInsController < ApplicationController
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params)
     
-    @amount = Amount.new(amount: params[:amount])
-    render :new and return unless @amount.valid?
+    #@amount = Amount.new(amount: params[:amount])
+    #render :new and return unless @amount.valid?
 
-    @drug_in.create_movement_for_new_drug_in @amount.amount
+    @drug_in.create_movement_for_new_drug_in
 
     respond_to do |format|
       if @drug_in.save
@@ -89,7 +89,7 @@ class DrugInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_in_params
-      params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit, :drug_id)
+      params.require(:drug_in).permit(:amount, :expired_date, :cost, :sale_price_per_unit)
     end
 
     def set_holder

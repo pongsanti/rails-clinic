@@ -1,38 +1,32 @@
-= form_for @drug_in, url: form_url , html: { class: "form-horizontal" } do |f|
-  
-  = render "global/alert", obj: @drug_in
-  
-  - unless @drug_in.new_record?
-    .form-group
-      .col-sm-2.text-right = label :drug_in, :id, class: "colon-trail"
-      .col-sm-4
-        = format_id @drug_in
+div#drugInForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  .panel-heading
+    .panel-header
+      =t(action == :new ? "drug_ins.new.title": "drug_ins.edit.title")
+      .pull-right
+        -if action == :edit
+          =>link_to drug_in_path(drug_in), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+            i.glyphicon.glyphicon-trash
+            =<"Delete"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugInFormBody" }
+      .clearfix
+  .panel-body.collapse.in#drugInFormBody
 
-  .form-group
-    = f.label :amount, class: "col-sm-2 control-label required-label"
-    .col-sm-4
-      - if @drug_in.new_record?
-        = text_field_tag "amount", nil, class: "form-control", required: true, number: true
-      - elsif @drug_in.drug_movements.first
-        = text_field_tag "amount", @drug_in.drug_movements.first.balance, class: "form-control", readonly: true
-      - else
-        = text_field_tag "amount", nil, class: "form-control", readonly: true
-    .col-sm-6
-  
-  .form-group
-    = f.label :expired_date, class: "col-sm-2 control-label"
-    .col-sm-8
-      = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true, 'size' => 10 }
-  
-  .form-group
-    = f.label :cost, class: "col-sm-2 control-label required-label"
-    .col-sm-4
-      = f.text_field :cost, class: "form-control", required: true, number: true
-    = f.label :sale_price_per_unit, class: "col-sm-2 control-label"
-    .col-sm-4
-      = f.text_field :sale_price_per_unit, class: "form-control", number: true
-  
-  .form-group
-    .col-sm-10.col-sm-offset-2
-      = render partial: "global/form_button", locals: {f: f}
-      =< render partial: "global/form_button_back"
+    = render partial: "global/alert", locals: {obj: drug_in}
+
+    = form_for drug_in, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :amount, require_label: true, require_attr: true, tf_width: 10 }
+
+      .form-group
+        = f.label :expired_date, class: "col-sm-2 control-label"
+        .col-sm-10
+            = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", 'size' => 10 }
+
+      .form-group
+        = render partial: "global/txt_field", locals: {f: f, method: :cost }
+        = render partial: "global/txt_field", locals: {f: f, method: :sale_price_per_unit  }
+ 
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button', locals: {f: f}
