@@ -53,7 +53,7 @@ class DiagsController < ApplicationController
     end
 
     def set_ransack_search_param
-      param_q = params[:q].blank? ? {"s"=>"id asc"} : params[:q]
-      @q = Diag.ransack(param_q)
+      @q = Diag.ransack(params[:q])
+      @q.sorts = "id asc" if @q.sorts.empty?
     end
 end
