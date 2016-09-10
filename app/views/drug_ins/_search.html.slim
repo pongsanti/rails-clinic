@@ -1,0 +1,21 @@
+.panel.panel-default#searchPanel
+  .panel-heading
+    .panel-header
+      =t("customers.index.search")
+      .pull-right
+        = render partial: "global/toggle_panel_button", locals: { target: "#searchPanelBody" }
+      .clearfix
+  .panel-body.collapse.in#searchPanelBody
+    = search_form_for [@drug, @q], class: "form-inline" do |f|
+      .form-group
+        =>f.label :expired_date_lteq, class: "control-label"
+        =>f.search_field :expired_date_lteq, class: "form-control", size: 40
+        =>button_tag class: "btn btn-primary btn-sm" do
+          i.glyphicon.glyphicon-search
+          =<t "customers.index.search"
+        =>link_to drug_drug_ins_path, class: "btn btn-default btn-sm" do
+          i.glyphicon.glyphicon-refresh
+          =<"Reset"
+    - if @q.conditions[0]
+        mark
+          =@q.conditions[0].values[0].value
