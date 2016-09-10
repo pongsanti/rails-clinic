@@ -3,6 +3,9 @@
     .panel-header 
       =t("drugs.show.title")
       .pull-right
+        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+          i.fa.fa-medkit
+          =<"View Drug Lot"      
         =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
