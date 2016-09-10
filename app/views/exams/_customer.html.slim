@@ -18,6 +18,11 @@
   .panel-body.collapse.in#customerShowBody
     .row
       .col-sm-4
+        = label :customer, :id
+      .col-sm-8
+        mark = format_id customer
+    .row
+      .col-sm-4
         = label :customer, :name
       .col-sm-8
         = "#{customer.prefix.name} #{customer.name} #{customer.surname}"
