@@ -17,14 +17,21 @@
           th.text-right =sort_link @q, :prev_bal
           th.text-right =sort_link @q, :amount
           th.text-right =sort_link @q, :balance
+          th
       tbody.rowlink data-link="row"
         - drug_movements.each do |dmm|
           tr
             td =format_id dmm
             td =th_date_time_format dmm.created_at
             td.text-right =dmm.prev_bal
-            td.text-right =sign_number dmm.bal_diff
+            - td_class = (dmm.bal_diff < 0) ? "stock-out" : "stock-in"
+            - td_class = "#{td_class} text-right"
+            td class=td_class =sign_number dmm.bal_diff
             td.text-right =dmm.balance
+            td
+              - if dmm.exam
+                =>link_to exam_path(dmm.exam), class: "btn btn-default btn-xs" do
+                  = icon("stethoscope")
   .panel-footer
     =paginate drug_movements
     =page_entries_info drug_movements, entry_name: t("drug_movements.index.title")
