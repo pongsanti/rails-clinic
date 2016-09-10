@@ -13,7 +13,7 @@
         =>button_tag class: "btn btn-primary btn-sm" do
           i.glyphicon.glyphicon-search
           =<t "customers.index.search"
-        =>link_to drug_drug_ins_path, class: "btn btn-default btn-sm" do
+        =>link_to drug_drug_ins_path(@drug), class: "btn btn-default btn-sm" do
           i.glyphicon.glyphicon-refresh
           =<"Reset"
     - if @q.conditions[0]

@@ -2,15 +2,12 @@ class DrugInsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
-  before_action :set_drug_from_drug_in, only: [:show, :edit]
+  before_action :set_drug_from_drug_in, only: [:show, :edit, :update]
   before_action :set_drug, only: [:index, :new]
   before_action :set_holder, only: [:index]
+  before_action :set_ransack_param, only: [:index, :new, :edit, :create, :update]
 
   def index
-    ransack_params = {for_drug: @drug}
-    ransack_params = ransack_params.merge(params[:q]) if params[:q]
-
-    @q = DrugIn.ransack ransack_params
     @drug_ins = @q.result.page params[:page]
   end
 
@@ -29,7 +26,7 @@ class DrugInsController < ApplicationController
 
   def create
     @drug = Drug.find params[:drug_id]
-    @drug_in = @drug.drug_ins.build(drug_in_params)
+    @drug_in = @drug.drug_ins.build(drug_in_params_create)
     
     #@amount = Amount.new(amount: params[:amount])
     #render :new and return unless @amount.valid?
@@ -40,7 +37,7 @@ class DrugInsController < ApplicationController
       if @drug_in.save
 
         @drug.recal_balance
-        format.html { redirect_to @drug_in, notice: 'Drug in was successfully created.' }
+        format.html { redirect_to drug_in_drug_movements_url(@drug_in), notice: 'Drug in was successfully created.' }
         format.json { render :show, status: :created, location: @drug_in }
       else
         format.html { render :new }
@@ -53,8 +50,8 @@ class DrugInsController < ApplicationController
   # PATCH/PUT /drug_ins/1.json
   def update
     respond_to do |format|
-      if @drug_in.update(drug_in_params)
-        format.html { redirect_to @drug_in, notice: 'Drug in was successfully updated.' }
+      if @drug_in.update(drug_in_params_update)
+        format.html { redirect_to drug_in_drug_movements_url(@drug_in), notice: 'Drug in was successfully updated.' }
         format.json { render :show, status: :ok, location: @drug_in }
       else
         format.html { render :edit }
@@ -64,7 +61,6 @@ class DrugInsController < ApplicationController
   end
 
   # DELETE /drug_ins/1
-  # DELETE /drug_ins/1.json
   def destroy
     @drug_in.destroy
     respond_to do |format|
@@ -74,6 +70,12 @@ class DrugInsController < ApplicationController
   end
 
   private
+    def set_ransack_param
+      ransack_params = {for_drug: @drug}
+      ransack_params = ransack_params.merge(params[:q]) if params[:q]
+
+      @q = DrugIn.ransack ransack_params
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_drug_in
       @drug_in = DrugIn.find(params[:id])
@@ -88,8 +90,12 @@ class DrugInsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def drug_in_params
+    def drug_in_params_create
       params.require(:drug_in).permit(:amount, :expired_date, :cost, :sale_price_per_unit)
+    end
+
+    def drug_in_params_update
+      params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit)
     end
 
     def set_holder

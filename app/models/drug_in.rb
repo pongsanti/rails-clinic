@@ -10,7 +10,7 @@ class DrugIn < ActiveRecord::Base
   paginates_per 10
 
   validates :drug, presence: true
-  validates :amount, presence: true, numericality: true
+  validates :amount, presence: true, numericality: true, on: :create
   validates :cost, :sale_price_per_unit, numericality: true, allow_blank: true
 
   class << self

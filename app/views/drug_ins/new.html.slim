@@ -3,6 +3,7 @@
 .container
   .row
     .col-sm-8
+      = render partial: "search"    
       = render partial: "form", locals: {action: :new, drug_in: @drug_in, drug: @drug}
 
     .col-sm-4
