@@ -14,24 +14,37 @@ class DrugInsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    @holder = "holder"
-
-    get :index, drug_id: @drug.id, holder: @holder
-    assert_index
+    get :index, drug_id: @drug
+    
+    assert_response :success
+    assert_assigns :q, :drug, :drug_ins
+    assert_equal @drug, a(:drug)
   end
 
-  test "should get xhr index" do
-    @holder = "holder"
+  test "should get index search" do
+    get :index, drug_id: @drug, 
+      q: { expired_date_lteq: "2015-07-06" }
 
-    xhr :get, :index, drug_id: @drug.id, holder: @holder
-    assert_index
+    assert_response :success
+    assert_assigns :q, :drug, :drug_ins
+    assert_equal @drug, a(:drug)
+    assert_equal 0, a(:drug_ins).count
   end
 
   test "should get new" do
-    get :new, drug_id: @drug.id
+    get :new, drug_id: @drug
+
     assert_response :success
-    assert_not_nil a(:drug_in)
+    assert_assigns :q, :drug, :drug_in
     assert a(:drug_in).new_record?
+  end
+
+  test "should get edit" do
+    get :edit, id: @drug_in
+
+    assert_response :success
+    assert_assigns :q, :drug, :drug_in
+    assert_equal @drug_in, a(:drug_in)
   end
 
   test "should create drug_in" do
@@ -58,44 +71,17 @@ class DrugInsControllerTest < ActionController::TestCase
 
     assert_equal drug_balance + amount, drug_in.drug.balance, "drug balance should also be updated"
   end
-  
-  private
-    def assert_index
-      assert_response :success
-      assert_not_nil a(:drug)
-      assert_not_nil a(:holder)
-      assert_not_nil a(:q)
-      assert_not_nil a(:drug_ins)
 
-
-      assert_equal @holder, a(:holder)
-      assert_equal @drug, a(:drug)
-    end 
-
-=begin
-
-
-  test "should show drug_in" do
-    get :show, id: @drug_in
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @drug_in
-    assert_response :success
-  end
-
-  test "should update drug_in" do
-    patch :update, id: @drug_in, drug_in: { amount: @drug_in.amount, balance: @drug_in.balance, cost: @drug_in.cost, drug_id: @drug_in.drug_id, expired_date: @drug_in.expired_date, sale_price_per_unit: @drug_in.sale_price_per_unit }
-    assert_redirected_to drug_in_path(assigns(:drug_in))
-  end
-
-  test "should destroy drug_in" do
-    assert_difference('DrugIn.count', -1) do
+  test "should destroy delete" do
+    assert_difference 'DrugIn.count', -1 do
       delete :destroy, id: @drug_in
     end
 
-    assert_redirected_to drug_ins_path
+    assert_redirected_to drug_in_drug_movements_url(@drug_in)
+    
+    @drug_in.reload
+    assert_not_nil @drug_in.deleted_at
+    assert @drug_in.deleted?
   end
-=end  
+
 end

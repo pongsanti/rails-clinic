@@ -11,11 +11,6 @@ class DrugInsController < ApplicationController
     @drug_ins = @q.result.page params[:page]
   end
 
-  # GET /drug_ins/1
-  # GET /drug_ins/1.json
-  def show
-  end
-
   def new
     @drug_in = DrugIn.new
   end
@@ -63,10 +58,7 @@ class DrugInsController < ApplicationController
   # DELETE /drug_ins/1
   def destroy
     @drug_in.destroy
-    respond_to do |format|
-      format.html { redirect_to drug_ins_url, notice: 'Drug in was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to drug_in_drug_movements_url(@drug_in), notice: t("successfully_destroyed")
   end
 
   private

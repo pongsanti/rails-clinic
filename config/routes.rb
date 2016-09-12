@@ -43,9 +43,9 @@ Rails.application.routes.draw do
 
   resources :store_units
   resources :drugs do
-    resources :drug_ins, shallow: true
+    resources :drug_ins, only: [:index, :new, :create]
   end
-  resources :drug_ins do
+  resources :drug_ins, only: [:edit, :update, :destroy] do
     resources :drug_movements, shallow: true
   end
   
