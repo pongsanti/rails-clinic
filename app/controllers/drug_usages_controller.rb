@@ -51,6 +51,7 @@ class DrugUsagesController < ApplicationController
   private
     def set_ransack_search_param
       @q = DrugUsage.ransack(params[:q])
+      @q.sorts = "id asc" if @q.sorts.empty?
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_drug_usage

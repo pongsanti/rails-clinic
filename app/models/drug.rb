@@ -15,7 +15,7 @@ class Drug < ActiveRecord::Base
     # searchable fields
     def ransackable_attributes(auth_object = nil)
     #column_names + _ransackers.keys
-      %w(name trade_name)
+      %w(id name trade_name)
     end
 
     def drug_ins_exist()
