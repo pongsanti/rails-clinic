@@ -44,8 +44,9 @@ Rails.application.routes.draw do
     resources :drug_ins, only: [:index, :new, :create]
   end
   resources :drug_ins, only: [:edit, :update, :destroy] do
-    resources :drug_movements, shallow: true
+    resources :drug_movements, only: [:index, :new, :create]
   end
+  resources :drug_movements, only: [:show]
   
   get 'drug_has_drug_ins', to: 'drugs#index_has_drug_ins'
 

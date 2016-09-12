@@ -4,7 +4,7 @@
   .row
     .col-sm-8
       = render partial: "drug_ins/show", locals: {drug_in: @drug_in}
-      = render partial: "list", locals: {drug_movements: @drug_movements}
+      = render partial: "list", locals: {drug_movements: @drug_movements, drug_in: @drug_in}
 
     .col-sm-4
       = render partial: "drugs/info", locals: {drug: @drug}

@@ -6,6 +6,7 @@ class DrugMovement < ActiveRecord::Base
 
   belongs_to :drug_in, inverse_of: :drug_movements
   belongs_to :exam, inverse_of: :drug_movements
+  has_one :drug, through: :drug_in
 
   validates :amount, presence: true, numericality: true
   validates :drug_in, presence: true

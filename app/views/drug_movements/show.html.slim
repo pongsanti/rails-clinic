@@ -1,0 +1,11 @@
+= render partial: "global/page_header", locals: { icon_name: "medkit", title: t("drug_movements.show.title"), subtext: t("drug_movements.show.sub_text") }
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "drug_ins/show", locals: {drug_in: @drug_in}
+      = render partial: "show", locals: {drug_movement: @drug_movement, drug_in: @drug_in}
+
+    .col-sm-4
+      = render partial: "drugs/info", locals: {drug: @drug}
+      = render partial: "global/q_placeholder"
