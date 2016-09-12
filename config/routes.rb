@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :customers do
     resources :exams, only: [:index]
   end
-  resources :exams, only: [:show, :destroy]
+  resources :exams, only: [:show, :destroy] do
+    resources :qs, only: [:create]
+  end
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
@@ -36,10 +38,6 @@ Rails.application.routes.draw do
 
   get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
   patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
-
-  resources :exams do
-    resources :qs, only: [:create]
-  end
 
   resources :store_units
   resources :drugs do
