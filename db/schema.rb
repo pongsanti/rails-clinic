@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912040827) do
+ActiveRecord::Schema.define(version: 20160912152818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,20 @@ ActiveRecord::Schema.define(version: 20160912040827) do
   add_index "patient_diags", ["diag_id"], name: "index_patient_diags_on_diag_id", using: :btree
   add_index "patient_diags", ["exam_id"], name: "index_patient_diags_on_exam_id", using: :btree
 
+  create_table "patient_drugs", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "drug_in_id"
+    t.integer  "drug_usage_id"
+    t.decimal  "amount",        precision: 4, scale: 1
+    t.decimal  "revenue",       precision: 9, scale: 2
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "patient_drugs", ["drug_in_id"], name: "index_patient_drugs_on_drug_in_id", using: :btree
+  add_index "patient_drugs", ["drug_usage_id"], name: "index_patient_drugs_on_drug_usage_id", using: :btree
+  add_index "patient_drugs", ["exam_id"], name: "index_patient_drugs_on_exam_id", using: :btree
+
   create_table "prefixes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -214,6 +228,9 @@ ActiveRecord::Schema.define(version: 20160912040827) do
   add_foreign_key "exams", "users", column: "examiner_id"
   add_foreign_key "patient_diags", "diags"
   add_foreign_key "patient_diags", "exams"
+  add_foreign_key "patient_drugs", "drug_ins"
+  add_foreign_key "patient_drugs", "drug_usages"
+  add_foreign_key "patient_drugs", "exams"
   add_foreign_key "qs", "exams"
   add_foreign_key "users", "clients"
 end
