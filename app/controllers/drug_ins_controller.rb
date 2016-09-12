@@ -44,8 +44,9 @@ class DrugInsController < ApplicationController
 
   # DELETE /drug_ins/1
   def destroy
+    @drug = @drug_in.drug
     @drug_in.destroy
-    redirect_to drug_in_drug_movements_url(@drug_in), notice: t("successfully_destroyed")
+    redirect_to drug_drug_ins_url(@drug), notice: t("successfully_destroyed")
   end
 
   private

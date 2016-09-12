@@ -142,7 +142,7 @@ class DrugInsControllerTest < ActionController::TestCase
       delete :destroy, id: @drug_in
     end
 
-    assert_redirected_to drug_in_drug_movements_url(@drug_in)
+    assert_redirected_to drug_drug_ins_url(@drug_in.drug)
     
     @drug_in.reload
     assert_not_nil @drug_in.deleted_at
