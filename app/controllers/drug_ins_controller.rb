@@ -2,9 +2,10 @@ class DrugInsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_drug_in, only: [:show, :edit, :update, :destroy]
+
   before_action :set_drug_from_drug_in, only: [:show, :edit, :update]
   before_action :set_drug, only: [:index, :new]
-  before_action :set_holder, only: [:index]
+
   before_action :set_ransack_param, only: [:index, :new, :edit, :create, :update]
 
   def index
@@ -22,36 +23,22 @@ class DrugInsController < ApplicationController
   def create
     @drug = Drug.find params[:drug_id]
     @drug_in = @drug.drug_ins.build(drug_in_params_create)
-    
-    #@amount = Amount.new(amount: params[:amount])
-    #render :new and return unless @amount.valid?
-
     @drug_in.create_movement_for_new_drug_in
 
-    respond_to do |format|
-      if @drug_in.save
-
-        @drug.recal_balance
-        format.html { redirect_to drug_in_drug_movements_url(@drug_in), notice: 'Drug in was successfully created.' }
-        format.json { render :show, status: :created, location: @drug_in }
-      else
-        format.html { render :new }
-        format.json { render json: @drug_in.errors, status: :unprocessable_entity }
-      end
+    if @drug_in.save
+      @drug.recal_balance
+      redirect_to drug_in_drug_movements_url(@drug_in), notice: t("successfully_created")
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /drug_ins/1
-  # PATCH/PUT /drug_ins/1.json
   def update
-    respond_to do |format|
-      if @drug_in.update(drug_in_params_update)
-        format.html { redirect_to drug_in_drug_movements_url(@drug_in), notice: 'Drug in was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drug_in }
-      else
-        format.html { render :edit }
-        format.json { render json: @drug_in.errors, status: :unprocessable_entity }
-      end
+    if @drug_in.update(drug_in_params_update)
+      redirect_to drug_in_drug_movements_url(@drug_in), notice: t("successfully_updated")
+    else
+      render :edit
     end
   end
 
@@ -88,9 +75,5 @@ class DrugInsController < ApplicationController
 
     def drug_in_params_update
       params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit)
-    end
-
-    def set_holder
-      @holder = params[:holder]
     end
 end

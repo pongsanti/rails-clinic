@@ -20,4 +20,8 @@ class ActiveSupport::TestCase
   def assert_error_div(display)
     assert_select "div#error_explanation", display
   end
+
+  def route_path(method, path)
+    {method: method, path: path}
+  end
 end
