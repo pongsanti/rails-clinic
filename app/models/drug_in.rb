@@ -2,6 +2,8 @@ class DrugIn < ActiveRecord::Base
 
   ID_PREFIX = "LT"
 
+  acts_as_paranoid
+
   attr_accessor :amount
 
   belongs_to :drug, inverse_of: :drug_ins
