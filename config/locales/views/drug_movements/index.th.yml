@@ -1,0 +1,5 @@
+th:
+  drug_movements:
+    index:
+      title: "เคลื่อนไหวยา/เวชภัณฑ์"
+      sub_text: "รายการเคลื่อนไหวในล็อตยา"

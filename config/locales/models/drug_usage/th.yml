@@ -4,6 +4,7 @@ th:
       drug_usage: "ข้อบ่งใช้"
     attributes:
       drug_usage:
+        id: ID
         code: "รหัส"
         text: "ข้อบ่งใช้"
         times_per_day: "จำนวนครั้งต่อวัน"

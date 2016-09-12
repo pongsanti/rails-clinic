@@ -83,6 +83,12 @@ class ExamTest < ActiveSupport::TestCase
     error_contains error_msg(bp_diastolic, ERR_INVALID), error_msg(bp_diastolic, ERR_LESS_THAN, count: 300)
   end
 
+  test "should validate customer" do
+    @exam.customer = nil
+    assert_not @exam.save
+    error_count 1
+  end
+
   test "should belong to a customer" do
     assert @exam.customer
   end

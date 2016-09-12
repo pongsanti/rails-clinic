@@ -4,6 +4,11 @@ class constant
   CUSTOMER: 'customers'
   DIAG: 'diags'
   EXAM: 'exam'
+  STORE_UNIT: 'store_unit'
+  DRUG_USAGE: "drug_usage"
+  DRUG: "drugs"
+  DRUG_IN: "drug_in"
+  DRUG_MOVEMENT: "drug_movement"
 
 class util
 
@@ -112,6 +117,7 @@ initializePage = ->
   # load customer queue
   view.qs.fetchAjaxContent()
   view.exam.fetchAjaxContent()
+  view.drug_in.fetchAjaxContent()
 
   url = event.data.url
   # customer
@@ -123,6 +129,21 @@ initializePage = ->
 
   if view.util.isUrlOf(url, view.const.EXAM)
     view.exam.initializePage()
+
+  if view.util.isUrlOf(url, view.const.STORE_UNIT)
+    view.store_unit.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DRUG_USAGE)
+    view.drug_usage.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DRUG)
+    view.drug.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DRUG_IN)
+    view.drug_in.initializePage()
+
+  if view.util.isUrlOf(url, view.const.DRUG_MOVEMENT)
+    view.drug_movement.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()

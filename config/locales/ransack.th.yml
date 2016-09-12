@@ -1,6 +1,6 @@
 th:
   ransack:
-    search: "ค้นห"
+    search: "ค้นหา"
     predicate: "predicate"
     and: "และ"
     or: "หรือ"
@@ -29,13 +29,13 @@ th:
       lt: "less than"
       lt_any: "less than any"
       lt_all: "less than all"
-      lteq: "less than or equal to"
+      lteq: "น้อยกว่าหรือเท่ากับ"
       lteq_any: "less than or equal to any"
       lteq_all: "less than or equal to all"
       gt: "greater than"
       gt_any: "greater than any"
       gt_all: "greater than all"
-      gteq: "greater than or equal to"
+      gteq: "มากกว่าหรือเท่ากับ"
       gteq_any: "greater than or equal to any"
       gteq_all: "greater than or equal to all"
       in: "in"

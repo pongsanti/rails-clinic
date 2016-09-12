@@ -4,6 +4,7 @@ th:
       drug: "ยาและเวชภัณฑ์"
     attributes:
       drug:
+        id: "รหัส"
         name: "ชื่อยา"
         trade_name: "ชื่อการค้า"
         effect: "สรรพคุณ"

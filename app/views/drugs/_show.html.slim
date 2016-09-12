@@ -1,0 +1,47 @@
+.panel.panel-default#drugShow
+  .panel-heading
+    .panel-header 
+      =t("drugs.show.title")
+      .pull-right
+        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+          i.fa.fa-medkit
+          =<"View Drug Lot"      
+        =>link_to edit_drug_path(drug), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugShowBody" }
+      .clearfix
+  .panel-body.collapse.in#drugShowBody
+    = form_for drug, html: { class: "form-horizontal" } do |f|
+      = render partial: "global/show_id", locals: {obj: drug, f: f}
+
+      .form-group
+        = f.label :balance, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static 
+            mark = drug.balance
+
+      .form-group
+        = f.label :name, class: "col-sm-2 control-label required-label"
+        .col-sm-4
+          p.form-control-static = drug.name
+        = f.label :trade_name, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug.trade_name
+
+      .form-group
+        = f.label :effect, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug.effect
+        = f.label :concern, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug.concern
+
+      .form-group
+        = f.label :drug_usage, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug.drug_usage.code_text if drug.drug_usage
+        = f.label :store_unit, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug.store_unit.title if drug.store_unit

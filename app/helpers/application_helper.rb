@@ -34,9 +34,13 @@ DOC
       s.string
     end
   end
+  
+  def format_id obj
+    id_prefix(obj.class) + ("%05d" % obj.id)
+  end
 
-  def format_id id, obj
-    id_prefix(obj.class) + ("%05d" % id)
+  def sign_number num
+    sprintf "%+d.0", num
   end
 
   private

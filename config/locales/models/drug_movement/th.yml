@@ -6,4 +6,7 @@ th:
       drug_movement:
         id: "รหัสล็อต"
         drug_in: "ล็อตยา"
-        amount: "จำนวน"
+        amount: "เพิ่ม/ลด"
+        prev_bal: "จำนวนก่อนหน้า"
+        balance: "คงเหลือ"
+        exam: "วินิจฉัย"

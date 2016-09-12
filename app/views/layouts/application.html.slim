@@ -72,16 +72,19 @@ html lang="en"
                 li.divider role="separator"
                 li.dropdown-header
                   =>icon("medkit")
-                  = t('.master_data')
+                  = "Master data"
                 li
                   = link_to drugs_path do
+                    => icon("medkit")
                     => t('.drug')
                 li
                   = link_to drug_usages_path do
-                    =<> t('.drug_usage')
+                    => icon("sticky-note")
+                    => t('.drug_usage')
                 li
                   = link_to store_units_path do
-                    =<> t('.store_unit')
+                    => icon("cubes")
+                    => t('.store_unit')
           
           ul.nav.navbar-nav.navbar-right
             li

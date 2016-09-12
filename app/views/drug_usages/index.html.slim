@@ -1,0 +1,10 @@
+= render partial: "global/page_header", locals: { icon_name: "sticky-note", title: t(".title"), subtext: t(".sub_text") }
+
+.container
+  .row
+    .col-sm-8
+      = render partial: "global/search", locals: {reset_path: drug_usages_path, search_field: :code_or_text_cont}
+      = render partial: "list"
+
+    .col-sm-4
+      = render partial: "global/q_placeholder"

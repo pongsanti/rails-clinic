@@ -1,0 +1,33 @@
+.panel.panel-default#drugMovementShow
+  .panel-heading
+    .panel-header 
+      =t("drug_movements.show.title")
+      .pull-right
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugMovementShowBody" }
+      .clearfix
+  .panel-body.collapse.in#drugMovementShowBody
+    = form_for drug_movement, html: { class: "form-horizontal" } do |f|
+      = render partial: "global/show_id", locals: {obj: drug_movement, f: f}
+
+      .form-group
+        = f.label :balance, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static 
+            mark
+              = drug_movement.balance
+
+      .form-group
+        = f.label :prev_bal, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static = drug_movement.prev_bal
+        = f.label :amount, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static
+            span class=bal_diff_class(drug_movement) 
+              =sign_number drug_movement.bal_diff
+
+      .form-group
+        = f.label :note, class: "col-sm-2 control-label"
+        .col-sm-10
+          p.form-control-static = drug_movement.note

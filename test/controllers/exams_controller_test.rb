@@ -162,9 +162,4 @@ class ExamsControllerTest < ActionController::TestCase
 
     assert_redirected_to exam_url(@exam)
   end
-
-  private
-    def route_path(method, path)
-      {method: method, path: path}
-    end
 end

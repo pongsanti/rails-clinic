@@ -1,33 +1,36 @@
-.panel.panel-primary
-  .panel-heading 
-    span.glyphicon.glyphicon-info-sign
-    =< t("drugs.show.sub_text")
-  .panel-body
+.panel.panel-default#drugInfo
+  .panel-heading
+    .panel-header 
+      =t("drugs.show.title")
+      .pull-right
+        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+          i.fa.fa-medkit
+          =<"View Drug Lot"      
+        =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
+        = render partial: "global/toggle_panel_button", locals: { target: "#drugInfoBody" }
+      .clearfix
+  .panel-body.collapse.in#drugInfoBody
     .row
-      .col-sm-2.text-right = label :drug, :created_at, class: "colon-trail"
-      .col-sm-4 
-        = "#{th_date_time_format drug.created_at} (#{time_ago_in_words(drug.created_at)})"
+      .col-sm-4
+        = label :drug, :id
+      .col-sm-8
+        mark = format_id drug
+    .row
+      .col-sm-4
+        = label :drug, :balance
+      .col-sm-8
+        mark = drug.balance
 
     .row
-      .col-sm-2.text-right = label :drug, :name, class: "colon-trail"
-      .col-sm-4 = drug.name
-    
-      .col-sm-2.text-right = label :drug, :trade_name, class: "colon-trail"
-      .col-sm-4 = drug.trade_name
+      .col-sm-4
+        = label :drug, :name
+      .col-sm-8
+        = drug.name
 
     .row
-      .col-sm-2.text-right = label :drug, :effect, class: "colon-trail"
-      .col-sm-4 = drug.effect
-
-      .col-sm-2.text-right = label :drug, :concern, class: "colon-trail"
-      .col-sm-4 = drug.concern
-
-    .row
-      .col-sm-2.text-right = label :drug, :drug_usage, class: "colon-trail"
-      .col-sm-10 = drug.drug_usage.code_text if drug.drug_usage
-
-    .row
-      .col-sm-2.text-right = label :drug, :balance, class: "colon-trail"  
-      .col-sm-4 = drug.balance
-      .col-sm-2.text-right = label :drug, :store_unit, class: "colon-trail"
-      .col-sm-4 = drug.store_unit.title if drug.store_unit
+      .col-sm-4
+        = label :drug, :trade_name
+      .col-sm-8
+        = drug.trade_name

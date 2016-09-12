@@ -6,71 +6,76 @@ class DrugMovementsControllerTest < ActionController::TestCase
 
   setup do
     sign_in users(:john)
-    @exam = exams(:exam_one)
+    @drug_movement = drug_movements(:one)
     @drug_in = drug_ins(:one)
+  end
 
-    @holder = "holder"
-    @list_holder = "list_holder"
+  test "should route correctly" do
+    opts = {controller: "drug_movements"}
+    drug_in_id = "1"
+    drug_movement_id = "2"
+    #index
+    assert_routing route_path(:get, "/drug_ins/1/drug_movements"), opts.merge(action: "index", drug_in_id: drug_in_id)
+    #show
+    assert_routing route_path(:get, "/drug_movements/2"), opts.merge(action: "show", id: drug_movement_id )
+    #new
+    assert_routing route_path(:get, "/drug_ins/1/drug_movements/new"), opts.merge(action: "new", drug_in_id: drug_in_id)
+    #create
+    assert_routing route_path(:post, "/drug_ins/1/drug_movements"), opts.merge(action: "create", drug_in_id: drug_in_id)
   end
 
   test "should get index" do
+    get "index", drug_in_id: @drug_in
 
-    assert_raises ActionView::MissingTemplate do
-      get :index
-    end
-    #assert_response 
+    assert_response :success
+    assert_assigns :q, :drug_in, :drug, :drug_movements
   end
 
   test "should get show" do
-    assert_raises ActionView::MissingTemplate do
-      get :show, id: 1
-    end
+    get "show", id: @drug_movement
+
+    assert_response :success
+    assert_assigns :drug_in, :drug, :drug_movement
   end
 
   test "should get new" do
-    assert_raises ActionView::MissingTemplate do
-      get :new, drug_movement: { note: "" }
-    end
-  end
+    get "new", drug_in_id: @drug_in
 
-  test "should xhr get new" do
-
-    xhr :get, :new, format: :js, holder: @holder, list_holder: @list_holder,
-      drug_movement: {exam_id: @exam.id}
     assert_response :success
-
-    assert_not_nil a :drug_movement
-    assert_not_nil a :holder
-    assert_not_nil a :list_holder
-
+    assert_assigns :drug_in, :drug, :drug_movement
     assert a(:drug_movement).new_record?
-    assert_equal @exam.id, a(:drug_movement).exam_id
-    assert_equal @holder, a(:holder)
-    assert_equal @list_holder, a(:list_holder)
   end
 
-  test "should xhr post create" do
-    dmm_count = @drug_in.drug_movements.count
-    di_balance = @drug_in.balance
-    d_balance = @drug_in.drug.balance
-    amount = 5
+  test "should post create" do
+    amount = 100
+    drug_in_balance = @drug_in.balance
+    drug_balance = @drug_in.drug.balance
 
-    xhr :post, :create, format: :js, holder: @holder, list_holder: @list_holder,
-      drug_movement: {exam_id: @exam.id, amount: amount, drug_in_id: @drug_in.id , note: "note"}
+    assert_difference "DrugMovement.count" do
+      post "create", drug_in_id: @drug_in,
+        drug_movement: {
+          amount: amount,
+          note: "note" }
+    end
+
+    assert_redirected_to drug_in_drug_movements_url(@drug_in)
+    drug_movement = DrugMovement.last
+
+    assert_equal drug_in_balance + amount, drug_movement.drug_in.balance
+    assert_equal drug_balance + amount, drug_movement.drug.balance
+
+    assert_error_div false
+  end
+
+  test "should post create error" do
+    post "create", drug_in_id: @drug_in,
+      drug_movement: {
+        amount: "ABC"
+      }
+
     assert_response :success
+    assert_template :new
 
-    @drug_in.reload
-    #drug_in balance
-    assert_equal dmm_count + 1, @drug_in.drug_movements.count
-    assert_equal di_balance - amount, @drug_in.balance
-
-    #drug_movement
-    dmm = @drug_in.drug_movements.last
-    assert_equal di_balance, dmm.prev_bal
-    assert_equal di_balance - amount, dmm.balance
-
-    #drug balance
-    d = @drug_in.drug
-    assert_equal d_balance - amount, d.balance
+    assert_error_div true
   end
 end

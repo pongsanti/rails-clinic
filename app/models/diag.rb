@@ -11,4 +11,12 @@ class Diag < ActiveRecord::Base
 
   validates :name, presence: true
 
+  class << self
+    # searchable fields
+    def ransackable_attributes(auth_object = nil)
+    #column_names + _ransackers.keys
+      %w(id name description)
+    end
+  end
+  
 end

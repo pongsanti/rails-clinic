@@ -2,13 +2,12 @@ class DrugsController < ApplicationController
   
   before_action :authenticate_user!  
   before_action :set_drug, only: [:show, :edit, :update, :destroy]
-  before_action :get_all_drug_usages, only: [:new, :edit]
-  before_action :get_all_store_units, only: [:new, :edit]
+  before_action :set_drug_usages, only: [:new, :edit]
+  before_action :set_store_units, only: [:new, :edit]
+  before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :create, :update]
 
   # GET /drugs
-  # GET /drugs.json
   def index
-    @q = Drug.ransack params[:q]
     @drugs = @q.result.page params[:page]
   end
 
@@ -18,7 +17,6 @@ class DrugsController < ApplicationController
   end
 
   # GET /drugs/1
-  # GET /drugs/1.json
   def show
   end
 
@@ -32,46 +30,40 @@ class DrugsController < ApplicationController
   end
 
   # POST /drugs
-  # POST /drugs.json
   def create
     @drug = Drug.new(drug_params)
 
-    respond_to do |format|
-      if @drug.save
-        format.html { redirect_to @drug, notice: 'Drug was successfully created.' }
-        format.json { render :show, status: :created, location: @drug }
-      else
-        format.html { render :new }
-        format.json { render json: @drug.errors, status: :unprocessable_entity }
-      end
+    if @drug.save
+      redirect_to @drug, notice: t("successfully_created")
+    else
+      set_drug_usages
+      set_store_units      
+      render :new
     end
   end
 
   # PATCH/PUT /drugs/1
-  # PATCH/PUT /drugs/1.json
   def update
-    respond_to do |format|
-      if @drug.update(drug_params)
-        format.html { redirect_to @drug, notice: 'Drug was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drug }
-      else
-        format.html { render :edit }
-        format.json { render json: @drug.errors, status: :unprocessable_entity }
-      end
+    if @drug.update(drug_params)
+      redirect_to @drug, notice: t("successfully_updated")
+    else
+      set_drug_usages
+      set_store_units
+      render :edit
     end
   end
 
   # DELETE /drugs/1
-  # DELETE /drugs/1.json
   def destroy
     @drug.destroy
-    respond_to do |format|
-      format.html { redirect_to drugs_url, notice: 'Drug was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to drugs_url, notice: t("successfully_destroyed")
   end
 
   private
+    def set_ransack_search_param
+      @q = Drug.ransack(params[:q])
+      @q.sorts = "id asc" if @q.sorts.empty?
+    end  
     # Use callbacks to share common setup or constraints between actions.
     def set_drug
       @drug = Drug.find(params[:id])
@@ -82,11 +74,11 @@ class DrugsController < ApplicationController
       params.require(:drug).permit(:name, :trade_name, :effect, :concern, :drug_usage_id, :store_unit_id)
     end
 
-    def get_all_drug_usages
+    def set_drug_usages
       @drug_usages = DrugUsage.all
     end
 
-    def get_all_store_units
+    def set_store_units
       @store_units = StoreUnit.all
     end
 end

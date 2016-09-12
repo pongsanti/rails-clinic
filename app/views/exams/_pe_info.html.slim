@@ -6,8 +6,7 @@
         =>link_to edit_exam_pe_path(exam), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#examPeInfoBody" } do
-          i.fa.fa-toggle-up
+        = render partial: "global/toggle_panel_button", locals: { target: "#examPeInfoBody" }          
       .clearfix
 
   .panel-body.collapse.in#examPeInfoBody

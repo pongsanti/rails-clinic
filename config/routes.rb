@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :customers do
     resources :exams, only: [:index]
   end
-  resources :exams, only: [:show, :destroy]
+  resources :exams, only: [:show, :destroy] do
+    resources :qs, only: [:create]
+  end
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
@@ -37,18 +39,18 @@ Rails.application.routes.draw do
   get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
   patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
 
-  resources :exams do
-    resources :qs, only: [:create]
-  end
-
   resources :store_units
   resources :drugs do
-    resources :drug_ins, shallow: true
+    resources :drug_ins, only: [:index, :new, :create]
   end
+  resources :drug_ins, only: [:edit, :update, :destroy] do
+    resources :drug_movements, only: [:index, :new, :create]
+  end
+  resources :drug_movements, only: [:show]
+  
   get 'drug_has_drug_ins', to: 'drugs#index_has_drug_ins'
 
   resources :drug_usages
-  resources :drug_movements
   #get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
   #post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
   #get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'

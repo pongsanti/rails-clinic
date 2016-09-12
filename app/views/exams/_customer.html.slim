@@ -12,10 +12,15 @@
         =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =>render partial: "global/panel_toggle_button", locals: { target: "#customerShowBody" }
+        = render partial: "global/toggle_panel_button", locals: { target: "#customerShowBody" }          
       .clearfix
   
   .panel-body.collapse.in#customerShowBody
+    .row
+      .col-sm-4
+        = label :customer, :id
+      .col-sm-8
+        mark = format_id customer
     .row
       .col-sm-4
         = label :customer, :name

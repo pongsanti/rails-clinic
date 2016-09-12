@@ -1,15 +1,11 @@
-.form-group
-  = render partial: "drugs/navigation", locals: {active: :show}
-= render "drugs/info", drug: @drug
-h3 
-  = t '.title' 
-  small =< t '.sub_text'
-hr
+= render partial: "global/page_header", locals: { icon_name: "medkit", title: t("drug_ins.edit.title"), subtext: t("drug_ins.edit.sub_text") }
 
-.form-group
-  = render partial: "navigation", locals: {active: :edit, drug: @drug} 
+.container
+  .row
+    .col-sm-8
+      = render partial: "search"    
+      = render partial: "form", locals: {action: :edit, drug_in: @drug_in, drug: @drug}
 
-.panel.panel-primary
-  .panel-heading = t ".title"
-  .panel-body
-    == render partial: 'form', locals: {form_url: drug_in_path(@drug_in) }
+    .col-sm-4
+      = render partial: "drugs/info", locals: {drug: @drug}
+      = render partial: "global/q_placeholder"

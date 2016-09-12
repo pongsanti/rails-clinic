@@ -6,20 +6,13 @@
         =>link_to edit_diag_path(@diag), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#diagShowBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#diagShowBody" }
       .clearfix
 
   .panel-body.collapse.in#diagShowBody
     =form_for @diag, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = f.label :id, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =format_id(@diag.id, @diag)
-        = f.label :created_at, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static ="#{th_date_time_format(@diag.created_at)} (#{time_ago_in_words(@diag.created_at)})"
+      = render partial: "global/show_id", locals: {obj: @diag, f: f}
 
       .form-group
         = f.label :name, class: "col-sm-2 control-label required-label"

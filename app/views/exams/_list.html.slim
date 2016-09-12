@@ -7,7 +7,7 @@
           i.glyphicon.glyphicon-file
           =<"New"
         =>render "global/panel_back_button"
-        =>render partial: "global/panel_toggle_button", locals: { target: "#examIndexBody" }
+        = render partial: "global/toggle_panel_button", locals: { target: "#examIndexBody" }        
       .clearfix
   .table-responsive.collapse.in#examIndexBody
     table.table.table-striped.table-hover.table-condensed
@@ -18,7 +18,7 @@
       tbody.rowlink data-link="row"
         - @exams.each do |exam|
           tr
-            td = link_to format_id(exam.id, exam), exam_path(exam)
+            td = link_to format_id(exam), exam_path(exam)
             td = "#{th_date_time_format exam.created_at} (#{time_ago_in_words exam.created_at })"
 
   .panel-footer

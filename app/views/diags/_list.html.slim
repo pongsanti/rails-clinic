@@ -6,7 +6,7 @@
         =>link_to new_diag_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        =>render partial: "global/panel_toggle_button", locals: { target: "#diagIndexBody" }
+        = render partial: "global/toggle_panel_button", locals: { target: "#diagIndexBody" }          
       .clearfix
   .table-responsive.collapse.in#diagIndexBody
     table.table.table-striped.table-hover.table-condensed
@@ -19,7 +19,7 @@
       tbody.rowlink data-link="row"
         - @diags.each do |diag|
           tr
-            td= format_id diag.id, diag
+            td= format_id diag
             td= link_to diag.name, diag_path(diag)
             td= diag.description
   .panel-footer

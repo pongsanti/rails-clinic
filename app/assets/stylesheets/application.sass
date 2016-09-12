@@ -61,11 +61,19 @@ body
 tr.pointer:hover
   cursor: pointer
 
+.stock-out
+  color: #cc0000
+
+.stock-in
+  color: #29a329
+
 .glyphicon-big
   font-size: x-large
 
-.hide
-  display: none
+// front-end validation
+form 
+  input.error
+    border-color: #a94442
 
 // animation
 @keyframes spin

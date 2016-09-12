@@ -9,20 +9,13 @@
         =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerShowBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#customerShowBody" }
       .clearfix
 
   .panel-body.collapse.in#customerShowBody
     =form_for @customer, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = f.label :id, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =format_id(@customer.id, @customer)
-        = f.label :created_at, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static ="#{th_date_time_format(@customer.created_at)} (#{time_ago_in_words(@customer.created_at)})"
+      = render partial: "global/show_id", locals: {obj: @customer, f: f}
 
       .form-group
         = f.label :prefix, class: "col-sm-2 control-label required-label"

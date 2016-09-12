@@ -8,6 +8,8 @@ class Exam
     controller: "exams"
     action: "index"
 
+  remoteContent: null
+
   diagTable: null
   diags_div_id: "diags_div"
   new_diag_btn_id: "new_diag"
@@ -21,14 +23,10 @@ class Exam
     @diagTable.initializeTable()
 
   fetchAjaxContent: ()->
-    placeholder = view.util.findElemByDataAttributes(@placeholder_data_attributes)
-    if placeholder.length
-      @triggerAnchorClick(placeholder)
+    if not @remoteContent?
+      @remoteContent = new view.RemoteContent @placeholder_data_attributes
 
-  triggerAnchorClick: (placeholder)->
-    anchor = view.util.findAnchorWithDataAttribute({"refresh": "true"}, placeholder)
-    if anchor.length
-      anchor.trigger("click.rails")
+    @remoteContent.fetchAjaxContent()
 
   submitDiagTable: () ->
     console.log @diagTable.$('input, select').serialize();

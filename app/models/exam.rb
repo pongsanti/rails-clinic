@@ -9,6 +9,8 @@ class Exam < ActiveRecord::Base
   has_many :diags, through: :patient_diags
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :all_blank
 
+  has_many :patient_drugs, inverse_of: :exam
+
   has_many :drug_movements, inverse_of: :exam
 
   validates :weight, :height, :numericality => {:greater_than => 0, :less_than => 500}, 
@@ -17,6 +19,8 @@ class Exam < ActiveRecord::Base
     format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
   validates :bp_systolic, :bp_diastolic, :numericality => {:greater_than => 0, :less_than => 300}, 
     format: { with: /\A\d{1,3}\z/ }, allow_blank: true
+
+  validates :customer, presence: true
   
   #kaminari
   paginates_per 10

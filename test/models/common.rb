@@ -5,7 +5,9 @@ module Common
   ERR_INCLUSION = ERR_PREFIX + "inclusion"
   ERR_INVALID = ERR_PREFIX + "invalid"
   ERR_NOT_A_NUMBER = ERR_PREFIX + "not_a_number"
+  ERR_GTEQ = ERR_PREFIX + "greater_than_or_equal_to"
   ERR_LESS_THAN = ERR_PREFIX + "less_than"
+  ERR_LESS_THAN_OR_EQUAL_TO = ERR_PREFIX + "less_than_or_equal_to"
    
   def error_count(count)
     assert_equal count, @test_target.errors.count

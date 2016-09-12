@@ -7,9 +7,8 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
           =>link_to customer_path(@customer), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
             i.glyphicon.glyphicon-trash
             =<"Delete"
-        =render "global/panel_back_button"
-        =>button_tag class: "btn btn-default btn-xs", type: :button, data: { "toggle" => "collapse", "target" => "#customerFormBody" } do
-          i.fa.fa-toggle-up
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#customerFormBody" }
       .clearfix
   .panel-body.collapse.in#customerFormBody
 
