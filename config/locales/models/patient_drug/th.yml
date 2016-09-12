@@ -1,0 +1,9 @@
+th:
+  activerecord:
+    models:
+      patient_drug: ""
+    attributes:
+      patient_drug:
+        id: "หมายเลข"
+        amount: "จำนวนจ่าย"
+        revenue: "รายรับ"
