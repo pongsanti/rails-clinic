@@ -7,6 +7,7 @@ class DrugInTest < ActiveSupport::TestCase
   setup do
     @customer = customers(:customer_david)
     @drug_in = drug_ins(:one)
+    @drug = drugs(:one)
     @exam = exams(:exam_one)
     @test_target = @drug_in
   end
@@ -21,11 +22,12 @@ class DrugInTest < ActiveSupport::TestCase
     error_contains error_msg(drug, ERR_BLANK)
   end
 
-  test "should validate amount" do
+  test "should validate amount when create" do
     amount = "activerecord.attributes.drug_in.amount"
 
-    @drug_in.amount = nil
-    assert_not @drug_in.save
+    drug_in = DrugIn.new(amount: nil, drug: @drug)
+    @test_target = drug_in
+    assert_not drug_in.save
     error_count 2
     error_contains error_msg(amount, ERR_BLANK), error_msg(amount, ERR_NOT_A_NUMBER)
   end
@@ -79,11 +81,11 @@ class DrugInTest < ActiveSupport::TestCase
     @drug_in.save
 
     assert_equal dmm_count + 1, @drug_in.drug_movements.count
-    assert_equal latest_bal - amount, @drug_in.balance
+    assert_equal latest_bal + amount, @drug_in.balance
     
     created = DrugMovement.last
     assert_equal latest_bal, created.prev_bal
-    assert_equal latest_bal - amount, created.balance
+    assert_equal latest_bal + amount, created.balance
     assert_equal @exam, created.exam
   end
 

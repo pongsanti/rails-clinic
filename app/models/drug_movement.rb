@@ -10,7 +10,7 @@ class DrugMovement < ActiveRecord::Base
 
   validates :amount, presence: true, numericality: true
   validates :drug_in, presence: true
-  validates :exam, presence: true, if: "self.exam_id.present?"
+  validates_associated :exam
 
   paginates_per 15
 
