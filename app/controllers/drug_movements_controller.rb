@@ -5,7 +5,7 @@ class DrugMovementsController < ApplicationController
   #before_action :set_ransack_search_param, only: [:index]
   before_action :set_drug_in, only: [:index, :new, :create]
   before_action :set_drug_in_from_drug_movement, only: [:show]
-  before_action :set_drug_from_drug_in, only: [:show, :new]
+  before_action :set_drug_from_drug_in, only: [:index, :show, :new, :create]
 
   def index
     ransack_params = {for_drug_in: @drug_in.id}
@@ -13,8 +13,6 @@ class DrugMovementsController < ApplicationController
 
     @q = DrugMovement.ransack(ransack_params)
     @drug_movements = @q.result.page(params[:page])
-
-    @drug = @drug_in.drug
   end
 
   def show
@@ -22,9 +20,6 @@ class DrugMovementsController < ApplicationController
 
   def new
     @drug_movement = DrugMovement.new
-  end
-
-  def edit
   end
 
   def create
