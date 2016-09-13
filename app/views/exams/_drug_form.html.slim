@@ -23,7 +23,7 @@
             th= DrugIn.human_attribute_name(:id)
             th= DrugUsage.human_attribute_name(:code)
             th.text-right = PatientDrug.human_attribute_name(:amount)
-            th.text-right= PatientDrug.human_attribute_name(:revenue)
+            th.text-right = PatientDrug.human_attribute_name(:revenue)
             th
         - unless exam.patient_drugs.empty?
           tbody
