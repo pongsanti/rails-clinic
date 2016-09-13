@@ -3,15 +3,15 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show,
 
-    :edit_weight, :edit_pe, :edit_diag,
-    :update_weight, :update_pe, :update_diag,
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :update_weight, :update_pe, :update_diag, :update_drug,
     
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [:show,
-    :edit_weight, :edit_pe, :edit_diag,
-    :update_weight, :update_pe, :update_diag]
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :update_weight, :update_pe, :update_diag, :update_drug ]
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -36,6 +36,11 @@ class ExamsController < ApplicationController
   end
 
   def edit_diag
+  end
+
+  def edit_drug
+    @drug_ins = DrugIn.all
+    @drug_usages = DrugUsage.all
   end
 
   def create_weight
@@ -71,6 +76,16 @@ class ExamsController < ApplicationController
     else
       set_diags
       render "edit_diag"
+    end
+  end
+
+  def update_drug
+    if @exam.update(exam_drug_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      @drug_ins = DrugIn.all
+      @drug_usages = DrugUsage.all
+      render "edit_drug"
     end
   end
 
@@ -123,6 +138,12 @@ class ExamsController < ApplicationController
     def exam_diag_params
       params.require(:exam).permit(
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy]
+      )
+    end
+
+    def exam_drug_params
+      params.require(:exam).permit(
+        patient_drugs_attributes: [:id, :drug_in_id, :drug_usage_id, :amount, :revenue, :_destroy]
       )
     end
 =begin

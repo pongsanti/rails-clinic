@@ -10,6 +10,7 @@ class Exam < ActiveRecord::Base
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :all_blank
 
   has_many :patient_drugs, inverse_of: :exam
+  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :all_blank
 
   has_many :drug_movements, inverse_of: :exam
 
