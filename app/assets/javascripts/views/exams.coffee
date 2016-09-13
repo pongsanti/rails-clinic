@@ -10,17 +10,31 @@ class Exam
 
   remoteContent: null
 
+  #Diag
   diagTable: null
   diags_div_id: "diags_div"
   new_diag_btn_id: "new_diag"
+
+  #Drug
+  drugTable: null
+  drug_ins_div_id: "drug_ins_div"
+  drug_usages_div_id: "drug_usages_div"
+  new_drug_btn_id: "new_drug"
 
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
+    delete @diagTable
     @diagTable = new view.ExamDiagDataTable(@new_diag_btn_id)
     @diagTable.diags_div_id = @diags_div_id
     @diagTable.initializeTable()
+
+    delete @drugTable
+    @drugTable = new view.ExamDrugDataTable(@new_drug_btn_id)
+    @drugTable.drug_ins_div_id = @drug_ins_div_id
+    @drugTable.drug_usages_div_id = @drug_usages_div_id
+    @drugTable.initializeTable()
 
   fetchAjaxContent: ()->
     if not @remoteContent?
@@ -28,8 +42,8 @@ class Exam
 
     @remoteContent.fetchAjaxContent()
 
-  submitDiagTable: () ->
-    console.log @diagTable.$('input, select').serialize();
+#  submitDiagTable: () ->
+#    console.log @diagTable.$('input, select').serialize();
 
 #  lastRow: () ->
 #    @diagTable.row(@rowCount - 1)

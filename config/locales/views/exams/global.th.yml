@@ -9,6 +9,6 @@ th:
         pulse: "ชีพจร"
         drug_allergy: "ประวัติการแพ้ยา"
         note: "รายละเอียดเพิ่มเติมเกี่ยวกับผู้ป่วย"
-        exam_pi: "PI"
-        exam_pe: "PE"
+        exam_pi: "Present illness"
+        exam_pe: "Physical examination"
         exam_note: "Note"

@@ -3,15 +3,16 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show,
 
-    :edit_weight, :edit_pe, :edit_diag,
-    :update_weight, :update_pe, :update_diag,
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :update_weight, :update_pe, :update_diag, :update_drug,
     
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [:show,
-    :edit_weight, :edit_pe, :edit_diag,
-    :update_weight, :update_pe, :update_diag]
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :update_weight, :update_pe, :update_diag, :update_drug ]
+
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -36,6 +37,10 @@ class ExamsController < ApplicationController
   end
 
   def edit_diag
+  end
+
+  def edit_drug
+    set_objects_for_edit
   end
 
   def create_weight
@@ -74,39 +79,20 @@ class ExamsController < ApplicationController
     end
   end
 
+  def update_drug
+    if @exam.update(exam_drug_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      set_objects_for_edit
+      render "edit_drug"
+    end
+  end
+
   def destroy
     @exam.destroy
     redirect_to customer_exams_url(@exam.customer), notice: t("successfully_destroyed")
   end
-=begin
-  def new_patient_diag
-    @patient_diag = @exam.patient_diags.build
-    render "exams/diags/new_patient_diag"
-  end
 
-  def create_patient_diag
-    if @exam.update exam_params
-      @patient_diags_id = PatientDiag.latest(@exam.id).id
-      render "exams/diags/diags_list"
-    else
-      handle_error_and_render "exams/diags/new_patient_diag"
-    end
-  end
-
-  def edit_patient_diag
-    @patient_diag = PatientDiag.find(params[:id])
-    render "exams/diags/edit_patient_diag"
-  end
-
-  def update_patient_diag
-    if @exam.update exam_params
-      @patient_diags_id = exam_params[:patient_diags_attributes]["0"][:id].to_i
-      render "exams/diags/diags_list"
-    else
-      handle_error_and_render "exams/diags/edit_patient_diag"
-    end
-  end
-=end
   private
     def exam_weight_params
       params.require(:exam).permit( 
@@ -123,6 +109,12 @@ class ExamsController < ApplicationController
     def exam_diag_params
       params.require(:exam).permit(
         patient_diags_attributes: [:id, :diag_id, :note, :_destroy]
+      )
+    end
+
+    def exam_drug_params
+      params.require(:exam).permit(
+        patient_drugs_attributes: [:id, :drug_in_id, :drug_usage_id, :amount, :revenue, :_destroy]
       )
     end
 =begin
@@ -154,15 +146,8 @@ class ExamsController < ApplicationController
       @diags = Diag.all
     end
 
-    def set_patient_diags_when_error
-      for pd in @exam.patient_diags
-        @patient_diag = pd if not pd.valid?
-      end
-    end
-
-    def handle_error_and_render template
-      set_diags
-      set_patient_diags_when_error
-      render template
+    def set_objects_for_edit
+      @drug_ins = DrugIn.includes(:drug)
+      @drug_usages = DrugUsage.all
     end
 end

@@ -37,7 +37,10 @@ Rails.application.routes.draw do
   patch "exam_pe/:id",              to: "exams#update_pe",      as: "exam_pe"
 
   get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
-  patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag" 
+  patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag"
+
+  get "exam_drug/:id/edit",         to: "exams#edit_drug",      as: "edit_exam_drug"
+  patch "exam_drug/:id",            to: "exams#update_drug",    as: "exam_drug"
 
   resources :store_units
   resources :drugs do

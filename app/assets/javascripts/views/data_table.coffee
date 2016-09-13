@@ -5,7 +5,7 @@ class DataTable
   constructor: (@new_entry_btn_id) ->
 
   initializeTable: ()->
-    placeholder = view.util.findElemByDataAttributes {"table": "true"}
+    placeholder = view.util.findElemByDataAttributes {"table": @tableName}
     if placeholder.length
       @table = placeholder.DataTable
         "paging"    :false,
@@ -35,30 +35,80 @@ class DataTable
   rowContent: () ->
     # to be overridden
 
+  addAttr: (obj, name, val) ->
+    obj.attr(name, val)
 
-class window.view.ExamDiagDataTable extends DataTable
-  rowContent: () ->
-    diags_div = $("\##{@diags_div_id}").clone()
-    select = diags_div.find("select")
-    select.addClass("selectpicker")
+  addClass: (obj, clsName) ->
+    obj.addClass(clsName)
 
-    rowId = Date.now()
-    select.attr("id", "exam_patient_diags_attributes_#{rowId}_diag_id")
-    select.attr("name", "exam[patient_diags_attributes][#{rowId}][diag_id]")
+  createInput: (objParamName, id, method) ->
+    idAttr = @createIdAttr(objParamName, id, method)
+    nameAttr = @createNameAttr(objParamName, id, method)
+    "<input id='#{idAttr}' name='#{nameAttr}' type='text' style='width: 100%' class='form-control'>"
 
-    input_id = "exam_patient_diags_attributes_#{rowId}_note"
-    input_name = "exam[patient_diags_attributes][#{rowId}][note]"
-    input = "<input id='#{input_id}' name='#{input_name}' type='text' style='width: 100%' class='form-control'>"
-
-    delete_id = "delete_#{rowId}"
-    delete_icon = 
+  createDeleteButton: (id, onclickFunction) ->
     """
-      <button id="#{delete_id}" type="button" class="btn btn-danger btn-xs" onclick="view.exam.diagTable.deleteRowBtnEvent(this)">
+      <button id="#{id}" type="button" class="btn btn-danger btn-xs" onclick="#{onclickFunction}">
         <span class="glyphicon glyphicon-trash"></i>
       </button>
     """
+
+  createIdAttr: (objParamName, id, method) ->
+    "exam_#{objParamName}_#{id}_#{method}"
+
+  createNameAttr: (objParamName, id, method) ->
+    "exam[#{objParamName}][#{id}][#{method}]"
+
+  createAttribute: (obj, objParamName, id, method) ->
+    @addAttr(obj, "id", @createIdAttr(objParamName, id, method))
+    @addAttr(obj, "name", @createNameAttr(objParamName, id, method))
+
+
+class window.view.ExamDiagDataTable extends DataTable
+  tableName: "examDiag"
+
+  rowContent: () ->
+    diags_div = $("\##{@diags_div_id}").clone()
+    select = diags_div.find("select")
+    @addClass(select, "selectpicker")
+
+    rowId = Date.now()
+    @createAttribute(select, "patient_diags_attributes", rowId, "diag_id")
+
+    input = @createInput("patient_diags_attributes", rowId, "note")
+
+    delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.diagTable.deleteRowBtnEvent(this)")
+
     return [ "", diags_div[0].innerHTML, input, delete_icon ]
 
   deleteRowBtnEvent: (elem)->
     row = $(elem).closest('tr')
-    @table.row(row[0]).remove().draw(false)    
+    @table.row(row[0]).remove().draw(false)
+
+
+class window.view.ExamDrugDataTable extends DataTable
+  tableName: "examDrug"
+
+  rowContent: () ->
+    drug_ins_div = $("\##{@drug_ins_div_id}").clone()
+    drug_in_select = drug_ins_div.find("select")
+    @addClass(drug_in_select, "selectpicker")
+
+    drug_usages_div = $("\##{@drug_usages_div_id}").clone()
+    drug_usage_select = drug_usages_div.find("select")
+    @addClass(drug_usage_select, "selectpicker")
+
+    rowId = Date.now()
+    @createAttribute(drug_in_select, "patient_drugs_attributes", rowId, "drug_in_id")
+    @createAttribute(drug_usage_select, "patient_drugs_attributes", rowId, "drug_usage_id")
+
+    amount_input = @createInput("patient_drugs_attributes", rowId, "amount")
+    revenue_input = @createInput("patient_drugs_attributes", rowId, "revenue")
+
+    delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.drugTable.deleteRowBtnEvent(this)")
+
+    return [ "", drug_ins_div[0].innerHTML, drug_usages_div[0].innerHTML, amount_input, revenue_input, delete_icon ]
+
+  deleteRowBtnEvent: (elem)->
+    row = $(elem).closest('tr')
+    @table.row(row[0]).remove().draw(false)      

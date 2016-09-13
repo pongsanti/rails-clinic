@@ -1,0 +1,44 @@
+#examDrugForm.panel.panel-warning
+  .panel-heading
+    .panel-header
+      =t("exams.drug_form.heading")
+      .pull-right
+        =>render "global/panel_back_button"
+        =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_drug" do
+          i.glyphicon.glyphicon-file
+          =<"New Entry"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examDrugFormBody" }
+      .clearfix
+  .panel-body.collapse.in#examDrugFormBody
+    .hide id="drug_ins_div"
+      = select_tag "drug_ins", options_for_select(@drug_ins.map{ |d| [d.expired_date, d.id, {'data-subtext'=> d.drug.name}] }), class: "form-control", data: { 'live-search' => true }
+    .hide id="drug_usages_div"
+      = select_tag "drug_usages", options_for_select(@drug_usages.map{ |d| [d.code, d.id] }), class: "form-control", data: { 'live-search' => true }    
+
+    = form_for exam, url: exam_drug_path(exam), html: { class: "form-horizontal" } do |f|
+      table.table-striped.table-hover.table-condensed data-table="examDrug" width="100%"
+        thead
+          tr
+            th= PatientDrug.human_attribute_name(:id)
+            th= DrugIn.human_attribute_name(:id)
+            th= DrugUsage.human_attribute_name(:code)
+            th.text-right = PatientDrug.human_attribute_name(:amount)
+            th.text-right = PatientDrug.human_attribute_name(:revenue)
+            th
+        - unless exam.patient_drugs.empty?
+          tbody
+            = f.fields_for :patient_drugs, f.object.patient_drugs do |pd_form|
+              tr
+                td
+                  = format_id pd_form.object
+                  = pd_form.hidden_field :id
+                td = pd_form.select :drug_in_id, options_for_select( @drug_ins.map{ |d| [d.expired_date, d.id, {'data-subtext'=> d.drug.name}] }, pd_form.object.drug_in_id), {}, class: "selectpicker form-control", data: {"live-search" => true }
+                td = pd_form.select :drug_usage_id, options_for_select(@drug_usages.map{|d| [d.code, d.id ]}, pd_form.object.drug_usage_id), {}, class: "selectpicker form-control", data: {"live-search" => true }
+                td.text-right = pd_form.text_field :amount, class: "form-control", placeholder: true, style: "width: 100%"
+                td.text-right = pd_form.text_field :revenue, class: "form-control", placeholder: true, style: "width: 100%"
+                td
+                  label.btn.btn-danger.btn-xs
+                    =>pd_form.check_box :_destroy
+                    span.glyphicon.glyphicon-trash
+      .text-right
+        = render partial: 'global/form_button', locals: {f: f}

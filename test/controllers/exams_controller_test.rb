@@ -9,6 +9,8 @@ class ExamsControllerTest < ActionController::TestCase
     @exam = exams(:exam_one)
     @customer = @exam.customer
     @diag = diags(:two)
+    @drug_in = drug_ins(:one)
+    @drug_usage = drug_usages(:one)
   end
 
   test "should route correctly" do
@@ -25,12 +27,14 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:get, "/exam_weight/2/edit"), opts.merge(action: "edit_weight", id: exam_id)
     assert_routing route_path(:get, "/exam_pe/2/edit"), opts.merge(action: "edit_pe", id: exam_id)
     assert_routing route_path(:get, "/exam_diag/2/edit"), opts.merge(action: "edit_diag", id: exam_id)
+    assert_routing route_path(:get, "/exam_drug/2/edit"), opts.merge(action: "edit_drug", id: exam_id)
     #create
     assert_routing route_path(:post, "/customers/1/exams"), opts.merge(action: "create_weight", customer_id: customer_id)
     #update
     assert_routing route_path(:patch, "/exam_weight/2"), opts.merge(action: "update_weight", id: exam_id)
     assert_routing route_path(:patch, "/exam_pe/2"), opts.merge(action: "update_pe", id: exam_id)
     assert_routing route_path(:patch, "/exam_diag/2"), opts.merge(action: "update_diag", id: exam_id)
+    assert_routing route_path(:patch, "/exam_drug/2"), opts.merge(action: "update_drug", id: exam_id)
     #destroy
     assert_routing route_path(:delete, "/exams/2"), opts.merge(action: "destroy", id: exam_id)
   end
@@ -85,7 +89,16 @@ class ExamsControllerTest < ActionController::TestCase
     assert_assigns :exam, :customer, :diags
     assert_equal @exam, a(:exam)
     assert_equal @exam.customer, a(:customer)
-  end  
+  end
+
+  test "should get edit drug" do
+    get :edit_drug, id: @exam.id
+
+    assert_response :success
+    assert_assigns :exam, :customer, :drug_ins, :drug_usages
+    assert_equal @exam, a(:exam)
+    assert_equal @exam.customer, a(:customer)
+  end    
 
   test "should post create weight" do
     assert_difference "Exam.count", 1 do
@@ -162,4 +175,38 @@ class ExamsControllerTest < ActionController::TestCase
 
     assert_redirected_to exam_url(@exam)
   end
+
+  test "should patch update drug" do
+    assert_difference "@exam.patient_drugs.count", 2 do
+      patch :update_drug, { id: @exam.id,
+        exam: {
+          patient_drugs_attributes: {  
+            "12556" => { drug_in_id: @drug_in.id, drug_usage_id: @drug_usage.id,
+              amount: 10, revenue: 100 },
+            "12589" => { drug_in_id: @drug_in.id, drug_usage_id: @drug_usage.id,
+              amount: 15, revenue: 200 }
+          }
+        }
+      }
+    end
+
+    assert_redirected_to exam_url(@exam)
+  end
+
+  test "should patch update drug rejected" do
+    assert_no_difference "@exam.patient_drugs.count" do
+      patch :update_drug, { id: @exam.id,
+        exam: {
+          patient_drugs_attributes: {  
+            "12556" => { drug_in_id: @drug_in.id, drug_usage_id: @drug_usage.id,
+              amount: nil, revenue: nil },
+            "12589" => { drug_in_id: @drug_in.id, drug_usage_id: @drug_usage.id,
+              amount: nil, revenue: nil }
+          }
+        }
+      }
+    end
+
+    assert_redirected_to exam_url(@exam)
+  end  
 end
