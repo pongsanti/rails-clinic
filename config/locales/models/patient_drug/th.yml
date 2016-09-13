@@ -5,5 +5,5 @@ th:
     attributes:
       patient_drug:
         id: "หมายเลข"
-        amount: "จำนวนจ่าย"
-        revenue: "รายรับ"
+        amount: "จำนวนจ่าย(หน่วย)"
+        revenue: "รายรับ(บาท)"
