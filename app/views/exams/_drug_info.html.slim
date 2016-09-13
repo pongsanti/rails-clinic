@@ -13,7 +13,7 @@
       thead
         tr
             th= PatientDrug.human_attribute_name(:id)
-            th= DrugIn.human_attribute_name(:id)
+            th= DrugIn.human_attribute_name(:expired_date)
             th= DrugUsage.human_attribute_name(:code)
             th.text-right = PatientDrug.human_attribute_name(:amount)
             th.text-right = PatientDrug.human_attribute_name(:revenue)
@@ -26,7 +26,7 @@
           - exam.patient_drugs.each do |pd|
             tr
               td= format_id pd
-              td= pd.drug_in.id
+              td= "#{pd.drug_in.drug.name} #{pd.drug_in.expired_date}"
               td= pd.drug_usage.code
               td.text-right = pd.amount
               td.text-right = pd.revenue

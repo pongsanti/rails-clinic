@@ -39,7 +39,7 @@ class ExamsController < ApplicationController
   end
 
   def edit_drug
-    @drug_ins = DrugIn.all
+    @drug_ins = DrugIn.includes(:drug)
     @drug_usages = DrugUsage.all
   end
 
@@ -93,35 +93,7 @@ class ExamsController < ApplicationController
     @exam.destroy
     redirect_to customer_exams_url(@exam.customer), notice: t("successfully_destroyed")
   end
-=begin
-  def new_patient_diag
-    @patient_diag = @exam.patient_diags.build
-    render "exams/diags/new_patient_diag"
-  end
 
-  def create_patient_diag
-    if @exam.update exam_params
-      @patient_diags_id = PatientDiag.latest(@exam.id).id
-      render "exams/diags/diags_list"
-    else
-      handle_error_and_render "exams/diags/new_patient_diag"
-    end
-  end
-
-  def edit_patient_diag
-    @patient_diag = PatientDiag.find(params[:id])
-    render "exams/diags/edit_patient_diag"
-  end
-
-  def update_patient_diag
-    if @exam.update exam_params
-      @patient_diags_id = exam_params[:patient_diags_attributes]["0"][:id].to_i
-      render "exams/diags/diags_list"
-    else
-      handle_error_and_render "exams/diags/edit_patient_diag"
-    end
-  end
-=end
   private
     def exam_weight_params
       params.require(:exam).permit( 
