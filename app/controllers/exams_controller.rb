@@ -12,6 +12,7 @@ class ExamsController < ApplicationController
   before_action :set_customer_from_exam, only: [:show,
     :edit_weight, :edit_pe, :edit_diag, :edit_drug,
     :update_weight, :update_pe, :update_diag, :update_drug ]
+
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
   def index
@@ -39,8 +40,7 @@ class ExamsController < ApplicationController
   end
 
   def edit_drug
-    @drug_ins = DrugIn.includes(:drug)
-    @drug_usages = DrugUsage.all
+    set_objects_for_edit
   end
 
   def create_weight
@@ -83,8 +83,7 @@ class ExamsController < ApplicationController
     if @exam.update(exam_drug_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
-      @drug_ins = DrugIn.all
-      @drug_usages = DrugUsage.all
+      set_objects_for_edit
       render "edit_drug"
     end
   end
@@ -147,15 +146,8 @@ class ExamsController < ApplicationController
       @diags = Diag.all
     end
 
-    def set_patient_diags_when_error
-      for pd in @exam.patient_diags
-        @patient_diag = pd if not pd.valid?
-      end
-    end
-
-    def handle_error_and_render template
-      set_diags
-      set_patient_diags_when_error
-      render template
+    def set_objects_for_edit
+      @drug_ins = DrugIn.includes(:drug)
+      @drug_usages = DrugUsage.all
     end
 end

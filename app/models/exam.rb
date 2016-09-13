@@ -10,7 +10,7 @@ class Exam < ActiveRecord::Base
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :all_blank
 
   has_many :patient_drugs, inverse_of: :exam
-  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs
 
   has_many :drug_movements, inverse_of: :exam
 
@@ -39,6 +39,10 @@ class Exam < ActiveRecord::Base
     def ransackable_scopes(auth_object = nil)
       %i(for_customer)
     end
+  end
+
+  def reject_drugs(attributes)
+    attributes['amount'].blank? or attributes['revenue'].blank?
   end
 
   def bmi
