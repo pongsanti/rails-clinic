@@ -2,17 +2,18 @@ class DataTable
 
   table: null
 
-  constructor: (@new_entry_btn_id) ->
+  constructor: (@new_entry_btn_id, @util) ->
+ 
+  initOptions: ()->
+    "paging"    :false,
+    "ordering"  :false,
+    "info"      :false,
+    "searching" :false
 
   initializeTable: ()->
-    placeholder = view.util.findElemByDataAttributes {"table": @tableName}
+    placeholder = @util.findElemByDataAttributes {"table": @tableName}
     if placeholder.length
-      @table = placeholder.DataTable
-        "paging"    :false,
-        "ordering"  :false,
-        "info"      :false,
-        "searching" :false
-
+      @table = placeholder.DataTable @initOptions()
       @addDrawEventHandler()
       @addNewEntryBtnEvent()
     else
@@ -89,6 +90,12 @@ class window.view.ExamDiagDataTable extends DataTable
 class window.view.ExamDrugDataTable extends DataTable
   tableName: "examDrug"
 
+  initOptions: () ->
+    $.extend(super, 
+      "createdRow": ( row, data, index ) =>
+          @util.jqRify(row).find("select[id*='drug_in']").change(row, @drugInSelectChangeEvent)
+    )  
+
   rowContent: () ->
     drug_ins_div = $("\##{@drug_ins_div_id}").clone()
     drug_in_select = drug_ins_div.find("select")
@@ -111,4 +118,13 @@ class window.view.ExamDrugDataTable extends DataTable
 
   deleteRowBtnEvent: (elem)->
     row = $(elem).closest('tr')
-    @table.row(row[0]).remove().draw(false)      
+    @table.row(row[0]).remove().draw(false)
+
+  drugInSelectChangeEvent: (changeEvent)=>
+    row = $(changeEvent.data)
+    amount_value = row.find("input[id*='amount']").val()
+    if amount_value? and amount_value > 0
+      option_sale_price_value = @util.jqRify(changeEvent.target).find("option:selected").data("sale")
+      if option_sale_price_value?
+        revenue_text_input = row.find("input[id*=revenue]")
+        revenue_text_input.val (option_sale_price_value * amount_value).toFixed(2)
