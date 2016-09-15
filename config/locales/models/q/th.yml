@@ -4,7 +4,7 @@ th:
       q: "คิวผู้ป่วย"
     attributes:
       q:
-        id: "ลำดับคิว"
+        id: "#"
         created_at: "เวลา"
       q/exam:
         id: "รหัสวินิจฉัย"

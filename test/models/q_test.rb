@@ -22,8 +22,16 @@ class QTest < ActiveSupport::TestCase
   end  
 
   test "should scope by category" do
-    assert_equal 2, Q.cat_is("B").count
-    assert_equal 1, Q.cat_is("A").count
+    assert_equal 2, Q.cat_is(Q::EXAM_Q_CAT).count
+    assert_equal 1, Q.cat_is(Q::MED_Q_CAT).count
+  end
+
+  test "should switch" do
+    assert @q.exam_q?
+    @q.switch_category
+
+    assert_not @q.exam_q?
+    assert @q.med_q?
   end
 
 end

@@ -2,7 +2,7 @@
   .panel-heading
     .panel-header 
       =t("exams.weight_form.heading")
-      .pull-right
+      .pull-right       
         =>link_to exam_qs_path(@exam), method: :post, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>" }, class: "btn btn-info btn-xs" do
           i.glyphicon.glyphicon-time
           =<"Add to Queue"      

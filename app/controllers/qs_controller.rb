@@ -2,17 +2,23 @@ class QsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_exam, only: [:create]
-  before_action :set_q, only: [:destroy]
-
+  before_action :set_q, only: [:destroy, :switch_category]
+  
   def index
-    @qs = Q.all
+    @exQs = Q.cat_is(Q::EXAM_Q_CAT)
+    @medQs = Q.cat_is(Q::MED_Q_CAT)
   end
 
   def create
     q = Q.new
-    q.category = "B"
+    q.category = Q::EXAM_Q_CAT
     q.exam = @exam
     q.save
+  end
+
+  def switch_category
+    @q.switch_category
+    @q.save
   end
 
   def destroy
