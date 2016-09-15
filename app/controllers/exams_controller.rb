@@ -15,6 +15,8 @@ class ExamsController < ApplicationController
 
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
+  before_action :set_user, only: [:update_weight, :update_pe, :update_diag, :update_drug]
+
   def index
     ransack_params = {for_customer: @customer.id}
     ransack_params = ransack_params.merge(params[:q]) if params[:q]
@@ -45,6 +47,7 @@ class ExamsController < ApplicationController
 
   def create_weight
     @exam = Exam.new(exam_weight_params)
+    set_user
     @exam.customer = @customer
     
     if @exam.save
@@ -117,19 +120,11 @@ class ExamsController < ApplicationController
         patient_drugs_attributes: [:id, :drug_in_id, :drug_usage_id, :amount, :revenue, :_destroy]
       )
     end
-=begin
-    def exam_params
-      params.require(:exam).permit( 
-        :weight, :height, 
-        :bp_systolic, :bp_diastolic, 
-        :pulse, :drug_allergy,
-        :note,
-        # weight_form
-        :exam_pi, :exam_pe, :exam_note,
-        # patient_diags
-        patient_diags_attributes: [:id, :diag_id, :note, :_destroy])
+
+    def set_user
+      @exam.examiner = current_user
     end
-=end
+
     def set_exam
       @exam = Exam.find(params[:id])
     end
