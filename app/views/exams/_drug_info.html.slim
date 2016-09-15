@@ -15,7 +15,7 @@
             th= PatientDrug.human_attribute_name(:id)
             th= Drug.human_attribute_name(:name)
             th= DrugIn.human_attribute_name(:expired_date)
-            th= DrugUsage.human_attribute_name(:code)
+            th= DrugUsage.human_attribute_name(:text)
             th.text-right = PatientDrug.human_attribute_name(:amount)
             th.text-right = PatientDrug.human_attribute_name(:revenue)
       tbody
