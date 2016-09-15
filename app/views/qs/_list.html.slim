@@ -1,0 +1,28 @@
+.table-responsive.collapse.in id=id
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th=Q.human_attribute_name(:id)
+        th=Exam.human_attribute_name(:id)
+        th=Q.human_attribute_name("customer.name")
+        th=Q.human_attribute_name(:created_at)
+        th
+    tbody.rowlink data-link="row"
+      - if qs.empty?
+        tr
+          td.text-center colspan="5"
+            = "No data"
+      - else
+        - qs.each do |q|
+          tr
+            td= q.id
+            td= format_id q.exam
+            td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", exam_path(q.exam)
+            td 
+              span data-toggle="tooltip" title=th_date_time_format(q.created_at)
+                =time_ago_in_words(q.created_at)
+            td.rowlink-skip            
+              =>link_to q_path(q), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip" }, class: "btn btn-danger btn-xs", title: "Delete" do
+                i.glyphicon.glyphicon-trash
+              =>link_to switch_category_qs_path(q), method: :patch, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip" }, class: "btn btn-warning btn-xs", title: "Switch Q" do
+                i.glyphicon.glyphicon-sort

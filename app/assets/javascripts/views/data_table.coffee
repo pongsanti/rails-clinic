@@ -2,17 +2,19 @@ class DataTable
 
   table: null
 
-  constructor: (@new_entry_btn_id) ->
+  constructor: (@new_entry_btn_id, @util) ->
+ 
+  initOptions: ()->
+    "responsive":true,
+    "paging"    :false,
+    "ordering"  :false,
+    "info"      :false,
+    "searching" :false
 
   initializeTable: ()->
-    placeholder = view.util.findElemByDataAttributes {"table": @tableName}
+    placeholder = @util.findElemByDataAttributes {"table": @tableName}
     if placeholder.length
-      @table = placeholder.DataTable
-        "paging"    :false,
-        "ordering"  :false,
-        "info"      :false,
-        "searching" :false
-
+      @table = placeholder.DataTable @initOptions()
       @addDrawEventHandler()
       @addNewEntryBtnEvent()
     else
@@ -35,6 +37,9 @@ class DataTable
   rowContent: () ->
     # to be overridden
 
+  modelName: () ->
+    # to be overridden
+
   addAttr: (obj, name, val) ->
     obj.attr(name, val)
 
@@ -46,26 +51,42 @@ class DataTable
     nameAttr = @createNameAttr(objParamName, id, method)
     "<input id='#{idAttr}' name='#{nameAttr}' type='text' style='width: 100%' class='form-control'>"
 
-  createDeleteButton: (id, onclickFunction) ->
+  createDeleteButton: (id) ->
     """
-      <button id="#{id}" type="button" class="btn btn-danger btn-xs" onclick="#{onclickFunction}">
+      <button id="#{id}" type="button" class="btn btn-danger btn-xs">
         <span class="glyphicon glyphicon-trash"></i>
       </button>
     """
 
   createIdAttr: (objParamName, id, method) ->
-    "exam_#{objParamName}_#{id}_#{method}"
+    "#{@modelName()}_#{objParamName}_#{id}_#{method}"
 
   createNameAttr: (objParamName, id, method) ->
-    "exam[#{objParamName}][#{id}][#{method}]"
+    "#{@modelName()}[#{objParamName}][#{id}][#{method}]"
 
   createAttribute: (obj, objParamName, id, method) ->
     @addAttr(obj, "id", @createIdAttr(objParamName, id, method))
     @addAttr(obj, "name", @createNameAttr(objParamName, id, method))
 
+  formatNumber: (num)->
+    num.toFixed(2)
+
+  deleteButtonClickEvent: (clickEvent) =>
+    row = $(clickEvent.data)
+    @table.row(row[0]).remove().draw(false)
 
 class window.view.ExamDiagDataTable extends DataTable
   tableName: "examDiag"
+  objParamName: "patient_diags_attributes"
+  
+  modelName: () ->
+    "exam"
+   
+  initOptions: () ->
+    $.extend(super, 
+      "createdRow": ( row, data, index ) =>
+          @util.jqRify(row).find("button[id*='delete']").click(row, @deleteButtonClickEvent)
+    )     
 
   rowContent: () ->
     diags_div = $("\##{@diags_div_id}").clone()
@@ -73,11 +94,11 @@ class window.view.ExamDiagDataTable extends DataTable
     @addClass(select, "selectpicker")
 
     rowId = Date.now()
-    @createAttribute(select, "patient_diags_attributes", rowId, "diag_id")
+    @createAttribute(select, @objParamName, rowId, "diag_id")
 
-    input = @createInput("patient_diags_attributes", rowId, "note")
+    input = @createInput(@objParamName, rowId, "note")
 
-    delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.diagTable.deleteRowBtnEvent(this)")
+    delete_icon = @createDeleteButton("delete_#{rowId}")
 
     return [ "", diags_div[0].innerHTML, input, delete_icon ]
 
@@ -88,6 +109,18 @@ class window.view.ExamDiagDataTable extends DataTable
 
 class window.view.ExamDrugDataTable extends DataTable
   tableName: "examDrug"
+  objParamName: "patient_drugs_attributes"
+
+  modelName: () ->
+    "exam"
+
+  initOptions: () ->
+    $.extend(super, 
+      "createdRow": ( row, data, index ) =>
+          @util.jqRify(row).find("button[id*='delete']").click(row, @deleteButtonClickEvent)
+          @util.jqRify(row).find("select[id*='drug_in']").change(row, @drugInSelectChangeEvent)
+          @util.jqRify(row).find("input[id*='amount']").change(row, @amountTextInputChangeEvent)
+    )  
 
   rowContent: () ->
     drug_ins_div = $("\##{@drug_ins_div_id}").clone()
@@ -99,16 +132,36 @@ class window.view.ExamDrugDataTable extends DataTable
     @addClass(drug_usage_select, "selectpicker")
 
     rowId = Date.now()
-    @createAttribute(drug_in_select, "patient_drugs_attributes", rowId, "drug_in_id")
-    @createAttribute(drug_usage_select, "patient_drugs_attributes", rowId, "drug_usage_id")
+    @createAttribute(drug_in_select, @objParamName, rowId, "drug_in_id")
+    @createAttribute(drug_usage_select, @objParamName, rowId, "drug_usage_id")
 
-    amount_input = @createInput("patient_drugs_attributes", rowId, "amount")
-    revenue_input = @createInput("patient_drugs_attributes", rowId, "revenue")
+    amount_input = @createInput(@objParamName, rowId, "amount")
+    revenue_input = @createInput(@objParamName, rowId, "revenue")
 
-    delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.drugTable.deleteRowBtnEvent(this)")
+    delete_icon = @createDeleteButton("delete_#{rowId}")
 
     return [ "", drug_ins_div[0].innerHTML, drug_usages_div[0].innerHTML, amount_input, revenue_input, delete_icon ]
 
-  deleteRowBtnEvent: (elem)->
-    row = $(elem).closest('tr')
-    @table.row(row[0]).remove().draw(false)      
+  amountValue: (row)->
+    row.find("input[id*='amount']").val()
+
+  setRevenueValue: (row, value)->
+    revenueTextInput = row.find("input[id*='revenue']").val(value)
+
+  optionSalePriceValue: (row) =>
+    row.find("option:selected").data("sale")
+
+  drugInSelectChangeEvent: (changeEvent)=>
+    row = $(changeEvent.data)
+    amount_value = @amountValue(row)
+    if amount_value? and amount_value > 0
+      option_sale_price_value = @util.jqRify(changeEvent.target).find("option:selected").data("sale")
+      if option_sale_price_value?
+        @setRevenueValue row, @formatNumber(option_sale_price_value * amount_value)
+  
+  amountTextInputChangeEvent: (changeEvent)=>
+    row = $(changeEvent.data)
+    amount_value = @amountValue(row)
+    if amount_value? and amount_value > -1
+      sale_price = @optionSalePriceValue(row)
+      @setRevenueValue row, @formatNumber(sale_price * amount_value)

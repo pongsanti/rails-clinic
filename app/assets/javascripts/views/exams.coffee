@@ -26,12 +26,12 @@ class Exam
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
     delete @diagTable
-    @diagTable = new view.ExamDiagDataTable(@new_diag_btn_id)
+    @diagTable = new view.ExamDiagDataTable(@new_diag_btn_id, view.util)
     @diagTable.diags_div_id = @diags_div_id
     @diagTable.initializeTable()
 
     delete @drugTable
-    @drugTable = new view.ExamDrugDataTable(@new_drug_btn_id)
+    @drugTable = new view.ExamDrugDataTable(@new_drug_btn_id, view.util)
     @drugTable.drug_ins_div_id = @drug_ins_div_id
     @drugTable.drug_usages_div_id = @drug_usages_div_id
     @drugTable.initializeTable()

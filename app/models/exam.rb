@@ -7,7 +7,7 @@ class Exam < ActiveRecord::Base
 
   has_many :patient_diags
   has_many :diags, through: :patient_diags
-  accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :reject_diags
 
   has_many :patient_drugs, inverse_of: :exam
   accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs
@@ -43,6 +43,10 @@ class Exam < ActiveRecord::Base
 
   def reject_drugs(attributes)
     attributes['amount'].blank? or attributes['revenue'].blank?
+  end
+
+  def reject_diags(attributes)
+    attributes['diag_id'].blank?
   end
 
   def bmi

@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   resources :exams, only: [:show, :destroy] do
     resources :qs, only: [:create]
   end
+  
+  resources :qs, only: [:index, :destroy]
+  patch "qs/:id/switch",  to: "qs#switch_category", as: "switch_category_qs"
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
@@ -63,7 +66,6 @@ Rails.application.routes.draw do
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
 
   resources :clients
-  resources :qs, only: [:index, :destroy]
   
   resources :diags  
   # Example resource route with options:

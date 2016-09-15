@@ -11,19 +11,21 @@
       .clearfix
   .panel-body.collapse.in#examDrugFormBody
     .hide id="drug_ins_div"
-      = select_tag "drug_ins", options_for_select(@drug_ins.map{ |d| [d.expired_date, d.id, {'data-subtext'=> d.drug.name}] }), class: "form-control", data: { 'live-search' => true }
+      = select_drug_in
     .hide id="drug_usages_div"
-      = select_tag "drug_usages", options_for_select(@drug_usages.map{ |d| [d.code, d.id] }), class: "form-control", data: { 'live-search' => true }    
+      = select_drug_usage 
 
     = form_for exam, url: exam_drug_path(exam), html: { class: "form-horizontal" } do |f|
       table.table-striped.table-hover.table-condensed data-table="examDrug" width="100%"
         thead
           tr
             th= PatientDrug.human_attribute_name(:id)
-            th= DrugIn.human_attribute_name(:id)
-            th= DrugUsage.human_attribute_name(:code)
-            th.text-right = PatientDrug.human_attribute_name(:amount)
-            th.text-right = PatientDrug.human_attribute_name(:revenue)
+            th style="width:40%" = DrugIn.human_attribute_name(:id)
+            th style="width:30%" = DrugUsage.human_attribute_name(:text)
+            th.text-right
+              span.required-label = PatientDrug.human_attribute_name(:amount)
+            th.text-right 
+              span.required-label = PatientDrug.human_attribute_name(:revenue)
             th
         - unless exam.patient_drugs.empty?
           tbody
@@ -32,8 +34,8 @@
                 td
                   = format_id pd_form.object
                   = pd_form.hidden_field :id
-                td = pd_form.select :drug_in_id, options_for_select( @drug_ins.map{ |d| [d.expired_date, d.id, {'data-subtext'=> d.drug.name}] }, pd_form.object.drug_in_id), {}, class: "selectpicker form-control", data: {"live-search" => true }
-                td = pd_form.select :drug_usage_id, options_for_select(@drug_usages.map{|d| [d.code, d.id ]}, pd_form.object.drug_usage_id), {}, class: "selectpicker form-control", data: {"live-search" => true }
+                td = select_drug_in_form(pd_form)
+                td = select_drug_usage_form(pd_form)
                 td.text-right = pd_form.text_field :amount, class: "form-control", placeholder: true, style: "width: 100%"
                 td.text-right = pd_form.text_field :revenue, class: "form-control", placeholder: true, style: "width: 100%"
                 td
