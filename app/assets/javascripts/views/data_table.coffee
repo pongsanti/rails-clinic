@@ -5,6 +5,7 @@ class DataTable
   constructor: (@new_entry_btn_id, @util) ->
  
   initOptions: ()->
+    "responsive":true,
     "paging"    :false,
     "ordering"  :false,
     "info"      :false,
