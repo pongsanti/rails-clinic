@@ -28,7 +28,7 @@
             tr
               td= format_id pd
               td= pd.drug_in.drug.name
-              td= pd.drug_in.expired_date
+              td= th_date_format pd.drug_in.expired_date
               td= pd.drug_usage.code
               td.text-right
                 => pd.amount

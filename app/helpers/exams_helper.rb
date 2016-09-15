@@ -35,7 +35,7 @@ module ExamsHelper
 
   private
     def select_drug_in_text(drug_in)
-      "#{drug_in.drug.name} (Exp: #{drug_in.expired_date})"
+      "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"
     end
 
     def select_drug_in_subtext(drug_in)
