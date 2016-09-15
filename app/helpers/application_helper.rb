@@ -20,7 +20,7 @@ DOC
 
   def th_date_time_format(d)
     unless d.blank?
-      th_date_format(d) + l(d, format: " %T")
+      th_date_format(d) + l(d, format: " %H:%M")
     end
   end
 
