@@ -2,12 +2,14 @@
 
 .container
   .row
-    .col-sm-7
+    .col-sm-12
       = render partial: "drug_form", locals: {exam: @exam}
+  .row
+    .col-sm-8
       = render partial: "weight_info", locals: {exam: @exam}
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}      
-    .col-sm-5
+    .col-sm-4
       = render partial: "customer", locals: {customer: @customer}
       = render partial: "global/exam_placeholder", locals: {customer: @customer}
       = render partial: "global/q_placeholder"
