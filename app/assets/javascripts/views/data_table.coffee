@@ -37,6 +37,9 @@ class DataTable
   rowContent: () ->
     # to be overridden
 
+  modelName: () ->
+    # to be overridden
+
   addAttr: (obj, name, val) ->
     obj.attr(name, val)
 
@@ -56,10 +59,10 @@ class DataTable
     """
 
   createIdAttr: (objParamName, id, method) ->
-    "exam_#{objParamName}_#{id}_#{method}"
+    "#{@modelName()}_#{objParamName}_#{id}_#{method}"
 
   createNameAttr: (objParamName, id, method) ->
-    "exam[#{objParamName}][#{id}][#{method}]"
+    "#{@modelName()}[#{objParamName}][#{id}][#{method}]"
 
   createAttribute: (obj, objParamName, id, method) ->
     @addAttr(obj, "id", @createIdAttr(objParamName, id, method))
@@ -68,6 +71,10 @@ class DataTable
 
 class window.view.ExamDiagDataTable extends DataTable
   tableName: "examDiag"
+  objParamName: "patient_diags_attributes"
+  
+  modelName: () ->
+    "exam"
 
   rowContent: () ->
     diags_div = $("\##{@diags_div_id}").clone()
@@ -75,9 +82,9 @@ class window.view.ExamDiagDataTable extends DataTable
     @addClass(select, "selectpicker")
 
     rowId = Date.now()
-    @createAttribute(select, "patient_diags_attributes", rowId, "diag_id")
+    @createAttribute(select, @objParamName, rowId, "diag_id")
 
-    input = @createInput("patient_diags_attributes", rowId, "note")
+    input = @createInput(@objParamName, rowId, "note")
 
     delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.diagTable.deleteRowBtnEvent(this)")
 
@@ -90,6 +97,10 @@ class window.view.ExamDiagDataTable extends DataTable
 
 class window.view.ExamDrugDataTable extends DataTable
   tableName: "examDrug"
+  objParamName: "patient_drugs_attributes"
+
+  modelName: () ->
+    "exam"
 
   initOptions: () ->
     $.extend(super, 
@@ -107,11 +118,11 @@ class window.view.ExamDrugDataTable extends DataTable
     @addClass(drug_usage_select, "selectpicker")
 
     rowId = Date.now()
-    @createAttribute(drug_in_select, "patient_drugs_attributes", rowId, "drug_in_id")
-    @createAttribute(drug_usage_select, "patient_drugs_attributes", rowId, "drug_usage_id")
+    @createAttribute(drug_in_select, @objParamName, rowId, "drug_in_id")
+    @createAttribute(drug_usage_select, @objParamName, rowId, "drug_usage_id")
 
-    amount_input = @createInput("patient_drugs_attributes", rowId, "amount")
-    revenue_input = @createInput("patient_drugs_attributes", rowId, "revenue")
+    amount_input = @createInput(@objParamName, rowId, "amount")
+    revenue_input = @createInput(@objParamName, rowId, "revenue")
 
     delete_icon = @createDeleteButton("delete_#{rowId}", "view.exam.drugTable.deleteRowBtnEvent(this)")
 
