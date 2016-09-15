@@ -39,6 +39,6 @@ module ExamsHelper
     end
 
     def select_drug_in_subtext(drug_in)
-      "Bal. #{drug_in.balance}"
+      "Bal. #{drug_in.balance} Sale price. #{drug_in.sale_price_per_unit}"
     end
 end
