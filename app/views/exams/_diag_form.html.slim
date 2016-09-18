@@ -10,6 +10,7 @@
         = render partial: "global/toggle_panel_button", locals: { target: "#examDiagFormBody" }
       .clearfix
   .panel-body.collapse.in#examDiagFormBody
+    = render partial: "global/alert", locals: {obj: exam}
     .hide id="diags_div"
       = select_tag "diags", options_for_select(@diags.map{ |d| [d.name, d.id, {'data-subtext'=> d.description}] }), class: "form-control", data: { 'live-search' => true }
 

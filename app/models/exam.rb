@@ -21,6 +21,8 @@ class Exam < ActiveRecord::Base
   validates :bp_systolic, :bp_diastolic, :numericality => {:greater_than => 0, :less_than => 300}, 
     format: { with: /\A\d{1,3}\z/ }, allow_blank: true
 
+  validates :revenue, numericality: true, allow_blank: true
+
   validates :customer, presence: true
   
   #kaminari
@@ -57,5 +59,17 @@ class Exam < ActiveRecord::Base
     end
     result
   end
-  
+
+  def sum_revenue
+    sum = 0.0
+    sum += self.revenue if self.revenue
+
+    if self.patient_drugs
+      self.patient_drugs.each do |pd|
+        sum += pd.revenue if pd.revenue
+      end
+    end
+
+    sum
+  end
 end

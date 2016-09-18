@@ -15,5 +15,6 @@ th:
         exam_pi: "PI"
         exam_pe: "PE"
         exam_note: "Note"
+        revenue: "ค่าตรวจ"
         
         bmi: "BMI"

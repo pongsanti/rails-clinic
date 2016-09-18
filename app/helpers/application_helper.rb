@@ -43,6 +43,14 @@ DOC
     sprintf "%+d.0", num
   end
 
+  def decimal num
+    if num == nil || num.blank?
+      num = 0.0
+    end
+
+    number_to_currency num, unit: "$"
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""

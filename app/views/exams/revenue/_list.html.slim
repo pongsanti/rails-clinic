@@ -1,0 +1,24 @@
+.panel.panel-warning#examRevenueList
+  .panel-heading
+    .panel-header 
+      =t("exams.revenue.title")
+      .pull-right
+        =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueListBody" }        
+      .clearfix
+  .table-responsive.collapse.in#examRevenueListBody
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th = t("exams.revenue.name")
+          th.text-right = t("exams.revenue.amount")
+      tbody
+        = render partial: "exams/revenue/exam", locals: {exam: exam}
+        = render partial: "exams/revenue/drug", locals: {exam: exam}
+        tr
+          td 
+            u = t("exams.revenue.sum")
+          td.text-right
+            u = decimal exam.sum_revenue
