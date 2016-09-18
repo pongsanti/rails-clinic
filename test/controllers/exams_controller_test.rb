@@ -28,6 +28,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:get, "/exam_pe/2/edit"), opts.merge(action: "edit_pe", id: exam_id)
     assert_routing route_path(:get, "/exam_diag/2/edit"), opts.merge(action: "edit_diag", id: exam_id)
     assert_routing route_path(:get, "/exam_drug/2/edit"), opts.merge(action: "edit_drug", id: exam_id)
+    assert_routing route_path(:get, "/exam_revenue/2/edit"), opts.merge(action: "edit_revenue", id: exam_id)
     #create
     assert_routing route_path(:post, "/customers/1/exams"), opts.merge(action: "create_weight", customer_id: customer_id)
     #update
@@ -35,6 +36,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:patch, "/exam_pe/2"), opts.merge(action: "update_pe", id: exam_id)
     assert_routing route_path(:patch, "/exam_diag/2"), opts.merge(action: "update_diag", id: exam_id)
     assert_routing route_path(:patch, "/exam_drug/2"), opts.merge(action: "update_drug", id: exam_id)
+    assert_routing route_path(:patch, "/exam_revenue/2"), opts.merge(action: "update_revenue", id: exam_id)
     #destroy
     assert_routing route_path(:delete, "/exams/2"), opts.merge(action: "destroy", id: exam_id)
   end
@@ -100,6 +102,15 @@ class ExamsControllerTest < ActionController::TestCase
     assert_equal @exam.customer, a(:customer)
   end    
 
+  test "should get edit revenue" do
+    get :edit_revenue, id: @exam.id
+
+    assert_response :success
+    assert_assigns :exam, :customer
+    assert_equal @exam, a(:exam)
+    assert_equal @exam.customer, a(:customer)
+  end
+
   test "should post create weight" do
     assert_difference "Exam.count", 1 do
       post :create_weight, customer_id: @customer.id,
@@ -152,16 +163,26 @@ class ExamsControllerTest < ActionController::TestCase
     assert_equal "Update PI", @exam.exam_pi
     assert_equal "Update PE", @exam.exam_pe
   end
-=begin
-  test "should patch update pe error" do
-    patch :update_pe, { id: @exam.id }
+
+  test "should patch update revenue" do
+    patch :update_revenue, id: @exam.id,
+      exam: { revenue: "150" }
+
+    assert_redirected_to exam_url(@exam)
+    @exam.reload
+    assert_in_delta 150, @exam.revenue, 0
+    assert_error_div false
+  end
+
+  test "should patch update revenue error" do
+    patch :update_revenue, id: @exam.id,
+      exam: { revenue: "ABC" }
 
     assert_response :success
-    assert_template "edit_pe"
-    assert_assigns :customer
+    assert_template "exams/revenue/edit"    
     assert_error_div true
   end  
-=end
+
   test "should patch update diag" do
     assert_difference "@exam.diags.count", 2 do
       patch :update_diag, { id: @exam.id,
