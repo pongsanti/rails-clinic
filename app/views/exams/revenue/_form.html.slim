@@ -1,0 +1,28 @@
+.panel.panel-warning#examRevenueForm
+  .panel-heading
+    .panel-header 
+      =t("exams.revenue.title")
+      .pull-right
+        = render "global/panel_back_button"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueFormBody" }        
+      .clearfix
+  = render partial: "global/alert", locals: {obj: @exam}
+  = form_for exam, url: exam_revenue_path(exam) do |f|
+    .table-responsive.collapse.in#examRevenueFormBody
+      table.table.table-striped.table-hover.table-condensed
+        thead
+          tr
+            th = t("exams.revenue.name")
+            th.text-right = t("exams.revenue.amount")
+        tbody
+          tr
+            td = Exam.human_attribute_name(:revenue)
+            td.text-right = f.text_field :revenue, class: "form-control text-right"
+          = render partial: "exams/revenue/drug", locals: {exam: exam}
+          tr
+            td 
+              u = t("exams.revenue.sum")
+            td.text-right
+              u = decimal exam.sum_revenue
+    .panel-body.text-right
+      = render partial: 'global/form_button', locals: {f: f}

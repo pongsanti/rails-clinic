@@ -3,6 +3,9 @@
     .panel-header 
       =t("exams.revenue.title")
       .pull-right
+        =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
+          i.glyphicon.glyphicon-edit
+          =<"Edit"
         = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueListBody" }        
       .clearfix
   .table-responsive.collapse.in#examRevenueListBody
@@ -17,5 +20,5 @@
         tr
           td 
             u = t("exams.revenue.sum")
-          td.text-right 
+          td.text-right
             u = decimal exam.sum_revenue
