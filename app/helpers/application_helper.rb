@@ -45,10 +45,10 @@ DOC
 
   def decimal num
     if num == nil || num.blank?
-      "0.00"
-    else
-      num
+      num = 0.0
     end
+
+    number_to_currency num, unit: "$"
   end
 
   private

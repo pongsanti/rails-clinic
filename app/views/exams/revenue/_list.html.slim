@@ -14,3 +14,8 @@
       tbody
         = render partial: "exams/revenue/exam", locals: {exam: exam}
         = render partial: "exams/revenue/drug", locals: {exam: exam}
+        tr
+          td 
+            u = t("exams.revenue.sum")
+          td.text-right 
+            u = decimal exam.sum_revenue

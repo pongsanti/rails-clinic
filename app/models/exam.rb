@@ -59,5 +59,17 @@ class Exam < ActiveRecord::Base
     end
     result
   end
-  
+
+  def sum_revenue
+    sum = 0.0
+    sum += self.revenue if self.revenue
+
+    if self.patient_drugs
+      self.patient_drugs.each do |pd|
+        sum += pd.revenue if pd.revenue
+      end
+    end
+
+    sum
+  end
 end
