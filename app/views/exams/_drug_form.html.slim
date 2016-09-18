@@ -10,6 +10,7 @@
         = render partial: "global/toggle_panel_button", locals: { target: "#examDrugFormBody" }
       .clearfix
   .panel-body.collapse.in#examDrugFormBody
+    = render partial: "global/alert", locals: {obj: exam}
     .hide id="drug_ins_div"
       = select_drug_in
     .hide id="drug_usages_div"
