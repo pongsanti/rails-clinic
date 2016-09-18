@@ -108,6 +108,7 @@ class ExamsControllerTest < ActionController::TestCase
 
     exam = Exam.last
     assert_redirected_to exam_url(exam)
+    assert_in_delta 100, exam.revenue, 0
   end
 
   test "should post create weight error" do

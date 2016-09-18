@@ -47,6 +47,7 @@ class ExamsController < ApplicationController
 
   def create_weight
     @exam = Exam.new(exam_weight_params)
+    @exam.revenue = 100.00
     set_user
     @exam.customer = @customer
     

@@ -43,6 +43,14 @@ DOC
     sprintf "%+d.0", num
   end
 
+  def decimal num
+    if num == nil || num.blank?
+      "0.00"
+    else
+      num
+    end
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""

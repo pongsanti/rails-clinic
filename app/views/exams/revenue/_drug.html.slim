@@ -1,0 +1,7 @@
+tr
+  td colspan=2 
+    strong =t("exams.revenue.drug")
+- exam.patient_drugs.each do |pd|
+  tr
+    td = pd.drug_in.drug.name
+    td.text-right = decimal(pd.revenue)
