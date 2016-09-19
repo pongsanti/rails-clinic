@@ -24,11 +24,11 @@
           tr
             td =link_to format_id(dmm), drug_movement_path(dmm)
             td =th_date_time_format dmm.created_at
-            td.text-right =dmm.prev_bal
+            td.text-right = decimal dmm.prev_bal
             - td_class = bal_diff_class(dmm)
             - td_class = "#{td_class} text-right"
-            td class=td_class =sign_number dmm.bal_diff
-            td.text-right =dmm.balance
+            td class=td_class =decimal dmm.bal_diff
+            td.text-right = decimal dmm.balance
             td.rowlink-skip
               - if dmm.exam
                 => link_to exam_path(dmm.exam), class: "btn btn-default btn-xs" do

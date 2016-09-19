@@ -15,17 +15,17 @@
         .col-sm-10
           p.form-control-static 
             mark
-              = drug_movement.balance
+              = decimal drug_movement.balance
 
       .form-group
         = f.label :prev_bal, class: "col-sm-2 control-label"
         .col-sm-4
-          p.form-control-static = drug_movement.prev_bal
+          p.form-control-static = decimal drug_movement.prev_bal
         = f.label :amount, class: "col-sm-2 control-label"
         .col-sm-4
           p.form-control-static
             span class=bal_diff_class(drug_movement) 
-              =sign_number drug_movement.bal_diff
+              =decimal drug_movement.bal_diff
 
       .form-group
         = f.label :note, class: "col-sm-2 control-label"

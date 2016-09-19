@@ -4,4 +4,4 @@ tr
 - exam.patient_drugs.each do |pd|
   tr
     td = pd.drug_in.drug.name
-    td.text-right = decimal(pd.revenue)
+    td.text-right = currency(pd.revenue)

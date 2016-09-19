@@ -23,6 +23,6 @@
             td 
               u = t("exams.revenue.sum")
             td.text-right
-              u = decimal exam.sum_revenue
+              u = currency exam.sum_revenue
     .panel-body.text-right
       = render partial: 'global/form_button', locals: {f: f}
