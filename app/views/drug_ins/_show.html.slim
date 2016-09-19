@@ -18,7 +18,7 @@
         .col-sm-4
           p.form-control-static 
             mark
-              = drug_in.balance
+              = decimal drug_in.balance
         = f.label :expired_date, class: "col-sm-2 control-label"
         .col-sm-4
           p.form-control-static = th_date_format(drug_in.expired_date)
@@ -26,7 +26,7 @@
       .form-group
         = f.label :cost, class: "col-sm-2 control-label"
         .col-sm-4
-          p.form-control-static = drug_in.cost
+          p.form-control-static = currency drug_in.cost
         = f.label :sale_price_per_unit, class: "col-sm-2 control-label"
         .col-sm-4
-          p.form-control-static = drug_in.sale_price_per_unit
+          p.form-control-static = currency drug_in.sale_price_per_unit

@@ -18,4 +18,3 @@
 //= require_directory ./third-party
 //= require global
 //= require_directory ./views
-//= require components

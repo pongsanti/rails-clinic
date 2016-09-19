@@ -1,9 +1,6 @@
 th:
   layouts:
     application:
-      customer: "ผู้ป่วย"
-      customer_list: "รายชื่อผู้ป่วย/ค้นหาผู้ป่วย"
-      customer_new: "ลงทะเบียนผู้ป่วย"
       store: "ยาและเวชภัณฑ์"
       
       master_data: "ข้อมูลหลัก"

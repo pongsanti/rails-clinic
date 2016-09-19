@@ -39,8 +39,12 @@ DOC
     id_prefix(obj.class) + ("%05d" % obj.id)
   end
 
-  def sign_number num
-    sprintf "%+d.0", num
+  def currency num
+    if num == nil || num.blank?
+      num = 0.0
+    end
+
+    number_to_currency num, unit: "$"
   end
 
   def decimal num
@@ -48,7 +52,7 @@ DOC
       num = 0.0
     end
 
-    number_to_currency num, unit: "$"
+    number_to_currency num, unit: ""
   end
 
   private

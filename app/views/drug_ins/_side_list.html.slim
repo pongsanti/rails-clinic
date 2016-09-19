@@ -20,7 +20,7 @@
           tr
             td =link_to format_id(drug_in), drug_in_drug_movements_path(drug_in)
             td =th_date_format drug_in.expired_date
-            td.text-right =drug_in.balance
+            td.text-right = decimal drug_in.balance
   .panel-footer
     =paginate drug_ins
     =page_entries_info drug_ins, entry_name: t('drug_ins.index.title')
