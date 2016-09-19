@@ -83,7 +83,16 @@ class ExamTest < ActiveSupport::TestCase
     error_contains error_msg(bp_diastolic, ERR_INVALID), error_msg(bp_diastolic, ERR_LESS_THAN, count: 300)
   end
 
-  test "should validate revenue if present" do
+  test "should validate revenue" do
+    revenue = "activerecord.attributes.exam.revenue"
+
+    @exam.revenue = -1
+    assert_not @exam.save
+    error_count 1
+    error_contains error_msg(revenue, ERR_GREATER_THAN_OR_EQUAL_TO, count: 0)
+  end  
+
+  test "should validate revenue if value is not number" do
     revenue = "activerecord.attributes.exam.revenue"
 
     @exam.revenue = "ABC"

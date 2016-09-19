@@ -21,7 +21,7 @@ class Exam < ActiveRecord::Base
   validates :bp_systolic, :bp_diastolic, :numericality => {:greater_than => 0, :less_than => 300}, 
     format: { with: /\A\d{1,3}\z/ }, allow_blank: true
 
-  validates :revenue, numericality: true, allow_blank: true
+  validates :revenue, numericality: {greater_than_or_equal_to: 0}
 
   validates :customer, presence: true
   

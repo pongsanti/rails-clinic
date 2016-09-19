@@ -23,6 +23,13 @@
             td 
               u = t("exams.revenue.sum")
             td.text-right
-              u = currency exam.sum_revenue
+              u 
+                span id="exam_revenue_sum" = currency exam.sum_revenue
     .panel-body.text-right
       = render partial: 'global/form_button', locals: {f: f}
+
+javascript:
+  args = {}
+  args.exam = #{exam.revenue}
+  args.sum = #{exam.sum_revenue}
+  view.exam.initializeRevenueForm(args)

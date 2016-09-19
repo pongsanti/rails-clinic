@@ -1,8 +1,48 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+class window.view.Revenue
+  constructor: (@args)->
+
+  exam: ()->
+    @args.exam
+
+  sum: ()->
+    @args.sum
+
+  exam_text_input: ()->
+    @args.exam_elem
+
+  sum_span: ()->
+    @args.sum_elem
+
+  diff: ()->
+    @sum() - @exam()
+
+  get_sum_for_exam: (val)->
+    val + @diff()
+
+  initialize:() ->
+    @exam_text_input().keyup( 
+      (evnt) =>
+        current_val = @to_f(evnt.target.value)
+        sum_val = @get_sum_for_exam(current_val)
+        @sum_span().html(@format_sum(sum_val))
+    )
+
+  format_sum:(val) ->
+    val.toFixed(2) + ' $'
+
+  to_f:(str)->
+    ret_val = 0.0
+    if str? and str
+      if not isNaN(str)
+        ret_val = parseFloat(str)
+    return ret_val
 
 class Exam
+
+  constructor: (@util)->
 
   placeholder_data_attributes:
     controller: "exams"
@@ -20,6 +60,21 @@ class Exam
   drug_ins_div_id: "drug_ins_div"
   drug_usages_div_id: "drug_usages_div"
   new_drug_btn_id: "new_drug"
+
+  #Revenue
+  revenue: null
+  exam_revenue_form_div_id: "examRevenueFormBody"
+
+  initializeRevenueForm: (args)->
+    delete @revenue
+    revenue_div = $("\##{@exam_revenue_form_div_id}")
+    if revenue_div.length
+      args.exam_elem = @util.select("input[id='exam_revenue']", revenue_div)
+      args.sum_elem = @util.select("span[id='exam_revenue_sum']", revenue_div)
+      @revenue = new view.Revenue(args)
+      @revenue.initialize()
+      
+
 
   initializePage: () ->
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
@@ -51,26 +106,4 @@ class Exam
 #  rowCount: () ->
 #    @diagTable.rows().count()
 
-view.exam = new Exam
-
-#drug_drug_ins_path_pattern = (drug_id)->
-#  "/drugs/#{drug_id}/drug_ins"
-
-#initializePage = ->
-  # new exam button click ajax error
-  #$('a[href*="new_patient_diag"]').on 'ajax:error', (event, xhr, status, error)-> gShowErrorModal error
-
-  # append anchor to form action url
-  #$('form').each (index, form) ->
-  #  f = $(form)
-  #  anchor = f.data('anchor')
-  #  if anchor?
-  #    action = f.attr 'action'
-  #    f.attr 'action', "#{action}#" + anchor
-
-  # drug id
-  #$('select#drug_in_drug_id').on "change", ()->
-  #  $('a#link_drug_drug_ins_path').attr("href", drug_drug_ins_path_pattern(this.value) )
-
-#$(document).on('turbolinks:load', initializePage)
-
+view.exam = new Exam(view.util)
