@@ -31,6 +31,6 @@
               td= th_date_format pd.drug_in.expired_date
               td= pd.drug_usage.code
               td.text-right
-                => pd.amount
+                => decimal pd.amount
                 => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
-              td.text-right = pd.revenue
+              td.text-right = currency pd.revenue
