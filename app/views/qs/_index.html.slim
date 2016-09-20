@@ -9,7 +9,7 @@
           =< "Refresh"
         = render partial: "global/toggle_panel_button", locals: { target: "#queueIndex" }          
       .clearfix
-  = render partial: "list", locals: {qs: @exQs, id: "queueIndex", type: :exam}
+  = render partial: "list", locals: {qs: @exQs, id: "queueIndex"}
 
 .panel.panel-success
   .panel-heading
@@ -22,4 +22,4 @@
           =< "Refresh"
         = render partial: "global/toggle_panel_button", locals: { target: "#queueMedIndex" }          
       .clearfix  
-  = render partial: "list", locals: {qs: @medQs, id: "queueMedIndex", type: :med } 
+  = render partial: "list", locals: {qs: @medQs, id: "queueMedIndex"} 

@@ -23,7 +23,14 @@ class QsController < ApplicationController
     @q.active = true
     @q.save
 
-    redirect_to exam_url(@q.exam), notice: t("q_activated")
+    case @q.category
+    when Q::EXAM_Q_CAT
+      redirect_to exam_url(@q.exam), notice: t("q_activated")
+    when Q::MED_Q_CAT
+      redirect_to exam_med_url(@q.exam), notice: t("q_activated")
+    else
+      nil
+    end
   end
 
   def switch_category
