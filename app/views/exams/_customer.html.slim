@@ -41,3 +41,8 @@
         = label :customer, :birthdate
       .col-sm-8
         = th_date_format(customer.birthdate)
+    .row
+      .col-sm-4
+        = label :customer, :id_card_no
+      .col-sm-8
+        = masked_id_card_no customer
