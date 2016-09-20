@@ -64,6 +64,14 @@ class QsControllerTest < ActionController::TestCase
     assert_equal 1, Q.cat_is(@q.category).where('active = ?', true).count
   end
 
+  test "should patch activate and redirect correctly" do
+    @q = qs(:three)
+
+    patch :activate, id: @q.id
+
+    assert_redirected_to exam_med_url(@q.exam)    
+  end  
+
   test "should xhr delete destroy" do
     assert_difference "Q.count", -1 do
       xhr :delete, "destroy", id: @q.id
