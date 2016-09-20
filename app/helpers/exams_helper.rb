@@ -33,6 +33,14 @@ module ExamsHelper
     {}, class: "selectpicker form-control", data: {"live-search" => true }
   end
 
+  def paid_status(exam)
+    exam.paid_status ? "DONE" : "NO"
+  end
+
+  def paid_status_class(exam)
+    exam.paid_status ? "stock-in" : "stock-out"
+  end
+
   private
     def select_drug_in_text(drug_in)
       "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"

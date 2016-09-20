@@ -22,7 +22,4 @@
           p.form-control-static 
             => exam.examiner.display_name
 
-        = f.label :status, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            => ""
+        = render partial: "exams/revenue/paid_status", locals: {f: f, exam: exam}
