@@ -28,6 +28,7 @@ class QsController < ApplicationController
 
   def switch_category
     @q.switch_category
+    @q.active = false
     @q.save
   end
 
