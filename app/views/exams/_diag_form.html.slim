@@ -3,7 +3,9 @@
     .panel-header
       =t("exams.diag_form.heading")
       .pull-right
-        =>render "global/panel_back_button"
+        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
         =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_diag" do
           i.glyphicon.glyphicon-file
           =<"New Entry"

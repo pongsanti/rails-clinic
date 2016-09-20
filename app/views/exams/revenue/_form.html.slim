@@ -3,10 +3,12 @@
     .panel-header 
       =t("exams.revenue.title")
       .pull-right
-        = render "global/panel_back_button"
+        =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
         = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueFormBody" }        
       .clearfix
-  = render partial: "global/alert", locals: {obj: @exam}
+  = render partial: "global/alert", locals: {obj: exam}
   = form_for exam, url: exam_revenue_path(exam) do |f|
     .table-responsive.collapse.in#examRevenueFormBody
       table.table.table-striped.table-hover.table-condensed
