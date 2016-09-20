@@ -30,6 +30,7 @@ class ExamsController < ApplicationController
   end
 
   def show_med
+    render "exams/show_med/show"
   end
 
   def new_weight

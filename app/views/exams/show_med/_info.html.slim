@@ -1,0 +1,28 @@
+.panel.panel-default#examInfo
+  .panel-heading
+    .panel-header 
+      =t("exams.info.heading")
+      .pull-right
+        =>link_to "", class: "btn btn-danger btn-xs" do
+          i.glyphicon.glyphicon-ok-sign
+          =<"Set Paid"
+        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"          
+        = render partial: "global/toggle_panel_button", locals: { target: "#examInfoBody" }
+      .clearfix
+
+  .panel-body.collapse.in#examInfoBody
+    =form_for exam, html: { class: "form-horizontal" } do |f|
+      = render partial: "global/show_id", locals: {obj: exam, f: f}
+
+      .form-group
+        = f.label :examiner, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static 
+            => exam.examiner.display_name
+
+        = f.label :status, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static 
+            => ""

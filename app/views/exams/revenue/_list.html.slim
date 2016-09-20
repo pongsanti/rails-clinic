@@ -3,9 +3,10 @@
     .panel-header 
       =t("exams.revenue.title")
       .pull-right
-        =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
+        - if action_name == "show"
+          =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
+            i.glyphicon.glyphicon-edit
+            =<"Edit"
         = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueListBody" }        
       .clearfix
   .table-responsive.collapse.in#examRevenueListBody
