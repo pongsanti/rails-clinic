@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   end
   
   resources :qs, only: [:index, :destroy]
-  patch "qs/:id/switch",  to: "qs#switch_category", as: "switch_category_qs"
+  patch "qs/:id/switch",   to: "qs#switch_category",  as: "switch_category_qs"
+  patch "qs/:id/activate", to: "qs#activate",         as: "activate_qs"
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"

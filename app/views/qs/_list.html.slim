@@ -14,10 +14,10 @@
             = "No data"
       - else
         - qs.each do |q|
-          tr
+          tr class=tr_class(q)
             td= q.id
             td= format_id q.exam
-            td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", exam_path(q.exam)
+            td= link_to "#{q.exam.customer.prefix.name} #{q.exam.customer.name} #{q.exam.customer.surname}", activate_qs_path(q), method: :patch
             td 
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)
                 =time_ago_in_words(q.created_at)

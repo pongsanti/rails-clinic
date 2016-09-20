@@ -22,6 +22,8 @@ class QsControllerTest < ActionController::TestCase
     assert_routing route_path(:delete, "/qs/1"), opts.merge(action: "destroy", id: q_id)
     #switch_category
     assert_routing route_path(:patch, "/qs/1/switch"), opts.merge(action: "switch_category", id: q_id)
+    #activate
+    assert_routing route_path(:patch, "/qs/1/activate"), opts.merge(action: "activate", id: q_id)
   end
 
   test "should xhr get index" do
@@ -30,7 +32,7 @@ class QsControllerTest < ActionController::TestCase
     assert_response :success
     assert_assigns :exQs, :medQs
     assert_equal 2, a(:exQs).count
-    assert_equal 1, a(:medQs).count
+    assert_equal 2, a(:medQs).count
   end
 
   test "should xhr post create" do
@@ -50,6 +52,16 @@ class QsControllerTest < ActionController::TestCase
 
     @q.reload
     assert_equal Q::MED_Q_CAT, @q.category
+  end
+
+  test "should patch activate" do
+    patch :activate, id: @q.id
+
+    assert_redirected_to exam_url(@exam)
+    
+    @q.reload
+    assert @q.active
+    assert_equal 1, Q.cat_is(@q.category).where('active = ?', true).count
   end
 
   test "should xhr delete destroy" do
