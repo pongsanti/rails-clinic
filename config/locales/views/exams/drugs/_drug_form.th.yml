@@ -1,6 +1,0 @@
-th:
-  exams:
-    drugs:
-      drug_form:
-        title: "จ่ายยา"
-        new_exam_drug: "สร้างรายการจ่ายยา"
