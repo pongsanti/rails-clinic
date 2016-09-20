@@ -25,9 +25,9 @@ class QsController < ApplicationController
 
     case @q.category
     when Q::EXAM_Q_CAT
-      redirect_to exam_url(@q.exam), notice: t("q_activated")
+      redirect_to exam_url(@q.exam)
     when Q::MED_Q_CAT
-      redirect_to exam_med_url(@q.exam), notice: t("q_activated")
+      redirect_to exam_med_url(@q.exam)
     else
       nil
     end

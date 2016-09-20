@@ -12,4 +12,13 @@ module QsHelper
       end
     end
   end
+
+  def switch_title_text(q)
+    if q.exam_q?
+      "To medicine Q"
+    else
+      "To doctor Q"
+    end
+  end
+
 end
