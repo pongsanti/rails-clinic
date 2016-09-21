@@ -1,3 +1,11 @@
-p ="Customer"
-p =@customer.id
-p =@customer.name
+table cellpadding=0
+  tr
+    td style="width: 50%; text-align: right"
+      p ="Customer ID:"
+    td
+      p =@customer.id
+  tr
+    td
+      p ="Customer name:"
+    td
+      p ="#{@customer.prefix.name} #{@customer.name} #{@customer.surname}"
