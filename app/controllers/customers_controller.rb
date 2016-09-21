@@ -13,9 +13,10 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = generate_pdf
-        pdf.print
-        send_data pdf.render, filename: "#{@customer.id}-#{@customer.name}.pdf", type: 'application/pdf', disposition: "inline"
+        render pdf: "customer_#{@customer.id}"
+        #pdf = generate_pdf
+        #pdf.print
+        #send_data pdf.render, filename: "#{@customer.id}-#{@customer.name}.pdf", type: 'application/pdf', disposition: "inline"
       end
     end
   end

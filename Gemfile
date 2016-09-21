@@ -44,6 +44,9 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-sass', '~> 4.6.2'
 
 gem "paranoia", "~> 2.0"
+
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
