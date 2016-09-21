@@ -23,7 +23,7 @@ class QTest < ActiveSupport::TestCase
 
   test "should scope by category" do
     assert_equal 2, Q.cat_is(Q::EXAM_Q_CAT).count
-    assert_equal 1, Q.cat_is(Q::MED_Q_CAT).count
+    assert_equal 2, Q.cat_is(Q::MED_Q_CAT).count
   end
 
   test "should switch" do

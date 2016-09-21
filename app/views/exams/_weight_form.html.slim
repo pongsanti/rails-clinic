@@ -9,10 +9,6 @@
           =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
             i.glyphicon.glyphicon-eye-open
             =<"View"
-          =>link_to exam_path(@exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
-            i.glyphicon.glyphicon-trash
-            =<"Delete"
-        = render "global/panel_back_button"
         = render partial: "global/toggle_panel_button", locals: { target: "#examWeightFormBody" }
       .clearfix
   .panel-body.collapse.in#examWeightFormBody

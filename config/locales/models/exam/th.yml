@@ -16,5 +16,7 @@ th:
         exam_pe: "PE"
         exam_note: "Note"
         revenue: "ค่าตรวจ"
+        examiner: "ผู้ตรวจ"
+        paid_status: "จ่ายเงิน/ตัด stock"
         
         bmi: "BMI"

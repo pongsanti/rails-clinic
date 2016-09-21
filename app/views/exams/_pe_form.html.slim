@@ -3,7 +3,9 @@
     .panel-header
       =t("exams.edit.title")
       .pull-right
-        = render "global/panel_back_button"
+        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
         = render partial: "global/toggle_panel_button", locals: { target: "#examPeFormBody" }
       .clearfix
   .panel-body.collapse.in#examPeFormBody

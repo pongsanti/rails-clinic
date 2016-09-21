@@ -21,6 +21,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:get, "/customers/1/exams"), opts.merge(action: "index", customer_id: customer_id)
     #show
     assert_routing route_path(:get, "/exams/2"), opts.merge(action: "show", id: exam_id)
+    assert_routing route_path(:get, "/exams/2/med"), opts.merge(action: "show_med", id: exam_id)
     #new
     assert_routing route_path(:get, "/customers/1/exams/new"), opts.merge(action: "new_weight", customer_id: customer_id)
     #edit
@@ -56,6 +57,14 @@ class ExamsControllerTest < ActionController::TestCase
     assert_assigns :exam
     assert_equal @exam, a(:exam)
   end
+
+  test "should get show_med" do
+    get :show_med, id: @exam.id
+
+    assert_response :success
+    assert_assigns :exam
+    assert_equal @exam, a(:exam)
+  end  
 
   test "should get new weight" do
     get :new_weight, customer_id: @customer.id

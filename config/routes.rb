@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   end
   
   resources :qs, only: [:index, :destroy]
-  patch "qs/:id/switch",  to: "qs#switch_category", as: "switch_category_qs"
+  patch "qs/:id/switch",   to: "qs#switch_category",  as: "switch_category_qs"
+  patch "qs/:id/activate", to: "qs#activate",         as: "activate_qs"
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
@@ -46,7 +47,9 @@ Rails.application.routes.draw do
   patch "exam_drug/:id",            to: "exams#update_drug",    as: "exam_drug"
 
   get "exam_revenue/:id/edit",      to: "exams#edit_revenue",   as: "edit_exam_revenue"
-  patch "exam_revenue/:id",          to: "exams#update_revenue", as: "exam_revenue"
+  patch "exam_revenue/:id",         to: "exams#update_revenue", as: "exam_revenue"
+
+  get "exams/:id/med", to: "exams#show_med", as: "exam_med"
 
   resources :store_units
   resources :drugs do

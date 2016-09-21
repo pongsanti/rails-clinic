@@ -3,34 +3,41 @@
     .panel-header 
       =t("exams.drug_form.heading")
       .pull-right
-        =>link_to edit_exam_drug_path(exam), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
+        =>link_to "", class: "btn btn-primary btn-xs" do
+          i.glyphicon.glyphicon-print
+          =<"Print"
         = render partial: "global/toggle_panel_button", locals: { target: "#examDrugInfoBody" }          
       .clearfix
   .table-responsive.collapse.in#examDrugInfoBody
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
-            th= PatientDrug.human_attribute_name(:id)
+            th= "#"
             th= Drug.human_attribute_name(:name)
+            th= DrugIn.human_attribute_name(:id)
             th= DrugIn.human_attribute_name(:expired_date)
             th= DrugUsage.human_attribute_name(:text)
+            th= Drug.human_attribute_name(:effect)
+            th= Drug.human_attribute_name(:concern)
             th.text-right = PatientDrug.human_attribute_name(:amount)
-            th.text-right = PatientDrug.human_attribute_name(:revenue)
       tbody
         - if exam.patient_drugs.empty?
           tr
-            td.text-center colspan="5"
+            td.text-center colspan="8"
               ="No data"
         - else
           - exam.patient_drugs.each do |pd|
             tr
-              td= format_id pd
+              td= pd.id
               td= pd.drug_in.drug.name
+              td
+                => format_id pd.drug_in
+                => link_to drug_in_drug_movements_path(pd.drug_in) do
+                  i.glyphicon.glyphicon-info-sign
               td= th_date_format pd.drug_in.expired_date
-              td= pd.drug_usage.code
+              td= pd.drug_usage.text
+              td= pd.drug_in.drug.effect
+              td= pd.drug_in.drug.concern
               td.text-right
                 => decimal pd.amount
                 => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
-              td.text-right = currency pd.revenue

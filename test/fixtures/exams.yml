@@ -4,6 +4,7 @@ exam_one:
   customer: customer_david
   examiner: john
   revenue: 100
+  paid_status: false
 
 exam_two:
   weight: 71
@@ -11,3 +12,4 @@ exam_two:
   customer: customer_david
   examiner: john
   revenue: 0
+  paid_status: false

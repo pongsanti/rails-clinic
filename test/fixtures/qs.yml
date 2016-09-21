@@ -3,11 +3,19 @@
 one:
   category: "A"
   exam: exam_one
- 
+  active: false
+
 two:
   category: "A"
   exam: exam_two
+  active: false
 
 three:
   category: "B"
-  exam: exam_two  
+  exam: exam_two
+  active: false
+
+four:
+  category: "B"
+  exam: exam_two
+  active: true  

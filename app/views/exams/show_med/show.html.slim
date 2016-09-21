@@ -1,0 +1,14 @@
+= render partial: "global/page_header", locals: { icon_name: "stethoscope", title: t("exams.show_med.title"), subtext: t("exams.show_med.sub_text") }
+
+.container
+  .row
+    .col-sm-12
+      = render partial: "exams/show_med/drug_info", locals: {exam: @exam}
+    
+  .row
+    .col-sm-8
+      = render partial: "exams/show_med/info", locals: {exam: @exam}
+      = render partial: "exams/revenue/list", locals: {exam: @exam}
+    .col-sm-4
+      = render partial: "customer", locals: {customer: @customer}
+      = render partial: "global/q_placeholder"

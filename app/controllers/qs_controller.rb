@@ -2,7 +2,7 @@ class QsController < ApplicationController
   
   before_action :authenticate_user!
   before_action :set_exam, only: [:create]
-  before_action :set_q, only: [:destroy, :switch_category]
+  before_action :set_q, only: [:destroy, :switch_category, :activate]
   
   def index
     @exQs = Q.cat_is(Q::EXAM_Q_CAT)
@@ -11,13 +11,31 @@ class QsController < ApplicationController
 
   def create
     q = Q.new
+    q.active = false
     q.category = Q::EXAM_Q_CAT
     q.exam = @exam
     q.save
   end
 
+  def activate
+    # Deactivate other all of the same kind
+    Q.cat_is(@q.category).where("id != ?", @q).update_all(active: false)
+    @q.active = true
+    @q.save
+
+    case @q.category
+    when Q::EXAM_Q_CAT
+      redirect_to exam_url(@q.exam)
+    when Q::MED_Q_CAT
+      redirect_to exam_med_url(@q.exam)
+    else
+      nil
+    end
+  end
+
   def switch_category
     @q.switch_category
+    @q.active = false
     @q.save
   end
 
