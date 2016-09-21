@@ -30,8 +30,8 @@
             td class=td_class =decimal dmm.bal_diff
             td.text-right = decimal dmm.balance
             td.rowlink-skip
-              - if dmm.exam
-                => link_to exam_path(dmm.exam), class: "btn btn-default btn-xs" do
+              - if dmm.patient_drug
+                => link_to exam_path(dmm.patient_drug.exam), class: "btn btn-default btn-xs" do
                   = icon("stethoscope")
             td.rowlink-skip
               - if dmm.note

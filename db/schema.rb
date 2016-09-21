@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920110710) do
+ActiveRecord::Schema.define(version: 20160921104457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,13 +90,13 @@ ActiveRecord::Schema.define(version: 20160920110710) do
     t.decimal  "prev_bal"
     t.string   "note"
     t.integer  "drug_in_id"
-    t.integer  "exam_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "patient_drug_id"
   end
 
   add_index "drug_movements", ["drug_in_id"], name: "index_drug_movements_on_drug_in_id", using: :btree
-  add_index "drug_movements", ["exam_id"], name: "index_drug_movements_on_exam_id", using: :btree
+  add_index "drug_movements", ["patient_drug_id"], name: "index_drug_movements_on_patient_drug_id", using: :btree
 
   create_table "drug_usages", force: :cascade do |t|
     t.string   "code"
@@ -225,7 +225,7 @@ ActiveRecord::Schema.define(version: 20160920110710) do
   add_foreign_key "customers", "prefixes"
   add_foreign_key "drug_ins", "drugs"
   add_foreign_key "drug_movements", "drug_ins"
-  add_foreign_key "drug_movements", "exams"
+  add_foreign_key "drug_movements", "patient_drugs"
   add_foreign_key "drugs", "drug_usages"
   add_foreign_key "drugs", "store_units"
   add_foreign_key "exams", "customers"

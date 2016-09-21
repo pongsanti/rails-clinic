@@ -12,8 +12,6 @@ class Exam < ActiveRecord::Base
   has_many :patient_drugs, inverse_of: :exam
   accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs
 
-  has_many :drug_movements, inverse_of: :exam
-
   validates :weight, :height, :numericality => {:greater_than => 0, :less_than => 500}, 
     format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
   validates :pulse, :numericality => {:greater_than => 0, :less_than => 300}, 
@@ -80,7 +78,7 @@ class Exam < ActiveRecord::Base
   def pay
     self.transaction do
       self.patient_drugs.each do |pd|
-        dmm = DrugMovement.new({exam: self, amount: -pd.amount})
+        dmm = DrugMovement.new({patient_drug: pd, amount: -pd.amount})
         pd.drug_in.create_movement_for_drug_out(dmm)
         
         pd.drug_in.save!

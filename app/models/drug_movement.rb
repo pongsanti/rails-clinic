@@ -5,12 +5,11 @@ class DrugMovement < ActiveRecord::Base
   attr_accessor :amount
 
   belongs_to :drug_in, inverse_of: :drug_movements
-  belongs_to :exam, inverse_of: :drug_movements
+  belongs_to :patient_drug
   has_one :drug, through: :drug_in
 
   validates :amount, presence: true, numericality: true
   validates :drug_in, presence: true
-  validates_associated :exam
 
   paginates_per 15
 

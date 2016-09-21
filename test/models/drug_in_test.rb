@@ -8,8 +8,8 @@ class DrugInTest < ActiveSupport::TestCase
     @customer = customers(:customer_david)
     @drug_in = drug_ins(:one)
     @drug = drugs(:one)
-    @exam = exams(:exam_one)
     @test_target = @drug_in
+    @patient_drug = patient_drugs(:one)
   end
 
   test "should validate drug" do
@@ -75,7 +75,7 @@ class DrugInTest < ActiveSupport::TestCase
     amount = 5
     dmm_count = @drug_in.drug_movements.count
 
-    drug_movement = DrugMovement.new({amount: amount, drug_in_id: @drug_in.id, exam_id: @exam.id})
+    drug_movement = DrugMovement.new({amount: amount, drug_in: @drug_in, patient_drug: @patient_drug })
     @drug_in.create_movement_for_drug_out(drug_movement)
     #drug_movement.save
     @drug_in.save
@@ -86,7 +86,7 @@ class DrugInTest < ActiveSupport::TestCase
     created = DrugMovement.last
     assert_equal latest_bal, created.prev_bal
     assert_equal latest_bal + amount, created.balance
-    assert_equal @exam, created.exam
+    assert_equal @patient_drug, created.patient_drug
   end
 
 end

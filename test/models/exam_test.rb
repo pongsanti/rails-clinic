@@ -154,9 +154,8 @@ class ExamTest < ActiveSupport::TestCase
 
     assert @exam.paid_status
     dmm = DrugMovement.last
-
+    assert_equal @exam.patient_drugs[0], dmm.patient_drug
     assert_equal amount, dmm.prev_bal - dmm.balance
-    assert_equal @exam, dmm.exam
 
     drug.reload
     assert_equal balance - amount, drug.balance

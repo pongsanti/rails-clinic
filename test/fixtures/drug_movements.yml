@@ -5,11 +5,9 @@ one:
   prev_bal: 0
   note: MyString
   drug_in: one
-  exam: 
 
 two:
   balance: 100.0
   prev_bal: 0
   note: MyString
   drug_in: two
-  exam:
