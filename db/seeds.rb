@@ -17,3 +17,10 @@ Diag.create([
   {name: "Enteric  Fever", description: "Enteric  Fever"},
   {name: "Shigellosis", description: "Shigellosis"},
   {name: "Bacterial enteritis", description: "Bacterial enteritis"}])
+
+# Store unit
+StoreUnit.create([
+  {title: "เม็ด"},
+  {title: "ชุด"},
+  {title: "กล่อง"}
+])
