@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
   get "exams/:id/med", to: "exams#show_med", as: "exam_med"
 
+  patch "exams/:id/pay", to: "exams#pay", as: "exam_pay"
+
   resources :store_units
   resources :drugs do
     resources :drug_ins, only: [:index, :new, :create]

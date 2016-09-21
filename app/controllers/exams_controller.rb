@@ -5,6 +5,7 @@ class ExamsController < ApplicationController
 
     :edit_weight, :edit_pe, :edit_diag, :edit_drug, :edit_revenue,
     :update_weight, :update_pe, :update_diag, :update_drug, :update_revenue,
+    :pay,
     
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
@@ -12,7 +13,8 @@ class ExamsController < ApplicationController
   before_action :set_customer_from_exam, only: [:show, :show_med,
     
     :edit_weight, :edit_pe, :edit_diag, :edit_drug, :edit_revenue,
-    :update_weight, :update_pe, :update_diag, :update_drug, :update_revenue ]
+    :update_weight, :update_pe, :update_diag, :update_drug, :update_revenue,
+    :pay ]
 
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
@@ -108,6 +110,11 @@ class ExamsController < ApplicationController
       render "exams/revenue/edit"
     end
   end  
+
+  def pay
+    @exam.pay
+    redirect_to exam_url(@exam), notice: t('successfully_updated')
+  end
 
   def destroy
     @exam.destroy

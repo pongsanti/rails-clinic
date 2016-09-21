@@ -41,6 +41,10 @@ module ExamsHelper
     exam.paid_status ? "stock-in" : "stock-out"
   end
 
+  def can_edit_revenue?(exam)
+    action_name == "show"
+  end
+
   private
     def select_drug_in_text(drug_in)
       "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"

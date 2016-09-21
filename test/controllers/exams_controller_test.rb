@@ -38,6 +38,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:patch, "/exam_diag/2"), opts.merge(action: "update_diag", id: exam_id)
     assert_routing route_path(:patch, "/exam_drug/2"), opts.merge(action: "update_drug", id: exam_id)
     assert_routing route_path(:patch, "/exam_revenue/2"), opts.merge(action: "update_revenue", id: exam_id)
+    assert_routing route_path(:patch, "/exams/2/pay"), opts.merge(action: "pay", id: exam_id)
     #destroy
     assert_routing route_path(:delete, "/exams/2"), opts.merge(action: "destroy", id: exam_id)
   end

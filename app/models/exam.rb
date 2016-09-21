@@ -60,6 +60,10 @@ class Exam < ActiveRecord::Base
     result
   end
 
+  def paid?
+    self.paid_status
+  end
+
   def sum_revenue
     sum = 0.0
     sum += self.revenue if self.revenue
@@ -72,4 +76,20 @@ class Exam < ActiveRecord::Base
 
     sum
   end
+
+  def pay
+    self.transaction do
+      self.patient_drugs.each do |pd|
+        dmm = DrugMovement.new({exam: self, amount: -pd.amount})
+        pd.drug_in.create_movement_for_drug_out(dmm)
+        
+        pd.drug_in.save!
+        pd.drug_in.drug.recal_balance
+      end
+
+      self.paid_status = true
+      self.save!
+    end
+  end
+
 end
