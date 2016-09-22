@@ -21,7 +21,7 @@
       tbody
         - if exam.patient_drugs.empty?
           tr
-            td.text-center colspan="5"
+            td.text-center colspan="6"
               ="No data"
         - else
           - exam.patient_drugs.each do |pd|
