@@ -10,9 +10,10 @@ class Exam < ActiveRecord::Base
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :reject_diags
 
   has_many :patient_drugs, inverse_of: :exam
-  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs
+  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs 
 
-  has_many :drug_movements, inverse_of: :exam
+  has_many :appointments, inverse_of: :exam
+  accepts_nested_attributes_for :appointments, allow_destroy: true, reject_if: :reject_appointments
 
   validates :weight, :height, :numericality => {:greater_than => 0, :less_than => 500}, 
     format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
@@ -51,6 +52,12 @@ class Exam < ActiveRecord::Base
     attributes['diag_id'].blank?
   end
 
+  def reject_appointments(attributes)
+    attributes['date(1i)'].blank? or
+      attributes['date(2i)'].blank? or
+      attributes['date(3i)'].blank?
+  end
+
   def bmi
     result = "N/A"
     if weight.present? && height.present?
@@ -58,6 +65,10 @@ class Exam < ActiveRecord::Base
       result = result.round(1)
     end
     result
+  end
+
+  def paid?
+    self.paid_status
   end
 
   def sum_revenue
@@ -72,4 +83,20 @@ class Exam < ActiveRecord::Base
 
     sum
   end
+
+  def pay
+    self.transaction do
+      self.patient_drugs.each do |pd|
+        dmm = DrugMovement.new({patient_drug: pd, amount: -pd.amount})
+        pd.drug_in.create_movement_for_drug_out(dmm)
+        
+        pd.drug_in.save!
+        pd.drug_in.drug.recal_balance
+      end
+
+      self.paid_status = true
+      self.save!
+    end
+  end
+
 end

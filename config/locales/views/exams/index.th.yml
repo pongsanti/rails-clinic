@@ -15,3 +15,6 @@ th:
       amount: "จำนวน(บาท)"
       drug: "ค่ายา/เวชภัณฑ์"
       sum: "รวม"
+
+    appointment:
+      title: "หมอนัด"

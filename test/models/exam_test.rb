@@ -140,4 +140,25 @@ class ExamTest < ActiveSupport::TestCase
     assert_in_delta 24.5, @exam.bmi, 0
   end
 
+  test "should pay" do
+    drug = @exam.patient_drugs[0].drug_in.drug
+    balance = drug.balance
+
+    amount = @exam.patient_drugs[0].amount
+
+    assert_not @exam.paid_status
+
+    assert_difference "DrugMovement.count", 1 do
+      @exam.pay
+    end
+
+    assert @exam.paid_status
+    dmm = DrugMovement.last
+    assert_equal @exam.patient_drugs[0], dmm.patient_drug
+    assert_equal amount, dmm.prev_bal - dmm.balance
+
+    drug.reload
+    assert_equal balance - amount, drug.balance
+  end
+
 end

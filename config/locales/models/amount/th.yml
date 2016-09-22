@@ -1,7 +1,0 @@
-th:
-  activemodel:
-    models:
-      amount: "จำนวนรับ"
-    attributes:
-      amount:
-        amount: "จำนวนรับ"

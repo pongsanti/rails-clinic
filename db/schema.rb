@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920110710) do
+ActiveRecord::Schema.define(version: 20160922074900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.date     "date"
+    t.time     "time"
+    t.integer  "exam_id"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "appointments", ["exam_id"], name: "index_appointments_on_exam_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -90,13 +101,13 @@ ActiveRecord::Schema.define(version: 20160920110710) do
     t.decimal  "prev_bal"
     t.string   "note"
     t.integer  "drug_in_id"
-    t.integer  "exam_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "patient_drug_id"
   end
 
   add_index "drug_movements", ["drug_in_id"], name: "index_drug_movements_on_drug_in_id", using: :btree
-  add_index "drug_movements", ["exam_id"], name: "index_drug_movements_on_exam_id", using: :btree
+  add_index "drug_movements", ["patient_drug_id"], name: "index_drug_movements_on_patient_drug_id", using: :btree
 
   create_table "drug_usages", force: :cascade do |t|
     t.string   "code"
@@ -222,10 +233,11 @@ ActiveRecord::Schema.define(version: 20160920110710) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "appointments", "exams"
   add_foreign_key "customers", "prefixes"
   add_foreign_key "drug_ins", "drugs"
   add_foreign_key "drug_movements", "drug_ins"
-  add_foreign_key "drug_movements", "exams"
+  add_foreign_key "drug_movements", "patient_drugs"
   add_foreign_key "drugs", "drug_usages"
   add_foreign_key "drugs", "store_units"
   add_foreign_key "exams", "customers"

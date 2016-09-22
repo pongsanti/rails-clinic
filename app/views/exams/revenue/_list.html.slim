@@ -3,7 +3,7 @@
     .panel-header 
       =t("exams.revenue.title")
       .pull-right
-        - if action_name == "show"
+        - if can_edit_revenue?(exam)
           =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
             i.glyphicon.glyphicon-edit
             =<"Edit"

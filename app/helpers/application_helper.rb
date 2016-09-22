@@ -24,6 +24,12 @@ DOC
     end
   end
 
+  def th_time_format(t)
+    unless t.blank?
+      l(t, format: "%H:%M")
+    end
+  end
+
   def age_text(customer)
     unless customer.birthdate.nil?
       age_in_days = (Time.now.to_date - customer.birthdate).to_i

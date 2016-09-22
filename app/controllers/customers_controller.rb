@@ -13,9 +13,8 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = generate_pdf
-        pdf.print
-        send_data pdf.render, filename: "#{@customer.id}-#{@customer.name}.pdf", type: 'application/pdf', disposition: "inline"
+        render pdf: "customer_#{@customer.id}",
+          page_height: "46mm", page_width: "80mm"
       end
     end
   end
@@ -75,13 +74,4 @@ class CustomersController < ApplicationController
       @prefixes = Prefix.all
     end
 
-    def generate_pdf
-      Prawn::Document.new(page_size: "A7", page_layout: :landscape) do |doc|
-        doc.font("#{Rails.public_path}/fonts/THSarabun.ttf") do
-          doc.text "บัตรประจำตัวคลินิค"
-          doc.text "คุณ #{@customer.name} #{@customer.surname}"
-          doc.text "#{@customer.id_card_no}"
-        end
-      end
-    end
 end

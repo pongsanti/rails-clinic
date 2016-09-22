@@ -3,20 +3,29 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_exam, only: [:show, :show_med,
 
-    :edit_weight, :edit_pe, :edit_diag, :edit_drug, :edit_revenue,
-    :update_weight, :update_pe, :update_diag, :update_drug, :update_revenue,
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :edit_revenue, :edit_appointment,
+
+    :update_weight, :update_pe, :update_diag, :update_drug,
+    :update_revenue, :update_appointment,
+    :pay,
     
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [:show, :show_med,
     
-    :edit_weight, :edit_pe, :edit_diag, :edit_drug, :edit_revenue,
-    :update_weight, :update_pe, :update_diag, :update_drug, :update_revenue ]
+    :edit_weight, :edit_pe, :edit_diag, :edit_drug,
+    :edit_revenue, :edit_appointment,
+    
+    :update_weight, :update_pe, :update_diag, :update_drug,
+    :update_revenue, :update_appointment,
+    :pay ]
 
   before_action :set_diags, only: [:edit_diag, :new_patient_diag, :edit_patient_diag]
 
-  before_action :set_user, only: [:update_weight, :update_pe, :update_diag, :update_drug, :update_revenue]
+  before_action :set_user, only: [:update_weight, :update_pe, :update_diag,
+      :update_drug, :update_revenue, :update_appointment ]
 
   def index
     ransack_params = {for_customer: @customer.id}
@@ -52,6 +61,10 @@ class ExamsController < ApplicationController
 
   def edit_revenue
     render "exams/revenue/edit"
+  end
+
+  def edit_appointment
+    render "exams/appointment/edit"
   end
 
   def create_weight
@@ -107,7 +120,20 @@ class ExamsController < ApplicationController
     else
       render "exams/revenue/edit"
     end
-  end  
+  end
+
+  def update_appointment
+    if @exam.update(exam_appointment_params)
+      redirect_to exam_url(@exam), notice: t('successfully_updated')
+    else
+      render "exams/appointment/edit"
+    end
+  end
+
+  def pay
+    @exam.pay
+    redirect_to exam_url(@exam), notice: t('successfully_updated')
+  end
 
   def destroy
     @exam.destroy
@@ -141,6 +167,12 @@ class ExamsController < ApplicationController
 
     def exam_revenue_params
       params.require(:exam).permit(:revenue)
+    end
+
+    def exam_appointment_params
+      params.require(:exam).permit(
+        appointments_attributes: [:id, :date, :time, :note, :_destroy]
+      )
     end
 
     def set_user

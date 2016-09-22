@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-09-22
+  time: 2016-09-22 14:49:00
+  exam: exam_one
+  note: ""
+
+two:
+  date: 2016-09-22
+  time: 2016-09-22 14:49:00
+  exam: exam_two
+  note: ""

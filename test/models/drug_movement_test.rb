@@ -30,14 +30,4 @@ class DrugMovementTest < ActiveSupport::TestCase
     error_contains error_msg(drug_in, ERR_BLANK)
   end
 
-  test "should validate exam" do
-    customer = "activerecord.attributes.exam.customer"
-
-    @drug_movement.exam = @exam
-    @exam.customer = nil
-
-    assert_not @drug_movement.save
-    error_count 1
-  end
-
 end

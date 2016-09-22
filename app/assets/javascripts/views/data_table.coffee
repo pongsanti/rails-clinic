@@ -41,7 +41,7 @@ class DataTable
     # to be overridden
 
   addAttr: (obj, name, val) ->
-    obj.attr(name, val)
+    @util.jqRify(obj).attr(name, val)
 
   addClass: (obj, clsName) ->
     obj.addClass(clsName)
@@ -102,11 +102,6 @@ class window.view.ExamDiagDataTable extends DataTable
 
     return [ "", diags_div[0].innerHTML, input, delete_icon ]
 
-  deleteRowBtnEvent: (elem)->
-    row = $(elem).closest('tr')
-    @table.row(row[0]).remove().draw(false)
-
-
 class window.view.ExamDrugDataTable extends DataTable
   tableName: "examDrug"
   objParamName: "patient_drugs_attributes"
@@ -165,3 +160,52 @@ class window.view.ExamDrugDataTable extends DataTable
     if amount_value? and amount_value > -1
       sale_price = @optionSalePriceValue(row)
       @setRevenueValue row, @formatNumber(sale_price * amount_value)
+
+class window.view.ExamAppointmentDataTable extends DataTable
+  tableName: "examAppointment"
+  objParamName: "appointments_attributes"
+
+  modelName: () ->
+    "exam"
+
+  initOptions: () ->
+    $.extend(super, 
+      "createdRow": ( row, data, index ) =>
+          @util.jqRify(row).find("button[id*='delete']").click(row, @deleteButtonClickEvent)
+    )     
+
+  rowContent: () ->
+    date_select_div = $("\##{@date_select_div_id}").clone()
+    date_select = date_select_div.find("select")
+    @addClass(date_select, "selectpicker")
+
+    time_select_div = $("\##{@time_select_div_id}").clone()
+    time_select = time_select_div.find("select")
+    console.log time_select.option
+    @addClass(time_select, "selectpicker")
+
+    rowId = Date.now()
+
+    for obj in date_select
+      id_val = null
+      switch obj.id
+        when "date_day" then id_val = "date(3i)"
+        when "date_month"
+          id_val = "date(2i)"
+          @util.displayMonthNumber $(obj).find('option')
+        when "date_year"
+          id_val = "date(1i)"      
+          @util.displayThaiYear $(obj).find('option')
+      @createAttribute(obj, @objParamName, rowId, id_val)
+
+    for obj in time_select
+      id_val = null
+      switch obj.id
+        when "date_hour" then id_val = "time(4i)"
+        when "date_minute" then id_val = "time(5i)"
+      @createAttribute(obj, @objParamName, rowId, id_val)
+
+    input = @createInput(@objParamName, rowId, "note")
+    delete_icon = @createDeleteButton("delete_#{rowId}")
+
+    return [ "", date_select_div[0].innerHTML, time_select_div[0].innerHTML, input, delete_icon ]    

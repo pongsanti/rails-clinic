@@ -60,6 +60,22 @@ class util
   isUrlOf: (url, controller) ->
     url.indexOf(controller) != -1
 
+  displayThaiYear: (objs) ->
+    objs.each(
+      (index, value) ->
+        option = $(value)
+        year = parseInt(option.text())
+        option.text(year + ' (' + String(year + 543) + ')')
+    )
+
+  displayMonthNumber: (objs) ->
+    objs.each(
+      (index, value) ->
+        option = $(value)
+        # there are cases when index is greater than 12, so mod it with 12
+        option.text(option.text() + ' (' + String(index%12 + 1) + ')');
+    )    
+
 class panelUtil
   initToggleCollapseSwapIcon: (placeholders) ->
     if placeholders.length

@@ -3,6 +3,7 @@ class PatientDrug < ActiveRecord::Base
   ID_PREFIX = "PD"
 
   belongs_to :exam, inverse_of: :patient_drugs
+  has_one :drug_movement
 
   belongs_to :drug_in
   belongs_to :drug_usage
