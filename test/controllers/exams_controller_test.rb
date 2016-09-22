@@ -30,6 +30,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:get, "/exam_diag/2/edit"), opts.merge(action: "edit_diag", id: exam_id)
     assert_routing route_path(:get, "/exam_drug/2/edit"), opts.merge(action: "edit_drug", id: exam_id)
     assert_routing route_path(:get, "/exam_revenue/2/edit"), opts.merge(action: "edit_revenue", id: exam_id)
+    assert_routing route_path(:get, "/exam_appointment/2/edit"), opts.merge(action: "edit_appointment", id: exam_id)
     #create
     assert_routing route_path(:post, "/customers/1/exams"), opts.merge(action: "create_weight", customer_id: customer_id)
     #update
@@ -39,6 +40,7 @@ class ExamsControllerTest < ActionController::TestCase
     assert_routing route_path(:patch, "/exam_drug/2"), opts.merge(action: "update_drug", id: exam_id)
     assert_routing route_path(:patch, "/exam_revenue/2"), opts.merge(action: "update_revenue", id: exam_id)
     assert_routing route_path(:patch, "/exams/2/pay"), opts.merge(action: "pay", id: exam_id)
+    assert_routing route_path(:patch, "/exam_appointment/2"), opts.merge(action: "update_appointment", id: exam_id)
     #destroy
     assert_routing route_path(:delete, "/exams/2"), opts.merge(action: "destroy", id: exam_id)
   end
@@ -114,6 +116,15 @@ class ExamsControllerTest < ActionController::TestCase
 
   test "should get edit revenue" do
     get :edit_revenue, id: @exam.id
+
+    assert_response :success
+    assert_assigns :exam, :customer
+    assert_equal @exam, a(:exam)
+    assert_equal @exam.customer, a(:customer)
+  end
+
+  test "should get edit appointment" do
+    get :edit_appointment, id: @exam.id
 
     assert_response :success
     assert_assigns :exam, :customer
@@ -240,5 +251,39 @@ class ExamsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to exam_url(@exam)
-  end  
+  end
+
+  test "should patch update appointment" do
+    assert_difference "@exam.appointments.count", 2 do
+      patch :update_appointment, { id: @exam.id,
+        exam: {
+          appointments_attributes: {  
+            "12556" => { "date(1i)": 2016, "date(2i)": 11, "date(3i)": 1,
+              "time(4i)": 10, "time(5i)": 30, note: "test note" },
+            "12589" => { "date(1i)": 2016, "date(2i)": 11, "date(3i)": 15,
+              "time(4i)": 10, "time(5i)": 30, note: "test note 2" },
+          }
+        }
+      }
+    end
+
+    assert_redirected_to exam_url(@exam)
+  end
+
+  test "should patch update appointment rejected" do
+    assert_no_difference "@exam.appointments.count" do
+      patch :update_appointment, { id: @exam.id,
+        exam: {
+          appointments_attributes: {  
+            "12556" => { "date(1i)": 2016, "date(3i)": 1,
+              "time(4i)": 10, "time(5i)": 30, note: "test note" },
+            "12589" => { "date(2i)": 11, "date(3i)": 15,
+              "time(4i)": 10, "time(5i)": 30, note: "test note 2" },
+          }
+        }
+      }
+    end
+
+    assert_redirected_to exam_url(@exam)
+  end    
 end
