@@ -10,7 +10,10 @@ class Exam < ActiveRecord::Base
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :reject_diags
 
   has_many :patient_drugs, inverse_of: :exam
-  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs
+  accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs 
+
+  has_many :appointments, inverse_of: :exam
+  accepts_nested_attributes_for :appointments, allow_destroy: true, reject_if: :reject_appointments
 
   validates :weight, :height, :numericality => {:greater_than => 0, :less_than => 500}, 
     format: { with: /\A\d{1,3}(\.\d{1})?\z/ }, allow_blank: true
@@ -47,6 +50,10 @@ class Exam < ActiveRecord::Base
 
   def reject_diags(attributes)
     attributes['diag_id'].blank?
+  end
+
+  def reject_appointments(attributes)
+    attributes['date'].blank?
   end
 
   def bmi

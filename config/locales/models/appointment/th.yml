@@ -1,0 +1,11 @@
+th:
+  activerecord:
+    models:
+      appointment: "หมอนัด"
+    attributes:
+      appointment:
+        id: "รหัสนัด"
+        date: "นัดวันที่"
+        time: "นัดเวลา"
+        note: "รายละเอียด"
+        exam: "วินิจฉัย"
