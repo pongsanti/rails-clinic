@@ -53,7 +53,9 @@ class Exam < ActiveRecord::Base
   end
 
   def reject_appointments(attributes)
-    attributes['date'].blank?
+    attributes['date(1i)'].blank? or
+      attributes['date(2i)'].blank? or
+      attributes['date(3i)'].blank?
   end
 
   def bmi

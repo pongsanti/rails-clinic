@@ -65,6 +65,12 @@ class Exam
   revenue: null
   exam_revenue_form_div_id: "examRevenueFormBody"
 
+  #Appointment
+  appointmentTable: null
+  date_select_div_id: "date_select_div"
+  time_select_div_id: "time_select_div"
+  new_appointment_btn_id: "new_appointment"
+
   initializeRevenueForm: (args)->
     delete @revenue
     revenue_div = $("\##{@exam_revenue_form_div_id}")
@@ -72,11 +78,11 @@ class Exam
       args.exam_elem = @util.select("input[id='exam_revenue']", revenue_div)
       args.sum_elem = @util.select("span[id='exam_revenue_sum']", revenue_div)
       @revenue = new view.Revenue(args)
-      @revenue.initialize()
-      
-
+      @revenue.initialize()     
 
   initializePage: () ->
+    @util.displayThaiYear $("select[id*='date_1i'] option")
+    @util.displayMonthNumber $("select[id*='date_2i'] option")
     view.panelUtil.initToggleCollapseSwapIcon $("div#customerShow")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='exam']")
 
@@ -90,6 +96,12 @@ class Exam
     @drugTable.drug_ins_div_id = @drug_ins_div_id
     @drugTable.drug_usages_div_id = @drug_usages_div_id
     @drugTable.initializeTable()
+
+    delete @appointmentTable
+    @appointmentTable = new view.ExamAppointmentDataTable(@new_appointment_btn_id, view.util)
+    @appointmentTable.date_select_div_id = @date_select_div_id
+    @appointmentTable.time_select_div_id = @time_select_div_id
+    @appointmentTable.initializeTable()
 
   fetchAjaxContent: ()->
     if not @remoteContent?

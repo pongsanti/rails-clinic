@@ -1,0 +1,44 @@
+.panel.panel-warning#examAppointmentForm
+  .panel-heading
+    .panel-header
+      =t("exams.appointment.title")
+      .pull-right
+        =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+          i.glyphicon.glyphicon-eye-open
+          =<"View"
+        =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_appointment" do
+          i.glyphicon.glyphicon-file
+          =<"New Entry"
+        = render partial: "global/toggle_panel_button", locals: { target: "#examAppointmentFormBody" }
+      .clearfix
+  .panel-body.collapse.in#examAppointmentFormBody
+    = render partial: "global/alert", locals: {obj: exam}
+    .hide id="date_select_div"
+      = select_date Date.current, {start_year: Date.today.year, end_year: Date.today.year + 10}, data: { "live-search" => true, "width" => "fit", "size" => 10 }
+    .hide id="time_select_div"
+      = select_time Time.current, {minute_step: 10, start_hour: 8, end_hour: 20, ignore_date: true}, data: { 'live-search' => true, "width" => "fit", "size" => 10 }
+    = form_for exam, url: exam_appointment_path(exam), html: { class: "form-horizontal" } do |f|
+      table.table-striped.table-hover.table-condensed data-table="examAppointment" width="100%"
+        thead
+          tr
+            th= Appointment.human_attribute_name(:id)
+            th.required-label style="width:30%" = Appointment.human_attribute_name(:date)
+            th style="width:20%" = Appointment.human_attribute_name(:time)
+            th= Appointment.human_attribute_name(:note)
+            th
+        - unless exam.appointments.empty?
+          tbody
+            = f.fields_for :appointments, f.object.appointments do |ap_form|
+              tr
+                td
+                  =format_id ap_form.object
+                  =ap_form.hidden_field :id
+                td =ap_form.date_select :date, {start_year: Date.today.year, end_year: Date.today.year + 10}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10 }
+                td =ap_form.time_select :time, {minute_step: 10, start_hour: 8, end_hour: 20, ignore_date: true}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10 }
+                td =ap_form.text_field :note, class: "form-control", placeholder: true, style: "width: 100%"
+                td
+                  label.btn.btn-danger.btn-xs
+                    =>ap_form.check_box :_destroy
+                    span.glyphicon.glyphicon-trash
+      .text-right
+        = render partial: 'global/form_button', locals: {f: f}            
