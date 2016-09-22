@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   get "exam_revenue/:id/edit",      to: "exams#edit_revenue",   as: "edit_exam_revenue"
   patch "exam_revenue/:id",         to: "exams#update_revenue", as: "exam_revenue"
 
+  get "exam_appointment/:id/edit",  to: "exams#edit_appointment",   as: "edit_exam_appointment"
+  patch "exam_appointment/:id",     to: "exams#update_appointment", as: "exam_appointment"
+
   get "exams/:id/med", to: "exams#show_med", as: "exam_med"
 
   patch "exams/:id/pay", to: "exams#pay", as: "exam_pay"
