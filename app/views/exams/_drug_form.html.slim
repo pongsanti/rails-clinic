@@ -23,8 +23,8 @@
         thead
           tr
             th= PatientDrug.human_attribute_name(:id)
-            th style="width:40%" = DrugIn.human_attribute_name(:id)
-            th style="width:30%" = DrugUsage.human_attribute_name(:text)
+            th.required-label style="width:40%" = DrugIn.human_attribute_name(:id)
+            th.required-label style="width:30%" = DrugUsage.human_attribute_name(:text)
             th.text-right
               span.required-label = PatientDrug.human_attribute_name(:amount)
             th.text-right 
