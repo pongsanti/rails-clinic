@@ -20,7 +20,8 @@ class Customer
     )
 
   preSelectSex: () ->
-    $('input[type=radio]:checked').parent().addClass('active')
+    $('input[type=radio]:checked').parent().button("toggle")
+
 
   initializePage: () ->
     @displayThaiYear()
