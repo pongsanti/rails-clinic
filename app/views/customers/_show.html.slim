@@ -68,8 +68,12 @@
         
       
       .form-group
+        = f.label :street, class: "col-sm-2 control-label"
+        .col-sm-4
+          p.form-control-static =@customer.street
+           
         = f.label :sub_district, class: "col-sm-2 control-label"
-        .col-sm-10
+        .col-sm-4
           p.form-control-static =@customer.sub_district 
       
       .form-group

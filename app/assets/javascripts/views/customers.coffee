@@ -20,7 +20,8 @@ class Customer
     )
 
   preSelectSex: () ->
-    $('input[type=radio]:checked').parent().addClass('active')
+    $('input[type=radio]:checked').parent().button("toggle")
+
 
   initializePage: () ->
     @displayThaiYear()
@@ -28,5 +29,13 @@ class Customer
     @preSelectSex()
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='customer']")
+
+  initializePrefixSelectSex: ()->
+    prefix_select = $("select[id*='customer_prefix']")
+
+    prefix_select.change (evt) =>
+      sex_selected_value = prefix_select.find("option:selected").data("sex")
+      $("\##{sex_selected_value}_btn").button("toggle")
+
 
 view.customer = new Customer
