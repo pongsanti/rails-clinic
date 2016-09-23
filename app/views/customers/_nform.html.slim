@@ -50,7 +50,8 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
         =render partial: "global/txt_field", locals: {f: f, method: :address, tf_width: 10, size: 60}       
       
       .form-group
-        =render partial: "global/txt_field", locals: {f: f, method: :sub_district, tf_width: 10}
+        =render partial: "global/txt_field", locals: {f: f, method: :street}
+        =render partial: "global/txt_field", locals: {f: f, method: :sub_district}
       
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :district}

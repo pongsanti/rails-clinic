@@ -57,7 +57,7 @@ class CustomersController < ApplicationController
   		params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
   			:birthdate, :id_card_no, :passport_no, :nationality,
         :occupation,
-  			:address, :sub_district, :district, :province, :postal_code,
+  			:address, :street, :sub_district, :district, :province, :postal_code,
         :email,
   			:home_phone_no, :tel_no)
   	end
