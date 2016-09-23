@@ -19,12 +19,12 @@
         = f.label :weight, class: "col-sm-2 control-label"
         .col-sm-4
           .input-group
-            = f.text_field :weight, class: "form-control", placeholder: true, data: { mask: '9?99' }
+            = f.text_field :weight, class: "form-control", placeholder: true, maxlength: 6
             .input-group-addon="kg"
         = f.label :height, class: "col-sm-2 control-label"
         .col-sm-4
           .input-group
-            = f.text_field :height, class: "form-control", placeholder: true, data: { mask: '9?99' }
+            = f.text_field :height, class: "form-control", placeholder: true, maxlength: 6
             .input-group-addon="cm"
       
       .form-group
