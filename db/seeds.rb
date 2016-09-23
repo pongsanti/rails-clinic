@@ -7,11 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Prefixes
-Prefix.create(name: 'นาย')
-Prefix.create(name: 'นางสาว')
-Prefix.create(name: 'นาง')
-Prefix.create(name: 'เด็กชาย')
-Prefix.create(name: 'เด็กหญิง')
+Prefix.create(name: 'นาย', sex: "M")
+Prefix.create(name: 'นางสาว', sex: "F")
+Prefix.create(name: 'นาง', sex: "F")
+Prefix.create(name: 'เด็กชาย', sex: "M")
+Prefix.create(name: 'เด็กหญิง', sex: "F")
 
 Diag.create([
   {name: "Enteric  Fever", description: "Enteric  Fever"},
