@@ -4,6 +4,8 @@
 
 class DrugIn
 
+  constructor: (@util)->
+
   placeholder_data_attributes:
     controller: "drug_ins"
     action: "index"
@@ -11,8 +13,8 @@ class DrugIn
   remoteContent: null
 
   initializePage: () ->
-    @displayThaiYear()
-    @displayMonthNumber()
+    @util.displayThaiYear $("select[id*='drug_in_expired_date_1i'] option")
+    @util.displayMonthNumber $("select[id*='drug_in_expired_date_2i'] option")
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='drugIn']")
 
@@ -22,36 +24,19 @@ class DrugIn
 
     @remoteContent.fetchAjaxContent()
 
-  displayThaiYear: () ->
-    $('select#drug_in_expired_date_1i option').each(
-      (index, value) ->
-        option = $(value)
-        year = parseInt(option.text())
-        option.text(year + ' (' + String(year + 543) + ')')
-    )
+  initializeForm: ()->
+    calculate_price_per_unit_link = $('a#calculate_link')
+    if calculate_price_per_unit_link.length
+      calculate_price_per_unit_link.click (eventObj)=>
+        amount_value = $("input[id*='amount']").val()
+        cost_value = $("input[id*='cost']").val()
 
-  displayMonthNumber: () ->
-    $('select#drug_in_expired_date_2i option').each(
-      (index, value) ->
-        option = $(value)
-        option.text(option.text() + ' (' + String(index + 1) + ')');
-    )    
+        if amount_value? and cost_value? and amount_value and cost_value
+          if not isNaN(amount_value) and not isNaN(cost_value)
+            price_per_unit_input = $("input[id*='price_per_unit']")
+            if price_per_unit_input.length
+              price_per_unit_input.val(parseFloat(cost_value/amount_value).toFixed(2))
+
+        eventObj.preventDefault()
          
-view.drug_in = new DrugIn
-
-#initializePage = -> # display local year
-#  $('select#drug_in_expired_date_1i option').each(
-#    (index, value) ->
-#      option = $(value)
-#      year = parseInt(option.text())
-#      option.text(year + ' (' + String(year + 543) + ')')
-#  )
-
-  # display month number
-#  $('select#drug_in_expired_date_2i option').each(
-#    (index, value) ->
-#      option = $(value)
-#      option.text(option.text() + ' (' + String(index + 1) + ')');
-#  )
-
-#$(document).on('turbolinks:load', initializePage)
+view.drug_in = new DrugIn(view.util)

@@ -28,12 +28,20 @@ div#drugInForm class=("panel " + (action == :new ? "panel-success" : "panel-warn
       .form-group
         = f.label :expired_date, class: "col-sm-2 control-label"
         .col-sm-10
-            = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", 'size' => 10 }
+            = f.date_select :expired_date, {start_year: Date.today.year, end_year: Date.today.year + 100}, class: "selectpicker form-control", data: { 'live-search' => true, "width" => "fit", 'size' => 10 }
 
       .form-group
-        = render partial: "global/txt_field", locals: {f: f, method: :cost }
+        = f.label :cost, class: "col-sm-2 control-label"
+        .col-sm-4
+          .input-group
+            = f.text_field :cost, class: "form-control", placeholder: true 
+            = link_to "#", class: "btn btn-default btn-xs input-group-addon", data: {"toggle" => "tooltip"}, title: "calculate price/unit", id: "calculate_link" do
+              = icon("calculator")
         = render partial: "global/txt_field", locals: {f: f, method: :sale_price_per_unit  }
  
       .form-group
         .col-sm-offset-2.col-sm-10
           = render partial: 'global/form_button', locals: {f: f}
+
+javascript:
+  view.drug_in.initializeForm()          
