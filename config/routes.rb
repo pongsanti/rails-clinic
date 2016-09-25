@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "exam_diag/:id/edit",         to: "exams#edit_diag",      as: "edit_exam_diag"
   patch "exam_diag/:id",            to: "exams#update_diag",    as: "exam_diag"
 
+  get "exam_drug/:id",              to: "exams#show_drugs",     as: "show_exam_drug"
   get "exam_drug/:id/edit",         to: "exams#edit_drug",      as: "edit_exam_drug"
   patch "exam_drug/:id",            to: "exams#update_drug",    as: "exam_drug"
 

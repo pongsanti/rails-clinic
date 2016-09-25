@@ -74,7 +74,16 @@ class util
         option = $(value)
         # there are cases when index is greater than 12, so mod it with 12
         option.text(option.text() + ' (' + String(index%12 + 1) + ')');
-    )    
+    )
+
+  strIsValidNumber: (str) ->
+    return str? and typeof(str) is 'string' and (not isNaN(str))
+
+  toF: (str) ->
+    parseFloat(str)
+
+  round: (f) ->
+    f.toFixed(2)
 
 class panelUtil
   initToggleCollapseSwapIcon: (placeholders) ->

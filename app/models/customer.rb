@@ -23,6 +23,10 @@ class Customer < ActiveRecord::Base
 
   before_save :delete_masked_input
 
+  def full_name
+    "#{self.prefix.name} #{self.name} #{self.surname}"
+  end
+
   class << self
     # searchable fields
     def ransackable_attributes(auth_object = nil)

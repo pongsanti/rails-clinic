@@ -19,9 +19,8 @@ div#drugForm class=("panel " + (action == :new ? "panel-success" : "panel-warnin
       .form-group
         = render partial: "global/txt_field", locals: {f: f, method: :trade_name, tf_width: 10 }
       .form-group
-        = render partial: "global/txt_field", locals: {f: f, method: :effect, tf_width: 10 }
-      .form-group
-        = render partial: "global/txt_field", locals: {f: f, method: :concern, tf_width: 10 }
+        = render partial: "global/txt_field", locals: {f: f, method: :effect, tf_width: 4 }
+        = render partial: "global/txt_field", locals: {f: f, method: :concern, tf_width: 4 }
 
       .form-group
         = f.label :drug_usage, class: "col-sm-2 control-label"
