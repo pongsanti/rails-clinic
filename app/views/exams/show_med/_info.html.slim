@@ -3,9 +3,11 @@
     .panel-header 
       =t("exams.info.heading")
       .pull-right
-        =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs" do
-          i.glyphicon.glyphicon-usd
-          =<"Set Paid"
+        - if not exam.paid_status
+          =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs" do
+            i.glyphicon.glyphicon-usd
+            =<"Set Paid"
+            
         =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"          

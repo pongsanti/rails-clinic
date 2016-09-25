@@ -1,0 +1,11 @@
+.panel.panel-default#examAppointmentInfo
+  .panel-heading
+    .panel-header 
+      =t("exams.appointment.title")
+      .pull-right
+        =>link_to "", class: "btn btn-primary btn-xs", target: "_blank" do
+          i.glyphicon.glyphicon-print
+          =<"Print"      
+        = render partial: "global/toggle_panel_button", locals: { target: "#examAppointmentInfoBody" }          
+      .clearfix
+  = render partial: "exams/appointment/list_table", locals: {exam: exam, table_id: "examAppointmentInfoBody"}
