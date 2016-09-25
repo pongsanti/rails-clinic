@@ -1,7 +1,7 @@
 class ExamsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_exam, only: [:show, :show_med,
+  before_action :set_exam, only: [:show, :show_med, :show_drugs,
 
     :edit_weight, :edit_pe, :edit_diag, :edit_drug,
     :edit_revenue, :edit_appointment,
@@ -13,7 +13,7 @@ class ExamsController < ApplicationController
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
   before_action :set_customer, only: [:index, :new_weight, :create_weight]
-  before_action :set_customer_from_exam, only: [:show, :show_med,
+  before_action :set_customer_from_exam, only: [:show, :show_med, :show_drugs,
     
     :edit_weight, :edit_pe, :edit_diag, :edit_drug,
     :edit_revenue, :edit_appointment,
@@ -40,6 +40,21 @@ class ExamsController < ApplicationController
 
   def show_med
     render "exams/show_med/show"
+  end
+
+  def show_drugs
+    @drugs = @exam.patient_drugs
+    respond_to do |format|
+      format.html {
+        render "exams/drugs/show", layout: "pdf"
+      }
+
+      format.pdf {
+        render pdf: "exam_#{@exam.id}", template: "exams/drugs/show",
+          page_height: "46mm", page_width: "80mm",
+          margin: { top: 10 }
+      }
+    end
   end
 
   def new_weight
