@@ -10,6 +10,9 @@ class window.view.Revenue
   sum: ()->
     @args.sum
 
+  util: ()->
+    @args.util
+
   exam_text_input: ()->
     @args.exam_elem
 
@@ -31,13 +34,12 @@ class window.view.Revenue
     )
 
   format_sum:(val) ->
-    val.toFixed(2) + ' $'
+    @util().round(val) + ' $'
 
   to_f:(str)->
     ret_val = 0.0
-    if str? and str
-      if not isNaN(str)
-        ret_val = parseFloat(str)
+    if @util().strIsValidNumber(str)
+      ret_val = @util().toF(str)
     return ret_val
 
 class Exam
@@ -77,6 +79,7 @@ class Exam
     if revenue_div.length
       args.exam_elem = @util.select("input[id='exam_revenue']", revenue_div)
       args.sum_elem = @util.select("span[id='exam_revenue_sum']", revenue_div)
+      args.util = @util
       @revenue = new view.Revenue(args)
       @revenue.initialize()     
 

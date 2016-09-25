@@ -31,11 +31,10 @@ class DrugIn
         amount_value = $("input[id*='amount']").val()
         cost_value = $("input[id*='cost']").val()
 
-        if amount_value? and cost_value? and amount_value and cost_value
-          if not isNaN(amount_value) and not isNaN(cost_value)
+        if @util.strIsValidNumber(amount_value) and @util.strIsValidNumber(cost_value)
             price_per_unit_input = $("input[id*='price_per_unit']")
             if price_per_unit_input.length
-              price_per_unit_input.val(parseFloat(cost_value/amount_value).toFixed(2))
+              price_per_unit_input.val @util.round @util.toF(cost_value)/@util.toF(amount_value)
 
         eventObj.preventDefault()
          
