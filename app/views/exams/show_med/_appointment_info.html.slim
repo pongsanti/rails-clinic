@@ -3,7 +3,7 @@
     .panel-header 
       =t("exams.appointment.title")
       .pull-right
-        =>link_to "", class: "btn btn-primary btn-xs", target: "_blank" do
+        =>link_to show_exam_appointment_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
           i.glyphicon.glyphicon-print
           =<"Print"      
         = render partial: "global/toggle_panel_button", locals: { target: "#examAppointmentInfoBody" }          

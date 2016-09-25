@@ -1,0 +1,6 @@
+th:
+  appointments:
+    print:
+      date: "เวลานัด"
+      note: "เหตุผล"
+      doctor: "ผู้ตรวจ"
