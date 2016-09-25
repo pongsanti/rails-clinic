@@ -1,0 +1,17 @@
+- @appointments.each do |ap|
+  .appointment.alwaysbreak
+    .date
+      => th_date_format Date.current
+      => format_id @customer
+    .cust
+      => @customer.full_name
+    .appointment_date
+      => t("appointments.print.date")
+      => th_date_format ap.date
+      => th_time_format ap.time
+    .appointment_note
+      => t("appointments.print.note")
+      => ap.note
+    .appointment_doctor
+      => t("appointments.print.doctor")
+      => ap.exam.examiner.display_name

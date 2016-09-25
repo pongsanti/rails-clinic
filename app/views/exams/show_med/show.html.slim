@@ -9,6 +9,7 @@
     .col-sm-8
       = render partial: "exams/show_med/info", locals: {exam: @exam}
       = render partial: "exams/revenue/list", locals: {exam: @exam}
+      = render partial: "exams/show_med/appointment_info", locals: {exam: @exam}
     .col-sm-4
       = render partial: "customer", locals: {customer: @customer}
       = render partial: "global/q_placeholder"
