@@ -69,7 +69,7 @@ class DataTable
     @addAttr(obj, "name", @createNameAttr(objParamName, id, method))
 
   formatNumber: (num)->
-    num.toFixed(2)
+    @util.round(num)
 
   deleteButtonClickEvent: (clickEvent) =>
     row = $(clickEvent.data)
@@ -140,6 +140,11 @@ class window.view.ExamDrugDataTable extends DataTable
   amountValue: (row)->
     row.find("input[id*='amount']").val()
 
+  setDrugUsageSelectVal: (row, val)->
+    select = row.find("select[id*='drug_usage_id']")
+    if select?
+      select.selectpicker("val", val)
+
   setRevenueValue: (row, value)->
     revenueTextInput = row.find("input[id*='revenue']").val(value)
 
@@ -149,10 +154,17 @@ class window.view.ExamDrugDataTable extends DataTable
   drugInSelectChangeEvent: (changeEvent)=>
     row = $(changeEvent.data)
     amount_value = @amountValue(row)
+    selected_drug_in = @util.jqRify(changeEvent.target).find("option:selected")
+    # update amount
     if amount_value? and amount_value > 0
-      option_sale_price_value = @util.jqRify(changeEvent.target).find("option:selected").data("sale")
+      option_sale_price_value = selected_drug_in.data("sale")
       if option_sale_price_value?
         @setRevenueValue row, @formatNumber(option_sale_price_value * amount_value)
+    # update drug usgae
+    drug_usage_id = selected_drug_in.data("default-usage")
+    if drug_usage_id?
+      console.log drug_usage_id
+      @setDrugUsageSelectVal(row, drug_usage_id)
   
   amountTextInputChangeEvent: (changeEvent)=>
     row = $(changeEvent.data)

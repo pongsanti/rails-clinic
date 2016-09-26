@@ -2,7 +2,8 @@ module ExamsHelper
   def select_drug_in
     select_tag "drug_ins", options_for_select( \
         @drug_ins.map{ |d| [select_drug_in_text(d), d.id, \
-        { data: {"subtext"=> select_drug_in_subtext(d), "sale" => d.sale_price_per_unit } } ] } \
+        { data: {"subtext"=> select_drug_in_subtext(d), \
+          "sale" => d.sale_price_per_unit, "default-usage" => default_drug_usage_id(d) } } ] } \
       ), \
       class: "form-control", data: { 'live-search' => true }
   end
@@ -10,7 +11,8 @@ module ExamsHelper
   def select_drug_in_form(f)
     f.select :drug_in_id, options_for_select( \
       @drug_ins.map{ |d| [select_drug_in_text(d), d.id, \
-      { data: {"subtext" => select_drug_in_subtext(d), "sale" => d.sale_price_per_unit } } ] }, \
+      { data: {"subtext" => select_drug_in_subtext(d), \
+        "sale" => d.sale_price_per_unit, "default-usage" => default_drug_usage_id(d) } } ] }, \
       f.object.drug_in_id \
     ), \
     {}, class: "selectpicker form-control", data: {"live-search" => true }
@@ -53,4 +55,12 @@ module ExamsHelper
     def select_drug_in_subtext(drug_in)
       "Bal. #{drug_in.balance} Sale price. #{drug_in.sale_price_per_unit}"
     end
+
+    def default_drug_usage_id(drug_in)
+      if drug_in.drug.drug_usage
+        drug_in.drug.drug_usage.id
+      else
+        nil
+      end
+    end    
 end
