@@ -27,6 +27,7 @@ class Customer
     @displayThaiYear()
     @displayMonthNumber()
     @preSelectSex()
+    @initializeTypeahead()
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='customer']")
 
@@ -37,5 +38,23 @@ class Customer
       sex_selected_value = prefix_select.find("option:selected").data("sex")
       $("\##{sex_selected_value}_btn").button("toggle")
 
+  initializeTypeahead: ()->
+    province_text_input = $("input[id*='province']")
+    if province_text_input.length
+
+      countries = new Bloodhound(
+        datumTokenizer: Bloodhound.tokenizers.whitespace
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        prefetch: 
+          url: '/provinces'
+          cache: false
+      )
+
+      province_text_input.typeahead(null, 
+        { 
+          name: 'countries'
+          source: countries
+        }
+      )
 
 view.customer = new Customer
