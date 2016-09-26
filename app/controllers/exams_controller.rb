@@ -158,7 +158,7 @@ class ExamsController < ApplicationController
 
   def pay
     @exam.pay
-    redirect_to exam_url(@exam), notice: t('successfully_updated')
+    redirect_to exam_med_url(@exam), notice: t('successfully_updated')
   end
 
   def destroy
