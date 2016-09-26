@@ -22,7 +22,7 @@
               span data-toggle="tooltip" title=th_date_time_format(q.created_at)
                 =time_ago_in_words(q.created_at)
             td.rowlink-skip            
-              =>link_to q_path(q), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip" }, title: "Delete" do
+              =>link_to q_path(q), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip", confirm: "Are you sure you want to delete?" }, title: "Delete" do
                 i.glyphicon.glyphicon-trash
               =>link_to switch_category_qs_path(q), method: :patch, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip" }, title: switch_title_text(q) do
                 - if q.exam_q?

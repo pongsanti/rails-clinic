@@ -4,7 +4,7 @@
       =t("exams.info.heading")
       .pull-right
         - if not exam.paid_status
-          =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs" do
+          =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs", data: {confirm: "Are you sure you want to set paid?"} do
             i.glyphicon.glyphicon-usd
             =<"Set Paid"
             

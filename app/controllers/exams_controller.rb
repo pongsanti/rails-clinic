@@ -50,7 +50,7 @@ class ExamsController < ApplicationController
       format.pdf {
         render pdf: "exam_drug_#{@exam.id}", template: "exams/drugs/show",
           page_height: "46mm", page_width: "80mm",
-          margin: { top: 10 },
+          margin: { top: 10, bottom: 0 },
           show_as_html: params.key?('debug')
       }
     end
@@ -62,7 +62,7 @@ class ExamsController < ApplicationController
       format.pdf {
         render pdf: "exam_app_#{@exam.id}", template: "exams/appointment/show",
           page_height: "46mm", page_width: "80mm",
-          margin: { top: 10 },
+          margin: { top: 10, bottom: 0 },
           show_as_html: params.key?('debug')
       }
     end
@@ -158,7 +158,7 @@ class ExamsController < ApplicationController
 
   def pay
     @exam.pay
-    redirect_to exam_url(@exam), notice: t('successfully_updated')
+    redirect_to exam_med_url(@exam), notice: t('successfully_updated')
   end
 
   def destroy

@@ -12,6 +12,7 @@ class DrugMovementsController < ApplicationController
     ransack_params = ransack_params.merge(params[:q]) if params[:q]
 
     @q = DrugMovement.ransack(ransack_params)
+    @q.sorts = "created_at desc" if @q.sorts.empty?
     @drug_movements = @q.result.page(params[:page])
   end
 

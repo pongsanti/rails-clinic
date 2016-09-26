@@ -3,9 +3,10 @@
     .panel-header 
       =t("exams.drug_form.heading")
       .pull-right
-        =>link_to show_exam_drug_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
-          i.glyphicon.glyphicon-print
-          =<"Print"
+        - if exam.patient_drugs.present?
+          =>link_to show_exam_drug_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
+            i.glyphicon.glyphicon-print
+            =<"Print"
         = render partial: "global/toggle_panel_button", locals: { target: "#examDrugInfoBody" }          
       .clearfix
   .table-responsive.collapse.in#examDrugInfoBody
