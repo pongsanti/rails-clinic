@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
+  #provinces
+  get "provinces", to: "customers#provinces", as: "customer_provinces"
 
   get "exam_weight/:id/edit",       to: "exams#edit_weight",    as: "edit_exam_weight"
   patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
