@@ -6,6 +6,9 @@ class DrugsController < ApplicationController
   before_action :set_store_units, only: [:new, :edit]
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :create, :update]
 
+  #bc
+  add_breadcrumb bc(:list, Drug), :drugs_path
+
   # GET /drugs
   def index
     @drugs = @q.result.page params[:page]
@@ -18,15 +21,19 @@ class DrugsController < ApplicationController
 
   # GET /drugs/1
   def show
+    add_bc :show, drug_path(@drug)
   end
 
   # GET /drugs/new
   def new
+    add_bc :new, new_drug_path
     @drug = Drug.new
   end
 
   # GET /drugs/1/edit
   def edit
+    add_bc :show, drug_path(@drug)
+    add_bc :edit, edit_drug_path(@drug)
   end
 
   # POST /drugs
@@ -81,4 +88,8 @@ class DrugsController < ApplicationController
     def set_store_units
       @store_units = StoreUnit.all
     end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, Drug), path
+    end    
 end
