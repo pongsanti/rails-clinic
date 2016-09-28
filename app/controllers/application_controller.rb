@@ -1,6 +1,13 @@
+require 'concerns/breadcrumb_helper'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+
+  # available as class and instance methods
+  extend BreadcrumbHelper
+  include BreadcrumbHelper
+
   include Pundit
   protect_from_forgery with: :exception
   before_action :set_locale

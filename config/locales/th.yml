@@ -204,3 +204,11 @@ th:
 
   search: "ค้นหา"
   choose_attribute: "เลือกจากรายการ..."
+
+  #breadcrumb
+  bc:
+    home: "หน้าแรก"
+    list: "หน้าหลัก"
+    show: "ข้อมูล"
+    new: "สร้าง"
+    edit: "แก้ไข"
