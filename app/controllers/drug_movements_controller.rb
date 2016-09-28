@@ -9,7 +9,7 @@ class DrugMovementsController < ApplicationController
 
   #bc
   add_breadcrumb bc(:list, Drug), :drugs_path
-  before_action :set_bc, only: [:index]
+  before_action :set_bc, only: [:index, :show, :new]
 
   def index
     ransack_params = {for_drug_in: @drug_in.id}
@@ -21,9 +21,11 @@ class DrugMovementsController < ApplicationController
   end
 
   def show
+    add_bc :show, drug_movement_path(@drug_movement)
   end
 
   def new
+    add_bc :new, new_drug_in_drug_movement_path(@drug_in)
     @drug_movement = DrugMovement.new
   end
 
