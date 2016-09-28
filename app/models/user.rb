@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
 
   has_many :exams, foreign_key: 'examiner_id'
   belongs_to :client
-  belongs_to :user
+  belongs_to :role
 end
