@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  #bc  
+  add_breadcrumb I18n.t("bc.home"), :root_path
+
   private
   	def set_locale
   	  I18n.locale = params[:locale] || I18n.default_locale

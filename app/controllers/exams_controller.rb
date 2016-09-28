@@ -1,5 +1,8 @@
 class ExamsController < ApplicationController
   
+  #bc
+  add_breadcrumb bc(:list, Customer), :customers_path
+
   before_action :authenticate_user!
   before_action :set_exam, only: [
     :show, :show_med, :show_drugs, :show_appointments,
@@ -29,6 +32,10 @@ class ExamsController < ApplicationController
   before_action :set_user, only: [:update_weight, :update_pe, :update_diag,
       :update_drug, :update_revenue, :update_appointment ]
 
+  before_action :set_bc, only: [:index, :show, :new_weight,
+    :edit_weight, :edit_pe, :edit_diag,
+    :edit_drug, :edit_revenue, :edit_appointment]
+
   def index
     ransack_params = {for_customer: @customer.id}
     ransack_params = ransack_params.merge(params[:q]) if params[:q]
@@ -38,6 +45,7 @@ class ExamsController < ApplicationController
   end
 
   def show
+    add_bc :show, exam_path(@exam)
   end
 
   def show_med
@@ -69,27 +77,34 @@ class ExamsController < ApplicationController
   end
 
   def new_weight
+    add_bc :new, new_customer_exam_weight_path(@customer)
     @exam = Exam.new
   end
 
   def edit_weight
+    set_edit_bc edit_exam_weight_path(@exam)
   end
 
   def edit_pe
+    set_edit_bc edit_exam_pe_path(@exam)
   end
 
   def edit_diag
+    set_edit_bc edit_exam_diag_path(@exam)
   end
 
   def edit_drug
+    set_edit_bc edit_exam_drug_path(@exam)
     set_objects_for_edit
   end
 
   def edit_revenue
+    set_edit_bc edit_exam_revenue_path(@exam)
     render "exams/revenue/edit"
   end
 
   def edit_appointment
+    set_edit_bc edit_exam_appointment_path(@exam) 
     render "exams/appointment/edit"
   end
 
@@ -224,5 +239,19 @@ class ExamsController < ApplicationController
     def set_objects_for_edit
       @drug_ins = DrugIn.includes(:drug)
       @drug_usages = DrugUsage.all
+    end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, Exam), path
+    end
+
+    def set_bc
+      add_breadcrumb bc(:show, Customer), customer_path(@customer)
+      add_bc :list, customer_exams_path(@customer)
+    end
+
+    def set_edit_bc(path)
+      add_bc :show, exam_path(@exam)
+      add_bc :edit, path
     end
 end

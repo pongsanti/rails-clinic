@@ -6,7 +6,6 @@ class CustomersController < ApplicationController
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :update, :create]
 
   #bc
-  add_breadcrumb I18n.t "bc.home", :root_path
   add_breadcrumb bc(:list, Customer), :customers_path
 
   def index
