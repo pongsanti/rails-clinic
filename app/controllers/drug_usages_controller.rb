@@ -4,6 +4,9 @@ class DrugUsagesController < ApplicationController
   before_action :set_drug_usage, only: [:show, :edit, :update, :destroy]
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :update, :create]
 
+  #bc
+  add_breadcrumb bc(:list, DrugUsage), :drug_usages_path
+
   # GET /drug_usages
   def index
     @drug_usages = @q.result.page params[:page]
@@ -11,15 +14,19 @@ class DrugUsagesController < ApplicationController
 
   # GET /drug_usages/1
   def show
+    add_bc :show, drug_usage_path(@drug_usage)
   end
 
   # GET /drug_usages/new
   def new
+    add_bc :new, new_drug_usage_path
     @drug_usage = DrugUsage.new
   end
 
   # GET /drug_usages/1/edit
   def edit
+    add_bc :show, drug_usage_path(@drug_usage)
+    add_bc :edit, edit_drug_usage_path(@drug_usage)
   end
 
   # POST /drug_usages
@@ -61,5 +68,9 @@ class DrugUsagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def drug_usage_params
       params.require(:drug_usage).permit(:code, :text, :times_per_day, :use_amount)
+    end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, DrugUsage), path
     end
 end
