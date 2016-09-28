@@ -32,7 +32,8 @@ class ExamsController < ApplicationController
   before_action :set_user, only: [:update_weight, :update_pe, :update_diag,
       :update_drug, :update_revenue, :update_appointment ]
 
-  before_action :set_bc, only: [:index, :show, :new_weight,
+  before_action :set_bc, only: [:index, :show, :show_med,
+    :new_weight,
     :edit_weight, :edit_pe, :edit_diag,
     :edit_drug, :edit_revenue, :edit_appointment]
 
@@ -49,6 +50,8 @@ class ExamsController < ApplicationController
   end
 
   def show_med
+    add_bc :show, exam_path(@exam)
+    add_breadcrumb I18n.t("bc.exam_med"), exam_med_path(@exam)
     render "exams/show_med/show"
   end
 
