@@ -1,18 +1,15 @@
 module BreadcrumbHelper
   
   def bc(key, clazz)
-    locale_key = nil
+    locale_key = "bc.#{key}"
     case key
     when :list
-      locale_key = "bc.list"
+      "#{clazz.model_name.human} #{I18n.t(locale_key)}"
     when :show
-      locale_key = "bc.show"
-    when :new
-      locale_key = "bc.new"
-    when :edit
-      locale_key = "bc.edit"
+      "#{clazz.model_name.human}"
+    else
+      "#{I18n.t(locale_key)} #{clazz.model_name.human}"
     end
-    "#{I18n.t(locale_key)} #{clazz.model_name.human}"
   end
 
 end

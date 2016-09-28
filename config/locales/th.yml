@@ -208,7 +208,7 @@ th:
   #breadcrumb
   bc:
     home: "หน้าแรก"
-    list: "หน้าหลัก"
-    show: "ข้อมูล"
+    list: "(s)"
+    show: ""
     new: "สร้าง"
     edit: "แก้ไข"
