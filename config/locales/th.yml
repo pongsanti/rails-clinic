@@ -204,3 +204,12 @@ th:
 
   search: "ค้นหา"
   choose_attribute: "เลือกจากรายการ..."
+
+  #breadcrumb
+  bc:
+    home: "หน้าแรก"
+    list: "(s)"
+    show: ""
+    new: "สร้าง"
+    edit: "แก้ไข"
+    exam_med: "จ่ายยา รับเงิน"

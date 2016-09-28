@@ -5,6 +5,9 @@ class CustomersController < ApplicationController
   before_action :set_prefixes, only: [:new, :edit]
   before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :update, :create]
 
+  #bc
+  add_breadcrumb bc(:list, Customer), :customers_path
+
   def index
     @customers = @q.result.page(params[:page])
   end
@@ -15,6 +18,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    add_bc :show, customer_path(@customer)
     respond_to do |format|
       format.html
       format.pdf do
@@ -25,10 +29,13 @@ class CustomersController < ApplicationController
   end
 
   def new
+    add_bc :new, new_customer_path
   	@customer = Customer.new
   end
 
   def edit
+    add_bc :show, customer_path(@customer)
+    add_bc :edit, edit_customer_path(@customer)
   end
 
   def create
@@ -77,6 +84,10 @@ class CustomersController < ApplicationController
 
     def set_prefixes
       @prefixes = Prefix.all
+    end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, Customer), path
     end
 
 end

@@ -7,17 +7,24 @@ class DrugInsController < ApplicationController
   before_action :set_drug, only: [:index, :new]
 
   before_action :set_ransack_param, only: [:index, :new, :edit, :create, :update]
+ 
+  #bc
+  add_breadcrumb bc(:list, Drug), :drugs_path
+  before_action :set_bc, only: [:index, :new, :edit]
 
   def index
     @drug_ins = @q.result.page params[:page]
   end
 
   def new
+    add_bc :new, new_drug_drug_in_path(@drug)
     @drug_in = DrugIn.new
   end
 
   # GET /drug_ins/1/edit
   def edit
+    add_breadcrumb bc(:list, DrugMovement), drug_in_drug_movements_path(@drug_in)
+    add_bc :edit, edit_drug_in_path(@drug_in)
   end
 
   def create
@@ -76,5 +83,14 @@ class DrugInsController < ApplicationController
 
     def drug_in_params_update
       params.require(:drug_in).permit(:expired_date, :cost, :sale_price_per_unit)
+    end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, DrugIn), path
+    end
+
+    def set_bc
+      add_breadcrumb bc(:show, Drug), drug_path(@drug)
+      add_bc :list, drug_drug_ins_path(@drug)
     end
 end

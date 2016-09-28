@@ -1,0 +1,8 @@
+th:
+  activerecord:
+    models:
+      user: "ผู้ใช้งาน"
+    attributes:
+      user:
+        email: "Email address"
+        password: "Password"

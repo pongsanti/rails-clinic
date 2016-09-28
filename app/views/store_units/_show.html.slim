@@ -16,6 +16,6 @@
         = render partial: "global/show_id", locals: {obj: @store_unit, f: f}
 
       .form-group
-        = f.label :name, class: "col-sm-2 control-label required-label"
+        = f.label :title, class: "col-sm-2 control-label required-label"
         .col-sm-10
           p.form-control-static = @store_unit.title

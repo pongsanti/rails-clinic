@@ -1,0 +1,21 @@
+= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+  
+  
+  .text-center
+    = icon("sign-in", class: "fa-5x")
+  br
+
+  h2.form-signin-heading =t("devise.sessions.sign_in")
+  
+  = f.label :email, class: "sr-only"
+  = f.email_field :email, class: "form-control", placeholder: true, required: true, autofocus: true
+  = f.label :password, class: "sr-only"
+  = f.password_field :password, class: "form-control", placeholder: true
+  - if devise_mapping.rememberable?
+    .checkbox
+      label
+        => f.check_box :remember_me
+        => "Remember me"
+  = f.submit t("devise.sessions.sign_in"), class: "btn btn-lg btn-primary btn-block"
+  br
+  = render "users/shared/links"

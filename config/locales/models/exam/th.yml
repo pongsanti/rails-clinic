@@ -1,7 +1,7 @@
 th:
   activerecord:
     models:
-      exam: "ยาและเวชภัณฑ์"
+      exam: "วินิจฉัย"
     attributes:
       exam:
         id: "รหัสวินิจฉัย"

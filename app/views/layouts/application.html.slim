@@ -53,11 +53,6 @@ html lang="en"
                   = link_to new_customer_path do
                     span.glyphicon.glyphicon-bed>
                     => t('customers.new.title')
-            / Cashier
-            li
-              a href="#contact"
-                span.glyphicon.glyphicon-usd aria-hidden="true"
-                ="Cashier"
             / Drug
             li.dropdown
               a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
@@ -98,6 +93,7 @@ html lang="en"
 
     div.container id="main_content"
       = render partial: "layouts/flash"
+      = render "global/breadcrumb"
       = yield
 
     footer.footer

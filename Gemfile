@@ -46,6 +46,8 @@ gem "paranoia", "~> 2.0"
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+
+gem 'breadcrumbs_on_rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

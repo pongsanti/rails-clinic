@@ -1,7 +1,7 @@
 th:
   activerecord:
     models:
-      drug_in: "เวชภัณฑ์เข้า"
+      drug_in: "ล็อตยาเวชภัณฑ์"
     attributes:
       drug_in:
         id: "รหัสล็อต"

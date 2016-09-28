@@ -1,7 +1,7 @@
 th:
   activerecord:
     models:
-      drug: "ยาและเวชภัณฑ์"
+      drug: "ยาเวชภัณฑ์"
     attributes:
       drug:
         id: "รหัส"
