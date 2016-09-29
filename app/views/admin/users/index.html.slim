@@ -1,0 +1,13 @@
+.table-responsive.collapse.in#customerIndexBody
+  table.table.table-striped.table-hover.table-condensed
+    thead
+      tr
+        th= :id
+        th= :display_name
+        th= :email
+    tbody.rowlink data-link="row"
+      - @users.each do |u|
+        tr
+          td= format_id u
+          td= u.display_name
+          td= u.email
