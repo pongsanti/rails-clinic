@@ -1,4 +1,5 @@
 window.view = {}
+window.view.admin = {}
 
 class constant
   CUSTOMER: 'customers'
@@ -9,6 +10,8 @@ class constant
   DRUG: "drugs"
   DRUG_IN: "drug_in"
   DRUG_MOVEMENT: "drug_movement"
+
+  ADMIN_USER: "admin/user"
 
 class util
 
@@ -169,6 +172,9 @@ initializePage = ->
 
   if view.util.isUrlOf(url, view.const.DRUG_MOVEMENT)
     view.drug_movement.initializePage()
+
+  if view.util.isUrlOf(url, view.const.ADMIN_USER)
+    view.admin.user.initializePage()
     
   # refresh select picker
   view.util.initializeSelectPicker()
