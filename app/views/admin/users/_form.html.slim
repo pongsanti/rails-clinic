@@ -1,10 +1,13 @@
 = render partial: "global/alert", locals: {obj: @user}
 
-=form_for @user, url: admin_user_path(@user),  html: { class: "form-horizontal" } do |f|
-  - for role in User::ROLES
-    = check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), name: "user[roles][]"
-    = label_tag "user_roles_#{role}", role.to_s.humanize
-    br
-
-  = hidden_field_tag "user[roles][]", ""
-  = render partial: 'global/form_button', locals: {f: f}
+= form_for @user, url: admin_user_path(@user),  html: { class: "form-horizontal" } do |f|
+  .form-group
+    .btn-group data-toggle="buttons"
+      - for role in User::ROLES
+        label class=label_class(@user, role) for="user_roles_#{role}"
+          => check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), name: "user[roles][]"
+          => role.to_s.humanize
+      = hidden_field_tag "user[roles][]", ""
+  
+  .form-group      
+    = render partial: 'global/form_button', locals: {f: f}
