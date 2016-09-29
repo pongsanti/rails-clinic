@@ -1,28 +1,38 @@
 class Admin::UsersController < ApplicationController
   
   before_action :authenticate_user!
+  before_action :set_ransack_search_param, only: [:index, :edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
   
   def index
-    @users = User.all
+    @users = @q.result.page(params[:page])
   end
 
-  def new
-    @user = User.new
+  def edit
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to new_user_path, :notice => "Signed up!"
+  def update
+    if @user.update(user_params)
+      redirect_to admin_user_url(@user), notice: t("successfully_updated")
     else
-      render "new"
+      render 'edit'
     end
+  end
+
+  def destroy
   end
 
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit( roles:[] )
     end
 
+    def set_ransack_search_param
+      @q = User.ransack(params[:q])
+    end
+
+    def set_user
+      @user = User.find(params[:id])
+    end
 end

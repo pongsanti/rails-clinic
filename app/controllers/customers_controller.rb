@@ -43,7 +43,7 @@ class CustomersController < ApplicationController
     @customer.cn = '001'
   	
   	if @customer.save
-      redirect_to customer_url(@customer)
+      redirect_to customer_url(@customer), notice: t("successfully_created")
     else
       set_prefixes
       render 'new'
@@ -52,7 +52,7 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to @customer
+      redirect_to @customer, notice: t("successfully_updated")
     else
       set_prefixes
       render 'edit'
