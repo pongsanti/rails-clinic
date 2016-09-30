@@ -39,17 +39,19 @@ class Customer < ActiveRecord::Base
     def ransortable_attributes(auth_object = nil)
       %w(id name surname sex birthdate id_card_no created_at)
     end
+
+    def latest_cn
+      prefix = (Date.current.year + 543) % 100
+      cust = Customer.where("cn LIKE '#{prefix}%'").order("cn desc").first
+      if cust.present?
+        (cust.cn.to_i + 1).to_s
+      else
+        "#{prefix}00000"
+      end      
+    end
+    
   end
 
-  def latest_cn
-    prefix = (Date.current.year + 543) % 100
-    cust = Customer.where("cn LIKE '#{prefix}%'").order("cn desc").first
-    if cust.present?
-      (cust.cn.to_i + 1).to_s
-    else
-      "#{prefix}00000"
-    end      
-  end
 
   private
     def delete_masked_input

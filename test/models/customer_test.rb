@@ -102,9 +102,9 @@ class CustomerTest < ActiveSupport::TestCase
     cn = @customer.cn
     prefix = cn_prefix
     if prefix == "#{cn[0]}#{cn[1]}".to_i
-      assert_equal (cn.to_i + 1).to_s, @customer.latest_cn
+      assert_equal (cn.to_i + 1).to_s, Customer.latest_cn
     else
-      assert_equal "#{prefix}00000", @customer.latest_cn
+      assert_equal "#{prefix}00000", Customer.latest_cn
     end
   end
 
@@ -114,7 +114,7 @@ class CustomerTest < ActiveSupport::TestCase
     @customer.reload
 
     prefix = cn_prefix
-    assert_equal "#{prefix}00000", @customer.latest_cn
+    assert_equal "#{prefix}00000", Customer.latest_cn
   end
 
   private
