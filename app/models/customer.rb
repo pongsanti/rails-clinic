@@ -41,6 +41,16 @@ class Customer < ActiveRecord::Base
     end
   end
 
+  def latest_cn
+    prefix = (Date.current.year + 543) % 100
+    cust = Customer.where("cn LIKE '#{prefix}%'").order("cn desc").first
+    if cust.present?
+      (cust.cn.to_i + 1).to_s
+    else
+      "#{prefix}00000"
+    end      
+  end
+
   private
     def delete_masked_input
       id_card_no.delete! DASH_SEPARATOR if id_card_no.present?

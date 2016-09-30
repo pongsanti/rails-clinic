@@ -98,4 +98,28 @@ class CustomerTest < ActiveSupport::TestCase
     assert_equal 2, @customer.exams.count
   end
 
+  test "should get latest cn" do
+    cn = @customer.cn
+    prefix = cn_prefix
+    if prefix == "#{cn[0]}#{cn[1]}".to_i
+      assert_equal (cn.to_i + 1).to_s, @customer.latest_cn
+    else
+      assert_equal "#{prefix}00000", @customer.latest_cn
+    end
+  end
+
+  test "should get latest cn case first record" do
+    @customer.cn = "0000"
+    @customer.save
+    @customer.reload
+
+    prefix = cn_prefix
+    assert_equal "#{prefix}00000", @customer.latest_cn
+  end
+
+  private
+    def cn_prefix
+      (Date.current.year + 543) % 100
+    end
+
 end
