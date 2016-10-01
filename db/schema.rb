@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929140944) do
+ActiveRecord::Schema.define(version: 20161001051937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160929140944) do
     t.string   "street"
   end
 
+  add_index "customers", ["cn"], name: "index_customers_on_cn", unique: true, using: :btree
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at", using: :btree
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id", using: :btree
 
