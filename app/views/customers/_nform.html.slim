@@ -31,11 +31,8 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
       .form-group
         = f.label :cn, class: "col-sm-2 control-label required-label"
         .col-sm-4
-          .input-group
-            = f.text_field :cn, class: "form-control", required: true, readonly: true
-            span.input-group-btn
-              button.btn.btn-default type="button"
-                i.glyphicon.glyphicon-refresh
+          = f.text_field :cn, class: "form-control", required: true, readonly: true
+          
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :name, require_label: true, require_attr: true }
         =render partial: "global/txt_field", locals: {f: f, method: :surname, require_label: true, require_attr: true }

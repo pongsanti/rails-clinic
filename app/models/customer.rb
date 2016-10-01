@@ -15,6 +15,7 @@ class Customer < ActiveRecord::Base
   has_many :exams, inverse_of: :customer
 
 	validates :prefix, presence: true
+  validates :cn, uniqueness: true
   validates :sex, presence: true, inclusion: { in: %w(M F) }
 	validates :name, presence: true
   validates :surname, presence: true
@@ -50,6 +51,10 @@ class Customer < ActiveRecord::Base
       end      
     end
     
+  end
+
+  def set_cn
+    self.cn = Customer.latest_cn
   end
 
 

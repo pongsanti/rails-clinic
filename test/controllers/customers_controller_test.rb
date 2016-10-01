@@ -66,7 +66,8 @@ class CustomersControllerTest < ActionController::TestCase
   test "should post create" do
     assert_difference "Customer.count" do
       post "create", customer: {prefix_id: @prefix.id, name: "John", surname: "Doe",
-        sex: "M", birthdate: "1988-05-05" }
+        sex: "M", cn: "5800001",
+        birthdate: "1988-05-05" }
     end
 
     customer = Customer.last

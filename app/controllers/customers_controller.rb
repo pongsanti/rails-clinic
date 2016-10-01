@@ -30,7 +30,8 @@ class CustomersController < ApplicationController
 
   def new
     add_bc :new, new_customer_path
-  	@customer = Customer.new(cn: Customer.latest_cn)
+    @customer = Customer.new
+  	@customer.set_cn
   end
 
   def edit
@@ -65,7 +66,13 @@ class CustomersController < ApplicationController
 
   private
   	def create_params
-  		update_params.permit(:cn)
+      params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
+        :cn,
+        :birthdate, :id_card_no, :passport_no, :nationality,
+        :occupation,
+        :address, :street, :sub_district, :district, :province, :postal_code,
+        :email,
+        :home_phone_no, :tel_no)
   	end
 
     def update_params
