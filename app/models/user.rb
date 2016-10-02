@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :exams, foreign_key: 'examiner_id'
-  belongs_to :client
+  belongs_to :client, inverse_of: :users
 
   #Roles
   def roles=(roles)

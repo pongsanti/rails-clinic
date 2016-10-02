@@ -49,6 +49,8 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'breadcrumbs_on_rails'
+
+gem 'apartment'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
