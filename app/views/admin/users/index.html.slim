@@ -1,0 +1,22 @@
+= render partial: "global/page_header", locals: { icon_name: "user", title: t(".title"), subtext: t(".sub_text") }
+
+.panel.panel-default#userIndex
+  .panel-heading
+    .panel-header 
+      =t("customers.index.title")
+      .pull-right
+        = render partial: "global/toggle_panel_button", locals: { target: "#userIndexBody" }
+      .clearfix
+  .table-responsive.collapse.in#userIndexBody
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th= sort_link @q, :id
+          th= sort_link @q, :display_name
+          th= sort_link @q, :email
+      tbody.rowlink data-link="row"
+        - @users.each do |u|
+          tr
+            td= format_id u
+            td= link_to u.display_name, edit_admin_user_path(u)
+            td= u.email

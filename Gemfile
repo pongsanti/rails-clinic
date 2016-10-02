@@ -48,6 +48,8 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
 gem 'breadcrumbs_on_rails'
+
+gem 'apartment'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -59,6 +61,10 @@ group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 group :development do

@@ -15,6 +15,7 @@ class Customer < ActiveRecord::Base
   has_many :exams, inverse_of: :customer
 
 	validates :prefix, presence: true
+  validates :cn, uniqueness: true
   validates :sex, presence: true, inclusion: { in: %w(M F) }
 	validates :name, presence: true
   validates :surname, presence: true
@@ -39,7 +40,23 @@ class Customer < ActiveRecord::Base
     def ransortable_attributes(auth_object = nil)
       %w(id name surname sex birthdate id_card_no created_at)
     end
+
+    def latest_cn
+      prefix = (Date.current.year + 543) % 100
+      cust = Customer.where("cn LIKE '#{prefix}%'").order("cn desc").first
+      if cust.present?
+        (cust.cn.to_i + 1).to_s
+      else
+        "#{prefix}00000"
+      end      
+    end
+    
   end
+
+  def set_cn
+    self.cn = Customer.latest_cn
+  end
+
 
   private
     def delete_masked_input

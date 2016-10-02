@@ -6,6 +6,7 @@ th:
       customer:
         id: "รหัสผู้ป่วย"
         prefix: "คำนำหน้าชื่อ"
+        cn: "CN"
         name: "ชื่อ"
         surname: "นามสกุล"
         sex: "เพศ"

@@ -18,6 +18,17 @@ class CustomerTest < ActiveSupport::TestCase
     error_contains error_msg(prefix, ERR_BLANK)
   end
 
+  test "should not save with duplicated cn" do
+    cn = "activerecord.attributes.customer.cn"
+
+    john = customers(:customer_two)
+    @customer.cn = john.cn
+        
+    assert_not @customer.save
+    error_count 1
+    error_contains error_msg(cn, ERR_TAKEN)
+  end
+
   test "should not save without sex" do
     sex = "activerecord.attributes.customer.sex"
     msg_blank = error_msg sex, ERR_BLANK
@@ -97,5 +108,32 @@ class CustomerTest < ActiveSupport::TestCase
   test "should have exams" do
     assert_equal 2, @customer.exams.count
   end
+
+  test "should get latest cn" do
+    john = customers(:customer_two)
+    cn = john.cn
+    prefix = cn_prefix
+    if prefix == "#{cn[0]}#{cn[1]}".to_i
+      assert_equal (cn.to_i + 1).to_s, Customer.latest_cn
+    else
+      assert_equal "#{prefix}00000", Customer.latest_cn
+    end
+  end
+
+  test "should get latest cn case first record" do
+    john = customers(:customer_two)
+    john.cn = "0000"
+    john.save
+    @customer.cn = "0001"
+    @customer.save
+    
+    prefix = cn_prefix
+    assert_equal "#{prefix}00000", Customer.latest_cn
+  end
+
+  private
+    def cn_prefix
+      (Date.current.year + 543) % 100
+    end
 
 end

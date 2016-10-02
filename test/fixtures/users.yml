@@ -1,3 +1,7 @@
-  john:
-    email: "john@gmail.com"
-    encrypted_password: ""
+david:
+  email: "david@gmail.com"
+  encrypted_password: ""
+
+john:
+  email: "john@gmail.com"
+  encrypted_password: ""

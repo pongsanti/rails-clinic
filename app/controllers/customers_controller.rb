@@ -30,7 +30,8 @@ class CustomersController < ApplicationController
 
   def new
     add_bc :new, new_customer_path
-  	@customer = Customer.new
+    @customer = Customer.new
+  	@customer.set_cn
   end
 
   def edit
@@ -39,11 +40,10 @@ class CustomersController < ApplicationController
   end
 
   def create
-  	@customer = Customer.new(customer_params)
-    @customer.cn = '001'
+  	@customer = Customer.new(create_params)
   	
   	if @customer.save
-      redirect_to customer_url(@customer)
+      redirect_to customer_url(@customer), notice: t("successfully_created")
     else
       set_prefixes
       render 'new'
@@ -51,8 +51,8 @@ class CustomersController < ApplicationController
   end
 
   def update
-    if @customer.update(customer_params)
-      redirect_to @customer
+    if @customer.update(update_params)
+      redirect_to @customer, notice: t("successfully_updated")
     else
       set_prefixes
       render 'edit'
@@ -65,14 +65,24 @@ class CustomersController < ApplicationController
   end
 
   private
-  	def customer_params
-  		params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
-  			:birthdate, :id_card_no, :passport_no, :nationality,
+  	def create_params
+      params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
+        :cn,
+        :birthdate, :id_card_no, :passport_no, :nationality,
         :occupation,
-  			:address, :street, :sub_district, :district, :province, :postal_code,
+        :address, :street, :sub_district, :district, :province, :postal_code,
         :email,
-  			:home_phone_no, :tel_no)
+        :home_phone_no, :tel_no)
   	end
+
+    def update_params
+      params.require(:customer).permit(:prefix_id, :name, :surname, :sex,
+        :birthdate, :id_card_no, :passport_no, :nationality,
+        :occupation,
+        :address, :street, :sub_district, :district, :province, :postal_code,
+        :email,
+        :home_phone_no, :tel_no)
+    end
 
     def set_ransack_search_param
       @q = Customer.ransack(params[:q])
@@ -89,5 +99,4 @@ class CustomersController < ApplicationController
     def add_bc(key, path)
       add_breadcrumb bc(key, Customer), path
     end
-
 end

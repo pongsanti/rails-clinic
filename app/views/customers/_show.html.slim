@@ -18,6 +18,11 @@
       = render partial: "global/show_id", locals: {obj: @customer, f: f}
 
       .form-group
+        = f.label :cn, class: "col-sm-2 control-label required-label"
+        .col-sm-4
+          p.form-control-static =@customer.cn
+      
+      .form-group
         = f.label :prefix, class: "col-sm-2 control-label required-label"
         .col-sm-4
           p.form-control-static =@customer.prefix.name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927161323) do
+ActiveRecord::Schema.define(version: 20161002170823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160927161323) do
     t.string   "mobile_phone_no"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "subdomain"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160927161323) do
     t.string   "street"
   end
 
+  add_index "customers", ["cn"], name: "index_customers_on_cn", unique: true, using: :btree
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at", using: :btree
   add_index "customers", ["prefix_id"], name: "index_customers_on_prefix_id", using: :btree
 
@@ -234,13 +236,12 @@ ActiveRecord::Schema.define(version: 20160927161323) do
     t.datetime "updated_at",                          null: false
     t.integer  "client_id"
     t.string   "display_name"
-    t.integer  "role_id"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["client_id"], name: "index_users_on_client_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "appointments", "exams"
   add_foreign_key "customers", "prefixes"
@@ -258,5 +259,4 @@ ActiveRecord::Schema.define(version: 20160927161323) do
   add_foreign_key "patient_drugs", "exams"
   add_foreign_key "qs", "exams"
   add_foreign_key "users", "clients"
-  add_foreign_key "users", "roles"
 end

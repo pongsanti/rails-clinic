@@ -1,0 +1,20 @@
+= form_for(@client) do |f|
+  - if @client.errors.any?
+    #error_explanation
+      h2 
+        = pluralize(@client.errors.count, "error") 
+        = "prohibited this client from being saved:"
+      ul
+        - @client.errors.full_messages.each do |message|
+          li= message
+
+  .form-group
+    = f.label :name
+    = f.text_field :name
+
+  .form-group
+    = f.label :subdomain
+    = f.text_field :subdomain
+  
+  .actions
+    = f.submit

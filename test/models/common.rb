@@ -9,6 +9,7 @@ module Common
   ERR_LESS_THAN = ERR_PREFIX + "less_than"
   ERR_LESS_THAN_OR_EQUAL_TO = ERR_PREFIX + "less_than_or_equal_to"
   ERR_GREATER_THAN_OR_EQUAL_TO = ERR_PREFIX + "greater_than_or_equal_to"
+  ERR_TAKEN = ERR_PREFIX + "taken"
    
   def error_count(count)
     assert_equal count, @test_target.errors.count
