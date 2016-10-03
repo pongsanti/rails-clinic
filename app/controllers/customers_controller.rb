@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
   add_breadcrumb bc(:list, Customer), :customers_path
 
   def index
-    @customers = @q.result.inc_ess.page(params[:page])
+    @customers = @q.result.eager.page(params[:page])
   end
 
   def provinces
@@ -89,7 +89,7 @@ class CustomersController < ApplicationController
     end
 
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.eager.find(params[:id])
     end
 
     def set_prefixes

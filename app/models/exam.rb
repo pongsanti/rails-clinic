@@ -32,15 +32,15 @@ class Exam < ActiveRecord::Base
   class << self
     #scope
 
-    def inc_ess
-      includes(customer: [:prefix])
+    def eager
+      joins(customer: [:prefix]).includes(customer: [:prefix])
     end
 
     def for_customer(cid)
       # workaround for ransack bug
       # https://github.com/activerecord-hackery/ransack/issues/593
       #cid = 1 if cid == true
-      where("customer_id = ?", cid)
+      eager.where("customer_id = ?", cid)
     end
   end
 

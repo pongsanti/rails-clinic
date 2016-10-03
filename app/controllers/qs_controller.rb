@@ -5,8 +5,8 @@ class QsController < ApplicationController
   before_action :set_q, only: [:destroy, :switch_category, :activate]
   
   def index
-    @exQs = Q.cat_is(Q::EXAM_Q_CAT).inc_ess
-    @medQs = Q.cat_is(Q::MED_Q_CAT).inc_ess
+    @exQs = Q.cat_is(Q::EXAM_Q_CAT)
+    @medQs = Q.cat_is(Q::MED_Q_CAT)
   end
 
   def create
@@ -19,7 +19,7 @@ class QsController < ApplicationController
 
   def activate
     # Deactivate other all of the same kind
-    Q.cat_is(@q.category).where("id != ?", @q).update_all(active: false)
+    Q.cat_is(@q.category).where("qs.id != ?", @q).update_all(active: false)
     @q.active = true
     @q.save
 
@@ -49,7 +49,7 @@ class QsController < ApplicationController
     #end
 
     def set_q
-      @q = Q.find(params[:id])
+      @q = Q.eager.find(params[:id])
     end
 
     def set_exam

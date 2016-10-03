@@ -30,8 +30,8 @@ class Customer < ActiveRecord::Base
 
   class << self
     # includes essentials
-    def inc_ess
-      includes :prefix
+    def eager
+      joins(:prefix).includes(:prefix)
     end
 
     # searchable fields

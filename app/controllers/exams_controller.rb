@@ -39,7 +39,7 @@ class ExamsController < ApplicationController
 
   def index
     @q = Exam.for_customer(@customer.id).ransack(params[:q])
-    @exams = @q.result.inc_ess.page(params[:page])
+    @exams = @q.result.page(params[:page])
   end
 
   def show
@@ -221,7 +221,7 @@ class ExamsController < ApplicationController
     end
 
     def set_exam
-      @exam = Exam.find(params[:id])
+      @exam = Exam.eager.find(params[:id])
     end
 
     def set_customer
