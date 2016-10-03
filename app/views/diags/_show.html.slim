@@ -3,7 +3,7 @@
     .panel-header 
       =t("customers.show.title")
       .pull-right
-        =>link_to edit_diag_path(@diag), class: "btn btn-warning btn-xs" do
+        =>link_to edit_diag_path(diag), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
         = render "global/panel_back_button"
@@ -11,13 +11,9 @@
       .clearfix
 
   .panel-body.collapse.in#diagShowBody
-    =form_for @diag, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: @diag, f: f}
-
+    =form_for diag, html: { class: "form-horizontal" } do
       .form-group
-        = f.label :name, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static = @diag.name
-        = f.label :description, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static = @diag.description
+        = render partial: "global/txt_show_id", locals: {obj: diag}
+      .form-group
+        = render partial: "global/txt_show", locals: { obj: diag, method: :name, required: true }
+        = render partial: "global/txt_show", locals: { obj: diag, method: :description }

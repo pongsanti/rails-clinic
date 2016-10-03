@@ -3,7 +3,7 @@
     .panel-header 
       =t("store_units.show.title")
       .pull-right
-        =>link_to edit_store_unit_path(@store_unit), class: "btn btn-warning btn-xs" do
+        =>link_to edit_store_unit_path(su), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
         = render "global/panel_back_button"
@@ -11,11 +11,9 @@
       .clearfix
 
   .panel-body.collapse.in#storeUnitShowBody
-    =form_for @store_unit, html: { class: "form-horizontal" } do |f|
+    =form_for su, html: { class: "form-horizontal" } do
       .form-group
-        = render partial: "global/show_id", locals: {obj: @store_unit, f: f}
+        = render partial: "global/txt_show_id", locals: {obj: su}
 
       .form-group
-        = f.label :title, class: "col-sm-2 control-label required-label"
-        .col-sm-10
-          p.form-control-static = @store_unit.title
+        = render partial: "global/txt_show", locals: { obj: su, method: :title, required: true, tf_width: 10 }
