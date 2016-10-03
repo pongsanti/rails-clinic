@@ -5,9 +5,9 @@ th:
     attributes:
       exam:
         id: "รหัสวินิจฉัย"
-        weight: "น้ำหนัก"
-        height: "ส่วนสูง"
-        pulse: "ชีพจร"
+        weight: "น้ำหนัก (kg)"
+        height: "ส่วนสูง (cm)"
+        pulse: "ชีพจร (bpm)"
         bp_systolic: "ความดันโลหิต"
         bp_diastolic: "ความดันโลหิต"
         drug_allergy: "แพ้ยา"

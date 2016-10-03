@@ -12,39 +12,14 @@
   .panel-body.collapse.in#examWeightInfoBody
     =form_for exam, html: { class: "form-horizontal" } do |f|
       .form-group
-        = f.label :weight, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            =>exam.weight
-            =>"kg"
-
-        = f.label :height, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            =>exam.height
-            =>"cm"
-
+        = render partial: "global/txt_show", locals: {obj: exam, method: :weight, lb_width: 2, tf_width: 2}
+        = render partial: "global/txt_show", locals: {obj: exam, method: :height, lb_width: 2, tf_width: 2} 
+        = render partial: "global/txt_show", locals: {obj: exam, method: :bmi, lb_width: 2, tf_width: 2}
+      
       .form-group
-        = f.label :bmi, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static
-            =>exam.bmi
-
+        = render partial: "global/txt_show", locals: {obj: exam, method: :bp_systolic, value: \
+            "#{exam.bp_systolic} / #{exam.bp_diastolic}"}
+        = render partial: "global/txt_show", locals: {obj: exam, method: :pulse }
+           
       .form-group
-        = f.label :bp_systolic, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static
-            =>exam.bp_systolic
-            =>"/"
-            =>exam.bp_diastolic
-        = f.label :pulse, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static
-            =>exam.pulse
-            =>"bpm"
-
-      .form-group
-        = f.label :note, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static
-            =exam.note
+        = render partial: "global/txt_show", locals: {obj: exam, method: :note }
