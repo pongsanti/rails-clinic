@@ -5,8 +5,8 @@ class QsController < ApplicationController
   before_action :set_q, only: [:destroy, :switch_category, :activate]
   
   def index
-    @exQs = Q.cat_is(Q::EXAM_Q_CAT)
-    @medQs = Q.cat_is(Q::MED_Q_CAT)
+    @exQs = Q.cat_is(Q::EXAM_Q_CAT).includes(:exam, exam: :customer )
+    @medQs = Q.cat_is(Q::MED_Q_CAT).includes(:exam, exam: :customer )
   end
 
   def create
