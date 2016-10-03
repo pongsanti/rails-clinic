@@ -11,6 +11,10 @@ class Q < ActiveRecord::Base
   validates :category, inclusion: {in: [EXAM_Q_CAT, MED_Q_CAT]}, allow_blank: true
 
   scope :cat_is, -> (c) { where("category = ?", c ).order("id asc") }
+  # includes essentials
+  # Q includes exam, customer and prefix
+  scope :inc_ess, -> { includes(:exam,
+    exam: [customer: [:prefix] ] ) }
 
   def exam_q?
     self.category == EXAM_Q_CAT

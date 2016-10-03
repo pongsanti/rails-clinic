@@ -38,11 +38,8 @@ class ExamsController < ApplicationController
     :edit_drug, :edit_revenue, :edit_appointment]
 
   def index
-    ransack_params = {for_customer: @customer.id}
-    ransack_params = ransack_params.merge(params[:q]) if params[:q]
-
-    @q = Exam.ransack(ransack_params)
-    @exams = @q.result.page(params[:page])
+    @q = Exam.for_customer(@customer.id).ransack(params[:q])
+    @exams = @q.result.inc_ess.page(params[:page])
   end
 
   def show

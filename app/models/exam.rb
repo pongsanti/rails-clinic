@@ -31,16 +31,16 @@ class Exam < ActiveRecord::Base
   
   class << self
     #scope
+
+    def inc_ess
+      includes(customer: [:prefix])
+    end
+
     def for_customer(cid)
       # workaround for ransack bug
       # https://github.com/activerecord-hackery/ransack/issues/593
-      cid = 1 if cid == true
-
+      #cid = 1 if cid == true
       where("customer_id = ?", cid)
-    end
-
-    def ransackable_scopes(auth_object = nil)
-      %i(for_customer)
     end
   end
 
