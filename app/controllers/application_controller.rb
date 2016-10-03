@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
 
     # Devise
     # You can override the default behaviour by creating an after_sign_in_path_for 
-    def after_sign_in_path_for(resource)
-      root_url(subdomain: resource.client.subdomain)
-    end
+    #def after_sign_in_path_for(resource)
+    #  root_url(subdomain: resource.client.subdomain)
+    #end
 
     # Devise
     # Overwriting the sign_out redirect path method
