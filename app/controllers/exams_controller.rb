@@ -39,6 +39,8 @@ class ExamsController < ApplicationController
 
   def index
     @q = Exam.for_customer(@customer.id).ransack(params[:q])
+    @q.sorts = "id asc" if @q.sorts.empty?
+
     @exams = @q.result.page(params[:page])
   end
 

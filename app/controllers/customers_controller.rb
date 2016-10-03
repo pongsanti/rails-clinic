@@ -86,6 +86,7 @@ class CustomersController < ApplicationController
 
     def set_ransack_search_param
       @q = Customer.ransack(params[:q])
+      @q.sorts = "id asc" if @q.sorts.empty?
     end
 
     def set_customer
