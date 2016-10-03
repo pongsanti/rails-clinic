@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
   add_breadcrumb bc(:list, Customer), :customers_path
 
   def index
-    @customers = @q.result.page(params[:page])
+    @customers = @q.result.inc_ess.page(params[:page])
   end
 
   def provinces

@@ -29,6 +29,11 @@ class Customer < ActiveRecord::Base
   end
 
   class << self
+    # includes essentials
+    def inc_ess
+      includes :prefix
+    end
+
     # searchable fields
     def ransackable_attributes(auth_object = nil)
     #column_names + _ransackers.keys
