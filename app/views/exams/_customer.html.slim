@@ -16,33 +16,16 @@
       .clearfix
   
   .panel-body.collapse.in#customerShowBody
-    .row
-      .col-sm-4
-        = label :customer, :id
-      .col-sm-8
-        mark = format_id customer
-    .row
-      .col-sm-4
-        = label :customer, :name
-      .col-sm-8
-        = "#{customer.prefix.name} #{customer.name} #{customer.surname}"
-    .row
-      .col-sm-4
-        = label :customer, :sex
-      .col-sm-8
-        = t "customers.show.#{customer.sex}"
-    .row
-      .col-sm-4
-        = label_tag nil, t('customers.show.age')
-      .col-sm-8
-        = age_text customer
-    .row
-      .col-sm-4
-        = label :customer, :birthdate
-      .col-sm-8
-        = th_date_format(customer.birthdate)
-    .row
-      .col-sm-4
-        = label :customer, :id_card_no
-      .col-sm-8
-        = masked_id_card_no customer
+    =form_for @customer, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :id, value: format_id(customer), strong: true, lb_width: 4, tf_width: 8}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :cn, lb_width: 4, tf_width: 8}        
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer), lb_width: 4, tf_width: 8}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: customer, method: :id_card_no, value: masked_id_card_no(customer), lb_width: 4, tf_width: 8}
