@@ -1,0 +1,28 @@
+/- obj
+/- method
+/- required
+/- lb_width
+/- tf_width
+
+- default_label_width = 2
+- default_txt_field_width = 4
+
+- lb_width = local_assigns[:lb_width]
+- tf_width = local_assigns[:tf_width]
+
+- lb_width = default_label_width if lb_width.blank?
+- tf_width = default_txt_field_width if tf_width.blank?
+
+
+- default_label_class = "col-sm-#{lb_width} text-right"
+- default_required_class = "required-label"
+- required = local_assigns[:required]
+- value = local_assigns[:value]
+
+
+div class=default_label_class
+  span class=(required.present? ? default_required_class : "")
+    = obj.class.human_attribute_name(method)
+div class="col-sm-#{tf_width}"
+  strong
+    = (value.present? ? value : obj.send(method))
