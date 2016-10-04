@@ -1,7 +1,9 @@
 david:
   email: "david@gmail.com"
   encrypted_password: ""
+  roles_mask: 2
 
 john:
   email: "john@gmail.com"
   encrypted_password: ""
+  roles_mask: 4

@@ -30,9 +30,9 @@ class ExamPolicy < ApplicationPolicy
 
   #update
   def update_pe?
-
+    doctor_or_higher?
   end
-  
+
   def update_appointment?
     doctor_or_higher?
   end
