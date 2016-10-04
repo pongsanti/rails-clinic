@@ -161,4 +161,11 @@ class ExamTest < ActiveSupport::TestCase
     assert_equal balance - amount, drug.balance
   end
 
+  test "should paid?" do
+    assert_not @exam.paid?
+
+    @exam.paid_status = true
+    assert @exam.paid?
+  end
+
 end
