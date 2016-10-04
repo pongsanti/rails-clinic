@@ -3,9 +3,9 @@
     .panel-header 
       =t("exams.weight_form.heading")
       .pull-right
-        =>link_to edit_exam_weight_path(exam), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
+
+        = render partial: "global/panel/edit_btn", locals: {path: edit_exam_weight_path(exam)}
+
         = render partial: "global/toggle_panel_button", locals: { target: "#examWeightInfoBody" }
       .clearfix
 

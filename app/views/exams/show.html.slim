@@ -7,15 +7,11 @@
       = render partial: "weight_info", locals: {exam: @exam}
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}
-
-      - if policy(@exam).show_drug?
-        = render partial: "drug_info", locals: {exam: @exam}
+      = render partial: "drug_info", locals: {exam: @exam}
   
       = render partial: "exams/appointment/list", locals: {exam: @exam}
     .col-sm-4
       = render partial: "customers/side_show", locals: {customer: @customer}
       = render partial: "global/exam_placeholder", locals: {customer: @customer}
       = render partial: "global/q_placeholder"
-
-      - if policy(@exam).show_revenue?
-        = render partial: "exams/revenue/list", locals: {exam: @exam}
+      = render partial: "exams/revenue/list", locals: {exam: @exam}

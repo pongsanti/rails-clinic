@@ -3,16 +3,21 @@
     .panel-header 
       =t("exams.info.heading")
       .pull-right       
+
         =>link_to exam_qs_path(exam), method: :post, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>" }, class: "btn btn-info btn-xs" do
           i.glyphicon.glyphicon-time
           =<"Add to Queue"     
+
         =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
         = render "global/panel_back_button"
+
+        
         =>link_to exam_path(exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
           i.glyphicon.glyphicon-trash
           =<"Delete"
+
         = render partial: "global/toggle_panel_button", locals: { target: "#examInfoBody" }
       .clearfix
 

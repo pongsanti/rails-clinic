@@ -4,9 +4,10 @@
       .panel-header 
         =t("exams.diag_form.heading")
         .pull-right
-          =>link_to edit_exam_diag_path(exam), class: "btn btn-warning btn-xs" do
-            i.glyphicon.glyphicon-edit
-            =<"Edit"
+          
+          - if policy(@exam).edit_diag?
+            = render partial: "global/panel/edit_btn", locals: {path: edit_exam_diag_path(exam)}
+
           = render partial: "global/toggle_panel_button", locals: { target: "#examDiagInfoBody" }          
         .clearfix
     .table-responsive.collapse.in#examDiagInfoBody

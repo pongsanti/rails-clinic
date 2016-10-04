@@ -94,15 +94,21 @@ class ExamsController < ApplicationController
   end
 
   def edit_diag
+    authorize @exam
+
     set_edit_bc edit_exam_diag_path(@exam)
   end
 
   def edit_drug
+    authorize @exam
+
     set_edit_bc edit_exam_drug_path(@exam)
     set_objects_for_edit
   end
 
   def edit_revenue
+    authorize @exam
+
     set_edit_bc edit_exam_revenue_path(@exam)
     render "exams/revenue/edit"
   end
@@ -146,6 +152,8 @@ class ExamsController < ApplicationController
   end
 
   def update_diag
+    authorize @exam
+
     if @exam.update(exam_diag_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -155,6 +163,8 @@ class ExamsController < ApplicationController
   end
 
   def update_drug
+    authorize @exam
+
     if @exam.update(exam_drug_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -164,6 +174,8 @@ class ExamsController < ApplicationController
   end
 
   def update_revenue
+    authorize @exam
+
     if @exam.update(exam_revenue_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else

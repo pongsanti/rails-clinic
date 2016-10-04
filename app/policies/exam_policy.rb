@@ -13,13 +13,20 @@ class ExamPolicy < ApplicationPolicy
     doctor_or_higher?
   end
 
-  def show_revenue?
+  #edit
+  def edit_pe?
     doctor_or_higher?
   end
 
+  def edit_diag?
+    doctor_or_higher?
+  end
 
-  #edit
-  def edit_pe?
+  def edit_drug?
+    doctor_or_higher?
+  end
+
+  def edit_revenue?
     doctor_or_higher?
   end
 
@@ -30,6 +37,18 @@ class ExamPolicy < ApplicationPolicy
 
   #update
   def update_pe?
+    doctor_or_higher?
+  end
+
+  def update_diag?
+    doctor_or_higher?
+  end
+
+  def update_drug?
+    doctor_or_higher?
+  end
+
+  def update_revenue?
     doctor_or_higher?
   end
 
