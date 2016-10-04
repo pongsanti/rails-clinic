@@ -22,17 +22,8 @@
           th= sort_link @q, :id_card_no
           th= sort_link @q, :created_at
       tbody.rowlink data-link="row"
-        - @customers.each do |customer|
-          tr
-            td= format_id customer
-            td= link_to "#{customer.prefix.name} #{customer.name}", customer_path(customer)
-            td= customer.surname
-            td= t('customers.show.' + customer.sex)
-            td= th_date_format customer.birthdate
-            td= masked_id_card_no(customer)
-            td
-              span data-toggle="tooltip" title=th_date_time_format(customer.created_at)
-                =time_ago_in_words(customer.created_at)
+        = render partial: "entry", collection: @customers, cached: true
+        
   .panel-footer
     =paginate @customers
     =page_entries_info @customers, entry_name: t('layouts.application.customer')

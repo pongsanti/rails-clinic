@@ -1,0 +1,11 @@
+- cache entry do
+  tr
+    td= format_id entry
+    td= link_to "#{entry.prefix.name} #{entry.name}", customer_path(entry)
+    td= entry.surname
+    td= t('customers.show.' + entry.sex)
+    td= th_date_format entry.birthdate
+    td= masked_id_card_no(entry)
+    td
+      span data-toggle="tooltip" title=th_date_time_format(entry.created_at)
+        =time_ago_in_words(entry.created_at)

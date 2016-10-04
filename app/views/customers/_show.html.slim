@@ -6,10 +6,10 @@
       = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.show.title" }    
 
       .pull-right
-        =>link_to customer_exams_path(@customer), class: "btn btn-primary btn-xs" do
+        =>link_to customer_exams_path(customer), class: "btn btn-primary btn-xs" do
           =icon("stethoscope")
           =<"View Examinations"
-        =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
+        =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
         = render "global/panel/back_btn"
@@ -17,50 +17,50 @@
       .clearfix
 
   .panel-body.collapse.in id=toggleTarget
-    =form_for @customer, html: { class: "form-horizontal" } do |f|
+    =form_for customer, html: { class: "form-horizontal" } do |f|
       .form-group
-        = render partial: "global/txt_show_id", locals: {obj: @customer}
+        = render partial: "global/txt_show_id", locals: {obj: customer}
 
       .form-group
-        = render partial: "global/txt_show", locals: {obj: @customer, method: :cn, required: true}
+        = render partial: "global/txt_show", locals: {obj: customer, method: :cn, required: true}
       
       .form-group
-        = render partial: "global/txt_show", locals: {obj: @customer, method: :prefix, required: true, value: @customer.prefix.name}
-        = render partial: "global/txt_show", locals: {obj: @customer, method: :sex, required: true, value: t("customers.show.#{@customer.sex}")}
+        = render partial: "global/txt_show", locals: {obj: customer, method: :prefix, required: true, value: customer.prefix.name}
+        = render partial: "global/txt_show", locals: {obj: customer, method: :sex, required: true, value: t("customers.show.#{customer.sex}")}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :name, required: true }
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :surname, required: true}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :name, required: true }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :surname, required: true}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :birthdate, required: true, value: th_date_format(@customer.birthdate) }
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :age, value: age_text(@customer) }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :birthdate, required: true, value: th_date_format(customer.birthdate) }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :age, value: age_text(customer) }
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :id_card_no, value: masked_id_card_no(@customer) }
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :passport_no}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :id_card_no, value: masked_id_card_no(customer) }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :passport_no}
         
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :nationality}
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :occupation}    
+        = render partial: "global/txt_show", locals: { obj: customer, method: :nationality}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :occupation}    
       
       hr
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :address, tf_width: 10}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :address, tf_width: 10}
         
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :street}
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :sub_district}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :street}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :sub_district}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :district}
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :province}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :district}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :province}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :postal_code}
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :email}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :postal_code}
+        = render partial: "global/txt_show", locals: { obj: customer, method: :email}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :home_phone_no, value: masked_home_phone_no(@customer) }
-        = render partial: "global/txt_show", locals: { obj: @customer, method: :tel_no, value: masked_tel_no(@customer) }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :home_phone_no, value: masked_home_phone_no(customer) }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :tel_no, value: masked_tel_no(customer) }
