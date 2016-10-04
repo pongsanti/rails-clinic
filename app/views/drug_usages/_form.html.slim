@@ -8,7 +8,7 @@ div#drugUsageForm class=("panel " + (action == :new ? "panel-success" : "panel-w
             i.glyphicon.glyphicon-trash
             =<"Delete"
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugUsageFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugUsageFormBody" }
       .clearfix
   .panel-body.collapse.in#drugUsageFormBody
     = render partial: "global/alert", locals: {obj: @drug_usage}

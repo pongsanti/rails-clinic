@@ -7,7 +7,7 @@
           i.glyphicon.glyphicon-edit
           =<"Edit"
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugInShowBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInShowBody" }
       .clearfix
   .panel-body.collapse.in#drugInShowBody
     = form_for drug_in, html: { class: "form-horizontal" } do |f|

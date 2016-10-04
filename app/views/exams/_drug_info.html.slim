@@ -8,7 +8,7 @@
           - if policy(@exam).edit_drug?
             = render partial: "global/panel/edit_btn", locals: { path: edit_exam_drug_path(exam)}
             
-          = render partial: "global/toggle_panel_button", locals: { target: "#examDrugInfoBody" }          
+          = render partial: "global/panel/toggle_btn", locals: { target: "#examDrugInfoBody" }          
         .clearfix
     .table-responsive.collapse.in#examDrugInfoBody
       table.table.table-striped.table-hover.table-condensed

@@ -8,7 +8,7 @@ div#diagForm class=("panel " + (action == :new ? "panel-success" : "panel-warnin
             i.glyphicon.glyphicon-trash
             =<"Delete"
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#diagFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#diagFormBody" }
       .clearfix
   .panel-body.collapse.in#diagFormBody
     = render partial: "global/alert", locals: {obj: @diag}

@@ -12,7 +12,7 @@
         =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        = render partial: "global/toggle_panel_button", locals: { target: "#customerShowBody" }          
+        = render partial: "global/panel/toggle_btn", locals: { target: "#customerShowBody" }          
       .clearfix
   
   .panel-body.collapse.in#customerShowBody

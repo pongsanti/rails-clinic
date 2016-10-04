@@ -4,7 +4,7 @@
       =t("drug_movements.show.title")
       .pull-right
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugMovementShowBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugMovementShowBody" }
       .clearfix
   .panel-body.collapse.in#drugMovementShowBody
     = form_for drug_movement, html: { class: "form-horizontal" } do |f|

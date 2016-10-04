@@ -7,6 +7,6 @@
         - if policy(@exam).edit_appointment?
           = render partial: "global/panel/edit_btn", locals: { path: edit_exam_appointment_path(exam) }
 
-        = render partial: "global/toggle_panel_button", locals: { target: "#examAppointmentListBody" }        
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examAppointmentListBody" }        
       .clearfix
   = render partial: "exams/appointment/list_table", locals: {exam: exam, table_id: "examAppointmentListBody"}

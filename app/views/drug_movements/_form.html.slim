@@ -4,7 +4,7 @@ div#drugMovementForm class=("panel panel-success")
       =t("drug_movements.new.title")
       .pull-right
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugMovementFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugMovementFormBody" }
       .clearfix
   .panel-body.collapse.in#drugMovementFormBody
 

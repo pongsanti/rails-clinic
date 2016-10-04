@@ -6,7 +6,7 @@
         =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueFormBody" }        
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examRevenueFormBody" }        
       .clearfix
   = render partial: "global/alert", locals: {obj: exam}
   = form_for exam, url: exam_revenue_path(exam) do |f|

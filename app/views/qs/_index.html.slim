@@ -10,7 +10,7 @@
         =>link_to qs_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        = render partial: "global/toggle_panel_button", locals: { target: id(toggleTarget) }          
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix
   = render partial: "list", locals: {qs: @exQs, id: toggleTarget }
 
@@ -26,6 +26,6 @@
         =>link_to qs_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        = render partial: "global/toggle_panel_button", locals: { target: id(toggleTarget) }          
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix  
   = render partial: "list", locals: {qs: @medQs, id: toggleTarget } 

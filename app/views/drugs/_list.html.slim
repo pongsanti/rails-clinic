@@ -6,7 +6,7 @@
         =>link_to new_drug_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugIndexBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugIndexBody" }
       .clearfix
   .table-responsive.collapse.in#drugIndexBody
     table.table.table-striped.table-hover.table-condensed

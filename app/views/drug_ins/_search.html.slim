@@ -3,7 +3,7 @@
     .panel-header
       =t("customers.index.search")
       .pull-right
-        = render partial: "global/toggle_panel_button", locals: { target: "#searchPanelBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#searchPanelBody" }
       .clearfix
   .panel-body.collapse.in#searchPanelBody
     = search_form_for [@drug, @q], class: "form-inline" do |f|

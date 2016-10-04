@@ -9,7 +9,7 @@
         =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_diag" do
           i.glyphicon.glyphicon-file
           =<"New Entry"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examDiagFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examDiagFormBody" }
       .clearfix
   .panel-body.collapse.in#examDiagFormBody
     = render partial: "global/alert", locals: {obj: exam}

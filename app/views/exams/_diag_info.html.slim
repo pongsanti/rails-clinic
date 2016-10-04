@@ -8,7 +8,7 @@
           - if policy(@exam).edit_diag?
             = render partial: "global/panel/edit_btn", locals: {path: edit_exam_diag_path(exam)}
 
-          = render partial: "global/toggle_panel_button", locals: { target: "#examDiagInfoBody" }          
+          = render partial: "global/panel/toggle_btn", locals: { target: "#examDiagInfoBody" }          
         .clearfix
     .table-responsive.collapse.in#examDiagInfoBody
       table.table.table-striped.table-hover.table-condensed

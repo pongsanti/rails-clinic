@@ -9,7 +9,7 @@
           =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
             i.glyphicon.glyphicon-eye-open
             =<"View"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examWeightFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examWeightFormBody" }
       .clearfix
   .panel-body.collapse.in#examWeightFormBody
     = render partial: "global/alert", locals: {obj: @exam}

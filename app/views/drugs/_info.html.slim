@@ -9,7 +9,7 @@
         =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugInfoBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInfoBody" }
       .clearfix
   .panel-body.collapse.in#drugInfoBody
     .row

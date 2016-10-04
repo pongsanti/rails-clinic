@@ -7,7 +7,7 @@
           i.glyphicon.glyphicon-file
           =<"New"
         =>render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examIndexBody" }        
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examIndexBody" }        
       .clearfix
   .table-responsive.collapse.in#examIndexBody
     table.table.table-striped.table-hover.table-condensed

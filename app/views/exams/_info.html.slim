@@ -24,7 +24,7 @@
           i.glyphicon.glyphicon-trash
           =<"Delete"
 
-        = render partial: "global/toggle_panel_button", locals: { target: id(toggleTarget) }
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
 
   .panel-body.collapse.in id=toggleTarget

@@ -8,7 +8,7 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
             i.glyphicon.glyphicon-trash
             =<"Delete"
         = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#customerFormBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#customerFormBody" }
       .clearfix
   .panel-body.collapse.in#customerFormBody
 

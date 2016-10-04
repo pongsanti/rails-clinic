@@ -7,7 +7,7 @@
         - if policy(@exam).edit_revenue? and can_edit_revenue?(exam)
           = render partial: "global/panel/edit_btn", locals: { path: edit_exam_revenue_path(exam) }
           
-        = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueListBody" }        
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examRevenueListBody" }        
       .clearfix
   .table-responsive.collapse.in#examRevenueListBody
     table.table.table-striped.table-hover.table-condensed

@@ -9,7 +9,7 @@
           - if policy(@exam).edit_pe?
             = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
             
-          = render partial: "global/toggle_panel_button", locals: { target: "#examPeInfoBody" }    
+          = render partial: "global/panel/toggle_btn", locals: { target: "#examPeInfoBody" }    
         .clearfix
 
     .panel-body.collapse.in#examPeInfoBody
