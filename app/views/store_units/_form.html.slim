@@ -7,7 +7,7 @@ div#storeUnitForm class=("panel " + (action == :new ? "panel-success" : "panel-w
           =>link_to store_unit_path(@store_unit), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
             i.glyphicon.glyphicon-trash
             =<"Delete"
-        = render "global/panel_back_button"
+        = render "global/panel/back_btn"
         = render partial: "global/panel/toggle_btn", locals: { target: "#storeUnitFormBody" }
         .clearfix
   .panel-body.collapse.in#storeUnitFormBody

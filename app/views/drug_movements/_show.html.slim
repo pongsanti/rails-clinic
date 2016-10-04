@@ -3,7 +3,7 @@
     .panel-header 
       =t("drug_movements.show.title")
       .pull-right
-        = render "global/panel_back_button"
+        = render "global/panel/back_btn"
         = render partial: "global/panel/toggle_btn", locals: { target: "#drugMovementShowBody" }
       .clearfix
   .panel-body.collapse.in#drugMovementShowBody

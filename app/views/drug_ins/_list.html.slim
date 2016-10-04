@@ -6,7 +6,7 @@
         =>link_to new_drug_drug_in_path(drug), class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        = render "global/panel_back_button"          
+        = render "global/panel/back_btn"          
         = render partial: "global/panel/toggle_btn", locals: { target: "#drugInIndexBody" }
       .clearfix
   .table-responsive.collapse.in#drugInIndexBody

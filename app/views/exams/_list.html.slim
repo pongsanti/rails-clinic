@@ -8,7 +8,7 @@
         =>link_to new_customer_exam_weight_path(@customer), class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        =>render "global/panel_back_button"
+        =>render "global/panel/back_btn"
         = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }        
       .clearfix
   .table-responsive.collapse.in id=toggleTarget
