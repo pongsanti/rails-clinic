@@ -1,14 +1,16 @@
+- toggleTarget = "customerIndexBody"
+
 .panel.panel-default#customerIndex
   .panel-heading
-    .panel-header 
-      =t("customers.index.title")
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.index.title" }    
       .pull-right
         =>link_to new_customer_path, class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#customerIndexBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
-  .table-responsive.collapse.in#customerIndexBody
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr

@@ -1,7 +1,10 @@
+- toggleTarget = "customerShowBody"
+
 .panel.panel-default#customerShow
   .panel-heading
-    .panel-header 
-      =t("customers.show.title")
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.show.title" }    
+
       .pull-right
         =>link_to customer_exams_path(@customer), class: "btn btn-primary btn-xs" do
           =icon("stethoscope")
@@ -10,10 +13,10 @@
           i.glyphicon.glyphicon-edit
           =<"Edit"
         = render "global/panel_back_button"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#customerShowBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
 
-  .panel-body.collapse.in#customerShowBody
+  .panel-body.collapse.in id=toggleTarget
     =form_for @customer, html: { class: "form-horizontal" } do |f|
       .form-group
         = render partial: "global/txt_show_id", locals: {obj: @customer}
