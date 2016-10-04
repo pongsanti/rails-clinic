@@ -11,10 +11,5 @@ class PatientDiag < ActiveRecord::Base
       order("id ASC")
     end
 
-    #scope
-    def latest(exam_id)
-      where("exam_id = ?", exam_id).order(:id).last
-    end
-
   end
 end
