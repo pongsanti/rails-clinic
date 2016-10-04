@@ -1,36 +1,38 @@
-.panel.panel-default#examDrugInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.drug_form.heading")
-      .pull-right
-        =>link_to edit_exam_drug_path(exam), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examDrugInfoBody" }          
-      .clearfix
-  .table-responsive.collapse.in#examDrugInfoBody
-    table.table.table-striped.table-hover.table-condensed
-      thead
-        tr
-            th= PatientDrug.human_attribute_name(:id)
-            th= Drug.human_attribute_name(:name)
-            th= DrugIn.human_attribute_name(:expired_date)
-            th= DrugUsage.human_attribute_name(:text)
-            th.text-right = PatientDrug.human_attribute_name(:amount)
-            th.text-right = PatientDrug.human_attribute_name(:revenue)
-      tbody
-        - if exam.patient_drugs.empty?
+- if policy(@exam).show_drug?
+  .panel.panel-default#examDrugInfo
+    .panel-heading
+      .panel-header 
+        =t("exams.drug_form.heading")
+        .pull-right
+
+          - if policy(@exam).edit_drug?
+            = render partial: "global/panel/edit_btn", locals: { path: edit_exam_drug_path(exam)}
+            
+          = render partial: "global/panel/toggle_btn", locals: { target: "#examDrugInfoBody" }          
+        .clearfix
+    .table-responsive.collapse.in#examDrugInfoBody
+      table.table.table-striped.table-hover.table-condensed
+        thead
           tr
-            td.text-center colspan="6"
-              ="No data"
-        - else
-          - exam.patient_drugs.each do |pd|
+              th= PatientDrug.human_attribute_name(:id)
+              th= Drug.human_attribute_name(:name)
+              th= DrugIn.human_attribute_name(:expired_date)
+              th= DrugUsage.human_attribute_name(:text)
+              th.text-right = PatientDrug.human_attribute_name(:amount)
+              th.text-right = PatientDrug.human_attribute_name(:revenue)
+        tbody
+          - if exam.patient_drugs.empty?
             tr
-              td= format_id pd
-              td= pd.drug_in.drug.name
-              td= th_date_format pd.drug_in.expired_date
-              td= pd.drug_usage.code
-              td.text-right
-                => decimal pd.amount
-                => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
-              td.text-right = currency pd.revenue
+              td.text-center colspan="6"
+                ="No data"
+          - else
+            - exam.patient_drugs.each do |pd|
+              tr
+                td= format_id pd
+                td= pd.drug_in.drug.name
+                td= th_date_format pd.drug_in.expired_date
+                td= pd.drug_usage.code
+                td.text-right
+                  => decimal pd.amount
+                  => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
+                td.text-right = currency pd.revenue

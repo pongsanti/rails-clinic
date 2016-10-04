@@ -34,15 +34,15 @@ gem 'active_model_serializers', '~> 0.9.5'
 
 #gem 'prawn-print', '~> 0.0.3'
 
-gem 'slim', '~> 3.0.7'
+gem 'slim'
 
-gem 'pundit', '~> 1.1.0'
+gem 'pundit'
 
 gem 'bootstrap-sass', '~> 3.3.7'
 
 gem 'font-awesome-sass', '~> 4.6.2'
 
-gem "paranoia", "~> 2.0"
+gem "paranoia"
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'

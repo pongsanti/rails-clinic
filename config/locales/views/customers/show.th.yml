@@ -5,7 +5,6 @@ th:
       sub_text: "ข้อมูลผู้ป่วย"
       print_id_card: "พิมพ์บัตรประจำตัว"
 
-      age: "อายุ"
       years: "ปี"
       months: "เดือน"
       days: "วัน"

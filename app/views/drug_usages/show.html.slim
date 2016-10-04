@@ -4,7 +4,7 @@
   .row
     .col-sm-8
       = render partial: "global/search", locals: {reset_path: drug_usages_path, search_field: :code_or_text_cont}
-      = render partial: "show"
+      = render partial: "show", locals: {du: @drug_usage}
 
     .col-sm-4
-      = render partial: "global/q_placeholder"
+      = render partial: "global/remote/q"

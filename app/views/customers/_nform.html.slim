@@ -1,16 +1,18 @@
+- toggleTarget = "customerFormBody"
+
 div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
     .panel-header
-      =t(action == :new ? "customers.new.title": "customers.edit.title")
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: (action == :new ? "customers.new.title": "customers.edit.title") }    
       .pull-right
         -if action == :edit
           =>link_to customer_path(@customer), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
             i.glyphicon.glyphicon-trash
             =<"Delete"
-        = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#customerFormBody" }
+        = render "global/panel/back_btn"
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
-  .panel-body.collapse.in#customerFormBody
+  .panel-body.collapse.in id=toggleTarget
 
     = render partial: "global/alert", locals: {obj: @customer}
 
@@ -60,7 +62,7 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
       
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :district}
-        =render partial: "global/txt_field", locals: {f: f, method: :province}
+        =render partial: "global/txt_field", locals: {f: f, method: :province, div_text_field_class: "col-sm-4 scrollable-dropdown-menu",text_field_class: "typeahead form-control"}
         
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :postal_code, data: {mask: '99999'} }       

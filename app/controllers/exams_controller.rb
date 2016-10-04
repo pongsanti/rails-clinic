@@ -38,10 +38,9 @@ class ExamsController < ApplicationController
     :edit_drug, :edit_revenue, :edit_appointment]
 
   def index
-    ransack_params = {for_customer: @customer.id}
-    ransack_params = ransack_params.merge(params[:q]) if params[:q]
+    @q = Exam.for_customer(@customer.id).ransack(params[:q])
+    @q.sorts = "id asc" if @q.sorts.empty?
 
-    @q = Exam.ransack(ransack_params)
     @exams = @q.result.page(params[:page])
   end
 
@@ -89,24 +88,34 @@ class ExamsController < ApplicationController
   end
 
   def edit_pe
+    authorize @exam
+
     set_edit_bc edit_exam_pe_path(@exam)
   end
 
   def edit_diag
+    authorize @exam
+
     set_edit_bc edit_exam_diag_path(@exam)
   end
 
   def edit_drug
+    authorize @exam
+
     set_edit_bc edit_exam_drug_path(@exam)
     set_objects_for_edit
   end
 
   def edit_revenue
+    authorize @exam
+
     set_edit_bc edit_exam_revenue_path(@exam)
     render "exams/revenue/edit"
   end
 
   def edit_appointment
+    authorize @exam
+
     set_edit_bc edit_exam_appointment_path(@exam) 
     render "exams/appointment/edit"
   end
@@ -133,6 +142,8 @@ class ExamsController < ApplicationController
   end
 
   def update_pe
+    authorize @exam
+
     if @exam.update(exam_pe_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -141,6 +152,8 @@ class ExamsController < ApplicationController
   end
 
   def update_diag
+    authorize @exam
+
     if @exam.update(exam_diag_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -150,6 +163,8 @@ class ExamsController < ApplicationController
   end
 
   def update_drug
+    authorize @exam
+
     if @exam.update(exam_drug_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -159,6 +174,8 @@ class ExamsController < ApplicationController
   end
 
   def update_revenue
+    authorize @exam
+
     if @exam.update(exam_revenue_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -167,6 +184,8 @@ class ExamsController < ApplicationController
   end
 
   def update_appointment
+    authorize @exam
+    
     if @exam.update(exam_appointment_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -224,7 +243,7 @@ class ExamsController < ApplicationController
     end
 
     def set_exam
-      @exam = Exam.find(params[:id])
+      @exam = Exam.eager.find(params[:id])
     end
 
     def set_customer

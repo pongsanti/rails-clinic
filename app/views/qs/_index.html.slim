@@ -1,25 +1,31 @@
+- toggleTarget = "queueIndex"
+
 .panel.panel-info
   .panel-heading
     .panel-header
-      span=>t("qs.index.exQ")
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "qs.index.exQ" }
       i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate data-loading-icon="true" style="display:none"
+
       .pull-right
         =>link_to qs_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        = render partial: "global/toggle_panel_button", locals: { target: "#queueIndex" }          
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix
-  = render partial: "list", locals: {qs: @exQs, id: "queueIndex"}
+  = render partial: "list", locals: {qs: @exQs, id: toggleTarget }
+
+- toggleTarget = "queueMedIndex"
 
 .panel.panel-success
   .panel-heading
     .panel-header
-      span=>t("qs.index.medQ")
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "qs.index.medQ" }
       i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate data-loading-icon="true" style="display:none"
+      
       .pull-right
         =>link_to qs_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
           i.glyphicon.glyphicon-refresh
           =< "Refresh"
-        = render partial: "global/toggle_panel_button", locals: { target: "#queueMedIndex" }          
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix  
-  = render partial: "list", locals: {qs: @medQs, id: "queueMedIndex"} 
+  = render partial: "list", locals: {qs: @medQs, id: toggleTarget } 

@@ -5,7 +5,7 @@ class ExamsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    sign_in users(:john)
+    sign_in users(:david)
     @exam = exams(:exam_one)
     @customer = @exam.customer
     @diag = diags(:two)

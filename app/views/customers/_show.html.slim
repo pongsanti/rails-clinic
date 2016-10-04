@@ -1,7 +1,10 @@
+- toggleTarget = "customerShowBody"
+
 .panel.panel-default#customerShow
   .panel-heading
-    .panel-header 
-      =t("customers.show.title")
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.show.title" }    
+
       .pull-right
         =>link_to customer_exams_path(@customer), class: "btn btn-primary btn-xs" do
           =icon("stethoscope")
@@ -9,101 +12,55 @@
         =>link_to edit_customer_path(@customer), class: "btn btn-warning btn-xs" do
           i.glyphicon.glyphicon-edit
           =<"Edit"
-        = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#customerShowBody" }
+        = render "global/panel/back_btn"
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
 
-  .panel-body.collapse.in#customerShowBody
+  .panel-body.collapse.in id=toggleTarget
     =form_for @customer, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: @customer, f: f}
+      .form-group
+        = render partial: "global/txt_show_id", locals: {obj: @customer}
 
       .form-group
-        = f.label :cn, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =@customer.cn
+        = render partial: "global/txt_show", locals: {obj: @customer, method: :cn, required: true}
       
       .form-group
-        = f.label :prefix, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =@customer.prefix.name
-        = f.label :sex, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =t("customers.show.#{@customer.sex}")
+        = render partial: "global/txt_show", locals: {obj: @customer, method: :prefix, required: true, value: @customer.prefix.name}
+        = render partial: "global/txt_show", locals: {obj: @customer, method: :sex, required: true, value: t("customers.show.#{@customer.sex}")}
 
       .form-group
-        = f.label :name, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =@customer.name
-        
-        = f.label :surname, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =@customer.surname
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :name, required: true }
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :surname, required: true}
 
       .form-group
-        = f.label :birthdate, class: "col-sm-2 control-label required-label"
-        .col-sm-4
-          p.form-control-static =th_date_format(@customer.birthdate)
-        = label_tag nil, t(".age"), class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =age_text(@customer)
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :birthdate, required: true, value: th_date_format(@customer.birthdate) }
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :age, value: age_text(@customer) }
 
       .form-group
-        = f.label :id_card_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =masked_id_card_no(@customer)
-        = f.label :passport_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.passport_no
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :id_card_no, value: masked_id_card_no(@customer) }
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :passport_no}
         
       .form-group
-        = f.label :nationality, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.nationality
-            
-        = f.label :occupation, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.occupation 
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :nationality}
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :occupation}    
       
       hr
 
-      .form-group  
-        = f.label :address, class: "col-sm-2 control-label" 
-        .col-sm-10
-          p.form-control-static =@customer.address
+      .form-group
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :address, tf_width: 10}
         
-      
       .form-group
-        = f.label :street, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =@customer.street
-           
-        = f.label :sub_district, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static =@customer.sub_district 
-      
-      .form-group
-        = f.label :district, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.district
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :street}
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :sub_district}
 
-        = f.label :province, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.province
-        
       .form-group
-        = f.label :postal_code, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.postal_code 
-        
-        = f.label :email, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =@customer.email
-        
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :district}
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :province}
+
       .form-group
-        = f.label :home_phone_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =masked_home_phone_no(@customer)
-        
-        = f.label :tel_no, class: "col-sm-2 control-label" 
-        .col-sm-4
-          p.form-control-static =masked_tel_no @customer 
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :postal_code}
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :email}
+
+      .form-group
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :home_phone_no, value: masked_home_phone_no(@customer) }
+        = render partial: "global/txt_show", locals: { obj: @customer, method: :tel_no, value: masked_tel_no(@customer) }

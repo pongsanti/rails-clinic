@@ -5,7 +5,7 @@
     .panel-header 
       =t("customers.index.title")
       .pull-right
-        = render partial: "global/toggle_panel_button", locals: { target: "#userIndexBody" }
+        = render partial: "global/panel/toggle_btn", locals: { target: "#userIndexBody" }
       .clearfix
   .table-responsive.collapse.in#userIndexBody
     table.table.table-striped.table-hover.table-condensed

@@ -3,9 +3,9 @@
 .container
   .row
     .col-sm-8
-      = render partial: "global/search", locals: {reset_path: customers_path, search_field: :name_or_surname_cont}
+      = render partial: "global/search", locals: {reset_path: customers_path, search_field: :name_or_surname_or_cn_cont}
       = render partial: "show"
 
     .col-sm-4
-      = render partial: "global/exam_placeholder", locals: {customer: @customer}
-      = render partial: "global/q_placeholder"
+      = render partial: "global/remote/exam", locals: {customer: @customer}
+      = render partial: "global/remote/q"

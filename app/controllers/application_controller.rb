@@ -8,11 +8,13 @@ class ApplicationController < ActionController::Base
   extend BreadcrumbHelper
   include BreadcrumbHelper
 
+  # Pundit
   include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  
   protect_from_forgery with: :exception
   before_action :set_locale
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   #bc  
   add_breadcrumb I18n.t("bc.home"), :root_path
@@ -22,8 +24,9 @@ class ApplicationController < ActionController::Base
   	  I18n.locale = params[:locale] || I18n.default_locale
   	end
 
+    # Pundit
     def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
+      flash[:alert] = I18n.t("not_authorized")
       redirect_to(request.referrer || root_path)
     end
 

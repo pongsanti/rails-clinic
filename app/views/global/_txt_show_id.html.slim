@@ -1,0 +1,4 @@
+/ - obj
+
+= render partial: "global/txt_show", locals: {obj: obj, method: :id, value: format_id(obj), strong: true}
+= render partial: "global/txt_show", locals: {obj: obj, method: :created_at, value: "#{th_date_time_format(obj.created_at)} (#{time_ago_in_words(obj.created_at)})"}

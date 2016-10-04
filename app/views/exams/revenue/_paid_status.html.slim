@@ -1,8 +1,10 @@
 / locals
-/ - f
 / - exam
-= f.label :paid_status, class: "col-sm-2 control-label"
-.col-sm-4
-  p.form-control-static 
-    strong class=paid_status_class(exam)
-      =paid_status(exam).html_safe
+
+div class="col-sm-2"
+  span
+    = exam.class.human_attribute_name(:paid_status)
+div class="col-sm-4"
+  strong class=paid_status_class(exam)
+    = paid_status(exam).html_safe
+        

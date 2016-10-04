@@ -1,29 +1,36 @@
+- toggleTarget = "examInfoBody"
+
 .panel.panel-default#examInfo
   .panel-heading
-    .panel-header 
-      =t("exams.info.heading")
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "exams.info.heading" }
+
       .pull-right       
+        =>link_to exam_med_path(exam), class: "btn btn-success btn-xs" do
+          i.glyphicon.glyphicon-usd
+          =<"Medicine/Cashier"
+
         =>link_to exam_qs_path(exam), method: :post, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>" }, class: "btn btn-info btn-xs" do
           i.glyphicon.glyphicon-time
           =<"Add to Queue"     
+
         =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
           i.glyphicon.glyphicon-eye-open
           =<"View"
-        = render "global/panel_back_button"
+        = render "global/panel/back_btn"
+
+        
         =>link_to exam_path(exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
           i.glyphicon.glyphicon-trash
           =<"Delete"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examInfoBody" }
+
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
 
-  .panel-body.collapse.in#examInfoBody
+  .panel-body.collapse.in id=toggleTarget
     =form_for exam, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: exam, f: f}
-
       .form-group
-        = f.label :examiner, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            => exam.examiner.display_name if exam.examiner
-
-        = render partial: "exams/revenue/paid_status", locals: {f: f, exam: exam}
+        = render partial: "global/txt_show_id", locals: {obj: exam}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :examiner, required: true, value: (exam.examiner.display_name if exam.examiner) }
+        = render partial: "exams/revenue/paid_status", locals: {exam: exam}

@@ -1,27 +1,22 @@
-.panel.panel-default#examPeInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.pe_form.header")
-      .pull-right
-        =>link_to edit_exam_pe_path(exam), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examPeInfoBody" }          
-      .clearfix
+- if policy(@exam).show_pe? 
 
-  .panel-body.collapse.in#examPeInfoBody
-    =form_for exam, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = f.label :exam_pi, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static =exam.exam_pi
+  .panel.panel-default#examPeInfo
+    .panel-heading
+      .panel-header 
+        =t("exams.pe_form.header")
+        .pull-right
 
-      .form-group
-        = f.label :exam_pe, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static =exam.exam_pe
+          - if policy(@exam).edit_pe?
+            = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
+            
+          = render partial: "global/panel/toggle_btn", locals: { target: "#examPeInfoBody" }    
+        .clearfix
 
-      .form-group
-        = f.label :exam_note, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static =exam.exam_note
+    .panel-body.collapse.in#examPeInfoBody
+      =form_for exam, html: { class: "form-horizontal" } do |f|
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pi, tf_width: 10 }
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pe, tf_width: 10 }
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_note, tf_width: 10 }

@@ -3,11 +3,11 @@
     .panel-header 
       =t("exams.revenue.title")
       .pull-right
-        - if can_edit_revenue?(exam)
-          =>link_to edit_exam_revenue_path(exam), class: "btn btn-warning btn-xs" do
-            i.glyphicon.glyphicon-edit
-            =<"Edit"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examRevenueListBody" }        
+
+        - if policy(@exam).edit_revenue? and can_edit_revenue?(exam)
+          = render partial: "global/panel/edit_btn", locals: { path: edit_exam_revenue_path(exam) }
+          
+        = render partial: "global/panel/toggle_btn", locals: { target: "#examRevenueListBody" }        
       .clearfix
   .table-responsive.collapse.in#examRevenueListBody
     table.table.table-striped.table-hover.table-condensed

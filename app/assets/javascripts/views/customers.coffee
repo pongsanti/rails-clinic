@@ -50,9 +50,13 @@ class Customer
           cache: false
       )
 
-      province_text_input.typeahead(null, 
+      province_text_input.typeahead(
+        {
+          hint: true,
+          highlight: true,
+        },  
         { 
-          name: 'countries'
+          name: 'countries',
           source: countries
         }
       )

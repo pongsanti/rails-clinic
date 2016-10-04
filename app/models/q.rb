@@ -10,7 +10,16 @@ class Q < ActiveRecord::Base
   validates :exam, presence: true
   validates :category, inclusion: {in: [EXAM_Q_CAT, MED_Q_CAT]}, allow_blank: true
 
-  scope :cat_is, -> (c) { where("category = ?", c ).order("id asc") }
+  class << self
+    def cat_is(c)
+      eager.where("category = ?", c ).order("qs.id asc") 
+    end
+
+    def eager
+      joins(exam: [customer: [:prefix ]]) 
+        .includes(exam: [customer: [:prefix ]])
+    end
+  end
 
   def exam_q?
     self.category == EXAM_Q_CAT

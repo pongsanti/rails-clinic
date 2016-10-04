@@ -1,15 +1,17 @@
+- toggleTarget = "examIndexBody"
+
 .panel.panel-default#examIndex
   .panel-heading
-    .panel-header 
-      =t("exams.index.title")
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "exams.index.title" }     
       .pull-right
         =>link_to new_customer_exam_weight_path(@customer), class: "btn btn-success btn-xs" do
           i.glyphicon.glyphicon-file
           =<"New"
-        =>render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#examIndexBody" }        
+        =>render "global/panel/back_btn"
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }        
       .clearfix
-  .table-responsive.collapse.in#examIndexBody
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr

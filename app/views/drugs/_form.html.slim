@@ -7,8 +7,8 @@ div#drugForm class=("panel " + (action == :new ? "panel-success" : "panel-warnin
           =>link_to drug_path(drug), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
             i.glyphicon.glyphicon-trash
             =<"Delete"
-        = render "global/panel_back_button"
-        = render partial: "global/toggle_panel_button", locals: { target: "#drugFormBody" }
+        = render "global/panel/back_btn"
+        = render partial: "global/panel/toggle_btn", locals: { target: "#drugFormBody" }
       .clearfix
   .panel-body.collapse.in#drugFormBody
     = render partial: "global/alert", locals: {obj: drug}
