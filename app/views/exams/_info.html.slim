@@ -28,9 +28,9 @@
       .clearfix
 
   .panel-body.collapse.in id=toggleTarget
-    =form_for exam, html: { class: "form-horizontal" } do |f|
+    = form_for exam, html: { class: "form-horizontal" } do |f|
       .form-group
         = render partial: "global/txt_show_id", locals: {obj: exam}
       .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :examiner, required: true, value: (exam.examiner.display_name if exam.examiner) }
+        = render partial: "global/txt_show", locals: {obj: exam, method: :examiner, required: true, value: examiner_name(exam) }
         = render partial: "exams/revenue/paid_status", locals: {exam: exam}
