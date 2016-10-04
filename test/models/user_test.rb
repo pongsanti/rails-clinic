@@ -31,4 +31,36 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "should verify role operator" do
+    @user.roles = [User::ROLES[0]]
+
+    assert @user.operator?
+    assert_not @user.doctor?
+    assert_not @user.manager?
+  end
+
+  test "should verify role doctor" do
+    @user.roles = [User::ROLES[1]]
+
+    assert @user.doctor?
+    assert_not @user.operator?
+    assert_not @user.manager?
+  end
+
+  test "should verify role manager" do
+    @user.roles = [User::ROLES[2]]
+
+    assert @user.manager?
+    assert_not @user.operator?
+    assert_not @user.doctor?
+  end
+
+  test "should verify role admin" do
+    @user.roles = [User::ROLES[3]]
+
+    assert @user.admin?
+    assert_not @user.operator?
+    assert_not @user.manager?
+  end
+
 end

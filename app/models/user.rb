@@ -28,4 +28,20 @@ class User < ActiveRecord::Base
     roles.include?(role)
   end
 
+  def operator?
+    has_role? User::ROLES[0]
+  end
+
+  def doctor?
+    has_role? User::ROLES[1]
+  end
+
+  def manager?
+    has_role? User::ROLES[2]
+  end
+
+  def admin?
+    has_role? User::ROLES[3]
+  end
+
 end

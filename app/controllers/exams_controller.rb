@@ -88,6 +88,8 @@ class ExamsController < ApplicationController
   end
 
   def edit_pe
+    authorize @exam
+
     set_edit_bc edit_exam_pe_path(@exam)
   end
 
@@ -106,6 +108,8 @@ class ExamsController < ApplicationController
   end
 
   def edit_appointment
+    authorize @exam
+
     set_edit_bc edit_exam_appointment_path(@exam) 
     render "exams/appointment/edit"
   end
@@ -132,6 +136,8 @@ class ExamsController < ApplicationController
   end
 
   def update_pe
+    authorize @exam
+
     if @exam.update(exam_pe_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
@@ -166,6 +172,8 @@ class ExamsController < ApplicationController
   end
 
   def update_appointment
+    authorize @exam
+    
     if @exam.update(exam_appointment_params)
       redirect_to exam_url(@exam), notice: t('successfully_updated')
     else
