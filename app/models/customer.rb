@@ -37,7 +37,7 @@ class Customer < ActiveRecord::Base
     # searchable fields
     def ransackable_attributes(auth_object = nil)
     #column_names + _ransackers.keys
-      %w(id name surname id_card_no)
+      %w(id name surname cn id_card_no)
     end
 
     # `ransortable_attributes` by default returns the names
