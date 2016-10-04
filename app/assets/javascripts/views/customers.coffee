@@ -1,8 +1,34 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+class window.view.typeahead
+  constructor: (@args)->
+
+  initialize:()->
+    if @args.txt_input.length and @args.url and @args.url.length > 0
+
+      entries = new Bloodhound(
+        datumTokenizer: Bloodhound.tokenizers.whitespace
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        prefetch: 
+          url: @args.url
+          cache: false
+      )
+
+      @args.txt_input.typeahead(
+        {
+          hint: true,
+          highlight: true,
+        },  
+        { 
+          name: 'entries',
+          source: entries
+        }
+      )
 
 class Customer
+
+  provinceSuggestion : null
 
   displayThaiYear: () ->
     $('select#customer_birthdate_1i option').each(
@@ -39,26 +65,11 @@ class Customer
       $("\##{sex_selected_value}_btn").button("toggle")
 
   initializeTypeahead: ()->
-    province_text_input = $("input[id*='province']")
-    if province_text_input.length
-
-      countries = new Bloodhound(
-        datumTokenizer: Bloodhound.tokenizers.whitespace
-        queryTokenizer: Bloodhound.tokenizers.whitespace
-        prefetch: 
-          url: '/provinces'
-          cache: false
-      )
-
-      province_text_input.typeahead(
-        {
-          hint: true,
-          highlight: true,
-        },  
-        { 
-          name: 'countries',
-          source: countries
-        }
-      )
+    delete @provinceSuggestion
+    @provinceSuggestion = new view.typeahead(
+      txt_input: $("input[id*='province']"),
+      url: '/provinces'
+    )
+    @provinceSuggestion.initialize()
 
 view.customer = new Customer
