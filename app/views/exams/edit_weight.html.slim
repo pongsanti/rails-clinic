@@ -11,6 +11,6 @@
             
     .col-sm-4
       = render partial: "customers/side_show", locals: {customer: @customer}
-      = render partial: "global/exam_placeholder", locals: {customer: @customer}
+      = render partial: "global/remote/exam", locals: {customer: @customer}
       = render partial: "global/q_placeholder"
       = render partial: "exams/revenue/list", locals: {exam: @exam}      
