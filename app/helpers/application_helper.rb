@@ -1,15 +1,8 @@
 module ApplicationHelper
   
-<<-DOC
-
-  # this function will be removed.
-
-  def th_year(customer)
-    unless customer.birthdate.nil?
-      customer.birthdate.year + 543
-    end
+  def id(string)
+    "\##{string}"
   end
-DOC
 
   def th_date_format(d)
     unless d.blank?

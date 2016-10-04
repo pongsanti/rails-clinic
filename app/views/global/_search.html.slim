@@ -2,14 +2,16 @@
 / - reset_path
 / - search_field
 
+- toggleTarget = "searchPanelBody"
+
 .panel.panel-default#searchPanel
   .panel-heading
     .panel-header
-      =t("customers.index.search")
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.index.search" }    
       .pull-right
-        = render partial: "global/toggle_panel_button", locals: { target: "#searchPanelBody" }
+        = render partial: "global/toggle_panel_button", locals: { target: id(toggleTarget) }
       .clearfix
-  .panel-body.collapse.in#searchPanelBody
+  .panel-body.collapse.in id=toggleTarget
     = search_form_for @q, class: "form-inline" do |f|
       .form-group
         =>f.label search_field, class: "control-label"
