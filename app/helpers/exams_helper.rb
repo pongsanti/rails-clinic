@@ -47,6 +47,17 @@ module ExamsHelper
     action_name == "show"
   end
 
+  def examiner_name(exam)
+    result = "N/A"
+    
+    if exam.examiner
+      examiner = exam.examiner
+      result = examiner.display_name if examiner.display_name.present?
+    end
+
+    result
+  end
+
   private
     def select_drug_in_text(drug_in)
       "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"

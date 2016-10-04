@@ -16,16 +16,15 @@
       .clearfix
   
   .panel-body.collapse.in#customerShowBody
-    =form_for @customer, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :id, value: format_id(customer), strong: true, lb_width: 4, tf_width: 8}
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :cn, lb_width: 4, tf_width: 8}        
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer), lb_width: 4, tf_width: 8}
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: customer, method: :id_card_no, value: masked_id_card_no(customer), lb_width: 4, tf_width: 8}
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :id, value: format_id(customer), strong: true, lb_width: 4, tf_width: 8}
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :cn, lb_width: 4, tf_width: 8}        
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer), lb_width: 4, tf_width: 8}
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
+    .row
+      = render partial: "global/txt_show", locals: {obj: customer, method: :id_card_no, value: masked_id_card_no(customer), lb_width: 4, tf_width: 8}
