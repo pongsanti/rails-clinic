@@ -1,0 +1,11 @@
+th:
+  activerecord:
+    models:
+      client: "ระบบ"
+    attributes:
+      client:
+        settings:
+          drug_font_size: "ฉลากยา:ขนาด font"
+          drug_width: "ฉลากยา:กว้าง"
+          drug_height: "ฉลากยา:ยาว"
+        

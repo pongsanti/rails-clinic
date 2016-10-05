@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002170823) do
+ActiveRecord::Schema.define(version: 20161005102800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "appointments", force: :cascade do |t|
     t.date     "date"
@@ -44,7 +45,10 @@ ActiveRecord::Schema.define(version: 20161002170823) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "subdomain"
+    t.hstore   "settings"
   end
+
+  add_index "clients", ["settings"], name: "index_clients_on_settings", using: :gist
 
   create_table "customers", force: :cascade do |t|
     t.string   "cn",            null: false
