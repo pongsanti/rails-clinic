@@ -3,6 +3,7 @@ window.view.admin = {}
 
 class constant
   CUSTOMER: 'customers'
+  CLIENT: 'clients'
   DIAG: 'diags'
   EXAM: 'exam'
   STORE_UNIT: 'store_unit'
@@ -151,6 +152,9 @@ initializePage = ->
   # customer
   if view.util.isUrlOf(url, view.const.CUSTOMER)
     view.customer.initializePage()
+
+  if view.util.isUrlOf(url, view.const.CLIENT)
+    view.client.initializePage()
 
   if view.util.isUrlOf(url, view.const.DIAG)
     view.diag.initializePage()
