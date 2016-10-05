@@ -59,7 +59,8 @@ class ExamsController < ApplicationController
     respond_to do |format|
       format.pdf {
         render pdf: "exam_drug_#{@exam.id}", template: "exams/drugs/show",
-          page_height: "46mm", page_width: "80mm",
+          page_height: current_user.client.settings.drug_height,
+          page_width: current_user.client.settings.drug_width,
           margin: { top: 10, bottom: 0 },
           show_as_html: params.key?('debug')
       }
