@@ -86,7 +86,8 @@ Rails.application.routes.draw do
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'
 
   resources :clients
-  
+  get "clients/:id/edit_settings",  to: "clients#edit_settings",    as: "edit_client_settings"
+
   resources :diags  
   # Example resource route with options:
   #   resources :products do

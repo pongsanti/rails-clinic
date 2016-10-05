@@ -1,0 +1,10 @@
+th:
+  clients:
+    edit:
+      title: "ตั้งค่าระบบ"
+      sub_text: "Client configuration"
+
+  helpers:
+    placeholder:
+      client:
+        note: "ข้อมูลเพิ่มเติม" 

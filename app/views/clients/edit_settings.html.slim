@@ -1,0 +1,9 @@
+= render partial: "global/page_header", locals: { icon_name: "user-md", title: t("clients.edit.title"), subtext: t("clients.edit.sub_text") }
+
+.container
+  .row
+    .col-sm-8
+      = render partial: 'settings_form', locals: {client: @client}
+
+    .col-sm-4
+      = render partial: "global/remote/q"
