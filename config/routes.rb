@@ -87,6 +87,7 @@ Rails.application.routes.draw do
 
   resources :clients
   get "clients/:id/edit_settings",  to: "clients#edit_settings",    as: "edit_client_settings"
+  patch "client_settings/:id",      to: "clients#update_settings",  as: "client_settings"
 
   resources :diags  
   # Example resource route with options:

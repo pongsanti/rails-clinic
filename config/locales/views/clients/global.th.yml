@@ -4,6 +4,12 @@ th:
       title: "ตั้งค่าระบบ"
       sub_text: "Client configuration"
 
+    settings:
+      help:
+        drug_font_size: "พิมพ์ฉลากยา:ขนาดตัวอักษร"
+        drug_width: "พิมพ์ฉลากยา:ความกว้างกระดาษ/sticker ระบุหน่วยเป็น มม. ไม่มีช่องว่าง"
+        drug_height: "พิมพ์ฉลากยา:ความยาวกระดาษ/sticker ระบุหน่วยเป็น มม. ไม่มีช่องว่าง"
+
   helpers:
     placeholder:
       client:

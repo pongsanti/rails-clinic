@@ -1,7 +1,9 @@
 class ClientsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_client, only: [:show, :edit, :edit_settings, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :edit_settings,
+    :update, :update_settings,
+    :destroy]
 
   # GET /clients
   # GET /clients.json
@@ -24,7 +26,7 @@ class ClientsController < ApplicationController
   end
 
   def edit_settings
-    #render "edit_settings", layout: "application"
+    add_bc :edit, edit_client_settings_path(@client)
   end
 
   # POST /clients
@@ -57,6 +59,15 @@ class ClientsController < ApplicationController
     end
   end
 
+  def update_settings
+    @client.update(client_settings_params)
+      if @client.save
+        redirect_to edit_client_settings_url(@client), notice: t('successfully_updated')
+      else
+        render "edit_settings"
+      end
+  end
+
   # DELETE /clients/1
   # DELETE /clients/1.json
   def destroy
@@ -76,5 +87,17 @@ class ClientsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
       params.require(:client).permit(:name, :subdomain)
+    end
+
+    def client_settings_params
+      params.require(:client).permit(settings: [
+          :drug_font_size,
+          :drug_width,
+          :drug_height
+        ])
+    end
+
+    def add_bc(key, path)
+      add_breadcrumb bc(key, Client), path
     end
 end
