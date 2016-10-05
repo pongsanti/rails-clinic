@@ -1,11 +1,12 @@
-table cellpadding=0
-  tr
-    td style="width: 50%; text-align: right"
-      p ="Customer ID:"
-    td
-      p =@customer.id
-  tr
-    td
-      p ="Customer name:"
-    td
-      p ="#{@customer.prefix.name} #{@customer.name} #{@customer.surname}"
+body
+  table cellpadding=0
+    tr
+      td style="width: 50%; text-align: right"
+        p ="Customer ID:"
+      td
+        p =@customer.id
+    tr
+      td
+        p ="Customer name:"
+      td
+        p ="#{@customer.prefix.name} #{@customer.name} #{@customer.surname}"
