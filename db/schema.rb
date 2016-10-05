@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005102800) do
+ActiveRecord::Schema.define(version: 20161005163445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,11 +156,11 @@ ActiveRecord::Schema.define(version: 20161005102800) do
     t.text     "exam_pi"
     t.text     "exam_pe"
     t.text     "exam_note"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.integer  "customer_id"
     t.integer  "examiner_id"
-    t.decimal  "revenue",      precision: 9, scale: 2
+    t.decimal  "revenue",      precision: 9, scale: 2, default: 0.0
     t.boolean  "paid_status"
   end
 
