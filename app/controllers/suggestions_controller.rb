@@ -12,4 +12,9 @@ class SuggestionsController < ApplicationController
     render json: @districts, root: false
   end
 
+  def sub_districts
+    @sub_districts = Customer.uniq.where.not(sub_district: "").pluck(:sub_district)
+    render json: @sub_districts, root: false
+  end
+
 end

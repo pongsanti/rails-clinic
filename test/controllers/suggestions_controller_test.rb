@@ -22,6 +22,13 @@ class SuggestionsControllerTest < ActionController::TestCase
     assert_equal 2, json_response.count
   end
 
+  test "should get sub_districts" do
+    get "sub_districts"
+
+    assert_response :success
+    assert_equal 2, json_response.count
+  end
+
 
   private
     def json_response

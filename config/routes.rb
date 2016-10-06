@@ -90,8 +90,9 @@ Rails.application.routes.draw do
   resources :diags
 
   # suggestions
-  get "provinces", to: "suggestions#provinces", as: "customer_provinces"
-  get "districts", to: "suggestions#districts", as: "customer_districts"
+  get "provinces",      to: "suggestions#provinces",    as: "customer_provinces"
+  get "districts",      to: "suggestions#districts",    as: "customer_districts"
+  get "sub_districts",  to: "suggestions#sub_districts",as: "customer_sub_districts"
   # Example resource route with options:
   #   resources :products do
   #     member do

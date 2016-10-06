@@ -28,6 +28,7 @@ class window.view.typeahead
 
 class Customer
 
+  subDistrictSuggestion : null
   districtSuggestion : null
   provinceSuggestion : null
 
@@ -54,7 +55,7 @@ class Customer
     @displayThaiYear()
     @displayMonthNumber()
     @preSelectSex()
-    @initializeTypeahead()
+    @initializeTypeaheads()
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='customer']")
 
@@ -65,19 +66,22 @@ class Customer
       sex_selected_value = prefix_select.find("option:selected").data("sex")
       $("\##{sex_selected_value}_btn").button("toggle")
 
-  initializeTypeahead: ()->
+  initializeTypeaheads: ()->
     delete @provinceSuggestion
-    @provinceSuggestion = new view.typeahead(
-      txt_input: $("input[id*='province']"),
-      url: '/provinces'
-    )
-    @provinceSuggestion.initialize()
+    @provinceSuggestion = @initializeTypeahead('customer_province', '/provinces')
 
     delete @districtSuggestion
-    @districtSuggestion = new view.typeahead(
-      txt_input: $("input[id*='district']"),
-      url: '/districts'
+    @districtSuggestion = @initializeTypeahead('customer_district', '/districts')
+
+    delete @subDistrictSuggestion
+    @subDistrictSuggestion = @initializeTypeahead('customer_sub_district', '/sub_districts')
+
+  initializeTypeahead: (id, url) ->
+    obj = new view.typeahead(
+      txt_input: $("input[id='#{id}']"),
+      url: "#{url}"
     )
-    @districtSuggestion.initialize()
+    obj.initialize()
+    return obj
 
 view.customer = new Customer
