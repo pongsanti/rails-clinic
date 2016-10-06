@@ -25,5 +25,6 @@ div id=id class="panel panel-#{panelClass}"
     .panel-body.collapse.in id=toggleTarget
       = content_for :body
 
-  .panel-footer
-    = content_for :footer
+  - if content_for? :footer
+    .panel-footer
+      = content_for :footer

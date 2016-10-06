@@ -6,4 +6,4 @@ th:
       diag:
         id: "รหัสวินิจฉัย"
         name: "ชื่อ"
-        description: "รายละเอียดเพิ่มเติม" 
+        description: "รายละเอียด" 
