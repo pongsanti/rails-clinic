@@ -58,11 +58,11 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
       
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :street}
-        =render partial: "global/txt_field", locals: {f: f, method: :sub_district}
+        =render partial: "global/txt_field", locals: {f: f, method: :sub_district, div_text_field_class: "col-sm-4 scrollable-dropdown-menu", text_field_class: "typeahead form-control"}
       
       .form-group
-        =render partial: "global/txt_field", locals: {f: f, method: :district}
-        =render partial: "global/txt_field", locals: {f: f, method: :province, div_text_field_class: "col-sm-4 scrollable-dropdown-menu",text_field_class: "typeahead form-control"}
+        =render partial: "global/txt_field", locals: {f: f, method: :district, div_text_field_class: "col-sm-4 scrollable-dropdown-menu", text_field_class: "typeahead form-control"}
+        =render partial: "global/txt_field", locals: {f: f, method: :province, div_text_field_class: "col-sm-4 scrollable-dropdown-menu", text_field_class: "typeahead form-control"}
         
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :postal_code, data: {mask: '99999'} }       

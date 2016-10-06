@@ -38,8 +38,6 @@ Rails.application.routes.draw do
 
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
-  #provinces
-  get "provinces", to: "customers#provinces", as: "customer_provinces"
 
   get "exam_weight/:id/edit",       to: "exams#edit_weight",    as: "edit_exam_weight"
   patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
@@ -89,7 +87,12 @@ Rails.application.routes.draw do
   get "clients/:id/edit_settings",  to: "clients#edit_settings",    as: "edit_client_settings"
   patch "client_settings/:id",      to: "clients#update_settings",  as: "client_settings"
 
-  resources :diags  
+  resources :diags
+
+  # suggestions
+  get "provinces",      to: "suggestions#provinces",    as: "customer_provinces"
+  get "districts",      to: "suggestions#districts",    as: "customer_districts"
+  get "sub_districts",  to: "suggestions#sub_districts",as: "customer_sub_districts"
   # Example resource route with options:
   #   resources :products do
   #     member do
