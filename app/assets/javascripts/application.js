@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-
 //= require bootstrap-sprockets
-//= require_directory ./third-party
+
+//= require third-party
+
 //= require global
-//= require_tree ./views
+//= require views
