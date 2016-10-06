@@ -24,6 +24,15 @@ module Clinic
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.middleware.use 'Apartment::Elevators::Generic', Proc.new { |request| 
+
+      #if request.env['rack.session']['warden.user.user.key'] != nil
+      #  tenant_name = User.find(request.env['rack.session']['warden.user.user.key'][0][0]).client.subdomain
+      #end
+      #tenant_name
+      nil
+    }
+
     # hstore
     # config.active_record.schema_format = :sql
   end
