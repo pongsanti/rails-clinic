@@ -248,7 +248,7 @@ class ExamsController < ApplicationController
     end
 
     def set_customer
-      @customer = Customer.find(params[:customer_id])
+      @customer = Customer.eager.find(params[:customer_id])
     end
 
     def set_customer_from_exam
