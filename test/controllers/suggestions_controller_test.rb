@@ -13,6 +13,13 @@ class SuggestionsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal 2, json_response.count
+  end 
+
+  test "should get districts" do
+    get "districts"
+
+    assert_response :success
+    assert_equal 2, json_response.count
   end
 
 

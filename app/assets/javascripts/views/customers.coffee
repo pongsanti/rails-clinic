@@ -28,6 +28,7 @@ class window.view.typeahead
 
 class Customer
 
+  districtSuggestion : null
   provinceSuggestion : null
 
   displayThaiYear: () ->
@@ -71,5 +72,12 @@ class Customer
       url: '/provinces'
     )
     @provinceSuggestion.initialize()
+
+    delete @districtSuggestion
+    @districtSuggestion = new view.typeahead(
+      txt_input: $("input[id*='district']"),
+      url: '/districts'
+    )
+    @districtSuggestion.initialize()
 
 view.customer = new Customer
