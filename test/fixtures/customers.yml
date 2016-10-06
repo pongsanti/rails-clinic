@@ -7,6 +7,7 @@ customer_david:
   name: "David"
   surname: "Jiang"
   birthdate: 1988-10-09
+  province: "province01"
 
 customer_two:
   cn: "5900002"
@@ -15,3 +16,4 @@ customer_two:
   name: "John"
   surname: "Doe"
   birthdate: 1989-10-10
+  province: "province02"

@@ -12,11 +12,6 @@ class CustomersController < ApplicationController
     @customers = @q.result.eager.page(params[:page])
   end
 
-  def provinces
-    @provinces = Customer.uniq.where.not(province: "").pluck(:province)
-    render json: @provinces, root: false
-  end
-
   def show
     add_bc :show, customer_path(@customer)
     respond_to do |format|
