@@ -28,6 +28,7 @@ class window.view.typeahead
 
 class Customer
 
+  streetSuggestion: null
   subDistrictSuggestion : null
   districtSuggestion : null
   provinceSuggestion : null
@@ -68,13 +69,16 @@ class Customer
 
   initializeTypeaheads: ()->
     delete @provinceSuggestion
-    @provinceSuggestion = @initializeTypeahead('customer_province', '/provinces')
+    @provinceSuggestion = @initializeTypeahead("customer_province", "/provinces")
 
     delete @districtSuggestion
-    @districtSuggestion = @initializeTypeahead('customer_district', '/districts')
+    @districtSuggestion = @initializeTypeahead("customer_district", "/districts")
 
     delete @subDistrictSuggestion
-    @subDistrictSuggestion = @initializeTypeahead('customer_sub_district', '/sub_districts')
+    @subDistrictSuggestion = @initializeTypeahead("customer_sub_district", "/sub_districts")
+
+    delete @streetSuggestion
+    @streetSuggestion = @initializeTypeahead("customer_street", "/streets")
 
   initializeTypeahead: (id, url) ->
     obj = new view.typeahead(
