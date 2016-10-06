@@ -4,14 +4,28 @@
   .row
     .col-sm-8
       = render partial: "info", locals: {exam: @exam}
-      = render partial: "weight_info", locals: {exam: @exam}
+
+      = render partial: "weight_info", layout: "global/panel/layout", \
+        locals: { exam: @exam, \
+                  id: "examWeightInfo", \
+                  toggleTarget: "examWeightInfoBody", \
+                  panelClass: "default", \
+                  headerTextKey: "exams.weight_form.heading" }
+
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}
       = render partial: "drug_info", locals: {exam: @exam}
   
       = render partial: "exams/appointment/list", locals: {exam: @exam}
     .col-sm-4
-      = render partial: "customers/side_show", locals: {customer: @customer}
+      - cache @customer do
+        = render partial: "customers/side_show", layout: "global/panel/layout", \
+          locals: { customer: @customer, \
+                    id: "customerShow", \
+                    toggleTarget: "customerShowBody", \
+                    panelClass: "default", \
+                    headerTextKey: "customers.show.title" }                  
+
       = render partial: "global/remote/exam", locals: {customer: @customer}
       = render partial: "global/remote/q"
       = render partial: "exams/revenue/list", locals: {exam: @exam}

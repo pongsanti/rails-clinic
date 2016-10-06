@@ -39,7 +39,7 @@ class ExamsController < ApplicationController
 
   def index
     @q = Exam.for_customer(@customer.id).ransack(params[:q])
-    @q.sorts = "id asc" if @q.sorts.empty?
+    @q.sorts = "id desc" if @q.sorts.empty?
 
     @exams = @q.result.page(params[:page])
   end
@@ -248,7 +248,7 @@ class ExamsController < ApplicationController
     end
 
     def set_customer
-      @customer = Customer.find(params[:customer_id])
+      @customer = Customer.eager.find(params[:customer_id])
     end
 
     def set_customer_from_exam

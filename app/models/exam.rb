@@ -36,11 +36,15 @@ class Exam < ActiveRecord::Base
       joins(customer: [:prefix]).includes(customer: [:prefix])
     end
 
+    def eager_for_customer(cid)
+      eager.where("customer_id = ?", cid)
+    end
+
     def for_customer(cid)
       # workaround for ransack bug
       # https://github.com/activerecord-hackery/ransack/issues/593
       #cid = 1 if cid == true
-      eager.where("customer_id = ?", cid)
+      where("customer_id = ?", cid)
     end
   end
 

@@ -61,14 +61,6 @@ html lang="en"
                 span.caret
               ul.dropdown-menu
                 li
-                  = link_to diags_path do
-                    =>icon("stethoscope")
-                    => t('.diag')
-                li.divider role="separator"
-                li.dropdown-header
-                  =>icon("medkit")
-                  = "Master data"
-                li
                   = link_to drugs_path do
                     => icon("medkit")
                     => t('.drug')
@@ -80,8 +72,16 @@ html lang="en"
                   = link_to store_units_path do
                     => icon("cubes")
                     => t('.store_unit')
-          
+            li
+              = link_to diags_path do
+                =>icon("stethoscope")
+                => t('.diag')
+
           ul.nav.navbar-nav.navbar-right
+            li
+              = link_to "#" do
+                span.glyphicon.glyphicon-envelope
+                
             = render partial: "layouts/right_nav"
 
     div.container id="main_content"

@@ -13,6 +13,8 @@
         = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix
   = render partial: "list", locals: {qs: @exQs, id: toggleTarget }
+  .panel-footer
+      = page_entries_info @exQs, entry_name: Q.model_name.human  
 
 - toggleTarget = "queueMedIndex"
 
@@ -29,3 +31,5 @@
         = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }          
       .clearfix  
   = render partial: "list", locals: {qs: @medQs, id: toggleTarget } 
+  .panel-footer
+      = page_entries_info @medQs, entry_name: Q.model_name.human

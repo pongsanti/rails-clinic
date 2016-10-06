@@ -17,4 +17,9 @@ class SuggestionsController < ApplicationController
     render json: @sub_districts, root: false
   end
 
+  def streets
+    @streets = Customer.uniq.where.not(street: "").pluck(:street)
+    render json: @streets, root: false
+  end
+
 end

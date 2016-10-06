@@ -1,30 +1,24 @@
-.panel.panel-default#customerShow
-  .panel-heading
-    .panel-header 
-      =t("customers.show.title")
-      .pull-right
-        =>link_to customer_exams_path(customer.id), class: "btn btn-primary btn-xs" do
-          =icon("stethoscope")
-          =<"View Examinations"      
-        =>link_to customer_path(customer), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"
-        =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#customerShowBody" }          
-      .clearfix
+- content_for :header do
+    =>link_to customer_exams_path(customer.id), class: "btn btn-primary btn-xs" do
+      =icon("stethoscope")
+      =<"View Examinations"      
+    =>link_to customer_path(customer), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+    =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
+      i.glyphicon.glyphicon-edit
+      =<"Edit"
   
-  .panel-body.collapse.in#customerShowBody
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :id, value: format_id(customer), strong: true, lb_width: 4, tf_width: 8}
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :cn, lb_width: 4, tf_width: 8}        
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer), lb_width: 4, tf_width: 8}
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
-    .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :id_card_no, value: masked_id_card_no(customer), lb_width: 4, tf_width: 8}
+- content_for :body do
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :id, value: format_id(customer), strong: true, lb_width: 4, tf_width: 8}
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :cn, lb_width: 4, tf_width: 8}        
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer), lb_width: 4, tf_width: 8}
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
+  .row
+    = render partial: "global/txt_show", locals: {obj: customer, method: :id_card_no, value: masked_id_card_no(customer), lb_width: 4, tf_width: 8}

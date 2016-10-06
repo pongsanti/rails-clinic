@@ -1,0 +1,16 @@
+- cache entry do
+  tr class=tr_class(entry)
+    td= entry.id
+    td= format_id entry.exam
+    td= link_to "#{entry.exam.customer.prefix.name} #{entry.exam.customer.name} #{entry.exam.customer.surname}", activate_qs_path(entry), method: :patch
+    td 
+      span data-toggle="tooltip" title=th_date_time_format(entry.created_at)
+        =time_ago_in_words(entry.created_at)
+    td.rowlink-skip            
+      =>link_to q_path(entry), method: :delete, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip", confirm: "Are you sure you want to delete?" }, title: "Delete" do
+        i.glyphicon.glyphicon-trash
+      =>link_to switch_category_qs_path(entry), method: :patch, remote: true, data: {"disable-with" => "<i class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></i>", "toggle" => "tooltip" }, title: switch_title_text(entry) do
+        - if entry.exam_q?
+          =icon "medkit"
+        - else
+          =icon "stethoscope"

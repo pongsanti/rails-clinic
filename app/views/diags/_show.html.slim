@@ -1,19 +1,14 @@
-.panel.panel-default#diagShow
-  .panel-heading
-    .panel-header 
-      =t("customers.show.title")
-      .pull-right
-        =>link_to edit_diag_path(diag), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#diagShowBody" }
-      .clearfix
+- content_for :header do
+  =>link_to edit_diag_path(diag), class: "btn btn-warning btn-xs" do
+    i.glyphicon.glyphicon-edit
+    =<"Edit"
+  = render "global/panel/back_btn"
 
-  .panel-body.collapse.in#diagShowBody
-    =form_for diag, html: { class: "form-horizontal" } do
-      .form-group
-        = render partial: "global/txt_show_id", locals: {obj: diag}
-      .form-group
-        = render partial: "global/txt_show", locals: { obj: diag, method: :name, required: true }
-        = render partial: "global/txt_show", locals: { obj: diag, method: :description }
+- content_for :body do
+  = form_for diag, html: { class: "form-horizontal" } do
+    .form-group
+      = render partial: "global/txt_show_id", locals: {obj: diag}
+    .form-group
+      = render partial: "global/txt_show", locals: { obj: diag, method: :name, required: true, tf_width: 10 }
+    .form-group
+      = render partial: "global/txt_show", locals: { obj: diag, method: :description, tf_width: 10 }

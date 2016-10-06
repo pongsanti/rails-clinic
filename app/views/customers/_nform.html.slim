@@ -57,7 +57,7 @@ div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-wa
         =render partial: "global/txt_field", locals: {f: f, method: :address, tf_width: 10, size: 60}       
       
       .form-group
-        =render partial: "global/txt_field", locals: {f: f, method: :street}
+        =render partial: "global/txt_field", locals: {f: f, method: :street, div_text_field_class: "col-sm-4 scrollable-dropdown-menu", text_field_class: "typeahead form-control"}
         =render partial: "global/txt_field", locals: {f: f, method: :sub_district, div_text_field_class: "col-sm-4 scrollable-dropdown-menu", text_field_class: "typeahead form-control"}
       
       .form-group

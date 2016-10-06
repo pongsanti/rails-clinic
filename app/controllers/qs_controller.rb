@@ -5,8 +5,11 @@ class QsController < ApplicationController
   before_action :set_q, only: [:destroy, :switch_category, :activate]
   
   def index
-    @exQs = Q.cat_is(Q::EXAM_Q_CAT)
-    @medQs = Q.cat_is(Q::MED_Q_CAT)
+    @q = Q.eager_cat_is(Q::EXAM_Q_CAT).ransack(params[:q])
+    @exQs = @q.result.page
+
+    @q = Q.eager_cat_is(Q::MED_Q_CAT).ransack(params[:q])
+    @medQs = @q.result.page
   end
 
   def create
@@ -49,7 +52,7 @@ class QsController < ApplicationController
     #end
 
     def set_q
-      @q = Q.eager.find(params[:id])
+      @q = Q.find(params[:id])
     end
 
     def set_exam

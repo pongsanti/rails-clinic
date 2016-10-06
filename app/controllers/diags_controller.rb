@@ -61,7 +61,7 @@ class DiagsController < ApplicationController
 
     def set_ransack_search_param
       @q = Diag.ransack(params[:q])
-      @q.sorts = "id asc" if @q.sorts.empty?
+      @q.sorts = "id desc" if @q.sorts.empty?
     end
 
     def add_bc(key, path)

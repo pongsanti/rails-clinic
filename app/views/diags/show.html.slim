@@ -4,7 +4,15 @@
   .row
     .col-sm-8
       = render partial: "global/search", locals: {reset_path: diags_path, search_field: :name_or_description_cont}
-      = render partial: "show", locals: {diag: @diag}
+      
+      - cache @diag do
+        /= render partial: "show", locals: {diag: @diag}
+        = render partial: "show", layout: "global/panel/layout", \
+        locals: { diag: @diag, \
+                  id: "diagShow", \
+                  toggleTarget: "diagShowBody", \
+                  panelClass: "default", \
+                  headerTextKey: "diags.show.title" }
 
     .col-sm-4
       = render partial: "global/remote/q"
