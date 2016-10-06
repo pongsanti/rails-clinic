@@ -5,7 +5,9 @@
     .col-sm-8
       = render partial: "global/search", locals: {reset_path: customers_path, search_field: :name_or_surname_or_cn_cont}
       
-      = render partial: "list"
+      = render partial: "list", layout: "global/panel/layout", \
+        locals: { id: "customerIndex",    toggleTarget: "customerIndexBody", \
+                    panelClass: "default",  headerTextKey: "customers.index.title", bodyIsTable: true }
 
     .col-sm-4
       = render partial: "global/remote/q"

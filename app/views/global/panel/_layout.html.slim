@@ -1,0 +1,29 @@
+/ locals
+/ - id
+/ - toggleTarget
+/ - panelClass
+/ - headerTextKey
+/ - bodyIsTable
+
+- bodyIsTable = local_assigns[:bodyIsTable].nil? ? false : bodyIsTable
+
+div id=id class="panel panel-#{panelClass}"
+  .panel-heading
+    .panel-header
+      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: headerTextKey }
+      .pull-right    
+
+        = content_for :header
+
+        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
+    .clearfix
+
+  - if bodyIsTable
+    .table-responsive.collapse.in id=toggleTarget
+      = content_for :body
+  - else
+    .panel-body.collapse.in id=toggleTarget
+      = content_for :body
+
+  .panel-footer
+    = content_for :footer
