@@ -17,11 +17,8 @@
         th= sort_link @q, :description
 
       tbody.rowlink data-link="row"
-        - @diags.each do |diag|
-          tr
-            td= format_id diag
-            td= link_to diag.name, diag_path(diag)
-            td= diag.description
+        = render partial: "global/table/empty", locals: { list: diags, colspan: 3 }
+        = render partial: "entry", collection: diags, cached: true
   .panel-footer
-    = paginate @diags
-    = page_entries_info @diags, entry_name: t('diags.index.title')
+    = paginate diags
+    = page_entries_info diags, entry_name: t('diags.index.title')
