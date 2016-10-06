@@ -4,7 +4,14 @@
   .row
     .col-sm-8
       = render partial: "info", locals: {exam: @exam}
-      = render partial: "weight_info", locals: {exam: @exam}
+
+      = render partial: "weight_info", layout: "global/panel/layout", \
+        locals: { exam: @exam, \
+                  id: "examWeightInfo", \
+                  toggleTarget: "examWeightInfoBody", \
+                  panelClass: "default", \
+                  headerTextKey: "exams.weight_form.heading" }
+
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}
       = render partial: "drug_info", locals: {exam: @exam}

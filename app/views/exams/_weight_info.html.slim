@@ -1,25 +1,17 @@
-.panel.panel-default#examWeightInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.weight_form.heading")
-      .pull-right
-
-        = render partial: "global/panel/edit_btn", locals: {path: edit_exam_weight_path(exam)}
-
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examWeightInfoBody" }
-      .clearfix
-
-  .panel-body.collapse.in#examWeightInfoBody
-    =form_for exam, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :weight, lb_width: 2, tf_width: 2}
-        = render partial: "global/txt_show", locals: {obj: exam, method: :height, lb_width: 2, tf_width: 2} 
-        = render partial: "global/txt_show", locals: {obj: exam, method: :bmi, lb_width: 2, tf_width: 2}
-      
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :bp_systolic, value: \
-            "#{exam.bp_systolic} / #{exam.bp_diastolic}"}
-        = render partial: "global/txt_show", locals: {obj: exam, method: :pulse }
-           
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :note }
+- content_for :header do
+  = render partial: "global/panel/edit_btn", locals: {path: edit_exam_weight_path(exam)}
+  
+- content_for :body do
+  =form_for exam, html: { class: "form-horizontal" } do |f|
+    .form-group
+      = render partial: "global/txt_show", locals: {obj: exam, method: :weight, lb_width: 2, tf_width: 2}
+      = render partial: "global/txt_show", locals: {obj: exam, method: :height, lb_width: 2, tf_width: 2} 
+      = render partial: "global/txt_show", locals: {obj: exam, method: :bmi, lb_width: 2, tf_width: 2}
+    
+    .form-group
+      = render partial: "global/txt_show", locals: {obj: exam, method: :bp_systolic, value: \
+          "#{exam.bp_systolic} / #{exam.bp_diastolic}"}
+      = render partial: "global/txt_show", locals: {obj: exam, method: :pulse }
+         
+    .form-group
+      = render partial: "global/txt_show", locals: {obj: exam, method: :note }
