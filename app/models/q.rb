@@ -12,7 +12,11 @@ class Q < ActiveRecord::Base
 
   class << self
     def cat_is(c)
-      eager.where("category = ?", c ).order("qs.id asc") 
+      where("category = ?", c ).order("qs.id asc") 
+    end
+
+    def eager_cat_is(c)
+      eager.where("category = ?", c ).order("qs.id asc")
     end
 
     def eager
