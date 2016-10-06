@@ -8,9 +8,5 @@
         th=Q.human_attribute_name(:created_at)
         th style="width: 12%"
     tbody.rowlink data-link="row"
-      - if qs.empty?
-        tr
-          td.text-center colspan="5"
-            = "No data"
-      - else
-        = render partial: "entry", collection: qs, cached: true
+      = render partial: "global/table/empty", locals: { list: qs, colspan: 5 }
+      = render partial: "entry", collection: qs, cached: true
