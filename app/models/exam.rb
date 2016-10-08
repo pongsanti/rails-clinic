@@ -5,14 +5,16 @@ class Exam < ActiveRecord::Base
   belongs_to :customer, inverse_of: :exams
   belongs_to :examiner, class_name: 'User'
 
-  has_many :patient_diags
+  has_many :qs,             dependent: :destroy, inverse_of: :exam
+  has_many :patient_diags,  dependent: :destroy, inverse_of: :exam
+
   has_many :diags, through: :patient_diags
   accepts_nested_attributes_for :patient_diags, allow_destroy: true, reject_if: :reject_diags
 
-  has_many :patient_drugs, inverse_of: :exam
+  has_many :patient_drugs,  dependent: :destroy, inverse_of: :exam
   accepts_nested_attributes_for :patient_drugs, allow_destroy: true, reject_if: :reject_drugs 
 
-  has_many :appointments, inverse_of: :exam
+  has_many :appointments,   dependent: :destroy, inverse_of: :exam
   accepts_nested_attributes_for :appointments, allow_destroy: true, reject_if: :reject_appointments
 
   validates :weight, :height, :numericality => {:greater_than => 0, :less_than => 500}, 

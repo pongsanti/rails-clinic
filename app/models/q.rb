@@ -5,7 +5,7 @@ class Q < ActiveRecord::Base
   EXAM_Q_CAT = "A"
   MED_Q_CAT = "B"
 
-  belongs_to :exam
+  belongs_to :exam, inverse_of: :qs
 
   validates :exam, presence: true
   validates :category, inclusion: {in: [EXAM_Q_CAT, MED_Q_CAT]}, allow_blank: true

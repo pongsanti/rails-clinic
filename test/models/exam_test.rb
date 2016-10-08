@@ -9,6 +9,11 @@ class ExamTest < ActiveSupport::TestCase
     @test_target = @exam
   end
 
+  test "should retreive eager" do
+    exams = Exam.eager_for_customer(@exam.customer)
+    assert_equal 2, exams.count
+  end
+
   test "should not validate weight if empty" do
     should_not_validate_if_empty :weight
   end
