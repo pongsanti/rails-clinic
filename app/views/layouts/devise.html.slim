@@ -16,3 +16,17 @@ html lang="en"
         = content_tag :div, msg, :id => "flash#{name}", class: "alert alert-danger", role: "alert"
       
       = yield
+
+    footer.footer
+      div.container
+        ul.nav.navbar-nav
+          li.active
+            = link_to root_path do
+                => icon("heartbeat")
+                => "Home"
+          li
+            a href="#about"
+              ="About"
+          li
+            a href="#contact"
+              ="Contact"
