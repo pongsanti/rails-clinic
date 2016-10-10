@@ -7,6 +7,10 @@ class ApplicationPolicy
   end
 
   private
+    def manager_or_higher?
+      user.manager? or user.admin?
+    end
+
     def doctor_or_higher?
       user.doctor? or user.manager? or user.admin?
     end

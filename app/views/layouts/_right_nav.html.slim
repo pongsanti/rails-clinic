@@ -5,10 +5,11 @@
       => current_user.display_name
       span.caret
     ul.dropdown-menu
-      li
-        = link_to edit_client_settings_path(current_user.client) do
-          => icon("cog")
-          => "Client settings"
+      - if policy(:client).edit_settings? 
+        li
+          = link_to edit_client_settings_path(current_user.client) do
+            => icon("cog")
+            => "Client settings"
 
       li
         = link_to destroy_user_session_path, :method => :delete do
