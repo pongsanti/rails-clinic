@@ -3,12 +3,10 @@
 .container
   .row
     .col-sm-7
-      = render partial: "weight_form", layout: "global/panel/layout", \
-        locals: { id: "examWeightForm", \
-                  toggleTarget: "examWeightFormBody", \
-                  panelClass: "success", \
-                  headerTextKey: "exams.new.title" }
+      = render_weight_form @exam, :new
 
     .col-sm-5
-      = render partial: "customers/side_show", locals: {customer: @customer}
+      - cache [@customer, :sideshow] do
+        = render_customer_sideshow @customer
+        
       = render partial: "global/remote/q"

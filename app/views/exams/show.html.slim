@@ -5,18 +5,28 @@
     .col-sm-8
       = render_info @exam
       
-      - cache @exam do
+      - cache [@exam, :weight]  do
         = render_weight_info @exam
+
+      - cache [@exam, :pe] do
         = render_pe_info @exam
+
+      - cache [@exam, :diag] do  
+        = render_diag_info @exam
+      
+      - cache [@exam, :drug] do
+        = render_drug_info @exam
+      
+      - cache [@exam, :appointment] do
+        = render_appointment_list @exam
         
-      = render_diag_info @exam
-      = render_drug_info @exam
-      = render_appointment_list @exam
 
     .col-sm-4
-      - cache @customer do
+      - cache [@customer, :sideshow] do
         = render_customer_sideshow @customer
 
       = render partial: "global/remote/exam", locals: {customer: @customer}
       = render partial: "global/remote/q"
-      = render_revenue_list @exam
+      
+      - cache [@exam, :revenue] do
+        = render_revenue_list @exam
