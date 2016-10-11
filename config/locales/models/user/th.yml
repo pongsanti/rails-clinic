@@ -6,3 +6,4 @@ th:
       user:
         email: "Email address"
         password: "Password"
+        display_name: "Display name"

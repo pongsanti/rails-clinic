@@ -5,6 +5,10 @@
       => current_user.display_name
       span.caret
     ul.dropdown-menu
+      li
+        = link_to edit_user_registration_path do
+          => icon("cog")
+          => "Update profile"
       - if policy(:client).edit_settings? 
         li
           = link_to edit_client_settings_path(current_user.client) do
