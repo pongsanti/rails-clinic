@@ -3,14 +3,16 @@
 .container
   .row
     .col-sm-7
-      = render partial: "list"
+      = render_list
 
     .col-sm-5
-      = render partial: "customers/side_show", layout: "global/panel/layout", \
-        locals: { customer: @customer, \
-                  id: "customerShow", \
-                  toggleTarget: "customerShowBody", \
-                  panelClass: "default", \
-                  headerTextKey: "customers.show.title" }
+      - cache @customer do
+        = render partial: "customers/side_show", layout: "global/panel/layout",\
+          locals: {\
+            customer: @customer,\
+            id: "customerShow",\
+            toggleTarget: "customerShowBody",\
+            panelClass: "default",\
+            headerTextKey: "customers.show.title" }
 
       = render partial: "global/remote/q"

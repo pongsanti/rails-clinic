@@ -58,6 +58,16 @@ module ExamsHelper
     result
   end
 
+  def render_list
+    render partial: "list", layout: "global/panel/layout",\
+      locals: {\
+        id: "examIndex",\
+        toggleTarget: "examIndexBody",\
+        panelClass: "default",\
+        headerTextKey: "exams.index.title",\
+        bodyIsTable: true}
+  end
+
   private
     def select_drug_in_text(drug_in)
       "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"
