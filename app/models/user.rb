@@ -44,4 +44,13 @@ class User < ActiveRecord::Base
     has_role? User::ROLES[3]
   end
 
+  #devise custom check if user's got client yet
+  def active_for_authentication?
+    super && self.client.present?
+  end
+
+  def inactive_message
+    self.client.present? ? super : :no_client
+  end
+
 end

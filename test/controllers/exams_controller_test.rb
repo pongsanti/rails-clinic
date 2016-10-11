@@ -303,5 +303,26 @@ class ExamsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to exam_url(@exam)
-  end    
+  end
+
+  test "should pay" do
+    assert_not @exam.paid?
+
+    patch :pay, id: @exam
+
+    assert_redirected_to exam_med_url(@exam)
+    assert_assigns :exam, :customer
+
+    @exam.reload
+    assert @exam.paid?
+  end
+
+  test "should delete destroy" do
+    assert_difference "Exam.count", -1 do
+      delete :destroy, id: @exam
+    end
+
+    assert_redirected_to customer_exams_url(@exam.customer)
+    
+  end
 end

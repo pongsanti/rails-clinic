@@ -40,7 +40,7 @@ $badge-bg: #fff
 
 // local variables
 $body-padding-top: 55px
-$footer-height: 55px
+$footer-height: 45px
 
 html
   position: relative
@@ -65,7 +65,15 @@ body
   bottom: 0
   width: 100%
   height: $footer-height
-  background-color: #f5f5f5
+  color: $navbar-default-color
+  background-color: $navbar-default-bg
+
+  a
+    color: $navbar-default-link-color
+    &:active
+      color: $navbar-default-link-active-color
+    &:hover
+      color: $navbar-default-link-hover-color
 
 tr.pointer:hover
   cursor: pointer

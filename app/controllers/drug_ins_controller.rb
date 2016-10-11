@@ -58,10 +58,8 @@ class DrugInsController < ApplicationController
 
   private
     def set_ransack_param
-      ransack_params = {for_drug: @drug}
-      ransack_params = ransack_params.merge(params[:q]) if params[:q]
-
-      @q = DrugIn.ransack ransack_params
+      @q = DrugIn.for_drug(@drug).ransack(params[:q])
+      @q.sorts = "id desc" if @q.sorts.empty?
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_drug_in

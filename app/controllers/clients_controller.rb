@@ -26,6 +26,8 @@ class ClientsController < ApplicationController
   end
 
   def edit_settings
+    authorize @client
+    
     add_bc :edit, edit_client_settings_path(@client)
   end
 

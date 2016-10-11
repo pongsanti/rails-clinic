@@ -4,6 +4,8 @@ class Drug < ActiveRecord::Base
 
   acts_as_paranoid
 
+  paginates_per 10
+
   belongs_to :drug_usage
   belongs_to :store_unit
 
