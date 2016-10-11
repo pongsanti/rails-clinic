@@ -1,22 +1,14 @@
-- if policy(@exam).show_pe? 
+- if policy(exam).show_pe?
+  
+  - content_for :header do
+    - if policy(exam).edit_pe?
+      = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
 
-  .panel.panel-default#examPeInfo
-    .panel-heading
-      .panel-header 
-        =t("exams.pe_form.header")
-        .pull-right
-
-          - if policy(@exam).edit_pe?
-            = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
-            
-          = render partial: "global/panel/toggle_btn", locals: { target: "#examPeInfoBody" }    
-        .clearfix
-
-    .panel-body.collapse.in#examPeInfoBody
-      =form_for exam, html: { class: "form-horizontal" } do |f|
-        .form-group
-          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pi, tf_width: 10 }
-        .form-group
-          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pe, tf_width: 10 }
-        .form-group
-          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_note, tf_width: 10 }
+  - content_for :body do
+    =form_for exam, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pi, tf_width: 10 }
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pe, tf_width: 10 }
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_note, tf_width: 10 }

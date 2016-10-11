@@ -59,16 +59,78 @@ module ExamsHelper
   end
 
   def render_list
-    render partial: "list", layout: "global/panel/layout",\
-      locals: {\
-        id: "examIndex",\
-        toggleTarget: "examIndexBody",\
-        panelClass: "default",\
-        headerTextKey: "exams.index.title",\
-        bodyIsTable: true}
+    locals = render_panel_locals("examIndex", "exams.index.title")
+    locals[:bodyIsTable] = true
+    
+    render_panel "list", locals
   end
 
+  def render_customer_sideshow(customer)
+    locals = render_panel_locals("customerShow", "customers.show.title")
+    locals[:customer] = customer
+
+    render_panel "customers/side_show", locals
+  end
+
+  def render_weight_info(exam)
+    locals = render_panel_locals("examWeightInfo", "exams.weight_form.heading")
+    locals[:exam] = exam
+    
+    render_panel "weight_info", locals
+  end
+
+  def render_pe_info(exam)
+    locals = render_panel_locals("examPeInfo", "exams.pe_form.header")
+    locals[:exam] = exam
+
+    render_panel "pe_info", locals
+  end
+
+  def render_diag_info(exam)
+    locals = render_panel_locals("examDiagInfo", "exams.diag_form.heading")
+    locals[:exam] = exam
+    locals[:bodyIsTable] = true
+
+    render_panel "diag_info", locals
+  end
+
+  def render_drug_info(exam)
+    locals = render_panel_locals("examDrugInfo", "exams.drug_form.heading")
+    locals[:exam] = exam
+    locals[:bodyIsTable] = true
+
+    render_panel "drug_info", locals
+  end
+
+  def render_appointment_list(exam)
+    locals = render_panel_locals("examAppointmentList", "exams.appointment.title")
+    locals[:exam] = exam
+    locals[:bodyIsTable] = true
+
+    render_panel "exams/appointment/list", locals    
+  end
+
+  def render_revenue_list(exam)
+    locals = render_panel_locals("examRevenueList", "exams.revenue.title")
+    locals[:exam] = exam
+    locals[:bodyIsTable] = true
+
+    render_panel "exams/revenue/list", locals    
+  end  
+
   private
+    def render_panel(template, locals)
+      render partial: template, layout: "global/panel/layout",\
+        locals: locals
+    end
+
+    def render_panel_locals(id, headerKey)
+      return {  id: id,\
+                toggleTarget: "#{id}Body",\
+                panelClass: "default",\
+                headerTextKey: headerKey }
+    end
+
     def select_drug_in_text(drug_in)
       "#{drug_in.drug.name} (Exp: #{th_date_format(drug_in.expired_date)})"
     end

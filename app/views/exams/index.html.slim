@@ -7,12 +7,5 @@
 
     .col-sm-5
       - cache @customer do
-        = render partial: "customers/side_show", layout: "global/panel/layout",\
-          locals: {\
-            customer: @customer,\
-            id: "customerShow",\
-            toggleTarget: "customerShowBody",\
-            panelClass: "default",\
-            headerTextKey: "customers.show.title" }
-
+        = render_customer_sideshow @customer
       = render partial: "global/remote/q"

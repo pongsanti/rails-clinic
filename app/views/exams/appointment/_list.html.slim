@@ -1,12 +1,10 @@
-.panel.panel-default#examAppointmentList
-  .panel-heading
-    .panel-header 
-      =t("exams.appointment.title")
-      .pull-right
-        
-        - if policy(@exam).edit_appointment?
-          = render partial: "global/panel/edit_btn", locals: { path: edit_exam_appointment_path(exam) }
+- content_for :header do
 
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examAppointmentListBody" }        
-      .clearfix
-  = render partial: "exams/appointment/list_table", locals: {exam: exam, table_id: "examAppointmentListBody"}
+  - if policy(exam).edit_appointment?
+
+    = render partial: "global/panel/edit_btn", locals: { path: edit_exam_appointment_path(exam) }
+    
+
+
+- content_for :body do
+  = render partial: "exams/appointment/list_table", locals: {exam: exam}
