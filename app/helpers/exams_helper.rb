@@ -72,6 +72,13 @@ module ExamsHelper
     render_panel "customers/side_show", locals
   end
 
+  def render_info(exam)
+    locals = render_panel_locals("examInfo", "exams.info.heading")
+    locals[:exam] = exam
+
+    render_panel "info", locals
+  end
+
   def render_weight_info(exam)
     locals = render_panel_locals("examWeightInfo", "exams.weight_form.heading")
     locals[:exam] = exam
