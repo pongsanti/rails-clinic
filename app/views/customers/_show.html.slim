@@ -9,9 +9,7 @@
         =>link_to customer_exams_path(customer), class: "btn btn-primary btn-xs" do
           =icon("stethoscope")
           =<"View Examinations"
-        =>link_to edit_customer_path(customer), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
+        = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
         = render "global/panel/back_btn"
         = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
       .clearfix
