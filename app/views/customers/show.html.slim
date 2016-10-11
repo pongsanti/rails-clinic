@@ -6,7 +6,7 @@
       = render partial: "global/search", locals: {reset_path: customers_path, search_field: :name_or_surname_or_cn_cont}
       
       - cache @customer do
-        = render partial: "show", locals: { customer: @customer }
+        = render @customer
 
     .col-sm-4
       = render partial: "global/remote/exam", locals: {customer: @customer}

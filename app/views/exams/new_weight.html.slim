@@ -6,7 +6,7 @@
       = render_weight_form @exam, :new
 
     .col-sm-5
-      - cache [@customer, :sideshow] do
-        = render_customer_sideshow @customer
+      - cache @customer do
+        = render partial: "customers/side_show", locals: {customer: @customer}
         
       = render partial: "global/remote/q"

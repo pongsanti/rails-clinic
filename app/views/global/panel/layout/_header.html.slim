@@ -1,0 +1,8 @@
+.panel-header
+  .panel-header
+    = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: headerKey }
+    
+    .pull-right
+      = yield
+      = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
+  .clearfix

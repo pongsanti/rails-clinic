@@ -1,18 +1,14 @@
-- toggleTarget = "customerShowBody"
+- id = "customerShow"
+- toggleTarget = "#{id}Body"
 
-.panel.panel-default#customerShow
+.panel.panel-default id=id
   .panel-heading
-    .panel-header
-      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: "customers.show.title" }    
 
-      .pull-right
+    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do
         =>link_to customer_exams_path(customer), class: "btn btn-primary btn-xs" do
           =icon("stethoscope")
           =<"View Examinations"
         = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
-      .clearfix
 
   .panel-body.collapse.in id=toggleTarget
     =form_for customer, html: { class: "form-horizontal" } do |f|

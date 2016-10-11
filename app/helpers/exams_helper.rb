@@ -65,13 +65,6 @@ module ExamsHelper
     render_panel "list", locals
   end
 
-  def render_customer_sideshow(customer)
-    locals = render_panel_locals("customerShow", "customers.show.title")
-    locals[:customer] = customer
-
-    render_panel "customers/side_show", locals
-  end
-
   def render_info(exam)
     locals = render_panel_locals("examInfo", "exams.info.heading")
     locals[:exam] = exam
@@ -131,6 +124,7 @@ module ExamsHelper
     locals = render_panel_locals("examRevenueList", "exams.revenue.title")
     locals[:exam] = exam
     locals[:bodyIsTable] = true
+    locals[:panelClass] = "warning"
 
     render_panel "exams/revenue/list", locals    
   end  

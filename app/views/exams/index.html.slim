@@ -7,5 +7,5 @@
 
     .col-sm-5
       - cache @customer do
-        = render_customer_sideshow @customer
+        = render partial: "customers/side_show", locals: {customer: @customer}
       = render partial: "global/remote/q"

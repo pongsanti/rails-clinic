@@ -1,17 +1,15 @@
-- toggleTarget = "customerFormBody"
+- id = "customerForm"
+- toggleTarget = "#{id}Body"
+- headerKey = (action == :new ? "customers.new.title": "customers.edit.title")
 
-div#customerForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+div id=id class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
   .panel-heading
-    .panel-header
-      = render partial: "global/panel/text_toggle_btn", locals: { target: id(toggleTarget), key: (action == :new ? "customers.new.title": "customers.edit.title") }    
-      .pull-right
-        -if action == :edit
-          =>link_to customer_path(@customer), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
-            i.glyphicon.glyphicon-trash
-            =<"Delete"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: id(toggleTarget) }
-      .clearfix
+      = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+          -if action == :edit
+            =>link_to customer_path(@customer), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+              i.glyphicon.glyphicon-trash
+              =<"Delete"
+        
   .panel-body.collapse.in id=toggleTarget
 
     = render partial: "global/alert", locals: {obj: @customer}
