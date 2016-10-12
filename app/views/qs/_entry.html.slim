@@ -1,6 +1,6 @@
 - cache entry do
   tr class=tr_class(entry)
-    td= entry.id
+    td= entry_iteration.index + 1
     td= format_id entry.exam
     td= link_to "#{entry.exam.customer.prefix.name} #{entry.exam.customer.name} #{entry.exam.customer.surname}", activate_qs_path(entry), method: :patch
     td 
