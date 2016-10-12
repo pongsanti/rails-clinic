@@ -6,9 +6,7 @@
       = render partial: "info", locals: { exam: @exam }
       = render partial: "weight_info", locals: {exam: @exam }
       = render partial: "pe_info", locals: {exam: @exam}
-
-      - cache [@exam, :diag] do  
-        = render_diag_info @exam
+      = render partial: "diag_info", locals: {exam: @exam}
       
       - cache [@exam, :drug] do
         = render_drug_info @exam
