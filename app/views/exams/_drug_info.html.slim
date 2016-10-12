@@ -1,29 +1,33 @@
 - if policy(exam).show_drug?
+
+  - id = "examDrugInfo"
+  - toggleTarget = toggleTarget(id)
+  - headerKey = "exams.drug_form.heading"
+
+  .panel.panel-default id=id
+    = render layout: "global/panel/layout/header", locals: { toggleTarget: toggleTarget, headerKey: headerKey} do
+      - if policy(exam).edit_drug?
+        = render partial: "global/panel/edit_btn", locals: { path: edit_exam_drug_path(exam)}
   
-  - content_for :header do
-    
-    - if policy(exam).edit_drug?
-      = render partial: "global/panel/edit_btn", locals: { path: edit_exam_drug_path(exam)}
-  
-  - content_for :body do
-    table.table.table-striped.table-hover.table-condensed
-      thead
-        tr
-            th= PatientDrug.human_attribute_name(:id)
-            th= Drug.human_attribute_name(:name)
-            th= DrugIn.human_attribute_name(:expired_date)
-            th= DrugUsage.human_attribute_name(:text)
-            th.text-right = PatientDrug.human_attribute_name(:amount)
-            th.text-right = PatientDrug.human_attribute_name(:revenue)
-      tbody
-        = render partial: "global/table/empty", locals: { list: exam.patient_drugs, colspan: 6 }
-        - exam.patient_drugs.each do |pd|
+    .table-responsive.collapse.in id=toggleTarget
+      table.table.table-striped.table-hover.table-condensed
+        thead
           tr
-            td= format_id pd
-            td= pd.drug_in.drug.name
-            td= th_date_format pd.drug_in.expired_date
-            td= pd.drug_usage.code
-            td.text-right
-              => decimal pd.amount
-              => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
-            td.text-right = currency pd.revenue
+              th= PatientDrug.human_attribute_name(:id)
+              th= Drug.human_attribute_name(:name)
+              th= DrugIn.human_attribute_name(:expired_date)
+              th= DrugUsage.human_attribute_name(:text)
+              th.text-right = PatientDrug.human_attribute_name(:amount)
+              th.text-right = PatientDrug.human_attribute_name(:revenue)
+        tbody
+          = render partial: "global/table/empty", locals: { list: exam.patient_drugs, colspan: 6 }
+          - exam.patient_drugs.each do |pd|
+            tr
+              td= format_id pd
+              td= pd.drug_in.drug.name
+              td= th_date_format pd.drug_in.expired_date
+              td= pd.drug_usage.code
+              td.text-right
+                => decimal pd.amount
+                => pd.drug_in.drug.store_unit.title if pd.drug_in.drug.store_unit
+              td.text-right = currency pd.revenue
