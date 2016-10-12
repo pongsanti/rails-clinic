@@ -6,6 +6,5 @@
       = render partial: "list", locals: {exams: @exams, customer: @customer}
 
     .col-sm-5
-      - cache @customer do
-        = render partial: "customers/side_show", locals: {customer: @customer}
+      = render partial: "customers/side_show", locals: {customer: @customer}
       = render partial: "global/remote/q"
