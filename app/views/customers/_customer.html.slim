@@ -2,13 +2,11 @@
 - toggleTarget = "#{id}Body"
 
 .panel.panel-default id=id
-  .panel-heading
-
-    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do
-        =>link_to customer_exams_path(customer), class: "btn btn-primary btn-xs" do
-          =icon("stethoscope")
-          =<"View Examinations"
-        = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do
+    =>link_to customer_exams_path(customer), class: "btn btn-primary btn-xs" do
+      =icon("stethoscope")
+      =<"View Examinations"
+    = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
 
   .panel-body.collapse.in id=toggleTarget
     =form_for customer, html: { class: "form-horizontal" } do |f|

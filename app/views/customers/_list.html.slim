@@ -2,9 +2,8 @@
 - toggleTarget = "#{id}Body"
 
 div.panel.panel-default id=id
-  .panel-heading
-    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.index.title" } do
-      = render partial: "global/panel/new_btn", locals: {path: new_customer_path}
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.index.title" } do
+    = render partial: "global/panel/new_btn", locals: {path: new_customer_path}
      
   .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed

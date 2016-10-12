@@ -2,16 +2,15 @@
 - toggleTarget = "#{id}Body"
 
 .panel.panel-default id=id
-  .panel-heading
-    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do  
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do  
 
-      =>link_to customer_exams_path(customer.id), class: "btn btn-primary btn-xs" do
-        =icon("stethoscope")
-        =<"View Examinations"      
-      =>link_to customer_path(customer), class: "btn btn-default btn-xs" do
-        i.glyphicon.glyphicon-eye-open
-        =<"View"
-      = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
+    =>link_to customer_exams_path(customer.id), class: "btn btn-primary btn-xs" do
+      =icon("stethoscope")
+      =<"View Examinations"      
+    =>link_to customer_path(customer), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+    = render partial: "global/panel/edit_btn", locals: {path: edit_customer_path(customer)}
   
   .panel-body.collapse.in id=toggleTarget
     .row
