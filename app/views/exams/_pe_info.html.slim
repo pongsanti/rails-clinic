@@ -1,14 +1,18 @@
 - if policy(exam).show_pe?
-  
-  - content_for :header do
-    - if policy(exam).edit_pe?
-      = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
+  - id = "examPeInfo"
+  - toggleTarget = toggleTarget(id)
+  - headerKey = "exams.pe_form.header"
 
-  - content_for :body do
-    =form_for exam, html: { class: "form-horizontal" } do |f|
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pi, tf_width: 10 }
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pe, tf_width: 10 }
-      .form-group
-        = render partial: "global/txt_show", locals: {obj: exam, method: :exam_note, tf_width: 10 }
+  .panel.panel-default id=id
+    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+      - if policy(exam).edit_pe?
+        = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
+
+    .panel-body.collapse.in id=toggleTarget
+      =form_for exam, html: { class: "form-horizontal" } do |f|
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pi, tf_width: 10 }
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_pe, tf_width: 10 }
+        .form-group
+          = render partial: "global/txt_show", locals: {obj: exam, method: :exam_note, tf_width: 10 }
