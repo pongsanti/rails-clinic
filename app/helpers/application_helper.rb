@@ -54,6 +54,10 @@ module ApplicationHelper
     number_to_currency num, unit: ""
   end
 
+  def toggleTarget(id)
+    "#{id}Body"
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""

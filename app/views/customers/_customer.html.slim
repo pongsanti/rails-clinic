@@ -1,5 +1,5 @@
 - id = "customerShow"
-- toggleTarget = "#{id}Body"
+- toggleTarget = toggleTarget(id)
 
 .panel.panel-default id=id
   = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do

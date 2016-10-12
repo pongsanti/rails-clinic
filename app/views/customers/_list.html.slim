@@ -1,5 +1,5 @@
 - id = "customerIndex"
-- toggleTarget = "#{id}Body"
+- toggleTarget = toggleTarget(id)
 
 div.panel.panel-default id=id
   = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.index.title" } do

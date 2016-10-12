@@ -1,5 +1,5 @@
 - id = "customerForm"
-- toggleTarget = "#{id}Body"
+- toggleTarget = toggleTarget(id)
 - headerKey = (action == :new ? "customers.new.title": "customers.edit.title")
 
 div id=id class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
