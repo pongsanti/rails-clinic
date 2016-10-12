@@ -16,7 +16,8 @@ class ExamsController < ApplicationController
     
     :destroy,
     :new_patient_diag, :create_patient_diag, :update_patient_diag]
-  before_action :set_customer, only: [:index, :new_weight, :create_weight]
+  before_action :set_customer, only: [:index,
+    :new_weight, :create_weight]
   before_action :set_customer_from_exam, only: [
     :show, :show_med, :show_drugs, :show_appointments,
     
@@ -39,6 +40,13 @@ class ExamsController < ApplicationController
 
   def index
     @q = Exam.for_customer(@customer.id).ransack(params[:q])
+    @q.sorts = "id desc" if @q.sorts.empty?
+
+    @exams = @q.result.page(params[:page])
+  end
+
+  def index_created_last_24
+    @q = Exam.created_last_24.ransack(params[:q])
     @q.sorts = "id desc" if @q.sorts.empty?
 
     @exams = @q.result.page(params[:page])

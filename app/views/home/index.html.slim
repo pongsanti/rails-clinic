@@ -1,2 +1,12 @@
-h1 ="Clinic First Page!"
-= link_to('Logout', destroy_user_session_path, :method => :delete)
+= render partial: "global/page_header", locals: { icon_name: "h-square", title: home_title_text, subtext: "" }
+
+.container
+  .row
+    .col-sm-6
+
+      div data-controller="exams" data-action="last24"
+        i.glyphicon.glyphicon-refresh.glyphicon-refresh-animate.glyphicon-big
+        =link_to ".", exams_created_last_24_path, remote: true, class: "hide", data: {"refresh" => "true"}
+      
+    .col-sm-6
+      = render partial: "global/remote/q"

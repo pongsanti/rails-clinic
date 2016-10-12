@@ -1,0 +1,29 @@
+- id = "examLast24"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.last24.title"
+
+.panel.panel-default id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    =>link_to exams_created_last_24_path, class: "btn btn-default btn-xs", remote: true, data: { "refresh" => true } do
+      i.glyphicon.glyphicon-refresh
+      =< "Refresh"
+  
+  .table-responsive.collapse.in id=toggleTarget
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th=Exam.human_attribute_name(:id)
+          th=Customer.human_attribute_name(:cn) 
+          th=Customer.human_attribute_name(:name)
+          th=Exam.human_attribute_name(:created_at)
+      tbody.rowlink data-link="row"
+        = render partial: "global/table/empty", locals: {list: exams, colspan:4}
+        - exams.each do |exam|
+          tr
+            td = link_to format_id(exam), exam_path(exam)
+            td = exam.customer.cn
+            td = exam.customer.full_name
+            td = th_date_time_format exam.created_at
+
+  .panel-footer
+    = render partial: "global/panel/footer", locals: {list: exams, key: "exams.index.title"}

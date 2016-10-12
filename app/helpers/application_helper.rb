@@ -62,6 +62,14 @@ module ApplicationHelper
     "global/panel/layout/header"
   end
 
+  def home_title_text
+    if current_user.client.name.present?
+      current_user.client.name
+    else
+      "Dashboard"
+    end
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""

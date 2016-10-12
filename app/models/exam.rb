@@ -48,6 +48,12 @@ class Exam < ActiveRecord::Base
       #cid = 1 if cid == true
       where("customer_id = ?", cid)
     end
+
+
+    def created_last_24
+      current_time = Time.current
+      where("exams.created_at between ? and ?", current_time - 24.hours, current_time).eager()
+    end
   end
 
   def reject_drugs(attributes)

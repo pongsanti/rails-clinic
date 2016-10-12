@@ -46,11 +46,16 @@ class Exam
 
   constructor: (@util)->
 
-  placeholder_data_attributes:
+  index_placeholder_attr:
     controller: "exams"
     action: "index"
 
-  remoteContent: null
+  last24_placeholder_attr:
+    controller: "exams"
+    action: "last24"
+
+  indexRemote: null
+  last24Remote: null
 
   #Diag
   diagTable: null
@@ -107,10 +112,15 @@ class Exam
     @appointmentTable.initializeTable()
 
   fetchAjaxContent: ()->
-    if not @remoteContent?
-      @remoteContent = new view.RemoteContent @placeholder_data_attributes
+    if not @indexRemote?
+      @indexRemote = new view.RemoteContent @index_placeholder_attr
 
-    @remoteContent.fetchAjaxContent()
+    @indexRemote.fetchAjaxContent()
+
+    if not @last24Remote?
+      @last24Remote = new view.RemoteContent @last24_placeholder_attr
+
+    @last24Remote.fetchAjaxContent()    
 
 #  submitDiagTable: () ->
 #    console.log @diagTable.$('input, select').serialize();

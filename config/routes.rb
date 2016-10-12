@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get   "customers/:customer_id/exams/new", to: "exams#new_weight",     as: "new_customer_exam_weight"
   post  "customers/:customer_id/exams"    , to: "exams#create_weight",  as: "customer_exam_weight"
 
+  get "exams/query/last24",         to: "exams#index_created_last_24",  as: "exams_created_last_24"
+
   get "exam_weight/:id/edit",       to: "exams#edit_weight",    as: "edit_exam_weight"
   patch "exam_weight/:id",          to: "exams#update_weight",  as: "exam_weight"
   
