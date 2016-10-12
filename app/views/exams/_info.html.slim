@@ -1,4 +1,9 @@
-- content_for :header do
+- id = "examInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.info.heading"
+
+.panel.panel-default id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
     =>link_to exam_med_path(exam), class: "btn btn-success btn-xs" do
       i.glyphicon.glyphicon-usd
       =<"Medicine/Cashier"
@@ -12,16 +17,14 @@
       =<"View"
     = render "global/panel/back_btn"
 
-    
     =>link_to exam_path(exam), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
       i.glyphicon.glyphicon-trash
       =<"Delete"
 
-- content_for :body do
-
-  = form_for exam, html: { class: "form-horizontal" } do |f|
-    .form-group
-      = render partial: "global/txt_show_id", locals: {obj: exam}
-    .form-group
-      = render partial: "global/txt_show", locals: {obj: exam, method: :examiner, required: true, value: examiner_name(exam) }
-      = render partial: "exams/revenue/paid_status", locals: {exam: exam}  
+  .panel-body.collapse.in id=toggleTarget
+    = form_for exam, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_show_id", locals: {obj: exam}
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :examiner, required: true, value: examiner_name(exam) }
+        = render partial: "exams/revenue/paid_status", locals: {exam: exam}  
