@@ -58,7 +58,7 @@ class ExamsController < ApplicationController
     @drugs = @exam.patient_drugs
     respond_to do |format|
       format.pdf {
-        render pdf: "exam_drug_#{@exam.id}", template: "exams/drugs/show",
+        render pdf: "exam_drug_#{@exam.id}", template: "exams/drug/show",
           page_height: current_user.client.settings.drug_height,
           page_width: current_user.client.settings.drug_width,
           margin: { top: 10, bottom: 0 },
