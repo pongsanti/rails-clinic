@@ -3,7 +3,7 @@
 .container
   .row
     .col-sm-7
-      = render_weight_form @exam, :new
+      = render partial: "exams/weight/form", locals: {exam: @exam, action: :new}
 
     .col-sm-5
       - cache @customer do

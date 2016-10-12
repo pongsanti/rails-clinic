@@ -5,11 +5,7 @@
     .col-sm-8
       = render partial: "info", locals: {exam: @exam}
 
-      = render partial: "weight_form", layout: "global/panel/layout", \
-        locals: { id: "examWeightForm", \
-                  toggleTarget: "examWeightFormBody", \
-                  panelClass: "warning", \
-                  headerTextKey: "exams.edit.title" }
+      = render partial: "exams/weight/form", locals: {exam: @exam, action: :edit}
 
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}

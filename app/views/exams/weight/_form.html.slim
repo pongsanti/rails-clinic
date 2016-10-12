@@ -1,0 +1,55 @@
+- id = "examWeightForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.edit.title"
+- panel_class = (action == :new) ? "success" : "warning"
+
+div id=id class="panel panel-#{panel_class}"
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    - view_path = exam.new_record? ? customer_exams_path(@customer) : exam_path(exam)
+    =>link_to view_path, class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+
+  .panel-body.collapse.in id=toggleTarget
+    - @url = (exam.new_record?) ? customer_exam_weight_path(@customer.id) : exam_weight_path
+        
+    = render partial: "global/alert", locals: {obj: exam}
+      
+    = form_for exam, url: @url, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = f.label :weight, class: "col-sm-2 control-label"
+        .col-sm-4
+          .input-group
+            = f.text_field :weight, class: "form-control", placeholder: true, maxlength: 6
+            .input-group-addon="kg"
+        = f.label :height, class: "col-sm-2 control-label"
+        .col-sm-4
+          .input-group
+            = f.text_field :height, class: "form-control", placeholder: true, maxlength: 6
+            .input-group-addon="cm"
+      
+      .form-group
+        = f.label :bp_systolic, class: "col-sm-2 control-label"
+        .col-sm-10
+          .input-group
+            = f.text_field :bp_systolic, class: "form-control", placeholder: true, data: { mask: '99?9' }
+            .input-group-addon="mm Hg"
+            .input-group-addon="/"
+            = f.text_field :bp_diastolic, class: "form-control", placeholder: true, data: { mask: '99?9' }
+            .input-group-addon="mm Hg"
+      
+      .form-group
+        = f.label :pulse, class: "col-sm-2 control-label"
+        .col-sm-10
+          .input-group
+            = f.text_field :pulse, class: "form-control", placeholder: true, maxlength: 3 , data: { mask: '99?9' }
+            .input-group-addon="bpm"
+      
+      .form-group
+        = f.label :note, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_area :note, class: "form-control", placeholder: true
+    
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = render partial: 'global/form_button', locals: {f: f}

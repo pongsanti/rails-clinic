@@ -56,14 +56,6 @@ module ExamsHelper
     end
 
     result
-  end
-
-  def render_weight_form(exam,action)
-    locals = render_panel_locals("examWeightForm", "exams.edit.title")
-    locals[:exam] = exam
-    locals[:panelClass] = (action == :new) ? "success" : "warning"
-    
-    render_panel "weight_form", locals
   end  
 
   private
