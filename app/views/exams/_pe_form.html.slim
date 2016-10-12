@@ -1,15 +1,15 @@
-#examPeForm.panel.panel-warning
-  .panel-heading
-    .panel-header
-      =t("exams.edit.title")
-      .pull-right
-        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examPeFormBody" }
-      .clearfix
-  .panel-body.collapse.in#examPeFormBody
-    = render partial: "global/alert", locals: {obj: @exam}
+- id = "examPeForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.edit.title"
+
+.panel.panel-warning id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+      =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+        i.glyphicon.glyphicon-eye-open
+        =<"View"
+
+  .panel-body.collapse.in id=toggleTarget
+    = render partial: "global/alert", locals: {obj: exam}
 
     = form_for exam, url: exam_pe_path(exam), html: { class: "form-horizontal" } do |f|
       .form-group
