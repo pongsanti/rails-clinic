@@ -1,17 +1,17 @@
-#examDrugForm.panel.panel-warning
-  .panel-heading
-    .panel-header
-      =t("exams.drug_form.heading")
-      .pull-right
-        =>link_to exam_path(@exam), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"
-        =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_drug" do
-          i.glyphicon.glyphicon-file
-          =<"New Entry"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examDrugFormBody" }
-      .clearfix
-  .panel-body.collapse.in#examDrugFormBody
+- id = "examDrugForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.drug_form.heading"
+
+.panel.panel-warning id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+    =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_drug" do
+      i.glyphicon.glyphicon-file
+      =<"New Entry"
+
+  .panel-body.collapse.in id=toggleTarget
     = render partial: "global/alert", locals: {obj: exam}
     .hide id="drug_ins_div"
       = select_drug_in
