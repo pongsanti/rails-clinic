@@ -58,14 +58,6 @@ module ExamsHelper
     result
   end
 
-  # weight
-  def render_weight_info(exam)
-    locals = render_panel_locals("examWeightInfo", "exams.weight_form.heading")
-    locals[:exam] = exam
-    
-    render_panel "weight_info", locals
-  end
-
   def render_weight_form(exam,action)
     locals = render_panel_locals("examWeightForm", "exams.edit.title")
     locals[:exam] = exam

@@ -5,8 +5,8 @@
     .col-sm-8
       = render partial: "info", locals: { exam: @exam }
       
-      - cache [@exam, :weight]  do
-        = render_weight_info @exam
+      - cache @exam do
+        = render partial: "weight_info", locals: {exam: @exam }
 
       /- cache [@exam, :pe] do
       = render_pe_info @exam

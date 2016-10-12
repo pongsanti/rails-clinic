@@ -1,17 +1,22 @@
-- content_for :header do
-  = render partial: "global/panel/edit_btn", locals: {path: edit_exam_weight_path(exam)}
-  
-- content_for :body do
-  =form_for exam, html: { class: "form-horizontal" } do |f|
-    .form-group
-      = render partial: "global/txt_show", locals: {obj: exam, method: :weight, lb_width: 2, tf_width: 2}
-      = render partial: "global/txt_show", locals: {obj: exam, method: :height, lb_width: 2, tf_width: 2} 
-      = render partial: "global/txt_show", locals: {obj: exam, method: :bmi, lb_width: 2, tf_width: 2}
+- id = "examWeightInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.weight_form.heading"
+
+.panel.panel-default id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    = render partial: "global/panel/edit_btn", locals: {path: edit_exam_weight_path(exam)}
     
-    .form-group
-      = render partial: "global/txt_show", locals: {obj: exam, method: :bp_systolic, value: \
-          "#{exam.bp_systolic} / #{exam.bp_diastolic}"}
-      = render partial: "global/txt_show", locals: {obj: exam, method: :pulse }
-         
-    .form-group
-      = render partial: "global/txt_show", locals: {obj: exam, method: :note }
+  .panel-body.collapse.in id=toggleTarget
+    =form_for exam, html: { class: "form-horizontal" } do |f|
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :weight, lb_width: 2, tf_width: 2}
+        = render partial: "global/txt_show", locals: {obj: exam, method: :height, lb_width: 2, tf_width: 2} 
+        = render partial: "global/txt_show", locals: {obj: exam, method: :bmi, lb_width: 2, tf_width: 2}
+      
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :bp_systolic, value: \
+            "#{exam.bp_systolic} / #{exam.bp_diastolic}"}
+        = render partial: "global/txt_show", locals: {obj: exam, method: :pulse }
+           
+      .form-group
+        = render partial: "global/txt_show", locals: {obj: exam, method: :note }
