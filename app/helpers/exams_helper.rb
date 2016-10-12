@@ -58,13 +58,6 @@ module ExamsHelper
     result
   end
 
-  def render_list
-    locals = render_panel_locals("examIndex", "exams.index.title")
-    locals[:bodyIsTable] = true
-    
-    render_panel "list", locals
-  end
-
   def render_info(exam)
     locals = render_panel_locals("examInfo", "exams.info.heading")
     locals[:exam] = exam

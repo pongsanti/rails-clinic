@@ -1,20 +1,23 @@
-- content_for :header do
-  = render partial: "global/panel/new_btn", locals: {path: new_customer_exam_weight_path(@customer)}
+- id = "examIndex"
+- toggleTarget = toggleTarget(id)
 
-- content_for :body do
-  table.table.table-striped.table-hover.table-condensed
-    thead
-      tr
-        th = sort_link @q, :id
-        th = sort_link @q, :created_at
-    tbody.rowlink data-link="row"
-      = render partial: "global/table/empty", locals: {list: @exams, colspan: 2}
-      - @exams.each do |exam|
-        - cache exam do
-          tr
-            td = link_to format_id(exam), exam_path(exam)
-            td = "#{th_date_time_format exam.created_at} (#{time_ago_in_words exam.created_at })"
+.panel.panel-default id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "exams.index.title"} do
+    = render partial: "global/panel/new_btn", locals: {path: new_customer_exam_weight_path(customer)}
+  
+  .table-responsive.collapse.in id=toggleTarget
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th = sort_link @q, :id
+          th = sort_link @q, :created_at
+      tbody.rowlink data-link="row"
+        = render partial: "global/table/empty", locals: {list: exams, colspan: 2}
+        - exams.each do |exam|
+          - cache exam do
+            tr
+              td = link_to format_id(exam), exam_path(exam)
+              td = "#{th_date_time_format exam.created_at} (#{time_ago_in_words exam.created_at })"
 
-- content_for :footer do
-  = paginate @exams
-  = page_entries_info @exams, entry_name: t('exams.index.title')
+  .panel-footer
+    = render partial: "global/panel/footer", locals: {list: exams, key: "exams.index.title"}

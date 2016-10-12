@@ -3,7 +3,7 @@
 .container
   .row
     .col-sm-7
-      = render_list
+      = render partial: "list", locals: {exams: @exams, customer: @customer}
 
     .col-sm-5
       - cache @customer do
