@@ -1,10 +1,14 @@
-- content_for :header do
+- id = "examAppointmentList"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.appointment.title"
 
-  - if policy(exam).edit_appointment?
+.panel.panel-default id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    
+    - if policy(exam).edit_appointment?
 
-    = render partial: "global/panel/edit_btn", locals: { path: edit_exam_appointment_path(exam) }
+      = render partial: "global/panel/edit_btn", locals: { path: edit_exam_appointment_path(exam) }
     
 
-
-- content_for :body do
-  = render partial: "exams/appointment/list_table", locals: {exam: exam}
+  .table-responsive.collapse.in id=toggleTarget
+    = render partial: "exams/appointment/list_table", locals: {exam: exam}
