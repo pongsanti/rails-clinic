@@ -1,15 +1,15 @@
-.panel.panel-default#examDrugInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.drug_form.heading")
-      .pull-right
-        - if exam.patient_drugs.present?
-          =>link_to show_exam_drug_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
-            i.glyphicon.glyphicon-print
-            =<"Print"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examDrugInfoBody" }          
-      .clearfix
-  .table-responsive.collapse.in#examDrugInfoBody
+- id = "examDrugInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.drug_form.heading"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    - if exam.patient_drugs.present?
+      =>link_to show_exam_drug_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
+        i.glyphicon.glyphicon-print
+        =<"Print"
+      
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr

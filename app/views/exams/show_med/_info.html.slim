@@ -1,27 +1,16 @@
-.panel.panel-default#examInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.info.heading")
-      .pull-right
-        - if not exam.paid_status
-          =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs", data: {confirm: "Are you sure you want to set paid?"} do
-            i.glyphicon.glyphicon-usd
-            =<"Set Paid"
-            
-        =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"          
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examInfoBody" }
-      .clearfix
+- id = "examInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.info.heading"
 
-  .panel-body.collapse.in#examInfoBody
-    =form_for exam, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: exam, f: f}
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    - if not exam.paid_status
+      =>link_to exam_pay_path(exam), method: :patch, class: "btn btn-danger btn-xs", data: {confirm: "Are you sure you want to set paid?"} do
+        i.glyphicon.glyphicon-usd
+        =<"Set Paid"
+        
+    =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
 
-      .form-group
-        = f.label :examiner, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            => exam.examiner.display_name if exam.examiner
-
-        = render partial: "exams/revenue/paid_status", locals: {f: f, exam: exam}
+  = render partial: "info_body", locals: {toggleTarget: toggleTarget, exam: exam}

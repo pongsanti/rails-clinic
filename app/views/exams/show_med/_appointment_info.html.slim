@@ -1,12 +1,13 @@
-.panel.panel-default#examAppointmentInfo
-  .panel-heading
-    .panel-header 
-      =t("exams.appointment.title")
-      .pull-right
-        - if exam.appointments.present?
-          =>link_to show_exam_appointment_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
-            i.glyphicon.glyphicon-print
-            =<"Print"      
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examAppointmentInfoBody" }          
-      .clearfix
-  = render partial: "exams/appointment/list_table", locals: {exam: exam, table_id: "examAppointmentInfoBody"}
+- id = "examAppointmentInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.appointment.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    - if exam.appointments.present?
+      =>link_to show_exam_appointment_path(exam, format: :pdf), class: "btn btn-primary btn-xs", target: "_blank" do
+        i.glyphicon.glyphicon-print
+        =<"Print"
+
+  .table-responsive.collapse.in id=toggleTarget
+    = render partial: "exams/appointment/list_table", locals: {exam: exam}

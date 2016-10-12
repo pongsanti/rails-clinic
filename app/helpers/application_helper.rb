@@ -58,6 +58,10 @@ module ApplicationHelper
     "#{id}Body"
   end
 
+  def panel_header_layout
+    "global/panel/layout/header"
+  end
+
   private
     def id_prefix claz
       claz.const_get(:ID_PREFIX) || ""
