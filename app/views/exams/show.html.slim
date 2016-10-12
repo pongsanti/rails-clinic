@@ -4,7 +4,7 @@
   .row
     .col-sm-8
       = render partial: "info", locals: { exam: @exam }
-      = render partial: "weight_info", locals: {exam: @exam }
+      = render partial: "exams/weight/info", locals: {exam: @exam }
       = render partial: "pe_info", locals: {exam: @exam}
       = render partial: "diag_info", locals: {exam: @exam}
       = render partial: "drug_info", locals: {exam: @exam}
