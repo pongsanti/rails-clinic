@@ -66,23 +66,6 @@ module ExamsHelper
     render_panel "weight_form", locals
   end  
 
-  def render_appointment_list(exam)
-    locals = render_panel_locals("examAppointmentList", "exams.appointment.title")
-    locals[:exam] = exam
-    locals[:bodyIsTable] = true
-
-    render_panel "exams/appointment/list", locals    
-  end
-
-  def render_revenue_list(exam)
-    locals = render_panel_locals("examRevenueList", "exams.revenue.title")
-    locals[:exam] = exam
-    locals[:bodyIsTable] = true
-    locals[:panelClass] = "warning"
-
-    render_panel "exams/revenue/list", locals    
-  end  
-
   private
     def render_panel(template, locals)
       render partial: template, layout: "global/panel/layout",\
