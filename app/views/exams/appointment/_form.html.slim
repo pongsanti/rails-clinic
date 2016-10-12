@@ -1,17 +1,17 @@
-.panel.panel-warning#examAppointmentForm
-  .panel-heading
-    .panel-header
-      =t("exams.appointment.title")
-      .pull-right
-        =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"
-        =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_appointment" do
-          i.glyphicon.glyphicon-file
-          =<"New Entry"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#examAppointmentFormBody" }
-      .clearfix
-  .panel-body.collapse.in#examAppointmentFormBody
+- id = "examAppointmentForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "exams.appointment.title"
+
+.panel.panel-warning id=id
+  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+    =>button_tag class: "btn btn-success btn-xs", type: :button, id: "new_appointment" do
+      i.glyphicon.glyphicon-file
+      =<"New Entry"
+
+  .panel-body.collapse.in id=toggleTarget
     = render partial: "global/alert", locals: {obj: exam}
     .hide id="date_select_div"
       = select_date Date.current, {start_year: Date.today.year, end_year: Date.today.year + 10}, data: { "live-search" => true, "width" => "fit", "size" => 10 }
