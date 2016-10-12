@@ -2,7 +2,7 @@
 - toggleTarget = toggleTarget(id)
 
 .panel.panel-default id=id
-  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "exams.index.title"} do
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: "exams.index.title"} do
     = render partial: "global/panel/new_btn", locals: {path: new_customer_exam_weight_path(customer)}
   
   .table-responsive.collapse.in id=toggleTarget

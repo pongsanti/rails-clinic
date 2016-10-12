@@ -4,7 +4,7 @@
   - headerKey = "exams.pe_form.header"
 
   .panel.panel-default id=id
-    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
       - if policy(exam).edit_pe?
         = render partial: "global/panel/edit_btn", locals: { path: edit_exam_pe_path(exam)}
 

@@ -3,7 +3,7 @@
 - headerKey = "exams.edit.title"
 
 .panel.panel-warning id=id
-  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
       =>link_to exam_path(exam), class: "btn btn-default btn-xs" do
         i.glyphicon.glyphicon-eye-open
         =<"View"

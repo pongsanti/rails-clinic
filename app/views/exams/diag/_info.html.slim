@@ -5,7 +5,7 @@
   - headerKey = "exams.diag_form.heading"
 
   .panel.panel-default id=id
-    = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
       - if policy(exam).edit_diag?
         = render partial: "global/panel/edit_btn", locals: {path: edit_exam_diag_path(exam)}
 

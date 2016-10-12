@@ -4,7 +4,7 @@
 - panel_class = (action == :new) ? "success" : "warning"
 
 div id=id class="panel panel-#{panel_class}"
-  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
     - view_path = exam.new_record? ? customer_exams_path(@customer) : exam_path(exam)
     =>link_to view_path, class: "btn btn-default btn-xs" do
       i.glyphicon.glyphicon-eye-open

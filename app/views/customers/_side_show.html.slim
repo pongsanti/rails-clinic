@@ -2,7 +2,7 @@
 - toggleTarget = toggleTarget(id)
 
 .panel.panel-default id=id
-  = render layout: "global/panel/layout/header", locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do  
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: "customers.show.title" } do  
 
     =>link_to customer_exams_path(customer.id), class: "btn btn-primary btn-xs" do
       =icon("stethoscope")
