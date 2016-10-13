@@ -55,6 +55,14 @@ class ExamsControllerTest < ActionController::TestCase
     assert_equal @customer, a(:customer)
   end
 
+  test "should xhr get index last 24" do
+    xhr :get, :index_created_last_24
+
+    assert_response :success
+
+    assert_assigns :q, :exams
+  end
+
   test "should get show" do
     get :show, id: @exam.id
 
