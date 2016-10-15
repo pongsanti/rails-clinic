@@ -1,14 +1,12 @@
-.panel.panel-default#drugIndex
-  .panel-heading
-    .panel-header 
-      =t("drugs.index.title")
-      .pull-right
-        =>link_to new_drug_path, class: "btn btn-success btn-xs" do
-          i.glyphicon.glyphicon-file
-          =<"New"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugIndexBody" }
-      .clearfix
-  .table-responsive.collapse.in#drugIndexBody
+- id = "drugIndex"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drugs.index.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    = render partial: panel_new_btn, locals: {path: new_drug_path}
+  
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
@@ -18,7 +16,7 @@
           th = sort_link @q, :effect
           th = sort_link @q, :concern
       tbody.rowlink data-link="row"
-        - @drugs.each do |drug|
+        - drugs.each do |drug|
           tr
             td = format_id drug
             td = link_to drug.name, drug_path(drug)
@@ -26,5 +24,4 @@
             td = drug.effect
             td = drug.concern
   .panel-footer
-    =paginate @drugs
-    =page_entries_info @drugs, entry_name: t("drugs.index.title")            
+    = render partial: panel_footer, locals: {list: drugs, key: "drugs.index.title"}

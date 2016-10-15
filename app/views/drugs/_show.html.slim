@@ -1,24 +1,22 @@
-.panel.panel-default#drugShow
-  .panel-heading
-    .panel-header 
-      =t("drugs.show.title")
-      .pull-right
-        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
-          i.fa.fa-medkit
-          =<"View Drug Lot"      
-        =>link_to edit_drug_path(drug), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugShowBody" }
-      .clearfix
-  .panel-body.collapse.in#drugShowBody
+- id = "drugShow"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drugs.show.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+      i.fa.fa-medkit
+      =<"View Drug Lot"
+
+    = render partial: panel_edit_btn, locals: {path: edit_drug_path(drug)}
+
+  .panel-body.collapse.in id=toggleTarget
     = form_for drug, html: { class: "form-horizontal" } do
       .form-group
         = render partial: "global/txt_show_id", locals: {obj: drug}
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: drug, method: :balance, strong: true, tf_width: 10, value: decimal(drug.balance) }
+        = render partial: "global/txt_show", locals: { obj: drug, method: :balance, strong: true, tf_width: 10, value: balance_with_unit(drug)}
 
       .form-group
         = render partial: "global/txt_show", locals: { obj: drug, method: :name, required: true }      
@@ -28,5 +26,5 @@
         = render partial: "global/txt_show", locals: { obj: drug, method: :concern }
 
       .form-group
-        = render partial: "global/txt_show", locals: { obj: drug, method: :drug_usage, value: (drug.drug_usage.code_text if drug.drug_usage) }
-        = render partial: "global/txt_show", locals: { obj: drug, method: :store_unit, value: (drug.store_unit.title if drug.store_unit) }
+        = render partial: "global/txt_show", locals: { obj: drug, method: :drug_usage, value: drug.usage }
+        = render partial: "global/txt_show", locals: { obj: drug, method: :store_unit, value: drug.unit }

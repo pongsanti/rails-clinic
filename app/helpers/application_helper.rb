@@ -74,6 +74,10 @@ module ApplicationHelper
     "global/panel/edit_btn"
   end
 
+  def panel_footer
+    "global/panel/footer"
+  end
+
   def home_title_text
     if current_user.client.name.present?
       current_user.client.name

@@ -31,7 +31,7 @@ class DrugsControllerTest < ActionController::TestCase
   test "should get show" do
     get :show, id: @drug
     assert_response :success
-    assert_assigns :q, :drug
+    assert_assigns :q, :drug, :drug_ins
   end
 
   test "should get new" do

@@ -9,6 +9,6 @@ th:
         trade_name: "ชื่อการค้า"
         effect: "สรรพคุณ"
         concern: "ข้อควรระวัง"
-        drug_usage: "ข้อบ่งใช้เบื้องต้น"
-        store_unit: "หน่วยสินค้าเบื้องต้น"
+        drug_usage: "ข้อบ่งใช้"
+        store_unit: "หน่วยสินค้า"
         balance: "คงเหลือ (หน่วย)"

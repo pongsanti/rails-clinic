@@ -1,10 +1,10 @@
 class DrugsController < ApplicationController
   
   before_action :authenticate_user!  
-  before_action :set_drug, only: [:show, :edit, :update, :destroy]
+  before_action :set_drug, only: [:edit, :update, :destroy]
   before_action :set_drug_usages, only: [:new, :edit]
   before_action :set_store_units, only: [:new, :edit]
-  before_action :set_ransack_search_param, only: [:index, :show, :new, :edit, :create, :update]
+  before_action :set_ransack_search_param, only: [:index,:show, :new, :edit, :create, :update]
 
   #bc
   add_breadcrumb bc(:list, Drug), :drugs_path
@@ -21,6 +21,8 @@ class DrugsController < ApplicationController
 
   # GET /drugs/1
   def show
+    @drug = Drug.drug_with_drug_ins(params[:id])
+    @drug_ins = @drug.drug_ins.page(1)
     add_bc :show, drug_path(@drug)
   end
 
@@ -69,7 +71,7 @@ class DrugsController < ApplicationController
   private
     def set_ransack_search_param
       @q = Drug.ransack(params[:q])
-      @q.sorts = "id asc" if @q.sorts.empty?
+      @q.sorts = "id desc" if @q.sorts.empty?
     end  
     # Use callbacks to share common setup or constraints between actions.
     def set_drug

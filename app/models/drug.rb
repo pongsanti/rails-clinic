@@ -21,7 +21,11 @@ class Drug < ActiveRecord::Base
     end
 
     def drug_ins_exist()
-      joins(:drug_ins).where("drug_ins.drug_id is not null").distinct.order("name")
+      joins(:drug_ins).where("drug_ins.drug_id is not null").distinct.includes(:drug_ins).order("name")
+    end
+
+    def drug_with_drug_ins(did)
+      includes(:drug_ins, :drug_usage, :store_unit).find(did)
     end
 
   end
@@ -29,4 +33,13 @@ class Drug < ActiveRecord::Base
   def recal_balance
     self.update( {balance: self.drug_ins.sum(:balance)} )
   end
+
+  def unit
+    store_unit.present? ? store_unit.title : ""
+  end
+
+  def usage
+    drug_usage.present? ? drug_usage.code_text : ""
+  end
+
 end

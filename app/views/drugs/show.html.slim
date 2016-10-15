@@ -2,10 +2,10 @@
 
 .container
   .row
-    .col-sm-8
+    .col-sm-7
       = render partial: "global/search", locals: {reset_path: drugs_path, search_field: :name_or_trade_name_cont}
       = render partial: "show", locals: {drug: @drug}
 
-    .col-sm-4
-      = render partial: "drug_ins/side_list_placeholder", locals: {drug: @drug}
+    .col-sm-5
+      = render partial: "drug_ins/side_list", locals: {drug: @drug, drug_ins: @drug_ins}
       = render partial: "global/remote/q"
