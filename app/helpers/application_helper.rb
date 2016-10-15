@@ -62,6 +62,18 @@ module ApplicationHelper
     "global/panel/layout/header"
   end
 
+  def panel_footer
+    "global/panel/footer"
+  end
+
+  def panel_new_btn
+    "global/panel/new_btn"
+  end
+
+  def panel_edit_btn
+    "global/panel/edit_btn"
+  end
+
   def home_title_text
     if current_user.client.name.present?
       current_user.client.name

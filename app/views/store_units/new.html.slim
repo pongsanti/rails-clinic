@@ -4,6 +4,6 @@
   .row
     .col-sm-8
       = render partial: "global/search", locals: {reset_path: store_units_path, search_field: :title_cont}
-      = render partial: "form", locals: {action: :new}
+      = render partial: "form", locals: {action: :new, su: @store_unit}
     .col-sm-4
       = render partial: "global/remote/q"

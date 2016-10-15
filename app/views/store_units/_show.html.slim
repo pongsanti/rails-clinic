@@ -1,16 +1,12 @@
-.panel.panel-default#storeUnitShow
-  .panel-heading
-    .panel-header 
-      =t("store_units.show.title")
-      .pull-right
-        =>link_to edit_store_unit_path(su), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#storeUnitShowBody" }
-      .clearfix
+- id = "storeUnitShow"
+- toggleTarget = toggleTarget(id)
+- headerKey = "store_units.show.title"
 
-  .panel-body.collapse.in#storeUnitShowBody
+.panel.panel-default#storeUnitShow
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+      = render partial: panel_edit_btn, locals: { path: edit_store_unit_path(su)}
+        
+  .panel-body.collapse.in id=toggleTarget
     =form_for su, html: { class: "form-horizontal" } do
       .form-group
         = render partial: "global/txt_show_id", locals: {obj: su}

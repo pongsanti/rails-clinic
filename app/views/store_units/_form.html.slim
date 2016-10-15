@@ -1,18 +1,17 @@
-div#storeUnitForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
-  .panel-heading
-    .panel-header
-      =t(action == :new ? "store_units.new.title": "store_units.edit.title")
-      .pull-right
-        -if action == :edit
-          =>link_to store_unit_path(@store_unit), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
-            i.glyphicon.glyphicon-trash
-            =<"Delete"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#storeUnitFormBody" }
-        .clearfix
-  .panel-body.collapse.in#storeUnitFormBody
-    = render partial: "global/alert", locals: {obj: @store_unit}
-    = form_for @store_unit, html: { class: "form-horizontal" } do |f|
+- id = "storeUnitForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = (action == :new) ? "store_units.new.title": "store_units.edit.title"
+
+div id=id class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+    -if action == :edit
+      =>link_to store_unit_path(su), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+        i.glyphicon.glyphicon-trash
+        =<"Delete"
+
+  .panel-body.collapse.in id=toggleTarget
+    = render partial: "global/alert", locals: {obj: su}
+    = form_for su, html: { class: "form-horizontal" } do |f|
       .form-group
         = render partial: "global/txt_field", locals: {f: f, method: :title, tf_width: 10, require_label: true, require_attr: true }
       .form-group
