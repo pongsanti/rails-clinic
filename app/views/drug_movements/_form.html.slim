@@ -1,12 +1,11 @@
-div#drugMovementForm class=("panel panel-success")
-  .panel-heading
-    .panel-header
-      =t("drug_movements.new.title")
-      .pull-right
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugMovementFormBody" }
-      .clearfix
-  .panel-body.collapse.in#drugMovementFormBody
+- id = "drugMovementForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drug_movements.new.title"
+
+.panel.panel-success id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+
+  .panel-body.collapse.in id=toggleTarget
 
     = render partial: "global/alert", locals: {obj: drug_movement}
 

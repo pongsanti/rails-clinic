@@ -1,33 +1,34 @@
-.panel.panel-default#drugMovementShow
-  .panel-heading
-    .panel-header 
-      =t("drug_movements.show.title")
-      .pull-right
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugMovementShowBody" }
-      .clearfix
-  .panel-body.collapse.in#drugMovementShowBody
-    = form_for drug_movement, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: drug_movement, f: f}
+- id = "drugMovementShow"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drug_movements.show.title"
 
-      .form-group
-        = f.label :balance, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static 
-            mark
-              = decimal drug_movement.balance
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+  
+  .panel-body.collapse.in id=toggleTarget
+    .row
+      = render partial: "global/txt_show_id", locals: {obj: drug_movement}
 
-      .form-group
-        = f.label :prev_bal, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static = decimal drug_movement.prev_bal
-        = f.label :amount, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static
-            span class=bal_diff_class(drug_movement) 
-              =decimal drug_movement.bal_diff
+    .row
+      .col-sm-2.text-right
+        span =DrugMovement.human_attribute_name :balance
+      .col-sm-4
+        = decimal drug_movement.balance
 
-      .form-group
-        = f.label :note, class: "col-sm-2 control-label"
-        .col-sm-10
-          p.form-control-static = drug_movement.note
+    .row
+      .col-sm-2.text-right
+        span =DrugMovement.human_attribute_name :prev_bal
+      .col-sm-4
+        = decimal drug_movement.prev_bal
+
+      .col-sm-2.text-right
+        span =DrugMovement.human_attribute_name :amount
+      .col-sm-4
+        span class=bal_diff_class(drug_movement)
+          = decimal drug_movement.bal_diff
+
+    .row
+      .col-sm-2.text-right
+        span =DrugMovement.human_attribute_name :note
+      .col-sm-4
+        = drug_movement.note

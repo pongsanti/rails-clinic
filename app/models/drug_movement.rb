@@ -15,12 +15,9 @@ class DrugMovement < ActiveRecord::Base
 
   class << self
 
-    def for_drug_in(did)
-      # workaround for ransack bug
-      # https://github.com/activerecord-hackery/ransack/issues/593
-      did = 1 if did == true
-
-      where("drug_in_id = ?", did)
+    def for_drug_in(drug_in)
+      where("drug_in_id = ?", drug_in).includes(
+        :drug_in, :drug, :patient_drug)
     end
     
     def ransackable_scopes(auth_object = nil)

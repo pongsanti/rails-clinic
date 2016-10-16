@@ -12,10 +12,7 @@ class DrugMovementsController < ApplicationController
   before_action :set_bc, only: [:index, :show, :new]
 
   def index
-    ransack_params = {for_drug_in: @drug_in.id}
-    ransack_params = ransack_params.merge(params[:q]) if params[:q]
-
-    @q = DrugMovement.ransack(ransack_params)
+    @q = DrugMovement.for_drug_in(@drug_in).ransack(params[:q])
     @q.sorts = "created_at desc" if @q.sorts.empty?
     @drug_movements = @q.result.page(params[:page])
   end
