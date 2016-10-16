@@ -1,36 +1,36 @@
-.panel.panel-default#drugInfo
-  .panel-heading
-    .panel-header 
-      =t("drugs.show.title")
-      .pull-right
-        =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
-          i.fa.fa-medkit
-          =<"View Drug Lot"      
-        =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
-          i.glyphicon.glyphicon-eye-open
-          =<"View"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInfoBody" }
-      .clearfix
-  .panel-body.collapse.in#drugInfoBody
+- id = "drugInfo"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drugs.show.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    =>link_to drug_drug_ins_path(drug), class: "btn btn-primary btn-xs" do
+      i.fa.fa-medkit
+      =<"View Drug Lot"      
+    =>link_to drug_path(drug), class: "btn btn-default btn-xs" do
+      i.glyphicon.glyphicon-eye-open
+      =<"View"
+
+  .panel-body.collapse.in id=toggleTarget
     .row
-      .col-sm-4
-        = label :drug, :id
+      .col-sm-4.text-right
+        span = drug.class.human_attribute_name(:id)
       .col-sm-8
-        mark = format_id drug
+        strong = format_id drug
     .row
-      .col-sm-4
-        = label :drug, :balance
+      .col-sm-4.text-right
+        span = drug.class.human_attribute_name(:balance)
       .col-sm-8
-        mark = decimal drug.balance
+        = decimal drug.balance
 
     .row
-      .col-sm-4
-        = label :drug, :name
+      .col-sm-4.text-right.required-label
+        span = drug.class.human_attribute_name(:name)
       .col-sm-8
         = drug.name
 
     .row
-      .col-sm-4
-        = label :drug, :trade_name
+      .col-sm-4.text-right
+        span = drug.class.human_attribute_name(:trade_name)
       .col-sm-8
         = drug.trade_name

@@ -74,13 +74,7 @@ Rails.application.routes.draw do
   end
   resources :drug_movements, only: [:show]
   
-  get 'drug_has_drug_ins', to: 'drugs#index_has_drug_ins'
-
   resources :drug_usages
-  #get 'new_patient_diag/:id', to: 'exams#new_patient_diag', as: 'new_patient_diag'
-  #post 'create_patient_diag/:id', to: 'exams#create_patient_diag', as: 'create_patient_diag'
-  #get 'edit_patient_diag/:id', to: 'exams#edit_patient_diag', as: 'edit_patient_diag'
-  #patch 'update_patient_diag/:id', to: 'exams#update_patient_diag', as: 'update_patient_diag'
 
   get 'exams/:id/drug', to: 'exams#new_exam_drug', as: 'new_exam_drug'
   post 'exams/:id/drug', to: 'exams#create_exam_drug', as: 'create_exam_drug'

@@ -17,10 +17,8 @@ class DrugIn < ActiveRecord::Base
 
   class << self
     #scope
-    def for_drug(drug_id)
-      # workaround for ransack bug
-      # https://github.com/activerecord-hackery/ransack/issues/593
-      where("drug_id = ?", drug_id)
+    def for_drug(drug)
+      where("drug_id = ?", drug).includes(:drug)
     end
   end
 

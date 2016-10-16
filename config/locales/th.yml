@@ -206,6 +206,8 @@ th:
   search: "ค้นหา"
   choose_attribute: "เลือกจากรายการ..."
 
+  default_unit: "หน่วย"
+
   #breadcrumb
   bc:
     home: "หน้าแรก"

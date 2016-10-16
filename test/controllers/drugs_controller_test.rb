@@ -16,18 +16,6 @@ class DrugsControllerTest < ActionController::TestCase
     assert_not_nil a(:drugs)
   end
 
-  test "should get index has drug ins" do
-    get :index_has_drug_ins, format: :json
-
-    assert_response :success
-    assert_not_nil a(:drugs)
-
-    js_res = json_response['drugs'][0]
-    assert_not_nil js_res
-    assert_not_nil js_res['id']
-    assert_not_nil js_res['name']
-  end
-
   test "should get show" do
     get :show, id: @drug
     assert_response :success

@@ -35,7 +35,7 @@ class Drug < ActiveRecord::Base
   end
 
   def unit
-    store_unit.present? ? store_unit.title : ""
+    store_unit.present? ? store_unit.title : I18n.t("default_unit")
   end
 
   def usage

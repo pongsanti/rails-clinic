@@ -1,16 +1,15 @@
-div#drugInForm class=("panel " + (action == :new ? "panel-success" : "panel-warning"))
-  .panel-heading
-    .panel-header
-      =t(action == :new ? "drug_ins.new.title": "drug_ins.edit.title")
-      .pull-right
-        -if action == :edit
-          =>link_to drug_in_path(drug_in), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
-            i.glyphicon.glyphicon-trash
-            =<"Delete"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInFormBody" }
-      .clearfix
-  .panel-body.collapse.in#drugInFormBody
+- id = "drugInForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = (action == :new) ? "drug_ins.new.title": "drug_ins.edit.title"
+
+div class=("panel " + (action == :new ? "panel-success" : "panel-warning")) id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    -if action == :edit
+      =>link_to drug_in_path(drug_in), method: :delete, class: "btn btn-danger btn-xs", data: {"confirm" => "Are you sure you want to delete?"} do
+        i.glyphicon.glyphicon-trash
+        =<"Delete"
+
+  .panel-body.collapse.in id=toggleTarget
 
     = render partial: "global/alert", locals: {obj: drug_in}
 
@@ -19,7 +18,12 @@ div#drugInForm class=("panel " + (action == :new ? "panel-success" : "panel-warn
     = form_for form_for_arg, html: { class: "form-horizontal" } do |f|
       .form-group
         - if action == :new
-          = render partial: "global/txt_field", locals: {f: f, method: :amount, require_label: true, require_attr: true, tf_width: 10 }
+          = f.label :amount, class: "col-sm-2 control-label required-label"
+          .col-sm-10
+            .input-group
+              = f.text_field :amount, class: "form-control", placeholder: true, required: true
+              .input-group-addon =drug.unit
+
         - else
           = f.label :balance, class: "col-sm-2 control-label"
           .col-sm-4

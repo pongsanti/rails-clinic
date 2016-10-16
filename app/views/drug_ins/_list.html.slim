@@ -1,15 +1,12 @@
-.panel.panel-default#drugInIndex
-  .panel-heading
-    .panel-header 
-      =t("drug_ins.index.title")
-      .pull-right
-        =>link_to new_drug_drug_in_path(drug), class: "btn btn-success btn-xs" do
-          i.glyphicon.glyphicon-file
-          =<"New"
-        = render "global/panel/back_btn"          
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInIndexBody" }
-      .clearfix
-  .table-responsive.collapse.in#drugInIndexBody
+- id = "drugInIndex"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drug_ins.index.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey} do
+      = render partial: panel_new_btn, locals: {path: new_drug_drug_in_path(drug)}      
+        
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
@@ -17,7 +14,7 @@
           th =sort_link @q, :expired_date
           th.text-right =sort_link @q, :cost
           th.text-right =sort_link @q, :sale_price_per_unit
-          th.text-right =sort_link @q, :balance
+          th.text-right =sort_link @q, index_balance_tab_head(drug)
           th =sort_link @q, :created_at
       tbody.rowlink data-link="row"
         - drug_ins.each do |drug_in|
@@ -28,6 +25,5 @@
             td.text-right = currency drug_in.sale_price_per_unit
             td.text-right = decimal drug_in.balance
             td =th_date_time_format drug_in.created_at
-  .panel-footer
-    =paginate drug_ins
-    =page_entries_info drug_ins, entry_name: t('drug_ins.index.title')
+
+  = render partial: panel_footer, locals: {list: drug_ins, key: "drug_ins.index.title"}

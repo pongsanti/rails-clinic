@@ -14,11 +14,6 @@ class DrugsController < ApplicationController
     @drugs = @q.result.page params[:page]
   end
 
-  def index_has_drug_ins
-    @drugs = Drug.drug_ins_exist
-    render json: @drugs
-  end
-
   # GET /drugs/1
   def show
     @drug = Drug.drug_with_drug_ins(params[:id])

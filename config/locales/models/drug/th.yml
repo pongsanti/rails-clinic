@@ -11,4 +11,4 @@ th:
         concern: "ข้อควรระวัง"
         drug_usage: "ข้อบ่งใช้"
         store_unit: "หน่วยสินค้า"
-        balance: "คงเหลือ (หน่วย)"
+        balance: "คงเหลือ"

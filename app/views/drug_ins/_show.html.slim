@@ -1,32 +1,33 @@
-.panel.panel-default#drugInShow
-  .panel-heading
-    .panel-header 
-      =t("drug_ins.show.title")
-      .pull-right
-        =>link_to edit_drug_in_path(drug_in), class: "btn btn-warning btn-xs" do
-          i.glyphicon.glyphicon-edit
-          =<"Edit"
-        = render "global/panel/back_btn"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugInShowBody" }
-      .clearfix
-  .panel-body.collapse.in#drugInShowBody
-    = form_for drug_in, html: { class: "form-horizontal" } do |f|
-      = render partial: "global/show_id", locals: {obj: drug_in, f: f}
+- id = "drugInShow"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drug_ins.show.title"
 
-      .form-group
-        = f.label :balance, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static 
-            mark
-              = decimal drug_in.balance
-        = f.label :expired_date, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static = th_date_format(drug_in.expired_date)
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    = render partial: panel_edit_btn, locals: {path: edit_drug_in_path(drug_in)}
 
-      .form-group
-        = f.label :cost, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static = currency drug_in.cost
-        = f.label :sale_price_per_unit, class: "col-sm-2 control-label"
-        .col-sm-4
-          p.form-control-static = currency drug_in.sale_price_per_unit
+  .panel-body.collapse.in id=toggleTarget
+    .row
+      = render partial: "global/txt_show_id", locals: {obj: drug_in}
+    
+    .row
+      .col-sm-2.text-right
+        span = DrugIn.human_attribute_name(:balance)
+      .col-sm-4
+        = decimal drug_in.balance
+
+      .col-sm-2.text-right
+        span = DrugIn.human_attribute_name(:expired_date)
+      .col-sm-4
+        = th_date_format drug_in.expired_date
+
+    .row
+      .col-sm-2.text-right
+        span = DrugIn.human_attribute_name(:cost)
+      .col-sm-4
+        = currency drug_in.cost
+
+      .col-sm-2.text-right
+        span = DrugIn.human_attribute_name(:sale_price_per_unit)
+      .col-sm-4
+        = currency drug_in.sale_price_per_unit
