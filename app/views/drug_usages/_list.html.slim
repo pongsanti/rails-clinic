@@ -1,14 +1,12 @@
-.panel.panel-default#drugUsageIndex
-  .panel-heading
-    .panel-header 
-      =t("drug_usages.index.title")
-      .pull-right
-        =>link_to new_drug_usage_path, class: "btn btn-success btn-xs" do
-          i.glyphicon.glyphicon-file
-          =<"New"
-        = render partial: "global/panel/toggle_btn", locals: { target: "#drugUsageIndexBody" }
-      .clearfix
-  .table-responsive.collapse.in#drugUsageIndexBody
+- id = "drugUsageIndex"
+- toggleTarget = toggleTarget(id)
+- headerKey = "drug_usages.index.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+    = render partial: panel_new_btn, locals: {path: new_drug_usage_path }
+
+  .table-responsive.collapse.in id=toggleTarget
     table.table.table-striped.table-hover.table-condensed
       thead
         tr
@@ -21,6 +19,6 @@
             td= format_id du
             td= link_to du.code, drug_usage_path(du)
             td= du.text
+
   .panel-footer
-    =paginate @drug_usages
-    =page_entries_info @drug_usages, entry_name: t("drug_usages.index.title")            
+    = render partial: panel_footer, locals: {list: @drug_usages, key: "drug_usages.index.title"}
