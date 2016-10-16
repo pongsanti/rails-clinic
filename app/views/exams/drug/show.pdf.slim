@@ -3,9 +3,8 @@ body style="font-size: #{current_user.client.settings.drug_font_size}px"
     .drug.alwaysbreak
       .date
         => th_date_format Date.current
-        => format_id @customer
       .cust
-        => @customer.full_name
+        => "#{@customer.full_name} CN[#{@customer.cn}]"
       .drug
         => d.drug_in.drug.name
         => "[#{d.amount}]"
