@@ -11,7 +11,15 @@
     = render partial: "global/alert", locals: {obj: client}
 
     = form_for client, url: client_settings_path(client), html: { class: "form-horizontal" } do |f|
+      
+      - last_prefix = nil
       - client.settings.attributes.each do |key, value|
+        
+        - this_prefix = key[0...3]
+        - if last_prefix.present? and this_prefix != last_prefix 
+          hr
+        - last_prefix = this_prefix
+
         .form-group
           label.control-label.col-sm-3 for="client_settings_#{key}"
             = t("activerecord.attributes.client.settings.#{key}")
