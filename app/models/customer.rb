@@ -31,7 +31,7 @@ class Customer < ActiveRecord::Base
   class << self
     # includes essentials
     def eager
-      joins(:prefix).includes(:prefix)
+      includes(:prefix)
     end
 
     # searchable fields

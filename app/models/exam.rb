@@ -35,7 +35,7 @@ class Exam < ActiveRecord::Base
     #scope
 
     def eager
-      joins(customer: [:prefix]).includes(customer: [:prefix])
+      includes(customer: [:prefix])
     end
 
     def eager_for_customer(cid)

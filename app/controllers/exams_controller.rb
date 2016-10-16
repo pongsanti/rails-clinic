@@ -268,8 +268,8 @@ class ExamsController < ApplicationController
     end
 
     def set_objects_for_edit
-      @drug_ins = DrugIn.includes(:drug)
-      @drug_usages = DrugUsage.all
+      @drug_ins = DrugIn.includes(:drug).order("drugs.id, drug_ins.id")
+      @drug_usages = DrugUsage.all.order("text")
     end
 
     def add_bc(key, path)
