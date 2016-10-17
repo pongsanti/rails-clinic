@@ -20,8 +20,7 @@ class Q < ActiveRecord::Base
     end
 
     def eager
-      joins(exam: [customer: [:prefix ]]) 
-        .includes(exam: [customer: [:prefix ]])
+      includes(exam: [customer: [:prefix ]])
     end
   end
 

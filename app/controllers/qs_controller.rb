@@ -22,7 +22,9 @@ class QsController < ApplicationController
 
   def activate
     # Deactivate other all of the same kind
-    Q.cat_is(@q.category).where("qs.id != ?", @q).update_all(active: false)
+    Q.cat_is(@q.category).where("qs.id != ?", @q).update_all(
+      active: false, updated_at: DateTime.now)
+    
     @q.active = true
     @q.save
 
