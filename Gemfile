@@ -53,6 +53,8 @@ gem 'breadcrumbs_on_rails'
 gem 'apartment'
 
 gem 'virtus'
+
+gem 'puma'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
