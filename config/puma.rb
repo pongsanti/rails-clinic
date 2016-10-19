@@ -37,5 +37,5 @@ on_worker_boot do
 end
 
 before_fork do
-  ActiveRecord::Base.connection_pool.disconnect!
+  ActiveRecord::Base.connection_pool.disconnect! rescue ActiveRecord::ConnectionNotEstablished
 end
