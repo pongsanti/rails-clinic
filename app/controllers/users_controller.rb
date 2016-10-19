@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   def edit
     authorize(@user)
+    add_bc :edit, edit_user_path(@user)
+
   end
 
   def update
@@ -44,4 +46,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def add_bc(key, path)
+      add_breadcrumb bc(key, User), path
+    end
 end

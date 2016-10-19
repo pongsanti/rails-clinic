@@ -1,6 +1,6 @@
 = render partial: "global/alert", locals: {obj: @user}
 
-= form_for @user, url: admin_user_path(@user),  html: { class: "form-horizontal" } do |f|
+= form_for @user, url: user_path(@user),  html: { class: "form-horizontal" } do |f|
   .form-group
     .btn-group data-toggle="buttons"
       - for role in User::ROLES
