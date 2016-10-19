@@ -12,6 +12,15 @@ class User < ActiveRecord::Base
   has_many :exams, foreign_key: 'examiner_id'
   belongs_to :client, inverse_of: :users
 
+  #scope
+  class << self
+
+    def for_client(client)
+      where("client_id = ?", client).order("id")
+    end
+
+  end
+
   #Roles
   def roles=(roles)
     roles = [*roles].map { |r| r.to_sym }

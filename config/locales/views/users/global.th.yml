@@ -1,0 +1,5 @@
+th:
+  users:
+    index:
+      title: "รายชื่อผู้ใช้งาน"
+      sub_text: "Users list"

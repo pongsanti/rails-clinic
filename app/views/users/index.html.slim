@@ -1,0 +1,31 @@
+= render partial: "global/page_header", locals: { icon_name: "user", title: t(".title"), subtext: t(".sub_text") }
+
+- id = "userIndex"
+- toggleTarget = toggleTarget(id)
+- headerKey = "customers.index.title"
+
+.panel.panel-default id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+
+  .table-responsive.collapse.in id=toggleTarget
+    table.table.table-striped.table-hover.table-condensed
+      thead
+        tr
+          th= User.human_attribute_name(:id)
+          th= User.human_attribute_name(:display_name)
+          th= User.human_attribute_name(:email)
+          th= User::ROLES[0].capitalize
+          th= User::ROLES[1].capitalize
+          th= User::ROLES[2].capitalize
+      tbody.rowlink data-link="row"
+        - @users.each_with_index do |u, index|
+          tr
+            td= index+1
+            td= link_to u.display_name, edit_user_path(u)
+            td= u.email
+            td
+              i class=role_icon_class(u.operator?)
+            td
+              i class=role_icon_class(u.doctor?)
+            td
+              i class=role_icon_class(u.manager?)

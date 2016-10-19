@@ -1,4 +1,22 @@
 - if user_signed_in?
+  
+  - if policy(:client).edit_settings?
+
+    li.dropdown
+      a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+        span =>icon("cog")
+        => t("clients.edit.title")
+        span.caret
+      ul.dropdown-menu
+        li
+          = link_to edit_client_settings_path(current_user.client) do
+            => icon("cog")
+            => "Client settings"
+        li
+          = link_to users_path do
+            span.glyphicon.glyphicon-user>
+            => "User roles"
+
   li.dropdown
     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
       span.glyphicon.glyphicon-user>
@@ -9,12 +27,6 @@
         = link_to edit_user_registration_path do
           => icon("cog")
           => "Update profile"
-      - if policy(:client).edit_settings? 
-        li
-          = link_to edit_client_settings_path(current_user.client) do
-            => icon("cog")
-            => "Client settings"
-
       li
         = link_to destroy_user_session_path, :method => :delete do
           => icon("sign-out")

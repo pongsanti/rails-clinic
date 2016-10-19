@@ -4,6 +4,7 @@ th:
       user: "ผู้ใช้งาน"
     attributes:
       user:
+        id: "ID"
         email: "Email address"
         password: "Password"
         display_name: "Display name"
