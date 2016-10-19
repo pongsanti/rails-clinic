@@ -1,13 +1,39 @@
-= render partial: "global/alert", locals: {obj: @user}
+- id = "userForm"
+- toggleTarget = toggleTarget(id)
+- headerKey = "users.edit.title"
 
-= form_for @user, url: user_path(@user),  html: { class: "form-horizontal" } do |f|
-  .form-group
-    .btn-group data-toggle="buttons"
-      - for role in User::ROLES
-        label class=label_class(@user, role) for="user_roles_#{role}"
-          => check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), name: "user[roles][]"
-          => role.to_s.humanize
-      = hidden_field_tag "user[roles][]", ""
-  
-  .form-group      
-    = render partial: 'global/form_button', locals: {f: f}
+.panel.panel-warning id=id
+  = render layout: panel_header_layout, locals: {toggleTarget: toggleTarget, headerKey: headerKey } do
+
+  .panel-body.collapse.in id=toggleTarget
+    .content
+      .row
+        .col-sm-2.text-right
+          span =User.human_attribute_name :display_name
+        .col-sm-10
+          = display_name(user)
+      .row
+        .col-sm-2.text-right
+          span =User.human_attribute_name :role
+        .col-sm-10
+          = user.roles[0].capitalize
+    hr
+
+    .form_content
+      = render partial: "global/alert", locals: {obj: user}
+
+      = form_for user, url: user_path(user),  html: { class: "form-horizontal" } do |f|
+        .form-group
+          = f.label :role, class: "col-sm-2 control-label"
+          .col-sm-10
+            .btn-group data-toggle="buttons"
+              label.btn.btn-primary
+                input type="radio" name="user[roles]" id="user_roles" value="1" 
+                = "Operator"
+              label.btn.btn-primary
+                input type="radio" name="user[roles]" id="user_roles" value="2" 
+                = "Doctor"
+        
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            = render partial: 'global/form_button', locals: {f: f}

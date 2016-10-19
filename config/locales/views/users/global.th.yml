@@ -3,3 +3,6 @@ th:
     index:
       title: "รายชื่อผู้ใช้งาน"
       sub_text: "Users list"
+
+    edit:
+      title: "แก้ไขข้อมูล"
