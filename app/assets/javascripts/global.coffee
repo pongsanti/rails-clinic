@@ -123,12 +123,6 @@ window.view.formUtil = new formUtil
 window.view.panelUtil = new panelUtil
 
 
-# Global Functions
-@gShowErrorModal = (text) ->
-  modal = $('#modal_div')
-  modal.find('div.modal-body').html text
-  modal.modal('toggle')
-
 #@gInitSelectPicker = (parent) ->
 #  parent.find('select.selectpicker').selectpicker('refresh')
 
