@@ -1,3 +1,8 @@
+operator:
+  email: "operator@gmail.com"
+  roles_mask: 1
+  client: one
+
 david:
   email: "david@gmail.com"
   encrypted_password: ""
