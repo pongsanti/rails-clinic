@@ -24,16 +24,23 @@
 
       = form_for user, url: user_path(user),  html: { class: "form-horizontal" } do |f|
         .form-group
-          = f.label :role, class: "col-sm-2 control-label"
+          = f.label :display_name, class: "col-sm-2 control-label"
           .col-sm-10
-            .btn-group data-toggle="buttons"
+            = f.text_field :display_name, class: "form-control"
 
-              label.btn.btn-primary
-                = f.radio_button :role, "operator", class: "form-control"
-                = "Operator"
-              label.btn.btn-primary
-                = f.radio_button :role, "doctor", class: "form-control"
-                = "Doctor"
+        / prevent manager role to be changed
+        - unless user.manager?
+          .form-group
+            = f.label :role, class: "col-sm-2 control-label"
+            .col-sm-10
+              .btn-group data-toggle="buttons"
+
+                label.btn.btn-primary
+                  = f.radio_button :role, "operator", class: "form-control"
+                  = "Operator"
+                label.btn.btn-primary
+                  = f.radio_button :role, "doctor", class: "form-control"
+                  = "Doctor"
         
         .form-group
           .col-sm-offset-2.col-sm-10
