@@ -27,11 +27,12 @@
           = f.label :role, class: "col-sm-2 control-label"
           .col-sm-10
             .btn-group data-toggle="buttons"
+
               label.btn.btn-primary
-                input type="radio" name="user[roles]" id="user_roles" value="1" 
+                = f.radio_button :role, "operator", class: "form-control"
                 = "Operator"
               label.btn.btn-primary
-                input type="radio" name="user[roles]" id="user_roles" value="2" 
+                = f.radio_button :role, "doctor", class: "form-control"
                 = "Doctor"
         
         .form-group

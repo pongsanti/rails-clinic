@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     authorize(@user)
 
     if @user.update(user_params)
-      redirect_to admin_user_url(@user), notice: t("successfully_updated")
+      redirect_to users_url, notice: t("successfully_updated")
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit( roles:[] )
+      params.require(:user).permit(:role)
     end
 
     def set_ransack_search_param

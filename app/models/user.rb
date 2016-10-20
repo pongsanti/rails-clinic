@@ -21,6 +21,19 @@ class User < ActiveRecord::Base
 
   end
 
+  #Role
+  def role=(role)
+    role = role.to_sym if role.present?
+    # Allow values: :operator, :doctor
+    role = ROLES[0] unless [ROLES[0], ROLES[1]].include? role
+    
+    self.roles = [role]
+  end
+
+  def role
+    self.roles[0]
+  end
+
   #Roles
   def roles=(roles)
     roles = [*roles].map { |r| r.to_sym }
