@@ -83,14 +83,4 @@ html lang="en"
       = render "global/breadcrumb"
       = yield
 
-    nav.navbar.navbar-default.navbar-fixed-bottom.footer
-      .container
-        a.navbar-brand.logo-footer
-          = "Vejsin"
-        ul.nav.navbar-nav.navbar-right
-          li
-            a href="#about"
-              ="About"
-          li
-            a href="#contact"
-              ="Contact"
+    = render partial: "layouts/footer_nav"

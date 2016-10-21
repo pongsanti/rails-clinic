@@ -2,10 +2,12 @@
   = devise_error_messages! 
 
   .text-center
-    = icon("user", class: "fa-5x")
+    span.logo = "VEJSIN"
   br
-    
-  h2.form-signin-heading = t("devise.registrations.edit")
+  
+  h2.form-signin-heading.text-center
+    => icon("user", class: "fa-2x")
+    = t("devise.registrations.edit")
 
   - if devise_mapping.confirmable? && resource.pending_reconfirmation? 
     div
@@ -18,4 +20,5 @@
   .actions
     = f.submit t("devise.registrations.update"), class: "btn btn-lg btn-success btn-block"
 
+  br
   = link_to "Back", :back 

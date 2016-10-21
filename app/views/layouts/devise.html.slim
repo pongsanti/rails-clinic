@@ -17,16 +17,4 @@ html lang="en"
       
       = yield
 
-    footer.footer
-      div.container
-        ul.nav.navbar-nav
-          li.active
-            = link_to home_path do
-                => icon("heartbeat")
-                => "Home"
-          li
-            a href="#about"
-              ="About"
-          li
-            a href="#contact"
-              ="Contact"
+    = render partial: "layouts/footer_nav"

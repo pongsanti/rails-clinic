@@ -2,10 +2,12 @@
   = devise_error_messages!
 
   .text-center
-    = icon("user", class: "fa-5x")
+    span.logo = "VEJSIN"
   br
   
-  h2.form-signin-heading = t("devise.registrations.sign_up")
+  h2.form-signin-heading.text-center
+    => icon("user", class: "fa-2x")
+    = t("devise.registrations.sign_up")
 
 
   .form-group
