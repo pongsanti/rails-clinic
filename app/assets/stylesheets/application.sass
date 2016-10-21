@@ -38,9 +38,12 @@ $badge-bg: #fff
 @import font-awesome-sprockets
 @import font-awesome
 
+// logo font
+@import 'https://fonts.googleapis.com/css?family=Quicksand'
+
 // local variables
 $body-padding-top: 55px
-$footer-height: 45px
+$footer-height: 40px
 
 html
   position: relative
@@ -49,6 +52,14 @@ html
 body
   padding-top: $body-padding-top
   margin-bottom: $footer-height * 2
+
+.logo
+  font-family: 'Quicksand', sans-serif
+  font-size: 60px
+
+.logo-footer
+  @extend .logo
+  font-size: 30px
 
 .colon-trail:after
   content: ":"
@@ -63,17 +74,6 @@ body
 .footer
   position: absolute
   bottom: 0
-  width: 100%
-  height: $footer-height
-  color: $navbar-default-color
-  background-color: $navbar-default-bg
-
-  a
-    color: $navbar-default-link-color
-    &:active
-      color: $navbar-default-link-active-color
-    &:hover
-      color: $navbar-default-link-hover-color
 
 tr.pointer:hover
   cursor: pointer

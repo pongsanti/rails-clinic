@@ -1,11 +1,14 @@
 = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
   
   
+
   .text-center
-    = icon("sign-in", class: "fa-5x")
+    span.logo ="VEJSIN"
   br
 
-  h2.form-signin-heading =t("devise.sessions.sign_in")
+  h2.form-signin-heading.text-center
+    => icon("sign-in", class: "fa-2x")
+    = t("devise.sessions.sign_in")
   
   = f.label :email, class: "sr-only"
   = f.email_field :email, class: "form-control", placeholder: true, required: true, autofocus: true
