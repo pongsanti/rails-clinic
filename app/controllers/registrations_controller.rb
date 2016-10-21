@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     if current_user.update(registration_params)
-      redirect_to root_path, notice: t('successfully_updated')
+      redirect_to home_path, notice: t('successfully_updated')
     else
       render 'users/registrations/edit'
     end

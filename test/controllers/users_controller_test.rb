@@ -39,12 +39,12 @@ class UsersControllerTest < ActionController::TestCase
     def get_index_with_unauth_user(user)
       sign_in users(user)
       get "index"
-      assert_redirected_to root_path
+      assert_redirected_to home_path
     end
 
     def get_edit_with_unauth_user(user)
       sign_in users(user)
       get "edit", id: @user
-      assert_redirected_to root_path
+      assert_redirected_to home_path
     end
 end

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
 
   #bc  
-  add_breadcrumb I18n.t("bc.home"), :root_path
+  add_breadcrumb I18n.t("bc.home"), :home_path
 
   private
   	def set_locale
@@ -27,19 +27,19 @@ class ApplicationController < ActionController::Base
     # Pundit
     def user_not_authorized
       flash[:alert] = I18n.t("not_authorized")
-      redirect_to(request.referrer || root_path)
+      redirect_to(request.referrer || home_path)
     end
 
     # Devise
     # You can override the default behaviour by creating an after_sign_in_path_for 
-    #def after_sign_in_path_for(resource)
-    #  root_url(subdomain: resource.client.subdomain)
-    #end
+    def after_sign_in_path_for(resource)
+      home_path
+    end
 
     # Devise
     # Overwriting the sign_out redirect path method
     def after_sign_out_path_for(resource_or_scope)
-      new_user_session_path
+      root_path
     end
 	
 end
