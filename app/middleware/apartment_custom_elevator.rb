@@ -6,10 +6,10 @@ class ApartmentCustomElevator < Apartment::Elevators::Generic
     begin
       user_id = get_user_id(request)
       user = user(user_id)
-      user.client.subdomain
+      return user.client.subdomain
     rescue
       # User got no client yet
-      unauth
+      return unauth
     else
       # should not be reached
       return unauth
