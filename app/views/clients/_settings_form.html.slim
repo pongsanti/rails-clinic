@@ -13,20 +13,37 @@
     = form_for client, url: client_settings_path(client), html: { class: "form-horizontal" } do |f|
       
       - last_prefix = nil
-      - client.settings.attributes.each do |key, value|
-        
-        - this_prefix = key[0...3]
-        - if last_prefix.present? and this_prefix != last_prefix 
-          hr
-        - last_prefix = this_prefix
+      - loop_count = 0
+      - length = client.settings.attributes.length
 
-        .form-group
-          label.control-label.col-sm-3 for="client_settings_#{key}"
-            = t("activerecord.attributes.client.settings.#{key}")
-          .col-sm-9
-            input.form-control id="client_settings_#{key}" name="client[settings][#{key}]" type="text"value="#{value}"
-            span class="help-block"
-              = t("clients.settings.help.#{key}")
+      - client.settings.attributes.each do |key, value|
+      
+        - this_prefix = key[0...3]
+        /- if last_prefix.present? and this_prefix != last_prefix 
+          hr
+        
+        - if this_prefix != last_prefix
+          - if loop_count != 0
+            </div>
+            hr
+          <div class="form-group">
+          
+        label.control-label.col-sm-2 for="client_settings_#{key}"
+          = t("activerecord.attributes.client.settings.#{key}")
+        .col-sm-4
+          input.form-control id="client_settings_#{key}" name="client[settings][#{key}]" type="text"value="#{value}"
+          span class="help-block"
+            = t("clients.settings.help.#{key}")
+
+        - loop_count += 1
+        
+        / last element, must close div form group
+        - if length == loop_count
+          </div>
+
+        - last_prefix = this_prefix
+          
+        
 
       .form-group
         .col-sm-offset-2.col-sm-10
