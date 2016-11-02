@@ -3,7 +3,6 @@
 .container
   .row
     .col-sm-8
-      = render partial: "global/search", locals: {reset_path: customers_path, search_field: :name_or_surname_or_cn_cont}
       = render partial: "nform", locals: {action: :new}
 
     .col-sm-4
