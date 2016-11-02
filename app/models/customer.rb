@@ -55,6 +55,30 @@ class Customer < ActiveRecord::Base
         "#{prefix}00000"
       end      
     end
+
+    def age(birthdate, current_date)
+      result = {year: 0, month: 0, day: 0}
+
+      result[:year] = current_date.year - birthdate.year
+
+      bd_day = (birthdate.leap? && birthdate.day == 29) ? 28 : birthdate.day
+      #bd_day = birthdate.day
+      bd_party_date_this_year = Date.new(current_date.year, birthdate.month, bd_day)
+      
+      last_bd_party = bd_party_date_this_year
+
+      this_year_had_bd_party = (bd_party_date_this_year <= current_date)
+      if not this_year_had_bd_party
+        last_bd_party = Date.new(current_date.year - 1, birthdate.month, bd_day)
+        result[:year] -= 1
+      end
+
+      day_count_from_last_bd_party = (current_date - last_bd_party).to_i
+      result[:month] = day_count_from_last_bd_party / 30
+      result[:day] = day_count_from_last_bd_party % 30
+
+      return result
+    end
     
   end
 
@@ -62,6 +86,17 @@ class Customer < ActiveRecord::Base
     self.cn = Customer.latest_cn
   end
 
+  def age_text
+    if birthdate.present?
+      age = Customer.age(birthdate, DateTime.now.to_date)
+      
+      s = StringIO.new
+      s << age[:year] << " " << I18n.t('customers.show.years') << " "
+      s << age[:month] << " " << I18n.t('customers.show.months') << " "
+      s << age[:day] << " " << I18n.t('customers.show.days')
+      s.string
+    end    
+  end
 
   private
     def delete_masked_input

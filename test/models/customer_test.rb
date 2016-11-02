@@ -131,9 +131,18 @@ class CustomerTest < ActiveSupport::TestCase
     assert_equal "#{prefix}00000", Customer.latest_cn
   end
 
+  test "should get birthdate age" do
+    result = {year: 28, month: 0, day: 24}
+    assert_equal result, Customer.age(@customer.birthdate, current_date)
+  end
+
   private
     def cn_prefix
       (Date.current.year + 543) % 100
+    end
+
+    def current_date
+      DateTime.new(2016, 11, 2)
     end
 
 end
