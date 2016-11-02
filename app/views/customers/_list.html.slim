@@ -22,4 +22,4 @@ div.panel.panel-default id=id
         = render partial: "entry", collection: @customers, as: "customer", cached: true
 
   .panel-footer
-    = render partial: "global/panel/footer", locals: {list: @customers, key: "layouts.application.customer" }
+    = render partial: "global/panel/footer", locals: {list: @customers, key: "customers.index.title" }
