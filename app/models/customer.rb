@@ -9,7 +9,7 @@ class Customer < ActiveRecord::Base
 
   acts_as_paranoid
   
-  paginates_per 10
+  paginates_per 15
 
 	belongs_to :prefix, inverse_of: :customers
   has_many :exams, inverse_of: :customer
