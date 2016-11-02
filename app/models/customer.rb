@@ -30,7 +30,7 @@ class Customer < ActiveRecord::Base
 
   class << self
     # includes essentials
-    def eager
+    def include_prefix
       includes(:prefix)
     end
 
