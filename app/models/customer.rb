@@ -11,7 +11,7 @@ class Customer < ActiveRecord::Base
   
   paginates_per 10
 
-	belongs_to :prefix
+	belongs_to :prefix, inverse_of: :customers
   has_many :exams, inverse_of: :customer
 
 	validates :prefix, presence: true
@@ -65,8 +65,17 @@ class Customer < ActiveRecord::Base
 
   private
     def delete_masked_input
-      id_card_no.delete! DASH_SEPARATOR if id_card_no.present?
-      home_phone_no.delete! DASH_SEPARATOR if home_phone_no.present?
-      tel_no.delete! DASH_SEPARATOR if tel_no.present?
+      delete_dash_separator(:id_card_no)
+      delete_dash_separator(:home_phone_no)
+      delete_dash_separator(:tel_no)
+    end
+
+    def delete_dash_separator(attribute)
+      current_value = self.send("#{attribute}")
+      
+      if current_value.present?
+        self.send("#{attribute}=", current_value.delete(DASH_SEPARATOR))
+      end
+
     end
 end
