@@ -15,10 +15,15 @@ class DataTable
     placeholder = @util.findElemByDataAttributes {"table": @tableName}
     if placeholder.length
       @table = placeholder.DataTable @initOptions()
+      @addInitEventHandler()
       @addDrawEventHandler()
       @addNewEntryBtnEvent()
     else
       @table = null
+
+  addInitEventHandler: ()->
+    if @rowCount() == 0
+      @addRow()
     
   addDrawEventHandler: ()->
     @table.on 'draw.dt', ()=>
@@ -31,7 +36,10 @@ class DataTable
       btn.click ()=>
         @addRow(@rowContent())
 
-  addRow: (content) ->
+  rowCount: ()->
+    @table.row().count()
+
+  addRow: (content=@rowContent()) ->
     @table.row.add(content).draw( false )
 
   rowContent: () ->
@@ -163,7 +171,7 @@ class window.view.ExamDrugDataTable extends DataTable
     # update drug usgae
     drug_usage_id = selected_drug_in.data("default-usage")
     if drug_usage_id?
-      console.log drug_usage_id
+      #console.log drug_usage_id
       @setDrugUsageSelectVal(row, drug_usage_id)
   
   amountTextInputChangeEvent: (changeEvent)=>
@@ -193,7 +201,7 @@ class window.view.ExamAppointmentDataTable extends DataTable
 
     time_select_div = $("\##{@time_select_div_id}").clone()
     time_select = time_select_div.find("select")
-    console.log time_select.option
+    #console.log time_select.option
     @addClass(time_select, "selectpicker")
 
     rowId = Date.now()
