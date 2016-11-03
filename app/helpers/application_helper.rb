@@ -43,6 +43,18 @@ module ApplicationHelper
     number_to_currency num, unit: ""
   end
 
+  def age_text(birthdate)
+    if birthdate.present?
+      age = Customer.age(birthdate)
+      
+      s = StringIO.new
+      s << age[:year] << " " << I18n.t('customers.show.years') << " "
+      s << age[:month] << " " << I18n.t('customers.show.months') << " "
+      s << age[:day] << " " << I18n.t('customers.show.days')
+      s.string
+    end    
+  end
+
   def toggleTarget(id)
     "#{id}Body"
   end

@@ -20,7 +20,7 @@
     .row
       = render partial: "global/txt_show", locals: {obj: customer, method: :name, value: "#{customer.prefix.name} #{customer.name} #{customer.surname} (#{Customer.human_attribute_name(:sex)} #{t("customers.show.#{customer.sex}")})", lb_width: 4, tf_width: 8}
     .row
-      = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: customer.age_text, lb_width: 4, tf_width: 8}
+      = render partial: "global/txt_show", locals: {obj: customer, method: :age, value: age_text(customer.birthdate), lb_width: 4, tf_width: 8}
     .row
       = render partial: "global/txt_show", locals: {obj: customer, method: :birthdate, value: th_date_format(customer.birthdate), lb_width: 4, tf_width: 8}
     .row

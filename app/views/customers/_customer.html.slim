@@ -26,7 +26,7 @@
 
       .form-group
         = render partial: "global/txt_show", locals: { obj: customer, method: :birthdate, required: true, value: th_date_format(customer.birthdate) }
-        = render partial: "global/txt_show", locals: { obj: customer, method: :age, value: customer.age_text }
+        = render partial: "global/txt_show", locals: { obj: customer, method: :age, value: age_text(customer.birthdate) }
 
       .form-group
         = render partial: "global/txt_show", locals: { obj: customer, method: :id_card_no, value: masked_id_card_no(customer) }

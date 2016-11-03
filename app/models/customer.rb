@@ -86,18 +86,6 @@ class Customer < ActiveRecord::Base
     self.cn = Customer.latest_cn
   end
 
-  def age_text
-    if birthdate.present?
-      age = Customer.age(birthdate)
-      
-      s = StringIO.new
-      s << age[:year] << " " << I18n.t('customers.show.years') << " "
-      s << age[:month] << " " << I18n.t('customers.show.months') << " "
-      s << age[:day] << " " << I18n.t('customers.show.days')
-      s.string
-    end    
-  end
-
   private
     def delete_masked_input
       delete_dash_separator(:id_card_no)
