@@ -33,6 +33,8 @@ class Customer
   districtSuggestion : null
   provinceSuggestion : null
 
+  selectPrefix: null
+
   displayThaiYear: () ->
     $('select#customer_birthdate_1i option').each(
       (index, value) ->
@@ -48,24 +50,18 @@ class Customer
         option.text(option.text() + ' (' + String(index + 1) + ')');
     )
 
-  preSelectSex: () ->
-    $('input[type=radio]:checked').parent().button("toggle")
-
-
   initializePage: () ->
     @displayThaiYear()
     @displayMonthNumber()
-    @preSelectSex()
     @initializeTypeaheads()
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
     view.panelUtil.initToggleCollapseSwapIcon $("div[id*='customer']")
 
   initializePrefixSelectSex: ()->
-    prefix_select = $("select[id*='customer_prefix']")
-
-    prefix_select.change (evt) =>
-      sex_selected_value = prefix_select.find("option:selected").data("sex")
-      $("\##{sex_selected_value}_btn").button("toggle")
+    delete @selectPrefix
+    @selectPrefix = new window.components.SelectPrefix({id: "customer_prefix"})
+    @selectPrefix.toggleSexButton()
+    @selectPrefix.setupChange()
 
   initializeTypeaheads: ()->
     delete @provinceSuggestion

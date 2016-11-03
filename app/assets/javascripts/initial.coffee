@@ -1,0 +1,2 @@
+window.components = {}
+window.view = {}

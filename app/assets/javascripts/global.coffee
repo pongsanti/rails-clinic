@@ -1,5 +1,3 @@
-window.view = {}
-
 class constant
   CUSTOMER: 'customers'
   CLIENT: 'clients'

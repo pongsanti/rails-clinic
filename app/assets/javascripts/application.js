@@ -17,5 +17,7 @@
 
 //= require third-party
 
+//= require initial
+//= require components
 //= require global
 //= require views
