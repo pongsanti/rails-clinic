@@ -56,7 +56,7 @@ class Customer < ActiveRecord::Base
       end      
     end
 
-    def age(birthdate, current_date)
+    def age(birthdate, current_date=DateTime.now.to_date)
       result = {year: 0, month: 0, day: 0}
 
       result[:year] = current_date.year - birthdate.year
@@ -88,7 +88,7 @@ class Customer < ActiveRecord::Base
 
   def age_text
     if birthdate.present?
-      age = Customer.age(birthdate, DateTime.now.to_date)
+      age = Customer.age(birthdate)
       
       s = StringIO.new
       s << age[:year] << " " << I18n.t('customers.show.years') << " "
