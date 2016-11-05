@@ -10,6 +10,22 @@ class window.components.Select
   find: (query)->
     @get().find(query)
 
+  options: ()->
+    @find("option")
+
+class window.components.SelectBirthDate extends window.components.Select
+  setThaiYear:() ->
+    @options().each (index, value)->
+      option = $(value)
+      year = parseInt(option.text())
+      option.text(year + ' (' + String(year + 543) + ')')
+
+  setThaiMonth:()->
+    @options().each (index, value)->
+      option = $(value)
+      option.text(option.text() + ' (' + String(index + 1) + ')')
+
+
 class window.components.SelectPrefix extends window.components.Select
   
   sexSelected:()->
