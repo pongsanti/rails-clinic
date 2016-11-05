@@ -38,7 +38,6 @@ class Customer
   selectBirthDateMonth: null
 
   displayThaiYear: () ->
-    console.log "init thai year"
     delete @selectBirthDateYear
     @selectBirthDateYear = new window.components.SelectBirthDate({id: "customer_birthdate_1i"})
     @selectBirthDateYear.setThaiYear()
