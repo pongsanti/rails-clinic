@@ -39,7 +39,7 @@ div id=id class=("panel " + (action == :new ? "panel-success" : "panel-warning")
       .form-group
         = f.label :birthdate, class: "col-sm-2 control-label required-label"
         .col-sm-10
-          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10, "selectOnTab" => true }
+          = f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year, buddhist_era: true}, class: "selectpicker", data: { 'live-search' => true, "width" => "fit", "size" => 10, "selectOnTab" => true }
 
       .form-group
         =render partial: "global/txt_field", locals: {f: f, method: :id_card_no, data: { mask: '9-9999-99999-99-9' }}

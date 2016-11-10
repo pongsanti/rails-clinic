@@ -20,7 +20,7 @@ class Customer
     @selectBirthDateMonth.setThaiMonth()
 
   initializePage: () ->
-    @displayThaiYear()
+    #@displayThaiYear()
     @displayMonthNumber()
     @initializeTypeaheads()
     view.panelUtil.initToggleCollapseSwapIcon $("#searchPanel")
